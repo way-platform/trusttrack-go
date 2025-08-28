@@ -1,0 +1,5 @@
+.semrel
+.generated-go-semantic-release-changelog.md
+build/
+dist/
+cmd/trusttrack/trusttrack
