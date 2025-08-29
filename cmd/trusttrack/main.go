@@ -155,13 +155,13 @@ func newListObjectsLastPositionCommand() *cobra.Command {
 
 func newListObjectCoordinatesCommand() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     "object-coordinates [object-id]",
+		Use:     "coordinates [object-id]",
 		Short:   "List object coordinates for a time period",
 		GroupID: "coordinates",
 		Args:    cobra.ExactArgs(1),
 	}
 	fromTime := cmd.Flags().Time("from", time.Now().Add(-24*time.Hour), []string{time.RFC3339}, "From time (RFC3339 format)")
-	toTime := cmd.Flags().Time("to", time.Time{}, []string{time.RFC3339}, "To time (RFC3339 format, optional)")
+	toTime := cmd.Flags().Time("to", time.Now(), []string{time.RFC3339}, "To time (RFC3339 format, optional)")
 	includeGeozones := cmd.Flags().Bool("include-geozones", false, "Include geozone information")
 	includeTireParameters := cmd.Flags().Bool("include-tire-parameters", false, "Include tire pressure information")
 	cmd.RunE = func(cmd *cobra.Command, args []string) error {
@@ -297,7 +297,7 @@ func newListFuelEventsCommand() *cobra.Command {
 		GroupID: "fuel-events",
 		Args:    cobra.ExactArgs(1),
 	}
-	fromTime := cmd.Flags().Time("from", time.Now().Add(-24*time.Hour), []string{time.RFC3339}, "From time (RFC3339 format)")
+	fromTime := cmd.Flags().Time("from", time.Now().Add(-7*24*time.Hour), []string{time.RFC3339}, "From time (RFC3339 format)")
 	toTime := cmd.Flags().Time("to", time.Now(), []string{time.RFC3339}, "To time (RFC3339 format)")
 	cmd.RunE = func(cmd *cobra.Command, args []string) error {
 		client, err := newClient(cmd)
