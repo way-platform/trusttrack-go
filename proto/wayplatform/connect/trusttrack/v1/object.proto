@@ -2,7 +2,7 @@ edition = "2023";
 
 package wayplatform.connect.trusttrack.v1;
 
-import "wayplatform/connect/trusttrack/v1/location.proto";
+import "wayplatform/connect/trusttrack/v1/position.proto";
 import "wayplatform/connect/trusttrack/v1/vehicle_params.proto";
 
 // A tracked object.
@@ -19,6 +19,6 @@ message Object {
   // The vehicle parameters of the object.
   VehicleParams vehicle_params = 4;
 
-  // The last location of the object.
-  Location last_location = 5;
+  // The last position of the object.
+  Position last_position = 5;
 }
