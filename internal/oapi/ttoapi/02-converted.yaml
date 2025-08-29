@@ -1,0 +1,4623 @@
+openapi: 3.0.0
+info:
+  description: Please append <b>api_key</b> parameter to each request. In order to
+    get your key please contact your salesman.
+  version: 1.0.0
+  title: API Description
+tags:
+  - name: Driver Time Analysis API
+    description: Driver Time Analysis Controller
+  - name: Ecodriving API V1
+    description: Ecodriving Controller
+  - name: Tacho request scheduling API V1
+    description: " "
+  - name: Driver Time Table API V1
+    description: Driver Time Table Controller
+  - name: Drivers API V2
+    description: Driver Controller
+  - name: Objects Last Coordinate API
+    description: Object Last Coordinate Controller
+  - name: Drivers State API V1
+    description: Driver State Controller
+  - name: Detected Event History API V1
+    description: Event History Controller
+  - name: Object Coordinates Streaming API
+    description: Object Coordinates Stream Controller
+  - name: Object group API
+    description: Object Group Controller
+  - name: Object Coordinates History API V3
+    description: Object Coordinates Controller
+  - name: Object Coordinates Streaming API V2
+    description: Object Coordinates Stream Controller
+  - name: Users API
+    description: User Controller
+  - name: Countries API V1
+    description: Country Report Controller
+  - name: Drivers API
+    description: Driver Controller
+  - name: Fuel API
+    description: Fuel Controller
+  - name: Object group management API
+    description: Object Group Management Controller
+  - name: Driver management API
+    description: Driver Management Controller
+  - name: Driver Violation API
+    description: Driver Violation Controller
+  - name: Objects API
+    description: Object Controller
+  - name: Geozone API
+    description: Geozone Controller
+  - name: Trips API
+    description: Trip Controller
+  - name: Driver Assignation API
+    description: Driver Assignation Controller
+  - name: Object Coordinates History API
+    description: Object Coordinates Controller
+  - name: Object Coordinates History API V2
+    description: Object Coordinates Controller
+  - name: Object Coordinates Streaming API V3
+    description: Object Coordinates Stream Controller
+  - name: Share Link Management API V1
+    description: Share Link Controller
+paths:
+  "/countries/driver?version=1{&id,from_datetime,to_datetime,limit,continuation_token}":
+    get:
+      tags:
+        - Countries API V1
+      summary: Get country report data by given filtering parameters for driver
+      operationId: getCountryReportDataByDriverUsingGET
+      parameters:
+        - name: id
+          in: query
+          description: id
+          required: true
+          schema:
+            type: string
+        - name: from_datetime
+          in: query
+          description: from_datetime
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: to_datetime
+          in: query
+          description: to_datetime
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: limit
+          in: query
+          description: limit
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 100
+        - name: continuation_token
+          in: query
+          description: continuation_token
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExternalCountryByDriverApiResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/countries/object?version=1{&id,from_datetime,to_datetime,limit,continuation_token}":
+    get:
+      tags:
+        - Countries API V1
+      summary: Get country report data by given filtering parameters for driver
+      operationId: getCountryReportDataByObjectUsingGET
+      parameters:
+        - name: id
+          in: query
+          description: id
+          required: true
+          schema:
+            type: string
+        - name: from_datetime
+          in: query
+          description: from_datetime
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: to_datetime
+          in: query
+          description: to_datetime
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: limit
+          in: query
+          description: limit
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 100
+        - name: continuation_token
+          in: query
+          description: continuation_token
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExternalCountryByObjectApiResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/detected-events?version=1{&object_id,user_id,from_datetime,to_datetime,limit,continuation_token}":
+    get:
+      tags:
+        - Detected Event History API V1
+      summary: Find detected event history
+      operationId: findUsingGET
+      parameters:
+        - name: object_id
+          in: query
+          description: object_id
+          required: true
+          schema:
+            type: string
+        - name: user_id
+          in: query
+          description: user_id
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: from_datetime
+          in: query
+          description: from_datetime
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: to_datetime
+          in: query
+          description: to_datetime
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: limit
+          in: query
+          description: limit
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 100
+        - name: continuation_token
+          in: query
+          description: continuation_token
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/DetectedEventCollection"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  /driver-violation?version=1:
+    post:
+      tags:
+        - Driver Violation API
+      summary: find driver violations
+      operationId: findDriverViolationsUsingPOST
+      parameters:
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExternalDriverViolationParams"
+        description: params
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExternalDriverViolationCollection"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/driver/assignations/last?version=1{&byDriverId,byObjectId}":
+    get:
+      tags:
+        - Driver Assignation API
+      summary: Get last assignation event by driver id or object id
+      operationId: getLastAssignationEventUsingGET
+      parameters:
+        - name: byDriverId
+          in: query
+          description: byDriverId
+          required: false
+          schema:
+            type: string
+        - name: byObjectId
+          in: query
+          description: byObjectId
+          required: false
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/ResponseDriverAssignationEvent"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  /driver/assignations?version=1:
+    post:
+      tags:
+        - Driver Assignation API
+      summary: Create driver manual assignation event
+      operationId: createDriverAssignationEventUsingPOST
+      parameters:
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RequestDriverAssignation"
+        description: command
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/ResponseDriverAssignationEvent"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/drivers/{driverId}/current-time-analysis?version=1":
+    get:
+      tags:
+        - Driver Time Analysis API
+      summary: Get current driver info by driver id
+      operationId: getCurrentDriverInfoUsingGET
+      parameters:
+        - name: driverId
+          in: path
+          description: driverId
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/CurrentDriverInfo"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/drivers/{driverId}?version=1":
+    get:
+      tags:
+        - Drivers API
+      summary: Get driver by id
+      operationId: getDriverUsingGET_1
+      parameters:
+        - name: driverId
+          in: path
+          description: driverId
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/Driver"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/drivers/{driverId}?version=2":
+    get:
+      tags:
+        - Drivers API V2
+      summary: Get driver by id
+      operationId: getDriverUsingGET
+      parameters:
+        - name: driverId
+          in: path
+          description: driverId
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "2"
+            default: "2"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/v2.Driver"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  /drivers?version=1:
+    get:
+      tags:
+        - Drivers API
+      summary: Finds all client drivers
+      operationId: findDriversUsingGET
+      parameters:
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Driver"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/drivers?version=2{&limit,continuation_token,identifier,identifier_type}":
+    get:
+      tags:
+        - Drivers API V2
+      summary: Query client drivers
+      operationId: queryDriversUsingGET
+      parameters:
+        - name: limit
+          in: query
+          description: limit
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 100
+        - name: continuation_token
+          in: query
+          description: continuation_token
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: identifier
+          in: query
+          description: identifier
+          required: false
+          schema:
+            type: string
+        - name: identifier_type
+          in: query
+          description: identifier_type
+          required: false
+          schema:
+            type: string
+            enum:
+              - TACHOGRAPH
+              - IBUTTON
+              - WIRELESS
+              - DLT
+              - UNKNOWN
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "2"
+            default: "2"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/ExternalDriverContinuableList"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/driverstate/{driverId}?version=1{&from_datetime,to_datetime,limit,continuation_token}":
+    get:
+      tags:
+        - Drivers State API V1
+      summary: Query driver states for time interval
+      operationId: queryDriverUsingGET
+      parameters:
+        - name: driverId
+          in: path
+          description: driverId
+          required: true
+          schema:
+            type: string
+        - name: from_datetime
+          in: query
+          description: from_datetime
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: to_datetime
+          in: query
+          description: to_datetime
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: limit
+          in: query
+          description: limit
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 100
+        - name: continuation_token
+          in: query
+          description: continuation_token
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExternalDriverStateCollection"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/drivertimetable/{type}?version=1{&timezone,time_range_month,time_range_year,business_hours_start,business_hours_end,status_available_as_working_time}":
+    get:
+      tags:
+        - Driver Time Table API V1
+      summary: Query driver time table for time range
+      operationId: queryDriverUsingGET_1
+      parameters:
+        - name: identifier
+          in: path
+          description: identifier
+          required: true
+          schema:
+            type: string
+        - name: type
+          in: path
+          description: type
+          required: true
+          schema:
+            type: string
+            enum:
+              - TACHOGRAPH
+              - IBUTTON
+              - WIRELESS
+              - DLT
+              - UNKNOWN
+        - name: timezone
+          in: query
+          description: timezone
+          required: true
+          schema:
+            type: string
+        - name: time_range_month
+          in: query
+          description: time_range_month
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: time_range_year
+          in: query
+          description: time_range_year
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: business_hours_start
+          in: query
+          description: business_hours_start
+          required: true
+          schema:
+            type: string
+        - name: business_hours_end
+          in: query
+          description: business_hours_end
+          required: true
+          schema:
+            type: string
+        - name: status_available_as_working_time
+          in: query
+          description: status_available_as_working_time
+          required: true
+          schema:
+            type: boolean
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExternalDriverTimeTable"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/ecodriving/driver?version=1{&from_datetime,to_datetime,id}":
+    get:
+      tags:
+        - Ecodriving API V1
+      summary: Get ecodriving data by given filtering parameters for driver
+      operationId: getEcodrivingDataByDriverUsingGET
+      parameters:
+        - name: from_datetime
+          in: query
+          description: from_datetime
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: to_datetime
+          in: query
+          description: to_datetime
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: id
+          in: query
+          description: id
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExternalEcodrivingSubjectParameters"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/ecodriving/object?version=1{&from_datetime,to_datetime,id}":
+    get:
+      tags:
+        - Ecodriving API V1
+      summary: Get ecodriving data by given filtering parameters for object
+      operationId: getEcodrivingDataByObjectUsingGET
+      parameters:
+        - name: from_datetime
+          in: query
+          description: from_datetime
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: to_datetime
+          in: query
+          description: to_datetime
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: id
+          in: query
+          description: id
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExternalEcodrivingSubjectParameters"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/fuel-events?version=1{&objectId,fromDatetime,toDatetime,limit,continuationToken}":
+    get:
+      tags:
+        - Fuel API
+      summary: find fuel events for object
+      operationId: findFuelEventsUsingGET
+      parameters:
+        - name: objectId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: fromDatetime
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: toDatetime
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: continuationToken
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExternalFuelEventsCollection"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  /geozones/visits?version=1:
+    post:
+      tags:
+        - Geozone API
+      summary: Find geozone visits
+      operationId: findGeozoneVisitEventsUsingPOST
+      parameters:
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExternalGeozoneVisitParameters"
+        description: params
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/ExternalGeozoneVisitCollection"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/geozones?version=1{&limit,continuation_token,include_geometry}":
+    get:
+      tags:
+        - Geozone API
+      summary: find user geozones
+      operationId: findGeozonesUsingGET
+      parameters:
+        - name: limit
+          in: query
+          description: limit
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 100
+        - name: continuation_token
+          in: query
+          description: continuation_token
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: include_geometry
+          in: query
+          description: include_geometry
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/ExternalGeozoneCollection"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/management/driver/{driverId}?version=1":
+    get:
+      tags:
+        - Driver management API
+      summary: Get driver by id
+      operationId: getDriverUsingGET_2
+      parameters:
+        - name: driverId
+          in: path
+          description: driverId
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/Driver"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+    put:
+      tags:
+        - Driver management API
+      summary: Update driver
+      operationId: updateDriverUsingPUT
+      parameters:
+        - name: driverId
+          in: path
+          description: driverId
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      requestBody:
+        $ref: "#/components/requestBodies/Driver"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/Driver"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+    delete:
+      tags:
+        - Driver management API
+      summary: Delete driver
+      operationId: deleteDriverUsingDELETE
+      parameters:
+        - name: driverId
+          in: path
+          description: driverId
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/ResponseEntity"
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+  /management/driver?version=1:
+    post:
+      tags:
+        - Driver management API
+      summary: Create driver
+      operationId: createDriverUsingPOST
+      parameters:
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      requestBody:
+        $ref: "#/components/requestBodies/Driver"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/Driver"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/management/object-group/{externalId}?version=1":
+    put:
+      tags:
+        - Object group management API
+      summary: update object group
+      operationId: updateObjectGroupUsingPUT
+      parameters:
+        - name: externalId
+          in: path
+          description: externalId
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+        description: objectsExternalIds
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExternalObjectGroup"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  /object-coordinates-stream?version=1:
+    get:
+      tags:
+        - Object Coordinates Streaming API
+      summary: Get all objects real time coordinates stream
+      operationId: getClientRealTimeCoordinatesUsingGET
+      parameters:
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            text/event-stream:
+              schema:
+                $ref: "#/components/schemas/Coordinate"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/object-coordinates-stream?version=1{&object_id}":
+    get:
+      tags:
+        - Object Coordinates Streaming API
+      summary: Get one object real time coordinates stream
+      operationId: getRealTimeCoordinatesUsingGET
+      parameters:
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+        - name: object_id
+          in: query
+          description: object_id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/event-stream:
+              schema:
+                $ref: "#/components/schemas/Coordinate"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/object-coordinates-stream?version=2{&include_geozones,include_tire_parameters,object_id}":
+    get:
+      tags:
+        - Object Coordinates Streaming API V2
+      summary: Get one object real time coordinates stream
+      operationId: getRealTimeCoordinatesUsingGET_1
+      parameters:
+        - name: include_geozones
+          in: query
+          description: include_geozones
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: include_tire_parameters
+          in: query
+          description: include_tire_parameters
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "2"
+            default: "2"
+        - name: object_id
+          in: query
+          description: object_id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/event-stream:
+              schema:
+                $ref: "#/components/schemas/Coordinate"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/object-coordinates-stream?version=2{&include_geozones,include_tire_parameters}":
+    get:
+      tags:
+        - Object Coordinates Streaming API V2
+      summary: Get all objects real time coordinates stream
+      operationId: getClientRealTimeCoordinatesUsingGET_1
+      parameters:
+        - name: include_geozones
+          in: query
+          description: include_geozones
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: include_tire_parameters
+          in: query
+          description: include_tire_parameters
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "2"
+            default: "2"
+      responses:
+        "200":
+          description: OK
+          content:
+            text/event-stream:
+              schema:
+                $ref: "#/components/schemas/Coordinate"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/object-coordinates-stream?version=3{&include_geozones,include_tire_parameters,object_id}":
+    get:
+      tags:
+        - Object Coordinates Streaming API V3
+      summary: Get one object real time coordinates stream
+      operationId: getRealTimeCoordinatesUsingGET_2
+      parameters:
+        - name: include_geozones
+          in: query
+          description: include_geozones
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: include_tire_parameters
+          in: query
+          description: include_tire_parameters
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "3"
+            default: "3"
+        - name: object_id
+          in: query
+          description: object_id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/event-stream:
+              schema:
+                $ref: "#/components/schemas/Coordinate"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/object-coordinates-stream?version=3{&include_geozones,include_tire_parameters}":
+    get:
+      tags:
+        - Object Coordinates Streaming API V3
+      summary: Get all objects real time coordinates stream
+      operationId: getClientRealTimeCoordinatesUsingGET_2
+      parameters:
+        - name: include_geozones
+          in: query
+          description: include_geozones
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: include_tire_parameters
+          in: query
+          description: include_tire_parameters
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "3"
+            default: "3"
+      responses:
+        "200":
+          description: OK
+          content:
+            text/event-stream:
+              schema:
+                $ref: "#/components/schemas/Coordinate"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/object-groups/{externalId}?version=1":
+    get:
+      tags:
+        - Object group API
+      summary: get user object group
+      operationId: getObjectGroupUsingGET
+      parameters:
+        - name: externalId
+          in: path
+          description: externalId
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/ExternalObjectGroup"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/object-groups?version=1{&limit,continuation_token}":
+    get:
+      tags:
+        - Object group API
+      summary: find user object groups
+      operationId: findObjectGroupsUsingGET
+      parameters:
+        - name: limit
+          in: query
+          description: limit
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 100
+        - name: continuation_token
+          in: query
+          description: continuation_token
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/ExternalObjectGroupCollection"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/objects-last-coordinate/{objectId}?version=2":
+    get:
+      tags:
+        - Objects Last Coordinate API
+      summary: Finds object last coordinate
+      operationId: getObjectLastCoordinateUsingGET
+      parameters:
+        - name: objectId
+          in: path
+          description: objectId
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "2"
+            default: "2"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/ExternalComposedObject"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/objects-last-coordinate/{objectId}?version=3":
+    get:
+      tags:
+        - Objects Last Coordinate API
+      summary: Finds object last coordinate
+      operationId: getObjectsWithLastCoordinateAndAddressUsingGET
+      parameters:
+        - name: objectId
+          in: path
+          description: objectId
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "3"
+            default: "3"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/ExternalComposedObject"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/objects-last-coordinate?version=2{&limit,continuation_token}":
+    get:
+      tags:
+        - Objects Last Coordinate API
+      summary: Finds all client objects last coordinate
+      operationId: getObjectsLastCoordinateUsingGET
+      parameters:
+        - name: limit
+          in: query
+          description: limit
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 100
+        - name: continuation_token
+          in: query
+          description: continuation_token
+          required: false
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "2"
+            default: "2"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/ExternalComposedObjectCollection"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/objects-last-coordinate?version=3{&limit,continuation_token}":
+    get:
+      tags:
+        - Objects Last Coordinate API
+      summary: Finds all client objects last coordinate
+      operationId: getObjectsWithLastCoordinateAndAddressUsingGET_1
+      parameters:
+        - name: limit
+          in: query
+          description: limit
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 100
+        - name: continuation_token
+          in: query
+          description: continuation_token
+          required: false
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "3"
+            default: "3"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/ExternalComposedObjectCollection"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/objects/{objectId}/coordinates/{datetime}?version=1{&objectId}":
+    get:
+      tags:
+        - Object Coordinates History API
+      summary: Get history item by given datetime
+      operationId: getUsingGET_3
+      parameters:
+        - name: objectId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: datetime
+          in: path
+          description: datetime
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Coordinate"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/objects/{objectId}/coordinates/{datetime}?version=2{&objectId,include_geozones,include_tire_parameters}":
+    get:
+      tags:
+        - Object Coordinates History API V2
+      summary: Get history item by given datetime
+      operationId: getUsingGET_1
+      parameters:
+        - name: objectId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: datetime
+          in: path
+          description: datetime
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: include_geozones
+          in: query
+          description: include_geozones
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: include_tire_parameters
+          in: query
+          description: include_tire_parameters
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "2"
+            default: "2"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Coordinate"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/objects/{objectId}/coordinates/{datetime}?version=3{&objectId,include_geozones,include_nearest_geozone,include_tire_parameters}":
+    get:
+      tags:
+        - Object Coordinates History API V3
+      summary: Get history item by given datetime
+      operationId: getUsingGET_2
+      parameters:
+        - name: objectId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: datetime
+          in: path
+          description: datetime
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: include_geozones
+          in: query
+          description: include_geozones
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: include_nearest_geozone
+          in: query
+          description: include_nearest_geozone
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: include_tire_parameters
+          in: query
+          description: include_tire_parameters
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "3"
+            default: "3"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Coordinate"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/objects/{objectId}/coordinates?version=1{&objectId,fromDatetime,toDatetime,continuationToken,limit}":
+    get:
+      tags:
+        - Object Coordinates History API
+      summary: Finds history items by given filtering parameters
+      operationId: findUsingGET_4
+      parameters:
+        - name: objectId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: fromDatetime
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: toDatetime
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: continuationToken
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CoordinateCollection"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/objects/{objectId}/coordinates?version=2{&objectId,limit,from_datetime,to_datetime,continuation_token,include_geozones,include_tire_parameters}":
+    get:
+      tags:
+        - Object Coordinates History API V2
+      summary: Finds history items by given filtering parameters
+      operationId: findUsingGET_2
+      parameters:
+        - name: objectId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: from_datetime
+          in: query
+          description: from_datetime
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: to_datetime
+          in: query
+          description: to_datetime
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: continuation_token
+          in: query
+          description: continuation_token
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: include_geozones
+          in: query
+          description: include_geozones
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: include_tire_parameters
+          in: query
+          description: include_tire_parameters
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "2"
+            default: "2"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CoordinateCollection"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/objects/{objectId}/coordinates?version=3{&objectId,limit,from_datetime,to_datetime,continuation_token,include_geozones,include_nearest_geozone,include_tire_parameters}":
+    get:
+      tags:
+        - Object Coordinates History API V3
+      summary: Finds history items by given filtering parameters
+      operationId: findUsingGET_3
+      parameters:
+        - name: objectId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: from_datetime
+          in: query
+          description: from_datetime
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: to_datetime
+          in: query
+          description: to_datetime
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: continuation_token
+          in: query
+          description: continuation_token
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: include_geozones
+          in: query
+          description: include_geozones
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: include_nearest_geozone
+          in: query
+          description: include_nearest_geozone
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: include_tire_parameters
+          in: query
+          description: include_tire_parameters
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "3"
+            default: "3"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CoordinateCollection"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/objects/{objectId}/trips?version=1{&from_datetime,to_datetime,continuation_token,limit}":
+    get:
+      tags:
+        - Trips API
+      summary: Finds trips by given filtering parameters
+      operationId: getTripsUsingGET
+      parameters:
+        - name: objectId
+          in: path
+          description: objectId
+          required: true
+          schema:
+            type: string
+        - name: from_datetime
+          in: query
+          description: from_datetime
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: to_datetime
+          in: query
+          description: to_datetime
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: continuation_token
+          in: query
+          description: continuation_token
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/TripCollection"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/objects/{objectId}?version=1":
+    get:
+      tags:
+        - Objects API
+      summary: Gets objects by id
+      operationId: getUsingGET
+      parameters:
+        - name: objectId
+          in: path
+          description: objectId
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  /objects?version=1:
+    get:
+      tags:
+        - Objects API
+      summary: Finds all client objects
+      operationId: findUsingGET_1
+      parameters:
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/share-links/{linkId}?version=1":
+    get:
+      tags:
+        - Share Link Management API V1
+      summary: Get Share link by id
+      operationId: getLinkByIdUsingGET
+      parameters:
+        - name: linkId
+          in: path
+          description: linkId
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/ExternalShareLink"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+    put:
+      tags:
+        - Share Link Management API V1
+      summary: Update Share link
+      operationId: updateLinkUsingPUT
+      parameters:
+        - name: linkId
+          in: path
+          description: linkId
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExternalShareLinkUpdate"
+        description: link
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/ExternalShareLink"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+    delete:
+      tags:
+        - Share Link Management API V1
+      summary: Delete Share link
+      operationId: deleteLinkUsingDELETE
+      parameters:
+        - name: linkId
+          in: path
+          description: linkId
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+  /share-links?version=1:
+    post:
+      tags:
+        - Share Link Management API V1
+      summary: Create Share link
+      operationId: createLinkUsingPOST
+      parameters:
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExternalShareLinkCreate"
+        description: link
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/ExternalShareLink"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/share-links?version=1{&limit,continuation_token}":
+    get:
+      tags:
+        - Share Link Management API V1
+      summary: Find Share links
+      operationId: findShareLinksUsingGET
+      parameters:
+        - name: limit
+          in: query
+          description: limit
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 20
+        - name: continuation_token
+          in: query
+          description: continuation_token
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/ExternalShareLinkCollection"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  /tacho/driver-card-download?version=1:
+    post:
+      tags:
+        - Tacho request scheduling API V1
+      summary: Schedule tacho download for a driver
+      operationId: scheduleDriverCardDownloadUsingPOST
+      parameters:
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DriverCardTachoScheduleRequest"
+        description: driverCardTachoScheduleRequest
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TachoRequestScheduleResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/tacho/file/{requestId}?version=1":
+    get:
+      tags:
+        - Tacho request scheduling API V1
+      summary: Download tacho file from completed request
+      operationId: getFileUsingGET
+      parameters:
+        - name: requestId
+          in: path
+          description: requestId
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: string
+                format: byte
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/tacho/request/{requestId}?version=1":
+    get:
+      tags:
+        - Tacho request scheduling API V1
+      summary: Get information about scheduled request
+      operationId: getRequestUsingGET
+      parameters:
+        - name: requestId
+          in: path
+          description: requestId
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TachoRequestDetailResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+    delete:
+      tags:
+        - Tacho request scheduling API V1
+      summary: Delete scheduled request
+      operationId: deleteRequestUsingDELETE
+      parameters:
+        - name: requestId
+          in: path
+          description: requestId
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+  /tacho/requests?version=1:
+    post:
+      tags:
+        - Tacho request scheduling API V1
+      summary: Get list of scheduled requests with possibility to filter
+      operationId: listTachoRequestsUsingPOST
+      parameters:
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TachoFilterRequest"
+        description: tachoFilterRequest
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/TachoRequestsCollectionResponse"
+        "201":
+          description: Created
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  /tacho/vehicle-download?version=1:
+    post:
+      tags:
+        - Tacho request scheduling API V1
+      summary: Schedule tacho download for a vehicle
+      operationId: scheduleVehicleTachoDataDownloadUsingPOST
+      parameters:
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VehicleTachoScheduleRequest"
+        description: vehicleTachoScheduleRequest
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TachoRequestScheduleResponse"
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/TachoRequestScheduleResponse"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+  "/users?version=1{&limit,continuation_token}":
+    get:
+      tags:
+        - Users API
+      summary: Get users
+      operationId: getUsersUsingGET
+      parameters:
+        - name: limit
+          in: query
+          description: limit
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 100
+        - name: continuation_token
+          in: query
+          description: continuation_token
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - "1"
+            default: "1"
+      responses:
+        "200":
+          description: OK
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/UserCollection"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+servers:
+  - url: //external-api-service.internal-lb.prod.ruptela.lt
+components:
+  requestBodies:
+    Driver:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Driver"
+      description: driver
+      required: true
+  schemas:
+    Address:
+      type: object
+      properties:
+        country:
+          type: string
+        country_code:
+          type: string
+        county:
+          type: string
+        house_number:
+          type: string
+        locality:
+          type: string
+        region:
+          type: string
+        street:
+          type: string
+        zip:
+          type: string
+    CalculatedInputs:
+      type: object
+      properties:
+        mileage:
+          type: number
+    Coordinate:
+      type: object
+      properties:
+        datetime:
+          type: string
+          format: date-time
+        geozone_ids:
+          type: array
+          items:
+            type: string
+        ignition_status:
+          type: string
+          enum:
+            - UNKNOWN
+            - OFF
+            - ON
+        inputs:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: object
+        nearest_geozone:
+          $ref: "#/components/schemas/ExternalNearestGeozone"
+        object_id:
+          type: string
+        position:
+          $ref: "#/components/schemas/Position"
+        trip_type:
+          type: string
+          enum:
+            - UNKNOWN
+            - NONE
+            - PRIVATE
+            - BUSINESS
+            - WORK
+    CoordinateCollection:
+      type: object
+      properties:
+        continuation_token:
+          type: string
+          format: date-time
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/Coordinate"
+    Crs:
+      type: object
+      properties:
+        properties:
+          type: object
+        type:
+          type: string
+          enum:
+            - name
+            - link
+    CurrentDay:
+      type: object
+      properties:
+        driving:
+          $ref: "#/components/schemas/CurrentDayDrivingInfo"
+        driving_status:
+          type: string
+          enum:
+            - SINGLE
+            - CREW
+            - UNKNOWN
+        resting:
+          $ref: "#/components/schemas/CurrentDayRestingInfo"
+        working:
+          $ref: "#/components/schemas/Duration"
+    CurrentDayDrivingInfo:
+      type: object
+      properties:
+        extra:
+          $ref: "#/components/schemas/LimitedDuration"
+        regular:
+          $ref: "#/components/schemas/LimitedDuration"
+    CurrentDayRestingInfo:
+      type: object
+      properties:
+        next_rest:
+          type: string
+          format: date-time
+        rest_in_progress:
+          type: boolean
+    CurrentDriverInfo:
+      type: object
+      properties:
+        calculated_until:
+          type: string
+          format: date-time
+        current_day:
+          $ref: "#/components/schemas/CurrentDay"
+        current_week:
+          $ref: "#/components/schemas/CurrentWeek"
+        data_gap_duration:
+          $ref: "#/components/schemas/Duration"
+        infringements:
+          $ref: "#/components/schemas/Infringements"
+        last_driver_assignation_event:
+          $ref: "#/components/schemas/ResponseDriverAssignationEvent"
+        previous_week:
+          $ref: "#/components/schemas/PreviousWeek"
+        state:
+          $ref: "#/components/schemas/State"
+        type:
+          type: string
+          enum:
+            - PRIMARY
+            - SECONDARY
+            - UNKNOWN
+    CurrentWeek:
+      type: object
+      properties:
+        driving:
+          $ref: "#/components/schemas/CurrentWeekDrivingInfo"
+        resting:
+          $ref: "#/components/schemas/CurrentWeekRestingInfo"
+        working:
+          $ref: "#/components/schemas/Duration"
+    CurrentWeekDrivingInfo:
+      type: object
+      properties:
+        duration:
+          type: integer
+          format: int64
+        duration_limit:
+          type: integer
+          format: int64
+        extended_daily_driving_periods:
+          $ref: "#/components/schemas/LimitedUsage"
+    CurrentWeekRestingInfo:
+      type: object
+      properties:
+        next_rest:
+          type: string
+          format: date-time
+        next_rest_duration:
+          type: integer
+          format: int64
+        reduced_daily_rests:
+          $ref: "#/components/schemas/LimitedUsage"
+        rest_in_progress:
+          type: boolean
+        started_at:
+          type: string
+          format: date-time
+    DataInterval:
+      type: object
+      properties:
+        end:
+          type: string
+          format: date-time
+        start:
+          type: string
+          format: date-time
+    DetectedEvent:
+      type: object
+      properties:
+        description:
+          type: string
+        driver_id:
+          type: string
+        duration:
+          type: integer
+          format: int64
+        end:
+          $ref: "#/components/schemas/EventEnd"
+        name:
+          type: string
+        start:
+          $ref: "#/components/schemas/EventStart"
+        trip_type:
+          type: string
+          enum:
+            - UNKNOWN
+            - NONE
+            - PRIVATE
+            - BUSINESS
+            - WORK
+    DetectedEventCollection:
+      type: object
+      properties:
+        continuation_token:
+          type: integer
+          format: int32
+        events:
+          type: array
+          items:
+            $ref: "#/components/schemas/DetectedEvent"
+    DeviceInputs:
+      type: object
+      properties:
+        digital_input_1:
+          type: boolean
+        digital_input_2:
+          type: boolean
+        digital_input_3:
+          type: boolean
+        digital_input_4:
+          type: boolean
+        first_driver_id:
+          type: string
+        hdop:
+          type: string
+        ibutton:
+          type: string
+        moba_netto_weight:
+          type: integer
+          format: int32
+        moba_rfid_id:
+          type: string
+        moba_timestamp:
+          type: string
+          format: date-time
+        power_supply_voltage:
+          type: integer
+          format: int32
+        second_driver_id:
+          type: string
+        security_dout:
+          type: string
+        temperature_sensor_0:
+          type: number
+        temperature_sensor_0_id:
+          type: string
+        temperature_sensor_1:
+          type: number
+        temperature_sensor_2:
+          type: number
+        temperature_sensor_3:
+          type: number
+        wireless_trailer_id:
+          type: string
+    Driver:
+      type: object
+      properties:
+        address:
+          type: string
+        first_name:
+          type: string
+        id:
+          type: string
+        identifiers:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExternalIdentifier"
+        last_name:
+          type: string
+        phone:
+          type: string
+    DriverCardTachoScheduleRequest:
+      type: object
+      required:
+        - external_object_id
+        - request_name
+        - slot
+      properties:
+        external_object_id:
+          type: string
+        request_name:
+          type: string
+        slot:
+          type: string
+          example: DRIVER_CARD_FIRST_SLOT, DRIVER_CARD_SECOND_SLOT
+          enum:
+            - DRIVER_CARD_FIRST_SLOT
+            - DRIVER_CARD_SECOND_SLOT
+    Duration:
+      type: object
+      properties:
+        duration:
+          type: integer
+          format: int64
+    EventEnd:
+      type: object
+      properties:
+        datetime:
+          type: string
+          format: date-time
+        location:
+          $ref: "#/components/schemas/Location"
+        mileage:
+          type: number
+          format: double
+    EventStart:
+      type: object
+      properties:
+        datetime:
+          type: string
+          format: date-time
+        location:
+          $ref: "#/components/schemas/Location"
+        mileage:
+          type: number
+          format: double
+        speed:
+          type: integer
+          format: int32
+    ExternalAccelerationParameters:
+      type: object
+      properties:
+        acceleration_score:
+          type: integer
+        bad_acceleration_event_count:
+          type: number
+        bad_acceleration_event_rate:
+          type: number
+        good_acceleration_event_count:
+          type: number
+        good_acceleration_event_rate:
+          type: number
+        harsh_acceleration_event_count:
+          type: number
+        harsh_acceleration_event_rate:
+          type: number
+        maximum_acceleration:
+          type: number
+    ExternalAddress:
+      type: object
+      properties:
+        country:
+          type: string
+        country_code:
+          type: string
+        county:
+          type: string
+        house_number:
+          type: string
+        locality:
+          type: string
+        region:
+          type: string
+        street:
+          type: string
+        zip:
+          type: string
+    ExternalBrakingParameters:
+      type: object
+      properties:
+        braking_distance:
+          type: number
+        braking_distance_percentage:
+          type: number
+        braking_duration:
+          type: number
+        braking_score:
+          type: integer
+        engine_braking_distance:
+          type: number
+        engine_braking_distance_percentage:
+          type: number
+        extreme_braking_event_count:
+          type: number
+        extreme_braking_event_rate:
+          type: number
+        harsh_braking_event_count:
+          type: number
+        harsh_braking_event_rate:
+          type: number
+        maximum_braking:
+          type: number
+        normal_braking_event_count:
+          type: number
+        normal_braking_event_rate:
+          type: number
+        normal_braking_stops_rate:
+          type: number
+        parking_brake_abuse_event_count:
+          type: number
+        parking_brake_abuse_rate:
+          type: number
+        retarder_distance:
+          type: number
+        retarder_distance_percentage:
+          type: number
+        retarder_duration:
+          type: number
+        retarder_duration_percentage:
+          type: number
+        retarder_without_cruise_control_distance:
+          type: number
+        retarder_without_cruise_control_distance_percentage:
+          type: number
+        stops_event_count:
+          type: number
+        stops_rate:
+          type: number
+    ExternalCircle:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        radius:
+          type: number
+          format: double
+    ExternalComposedObject:
+      type: object
+      properties:
+        id:
+          type: string
+        imei:
+          type: integer
+          format: int64
+        last_coordinate:
+          $ref: "#/components/schemas/ExternalLastCoordinate"
+        name:
+          type: string
+        vehicle_params:
+          $ref: "#/components/schemas/ExternalVehicleParams"
+    ExternalComposedObjectCollection:
+      type: object
+      properties:
+        continuation_token:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExternalComposedObject"
+    ExternalCorneringParameters:
+      type: object
+      properties:
+        cornering_event_count:
+          type: number
+        cornering_rate:
+          type: number
+        maximum_cornering:
+          type: number
+    ExternalCountryByDriverApiResponse:
+      type: object
+      properties:
+        continuation_token:
+          type: integer
+          format: int32
+        country_visits:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExternalCountryVisitDriver"
+        subject_id:
+          type: string
+    ExternalCountryByObjectApiResponse:
+      type: object
+      properties:
+        continuation_token:
+          type: integer
+          format: int32
+        country_visits:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExternalCountryVisitObject"
+        subject_id:
+          type: string
+    ExternalCountryCoordinate:
+      type: object
+      properties:
+        address:
+          $ref: "#/components/schemas/Address"
+        datetime:
+          type: string
+          format: date-time
+        latitude:
+          type: number
+        longitude:
+          type: number
+    ExternalCountryVisitDriver:
+      type: object
+      properties:
+        available_status_duration:
+          type: integer
+          format: int64
+        average_fuel_consumption:
+          type: number
+        country_code:
+          type: string
+        driving_status_duration:
+          type: integer
+          format: int64
+        end:
+          $ref: "#/components/schemas/ExternalCountryCoordinate"
+        entered_from:
+          type: string
+        exited_to:
+          type: string
+        first_driver_ids:
+          type: array
+          items:
+            type: string
+        fuel_consumed:
+          type: number
+        idling_duration:
+          type: integer
+          format: int64
+        mileage:
+          type: number
+        mileage_virtual:
+          type: number
+        object_ids:
+          type: array
+          items:
+            type: string
+        resting_status_duration:
+          type: integer
+          format: int64
+        second_driver_ids:
+          type: array
+          items:
+            type: string
+        start:
+          $ref: "#/components/schemas/ExternalCountryCoordinate"
+        stop_duration:
+          type: integer
+          format: int64
+        working_duration:
+          type: integer
+          format: int64
+        working_status_duration:
+          type: integer
+          format: int64
+    ExternalCountryVisitObject:
+      type: object
+      properties:
+        available_status_duration:
+          type: integer
+          format: int64
+        average_fuel_consumption:
+          type: number
+        country_code:
+          type: string
+        driving_status_duration:
+          type: integer
+          format: int64
+        end:
+          $ref: "#/components/schemas/ExternalCountryCoordinate"
+        entered_from:
+          type: string
+        exited_to:
+          type: string
+        first_driver_ids:
+          type: array
+          items:
+            type: string
+        fuel_consumed:
+          type: number
+        idling_duration:
+          type: integer
+          format: int64
+        mileage:
+          type: number
+        mileage_virtual:
+          type: number
+        object_ids:
+          type: array
+          items:
+            type: string
+        resting_status_duration:
+          type: integer
+          format: int64
+        second_driver_ids:
+          type: array
+          items:
+            type: string
+        start:
+          $ref: "#/components/schemas/ExternalCountryCoordinate"
+        stop_duration:
+          type: integer
+          format: int64
+        working_duration:
+          type: integer
+          format: int64
+        working_status_duration:
+          type: integer
+          format: int64
+    ExternalCruiseControlParameters:
+      type: object
+      properties:
+        cruise_control_could_be_on_distance:
+          type: number
+        cruise_control_could_be_on_duration:
+          type: number
+        cruise_control_distance:
+          type: number
+        cruise_control_distance_from_all_distance_percentage:
+          type: number
+        cruise_control_distance_percentage:
+          type: number
+        cruise_control_duration:
+          type: number
+        cruise_control_duration_percentage:
+          type: number
+        cruise_control_fuel_consumed_count:
+          type: number
+        cruise_control_fuel_consumption_rate:
+          type: number
+        cruise_control_percentage:
+          type: number
+        cruise_control_score:
+          type: integer
+        cruise_control_was_on_distance:
+          type: number
+        cruise_control_was_on_duration:
+          type: number
+        cruise_control_with_accelerator_distance:
+          type: number
+        cruise_control_with_accelerator_distance_percentage:
+          type: number
+        cruise_control_with_accelerator_duration:
+          type: number
+        cruise_control_with_accelerator_duration_percentage:
+          type: number
+        cruise_control_with_accelerator_fuel_consumed_count:
+          type: number
+        cruise_control_with_accelerator_fuel_consumption_rate:
+          type: number
+        free_rolling_with_cruise_control_distance:
+          type: number
+        free_rolling_with_cruise_control_distance_percentage:
+          type: number
+        free_rolling_with_cruise_control_fuel_consumed_count:
+          type: number
+        free_rolling_with_cruise_control_fuel_consumption_rate:
+          type: number
+    ExternalDailyTime:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        holiday:
+          type: boolean
+        work_duration_at_day:
+          type: integer
+          format: int64
+        work_duration_at_night:
+          type: integer
+          format: int64
+    ExternalDriver:
+      type: object
+      properties:
+        first_name:
+          type: string
+        identifier:
+          type: string
+        last_name:
+          type: string
+    ExternalDriverContinuableList:
+      type: object
+      properties:
+        continuation_token:
+          type: integer
+          format: int32
+        count:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/v2.Driver"
+    ExternalDriverState:
+      type: object
+      properties:
+        activity:
+          type: string
+          enum:
+            - DRIVING
+            - REST
+            - WORK
+            - AVAILABILITY
+            - UNKNOWN
+        duration:
+          type: integer
+          format: int64
+        end_point:
+          $ref: "#/components/schemas/ExternalLatLon"
+        end_time:
+          type: string
+          format: date-time
+        object_id:
+          type: string
+        plate_number:
+          type: string
+        start_point:
+          $ref: "#/components/schemas/ExternalLatLon"
+        start_time:
+          type: string
+          format: date-time
+    ExternalDriverStateCollection:
+      type: object
+      properties:
+        continuation_token:
+          type: string
+          format: date-time
+        driver_id:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExternalDriverState"
+    ExternalDriverTimeTable:
+      type: object
+      properties:
+        days:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExternalDailyTime"
+        driver_name:
+          type: string
+        identifier:
+          type: string
+        time_card_number:
+          type: string
+        total_day_working_hours:
+          type: integer
+          format: int64
+        total_night_working_hours:
+          type: integer
+          format: int64
+        total_working_hours:
+          type: integer
+          format: int64
+    ExternalDriverViolationCollection:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExternalViolation"
+        next_page:
+          type: integer
+          format: int32
+    ExternalDriverViolationParams:
+      type: object
+      properties:
+        card_numbers:
+          type: array
+          items:
+            type: string
+        countries:
+          type: array
+          example: DE, PL
+          items:
+            type: string
+        date_time_from:
+          type: string
+          format: date-time
+          example: YYYY-MM-DDTHH24:MI:SS.sssZ
+        date_time_to:
+          type: string
+          format: date-time
+          example: YYYY-MM-DDTHH24:MI:SS.sssZ
+        page_descriptor:
+          $ref: "#/components/schemas/PageDescriptor"
+        severities:
+          type: array
+          example: NOT_APPLICABLE, MINOR, SERIOUS, VERY_SERIOUS, MOST_SERIOUS
+          items:
+            type: string
+            enum:
+              - NOT_APPLICABLE
+              - MINOR
+              - SERIOUS
+              - VERY_SERIOUS
+              - MOST_SERIOUS
+              - UNKNOWN
+        types:
+          type: array
+          example: WEEKLY_REST_NOT_STARTED, INSUFFICIENT_REGULAR_WEEKLY_REST,
+            INSUFFICIENT_REDUCED_WEEKLY_REST, INSUFFICIENT_REGULAR_DAILY_REST,
+            INSUFFICIENT_REDUCED_DAILY_REST, INSUFFICIENT_CREW_DAILY_REST,
+            NO_COMPENSATION_FOR_REDUCED_WEEKLY_REST,
+            REGULAR_DAILY_DRIVING_LIMIT_EXCEEDED,
+            EXTENDED_DAILY_DRIVING_LIMIT_EXCEEDED,
+            WEEKLY_DRIVING_LIMIT_EXCEEDED, FORTNIGHTLY_DRIVING_LIMIT_EXCEEDED,
+            UNINTERRUPTED_DRIVING_LIMIT_EXCEEDED, WEEKLY_WORK_LIMIT_EXCEEDED,
+            WEEKLY_WORK_AVERAGE_LIMIT_EXCEEDED, NO_BREAK_AFTER_SIX_HOUR_WORK,
+            NO_REDUCED_BREAK_AFTER_SIX_HOUR_WORK, NO_COUNTRY_SET_ON_WORK_START,
+            NO_COUNTRY_SET_ON_WORK_END, NIGHT_SHIFT_WORK_LIMIT_EXCEEDED
+          items:
+            type: string
+            enum:
+              - WEEKLY_REST_NOT_STARTED
+              - INSUFFICIENT_REGULAR_WEEKLY_REST
+              - INSUFFICIENT_REDUCED_WEEKLY_REST
+              - INSUFFICIENT_REGULAR_DAILY_REST
+              - INSUFFICIENT_REDUCED_DAILY_REST
+              - INSUFFICIENT_CREW_DAILY_REST
+              - NO_COMPENSATION_FOR_REDUCED_WEEKLY_REST
+              - REGULAR_DAILY_DRIVING_LIMIT_EXCEEDED
+              - EXTENDED_DAILY_DRIVING_LIMIT_EXCEEDED
+              - WEEKLY_DRIVING_LIMIT_EXCEEDED
+              - FORTNIGHTLY_DRIVING_LIMIT_EXCEEDED
+              - UNINTERRUPTED_DRIVING_LIMIT_EXCEEDED
+              - WEEKLY_WORK_LIMIT_EXCEEDED
+              - WEEKLY_WORK_AVERAGE_LIMIT_EXCEEDED
+              - NO_BREAK_AFTER_SIX_HOUR_WORK
+              - NO_REDUCED_BREAK_AFTER_SIX_HOUR_WORK
+              - NO_COUNTRY_SET_ON_WORK_START
+              - NO_COUNTRY_SET_ON_WORK_END
+              - NIGHT_SHIFT_WORK_LIMIT_EXCEEDED
+              - UNKNOWN_ACTIVITY
+              - UNKNOWN
+        vehicles:
+          type: array
+          items:
+            type: string
+    ExternalEcodrivingParameters:
+      type: object
+      properties:
+        acceleration_parameters:
+          $ref: "#/components/schemas/ExternalAccelerationParameters"
+        braking_parameters:
+          $ref: "#/components/schemas/ExternalBrakingParameters"
+        cornering_parameters:
+          $ref: "#/components/schemas/ExternalCorneringParameters"
+        cruise_control_parameters:
+          $ref: "#/components/schemas/ExternalCruiseControlParameters"
+        engine_parameters:
+          $ref: "#/components/schemas/ExternalEngineParameters"
+        idling_parameters:
+          $ref: "#/components/schemas/ExternalIdlingParameters"
+        main_parameters:
+          $ref: "#/components/schemas/ExternalMainParameters"
+        speed_parameters:
+          $ref: "#/components/schemas/ExternalSpeedParameters"
+    ExternalEcodrivingSubjectParameters:
+      type: object
+      properties:
+        parameters:
+          $ref: "#/components/schemas/ExternalEcodrivingParameters"
+        subject_id:
+          type: string
+    ExternalEngineParameters:
+      type: object
+      properties:
+        engine_overloaded_distance:
+          type: number
+        engine_overloaded_distance_percentage:
+          type: number
+        engine_overloaded_fuel_consumed_count:
+          type: number
+        engine_overloaded_fuel_consumption_rate:
+          type: number
+        engine_score:
+          type: integer
+        free_rolling_distance:
+          type: number
+        free_rolling_distance_percentage:
+          type: number
+        free_rolling_without_cruise_control_distance:
+          type: number
+        free_rolling_without_cruise_control_distance_percentage:
+          type: number
+        free_rolling_without_cruise_control_fuel_consumed_count:
+          type: number
+        free_rolling_without_cruise_control_fuel_consumption_rate:
+          type: number
+        highest_gear_distance:
+          type: number
+        highest_gear_distance_percentage:
+          type: number
+        highest_gear_fuel_consumed_count:
+          type: number
+        highest_gear_fuel_consumption_rate:
+          type: number
+        maximum_rpm:
+          type: number
+        rpm_in_green_band_distance:
+          type: number
+        rpm_in_red_band_distance:
+          type: number
+        rpm_in_red_band_distance_percentage:
+          type: number
+        rpm_in_red_band_duration:
+          type: number
+        rpm_in_red_band_percentage:
+          type: number
+        rpm_range1_consumption_rate:
+          type: number
+        rpm_range1_distance:
+          type: number
+        rpm_range1_distance_percentage:
+          type: number
+        rpm_range1_fuel_consumed_count:
+          type: number
+        rpm_range2_consumption_rate:
+          type: number
+        rpm_range2_distance:
+          type: number
+        rpm_range2_distance_percentage:
+          type: number
+        rpm_range2_fuel_consumed_count:
+          type: number
+        rpm_range3_consumption_rate:
+          type: number
+        rpm_range3_distance:
+          type: number
+        rpm_range3_distance_percentage:
+          type: number
+        rpm_range3_fuel_consumed_count:
+          type: number
+        rpm_range4_consumption_rate:
+          type: number
+        rpm_range4_distance:
+          type: number
+        rpm_range4_distance_percentage:
+          type: number
+        rpm_range4_fuel_consumed_count:
+          type: number
+    ExternalFactualProperty:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - DURATION
+            - UNKNOWN
+        value:
+          type: string
+    ExternalFuelEvent:
+      type: object
+      properties:
+        difference:
+          type: number
+        driver_id:
+          type: string
+        end_date:
+          type: string
+          format: date-time
+        event_type:
+          type: string
+          enum:
+            - DRAIN
+            - REFUEL
+        fuel_level_end:
+          type: number
+        fuel_level_start:
+          type: number
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        object_id:
+          type: string
+        start_date:
+          type: string
+          format: date-time
+    ExternalFuelEventsCollection:
+      type: object
+      properties:
+        continuation_token:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExternalFuelEvent"
+    ExternalGeozone:
+      type: object
+      properties:
+        circle:
+          $ref: "#/components/schemas/ExternalCircle"
+        feature:
+          $ref: "#/components/schemas/Feature"
+        id:
+          type: string
+        name:
+          type: string
+        notes:
+          type: string
+        type:
+          type: string
+          enum:
+            - POINT
+            - POLYGON
+            - UNKNOWN
+    ExternalGeozoneCollection:
+      type: object
+      properties:
+        continuation_token:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExternalGeozone"
+    ExternalGeozoneVisitByObject:
+      type: object
+      properties:
+        geozone_id:
+          type: string
+        object_id:
+          type: string
+        visit_data:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExternalGeozoneVisitDataItem"
+    ExternalGeozoneVisitCollection:
+      type: object
+      properties:
+        continuation_token:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExternalGeozoneVisitByObject"
+    ExternalGeozoneVisitDataItem:
+      type: object
+      properties:
+        datetime:
+          type: string
+          format: date-time
+        direction:
+          type: string
+          enum:
+            - IN
+            - OUT
+        fuel_consumed:
+          type: number
+          format: double
+        fuel_level:
+          type: number
+          format: double
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        mileage:
+          type: number
+          format: double
+    ExternalGeozoneVisitParameters:
+      type: object
+      properties:
+        continuation_token:
+          type: integer
+          format: int32
+        from_datetime:
+          type: string
+          format: date-time
+        geozone_ids:
+          type: array
+          items:
+            type: string
+        limit:
+          type: integer
+          format: int32
+        object_ids:
+          type: array
+          items:
+            type: string
+        to_datetime:
+          type: string
+          format: date-time
+    ExternalIdentifier:
+      type: object
+      properties:
+        identifier:
+          type: string
+        type:
+          type: string
+          enum:
+            - TACHOGRAPH
+            - IBUTTON
+            - WIRELESS
+            - DLT
+    ExternalIdlingParameters:
+      type: object
+      properties:
+        excess_idling_percentage:
+          type: number
+        fuel_used_while_idling_percentage:
+          type: number
+        idling_duration:
+          type: number
+        idling_fuel_consumed_count:
+          type: number
+        idling_score:
+          type: integer
+    ExternalLastCoordinate:
+      type: object
+      properties:
+        altitude:
+          type: integer
+          format: int32
+        datetime:
+          type: string
+          format: date-time
+        direction:
+          type: integer
+          format: int32
+        last_valid_gps_datetime:
+          type: string
+          format: date-time
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        satellites_count:
+          type: integer
+          format: int32
+        server_datetime:
+          type: string
+          format: date-time
+        speed:
+          type: integer
+          format: int32
+    ExternalLatLon:
+      type: object
+      properties:
+        lat:
+          type: number
+          format: double
+        lon:
+          type: number
+          format: double
+    ExternalMainParameters:
+      type: object
+      properties:
+        average_gradient:
+          type: number
+        average_turning_angle:
+          type: number
+        average_weight:
+          type: number
+        distance:
+          type: number
+        driving_duration:
+          type: number
+        fuel_consumed_count:
+          type: number
+        fuel_consumption_by_weight:
+          type: number
+        fuel_consumption_rate:
+          type: number
+        total_score:
+          type: integer
+    ExternalNearestGeozone:
+      type: object
+      properties:
+        distance:
+          type: integer
+          format: int32
+        id:
+          type: string
+    ExternalObjectEntity:
+      type: object
+      properties:
+        id:
+          type: string
+          example: d5cf204c-59e8-4143-805c-1405937566aa
+        name:
+          type: string
+          example: Plug5 CR-V
+          readOnly: true
+    ExternalObjectEntityCreate:
+      type: object
+      properties:
+        id:
+          type: string
+          example: d5cf204c-59e8-4143-805c-1405937566aa
+    ExternalObjectGroup:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        objects_ids:
+          type: array
+          items:
+            type: string
+    ExternalObjectGroupCollection:
+      type: object
+      properties:
+        continuation_token:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExternalObjectGroup"
+    ExternalShareLink:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        created_by_user_id:
+          type: string
+          example: d5cf204c-59e8-4143-805c-1405937566cc
+        domain:
+          type: string
+          example: some.domain.com
+        expires_at:
+          type: string
+          format: date-time
+        id:
+          type: string
+          example: kcWsTS0D30A10jRD82SD2w
+        objects:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExternalObjectEntity"
+        updated_at:
+          type: string
+          format: date-time
+        valid_from:
+          type: string
+          format: date-time
+    ExternalShareLinkCollection:
+      type: object
+      properties:
+        continuation_token:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExternalShareLink"
+    ExternalShareLinkCreate:
+      type: object
+      properties:
+        expires_at:
+          type: string
+          format: date-time
+        objects:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExternalObjectEntityCreate"
+        valid_from:
+          type: string
+          format: date-time
+    ExternalShareLinkUpdate:
+      type: object
+      properties:
+        expires_at:
+          type: string
+          format: date-time
+        valid_from:
+          type: string
+          format: date-time
+    ExternalSpeedParameters:
+      type: object
+      properties:
+        average_driving_speed:
+          type: number
+        average_speed:
+          type: number
+        maximum_speed:
+          type: number
+        normal_speed_distance:
+          type: number
+        overspeeding_distance:
+          type: number
+        overspeeding_distance_percentage:
+          type: number
+        overspeeding_duration:
+          type: number
+        overspeeding_fuel_consumed_count:
+          type: number
+        overspeeding_fuel_consumption_rate:
+          type: number
+        overspeeding_percentage:
+          type: number
+        speed_score:
+          type: integer
+    ExternalUser:
+      type: object
+      properties:
+        email:
+          type: string
+        full_name:
+          type: string
+        id:
+          type: string
+        phone:
+          type: string
+    ExternalVehicleParams:
+      type: object
+      properties:
+        average_fuel_consumption:
+          type: number
+        fuel_tank_capacity:
+          type: number
+        fuel_type:
+          type: string
+          enum:
+            - ExternalFuelType.UNKNOWN
+            - ExternalFuelType.DIESEL
+            - ExternalFuelType.PETROL
+            - ExternalFuelType.ELECTRICITY
+            - ExternalFuelType.LPG
+            - ExternalFuelType.OTHER
+        make:
+          type: string
+        model:
+          type: string
+        plate_number:
+          type: string
+        vin:
+          type: string
+    ExternalViolation:
+      type: object
+      properties:
+        country_code:
+          type: string
+        date_time:
+          type: string
+          format: date-time
+        driver:
+          $ref: "#/components/schemas/ExternalDriver"
+        facts:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExternalFactualProperty"
+        severity:
+          type: string
+          enum:
+            - NOT_APPLICABLE
+            - MINOR
+            - SERIOUS
+            - VERY_SERIOUS
+            - MOST_SERIOUS
+            - UNKNOWN
+        type:
+          type: string
+          enum:
+            - WEEKLY_REST_NOT_STARTED
+            - INSUFFICIENT_REGULAR_WEEKLY_REST
+            - INSUFFICIENT_REDUCED_WEEKLY_REST
+            - INSUFFICIENT_REGULAR_DAILY_REST
+            - INSUFFICIENT_REDUCED_DAILY_REST
+            - INSUFFICIENT_CREW_DAILY_REST
+            - NO_COMPENSATION_FOR_REDUCED_WEEKLY_REST
+            - REGULAR_DAILY_DRIVING_LIMIT_EXCEEDED
+            - EXTENDED_DAILY_DRIVING_LIMIT_EXCEEDED
+            - WEEKLY_DRIVING_LIMIT_EXCEEDED
+            - FORTNIGHTLY_DRIVING_LIMIT_EXCEEDED
+            - UNINTERRUPTED_DRIVING_LIMIT_EXCEEDED
+            - WEEKLY_WORK_LIMIT_EXCEEDED
+            - WEEKLY_WORK_AVERAGE_LIMIT_EXCEEDED
+            - NO_BREAK_AFTER_SIX_HOUR_WORK
+            - NO_REDUCED_BREAK_AFTER_SIX_HOUR_WORK
+            - NO_COUNTRY_SET_ON_WORK_START
+            - NO_COUNTRY_SET_ON_WORK_END
+            - NIGHT_SHIFT_WORK_LIMIT_EXCEEDED
+            - UNKNOWN_ACTIVITY
+            - UNKNOWN
+        vehicle:
+          type: string
+    Feature:
+      type: object
+      properties:
+        bbox:
+          type: array
+          items:
+            type: number
+            format: double
+        crs:
+          $ref: "#/components/schemas/Crs"
+        geometry:
+          $ref: "#/components/schemas/GeoJsonObject"
+        id:
+          type: string
+        properties:
+          type: object
+    GeoJsonObject:
+      type: object
+      properties:
+        bbox:
+          type: array
+          items:
+            type: number
+            format: double
+        crs:
+          $ref: "#/components/schemas/Crs"
+    Infringements:
+      type: object
+      properties:
+        daily_driving_limit_exceeded:
+          $ref: "#/components/schemas/Duration"
+        weekly_driving_limit_exceeded:
+          $ref: "#/components/schemas/Duration"
+    LimitedDuration:
+      type: object
+      properties:
+        duration:
+          type: integer
+          format: int64
+        duration_limit:
+          type: integer
+          format: int64
+    LimitedUsage:
+      type: object
+      properties:
+        usage_limit:
+          type: integer
+          format: int64
+        used:
+          type: integer
+          format: int64
+    Location:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+    Object:
+      type: object
+      properties:
+        id:
+          type: string
+        imei:
+          type: integer
+          format: int64
+        name:
+          type: string
+        vehicle_params:
+          $ref: "#/components/schemas/ExternalVehicleParams"
+    PageDescriptor:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          example: value of continuation token if not null
+        size:
+          type: integer
+          format: int32
+    Position:
+      type: object
+      properties:
+        altitude:
+          type: integer
+          format: int32
+        direction:
+          type: integer
+          format: int32
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        satellites_count:
+          type: integer
+          format: int32
+        speed:
+          type: integer
+          format: int32
+    PreviousWeek:
+      type: object
+      properties:
+        driving:
+          $ref: "#/components/schemas/LimitedDuration"
+        resting:
+          $ref: "#/components/schemas/Duration"
+    RequestDriverAssignation:
+      type: object
+      properties:
+        datetime:
+          type: string
+          format: date-time
+        driver_id:
+          type: string
+        event_type:
+          type: string
+          enum:
+            - START
+            - STOP
+            - UNKNOWN
+        object_id:
+          type: string
+    ResponseDriverAssignationEvent:
+      type: object
+      properties:
+        datetime:
+          type: string
+          format: date-time
+        driver_id:
+          type: string
+        event_type:
+          type: string
+          enum:
+            - START
+            - STOP
+            - UNKNOWN
+        object_id:
+          type: string
+    ResponseEntity:
+      type: object
+      properties:
+        body:
+          type: object
+        status_code:
+          type: string
+          enum:
+            - 100 CONTINUE
+            - 101 SWITCHING_PROTOCOLS
+            - 102 PROCESSING
+            - 103 CHECKPOINT
+            - 200 OK
+            - 201 CREATED
+            - 202 ACCEPTED
+            - 203 NON_AUTHORITATIVE_INFORMATION
+            - 204 NO_CONTENT
+            - 205 RESET_CONTENT
+            - 206 PARTIAL_CONTENT
+            - 207 MULTI_STATUS
+            - 208 ALREADY_REPORTED
+            - 226 IM_USED
+            - 300 MULTIPLE_CHOICES
+            - 301 MOVED_PERMANENTLY
+            - 302 FOUND
+            - 302 MOVED_TEMPORARILY
+            - 303 SEE_OTHER
+            - 304 NOT_MODIFIED
+            - 305 USE_PROXY
+            - 307 TEMPORARY_REDIRECT
+            - 308 PERMANENT_REDIRECT
+            - 400 BAD_REQUEST
+            - 401 UNAUTHORIZED
+            - 402 PAYMENT_REQUIRED
+            - 403 FORBIDDEN
+            - 404 NOT_FOUND
+            - 405 METHOD_NOT_ALLOWED
+            - 406 NOT_ACCEPTABLE
+            - 407 PROXY_AUTHENTICATION_REQUIRED
+            - 408 REQUEST_TIMEOUT
+            - 409 CONFLICT
+            - 410 GONE
+            - 411 LENGTH_REQUIRED
+            - 412 PRECONDITION_FAILED
+            - 413 PAYLOAD_TOO_LARGE
+            - 413 REQUEST_ENTITY_TOO_LARGE
+            - 414 URI_TOO_LONG
+            - 414 REQUEST_URI_TOO_LONG
+            - 415 UNSUPPORTED_MEDIA_TYPE
+            - 416 REQUESTED_RANGE_NOT_SATISFIABLE
+            - 417 EXPECTATION_FAILED
+            - 418 I_AM_A_TEAPOT
+            - 419 INSUFFICIENT_SPACE_ON_RESOURCE
+            - 420 METHOD_FAILURE
+            - 421 DESTINATION_LOCKED
+            - 422 UNPROCESSABLE_ENTITY
+            - 423 LOCKED
+            - 424 FAILED_DEPENDENCY
+            - 425 TOO_EARLY
+            - 426 UPGRADE_REQUIRED
+            - 428 PRECONDITION_REQUIRED
+            - 429 TOO_MANY_REQUESTS
+            - 431 REQUEST_HEADER_FIELDS_TOO_LARGE
+            - 451 UNAVAILABLE_FOR_LEGAL_REASONS
+            - 500 INTERNAL_SERVER_ERROR
+            - 501 NOT_IMPLEMENTED
+            - 502 BAD_GATEWAY
+            - 503 SERVICE_UNAVAILABLE
+            - 504 GATEWAY_TIMEOUT
+            - 505 HTTP_VERSION_NOT_SUPPORTED
+            - 506 VARIANT_ALSO_NEGOTIATES
+            - 507 INSUFFICIENT_STORAGE
+            - 508 LOOP_DETECTED
+            - 509 BANDWIDTH_LIMIT_EXCEEDED
+            - 510 NOT_EXTENDED
+            - 511 NETWORK_AUTHENTICATION_REQUIRED
+        status_code_value:
+          type: integer
+          format: int32
+    SortDescriptor:
+      type: object
+      properties:
+        direction:
+          type: string
+          example: ASC, DESC | DEFAULT DESC
+          enum:
+            - ASC
+            - DESC
+        identifier:
+          type: string
+          example: OBJECT_NAME, CARD_NUMBER, DRIVER_NAME_FIRST_LAST,
+            DRIVER_NAME_LAST_FIRST, STATUS, TYPE, CREATED_AT, UPDATED_AT |
+            DEFAULT UPDATED_AT
+          enum:
+            - OBJECT_NAME
+            - CARD_NUMBER
+            - DRIVER_NAME_FIRST_LAST
+            - DRIVER_NAME_LAST_FIRST
+            - STATUS
+            - TYPE
+            - CREATED_AT
+            - UPDATED_AT
+    State:
+      type: object
+      properties:
+        activity:
+          type: string
+          enum:
+            - RESTING
+            - AVAILABLE
+            - WORKING
+            - DRIVING
+            - ERROR
+            - UNAVAILABLE
+            - UNKNOWN
+        duration:
+          type: integer
+          format: int64
+        started_at:
+          type: string
+          format: date-time
+    TachoDriverInfo:
+      type: object
+      properties:
+        card_number:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+    TachoFilterRequest:
+      type: object
+      properties:
+        card_numbers:
+          type: array
+          items:
+            type: string
+        created_at_from:
+          type: string
+          format: date-time
+          example: YYYY-MM-DDTHH24:MI:SS.sssZ
+        created_at_to:
+          type: string
+          format: date-time
+          example: YYYY-MM-DDTHH24:MI:SS.sssZ
+        errors:
+          type: array
+          example: VALIDATION_FAILURE, DEVICE_COMMUNICATION_FAILURE, SERVER_FAILURE,
+            AUTHORIZATION_FAILURE, NO_CARD_IN_SLOT, UNSPECIFIED, EXPIRED,
+            DEVICE_BUSY, DSRC_ABORTED
+          items:
+            type: string
+            enum:
+              - VALIDATION_FAILURE
+              - DEVICE_COMMUNICATION_FAILURE
+              - SERVER_FAILURE
+              - AUTHORIZATION_FAILURE
+              - NO_CARD_IN_SLOT
+              - UNSPECIFIED
+              - NONE
+              - EXPIRED
+              - DEVICE_IS_BUSY
+              - DSRC_ABORTED
+        ftp_upload_statuses:
+          type: array
+          example: IN_PROGRESS, UPLOADED, ERROR, FILE_ALREADY_EXISTS_ERROR,
+            ACCOUNT_NOT_VALID_DMM_ERROR, INVALID_ACCOUNT_ERROR,
+            NOT_AUTHORIZED_FOR_ROAD_SOFT, NOT_AUTHORIZED_FOR_VDO
+          items:
+            type: string
+            enum:
+              - IN_PROGRESS
+              - UPLOADED
+              - ERROR
+              - FILE_ALREADY_EXISTS_ERROR
+              - ACCOUNT_NOT_VALID_DMM_ERROR
+              - INVALID_ACCOUNT_ERROR
+              - NOT_AUTHORIZED_FOR_ROAD_SOFT
+              - NOT_AUTHORIZED_FOR_VDO
+              - UNKNOWN
+        object_ids:
+          type: array
+          items:
+            type: string
+        page_descriptor:
+          $ref: "#/components/schemas/PageDescriptor"
+        request_ids:
+          type: array
+          items:
+            type: string
+        roadsoft_upload_statuses:
+          type: array
+          example: IN_PROGRESS, UPLOADED, ERROR, FILE_ALREADY_EXISTS_ERROR,
+            ACCOUNT_NOT_VALID_DMM_ERROR, INVALID_ACCOUNT_ERROR,
+            NOT_AUTHORIZED_FOR_ROAD_SOFT, NOT_AUTHORIZED_FOR_VDO
+          items:
+            type: string
+            enum:
+              - IN_PROGRESS
+              - UPLOADED
+              - ERROR
+              - FILE_ALREADY_EXISTS_ERROR
+              - ACCOUNT_NOT_VALID_DMM_ERROR
+              - INVALID_ACCOUNT_ERROR
+              - NOT_AUTHORIZED_FOR_ROAD_SOFT
+              - NOT_AUTHORIZED_FOR_VDO
+              - UNKNOWN
+        sort_descriptor:
+          $ref: "#/components/schemas/SortDescriptor"
+        statuses:
+          type: array
+          example: PENDING, AUTHENTICATING, AUTHENTICATION_COMPLETED, DOWNLOADING,
+            PENDING_VALIDATION, SUCCEEDED, SUCCEEDED_DIRTY, FAILED
+          items:
+            type: string
+            enum:
+              - PENDING
+              - AUTHENTICATING
+              - AUTHENTICATION_COMPLETED
+              - DOWNLOADING
+              - PENDING_VALIDATION
+              - SUCCEEDED
+              - SUCCEEDED_DIRTY
+              - FAILED
+              - UNKNOWN
+        tisweb_upload_statuses:
+          type: array
+          example: IN_PROGRESS, UPLOADED, ERROR, FILE_ALREADY_EXISTS_ERROR,
+            ACCOUNT_NOT_VALID_DMM_ERROR, INVALID_ACCOUNT_ERROR,
+            NOT_AUTHORIZED_FOR_ROAD_SOFT, NOT_AUTHORIZED_FOR_VDO
+          items:
+            type: string
+            enum:
+              - IN_PROGRESS
+              - UPLOADED
+              - ERROR
+              - FILE_ALREADY_EXISTS_ERROR
+              - ACCOUNT_NOT_VALID_DMM_ERROR
+              - INVALID_ACCOUNT_ERROR
+              - NOT_AUTHORIZED_FOR_ROAD_SOFT
+              - NOT_AUTHORIZED_FOR_VDO
+              - UNKNOWN
+        types:
+          type: array
+          example: TACHO_DATA, DRIVER_CARD
+          items:
+            type: string
+            enum:
+              - TACHO_DATA
+              - DRIVER_CARD
+        updated_at_from:
+          type: string
+          format: date-time
+          example: YYYY-MM-DDTHH24:MI:SS.sssZ
+        updated_at_to:
+          type: string
+          format: date-time
+          example: YYYY-MM-DDTHH24:MI:SS.sssZ
+    TachoObjectInfo:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    TachoRequestDetailResponse:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        data_interval:
+          $ref: "#/components/schemas/DataInterval"
+        error:
+          type: string
+          enum:
+            - VALIDATION_FAILURE
+            - DEVICE_COMMUNICATION_FAILURE
+            - SERVER_FAILURE
+            - AUTHORIZATION_FAILURE
+            - NO_CARD_IN_SLOT
+            - UNSPECIFIED
+            - NONE
+            - EXPIRED
+            - DEVICE_IS_BUSY
+            - DSRC_ABORTED
+        external_client_id:
+          type: string
+        external_object_id:
+          type: string
+        file_name:
+          type: string
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+            - PENDING
+            - AUTHENTICATING
+            - AUTHENTICATION_COMPLETED
+            - DOWNLOADING
+            - PENDING_VALIDATION
+            - SUCCEEDED
+            - SUCCEEDED_DIRTY
+            - FAILED
+            - UNKNOWN
+        type:
+          type: string
+          enum:
+            - TACHO_DATA
+            - DRIVER_CARD
+        updated_at:
+          type: string
+          format: date-time
+    TachoRequestResponse:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        driver_info:
+          $ref: "#/components/schemas/TachoDriverInfo"
+        error:
+          type: string
+          enum:
+            - VALIDATION_FAILURE
+            - DEVICE_COMMUNICATION_FAILURE
+            - SERVER_FAILURE
+            - AUTHORIZATION_FAILURE
+            - NO_CARD_IN_SLOT
+            - UNSPECIFIED
+            - NONE
+            - EXPIRED
+            - DEVICE_IS_BUSY
+            - DSRC_ABORTED
+        id:
+          type: string
+        object_info:
+          $ref: "#/components/schemas/TachoObjectInfo"
+        origin:
+          type: string
+          enum:
+            - ON_DEMAND
+            - MANUAL_IMPORT
+            - SCHEDULER
+            - API
+        scheduler_info:
+          $ref: "#/components/schemas/TachoSchedulerInfo"
+        status:
+          type: string
+          enum:
+            - PENDING
+            - AUTHENTICATING
+            - AUTHENTICATION_COMPLETED
+            - DOWNLOADING
+            - PENDING_VALIDATION
+            - SUCCEEDED
+            - SUCCEEDED_DIRTY
+            - FAILED
+            - UNKNOWN
+        type:
+          type: string
+          enum:
+            - TACHO_DATA
+            - DRIVER_CARD
+        updated_at:
+          type: string
+          format: date-time
+        upload_ftp_status:
+          type: string
+          enum:
+            - IN_PROGRESS
+            - UPLOADED
+            - ERROR
+            - FILE_ALREADY_EXISTS_ERROR
+            - ACCOUNT_NOT_VALID_DMM_ERROR
+            - INVALID_ACCOUNT_ERROR
+            - NOT_AUTHORIZED_FOR_ROAD_SOFT
+            - NOT_AUTHORIZED_FOR_VDO
+            - UNKNOWN
+        upload_road_soft_status:
+          type: string
+          enum:
+            - IN_PROGRESS
+            - UPLOADED
+            - ERROR
+            - FILE_ALREADY_EXISTS_ERROR
+            - ACCOUNT_NOT_VALID_DMM_ERROR
+            - INVALID_ACCOUNT_ERROR
+            - NOT_AUTHORIZED_FOR_ROAD_SOFT
+            - NOT_AUTHORIZED_FOR_VDO
+            - UNKNOWN
+        upload_tis_web_status:
+          type: string
+          enum:
+            - IN_PROGRESS
+            - UPLOADED
+            - ERROR
+            - FILE_ALREADY_EXISTS_ERROR
+            - ACCOUNT_NOT_VALID_DMM_ERROR
+            - INVALID_ACCOUNT_ERROR
+            - NOT_AUTHORIZED_FOR_ROAD_SOFT
+            - NOT_AUTHORIZED_FOR_VDO
+            - UNKNOWN
+    TachoRequestScheduleResponse:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+        id:
+          type: string
+    TachoRequestsCollectionResponse:
+      type: object
+      properties:
+        continuation_token:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/TachoRequestResponse"
+    TachoSchedulerInfo:
+      type: object
+      properties:
+        title:
+          type: string
+        type:
+          type: string
+          enum:
+            - ONE_TIME
+            - REPEATING
+            - UNKNOWN
+    Trip:
+      type: object
+      properties:
+        driver_ids:
+          type: array
+          items:
+            type: string
+        mileage:
+          type: number
+          format: double
+        object_id:
+          type: string
+        trip_duration:
+          type: integer
+          format: int64
+        trip_end:
+          $ref: "#/components/schemas/TripMetrics"
+        trip_start:
+          $ref: "#/components/schemas/TripMetrics"
+        trip_type:
+          type: string
+          enum:
+            - NONE
+            - PRIVATE
+            - BUSINESS
+            - WORK
+            - UNKNOWN
+    TripCollection:
+      type: object
+      properties:
+        continuation_token:
+          type: string
+          format: date-time
+        trips:
+          type: array
+          items:
+            $ref: "#/components/schemas/Trip"
+    TripMetrics:
+      type: object
+      properties:
+        address:
+          $ref: "#/components/schemas/Address"
+        datetime:
+          type: string
+          format: date-time
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+    UserCollection:
+      type: object
+      properties:
+        continuation_token:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExternalUser"
+    VehicleTachoScheduleRequest:
+      type: object
+      required:
+        - external_object_id
+        - from_date_time
+        - request_name
+        - to_date_time
+      properties:
+        external_object_id:
+          type: string
+        from_date_time:
+          type: string
+          format: date-time
+        options:
+          type: array
+          example: TACHO_FILE_FAULTS_AND_EVENTS, TACHO_FILE_DETAILED_SPEED,
+            TACHO_FILE_TECHNICAL_DATA, SINCE_LAST_DOWNLOAD | default empty list
+          items:
+            type: string
+            enum:
+              - TACHO_FILE_FAULTS_AND_EVENTS
+              - TACHO_FILE_DETAILED_SPEED
+              - TACHO_FILE_TECHNICAL_DATA
+              - SINCE_LAST_DOWNLOAD
+        request_name:
+          type: string
+        to_date_time:
+          type: string
+          format: date-time
+    v2.Driver:
+      type: object
+      properties:
+        address:
+          type: string
+        first_name:
+          type: string
+        id:
+          type: string
+        identifiers:
+          type: array
+          items:
+            $ref: "#/components/schemas/v2.ExternalIdentifier"
+        last_name:
+          type: string
+        phone:
+          type: string
+    v2.ExternalIdentifier:
+      type: object
+      properties:
+        identifier:
+          type: string
+        type:
+          type: string
+    Flux_Coordinate_:
+      type: object
+      properties:
+        prefetch:
+          type: integer
+          format: int32
+    Map_string_object_:
+      type: object
+      additionalProperties:
+        type: object

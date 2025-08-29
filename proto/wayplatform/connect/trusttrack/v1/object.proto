@@ -1,0 +1,20 @@
+edition = "2023";
+
+package wayplatform.connect.trusttrack.v1;
+
+import "wayplatform/connect/trusttrack/v1/vehicle_params.proto";
+
+// A tracked object.
+message Object {
+  // The ID of the object.
+  string id = 1;
+
+  // The name of the object.
+  string name = 2;
+
+  // The IMEI of the object.
+  int64 imei = 3;
+
+  // The vehicle parameters of the object.
+  VehicleParams vehicle_params = 4;
+}

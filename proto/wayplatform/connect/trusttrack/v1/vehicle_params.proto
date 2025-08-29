@@ -1,0 +1,42 @@
+edition = "2023";
+
+package wayplatform.connect.trusttrack.v1;
+
+// Vehicle parameters.
+message VehicleParams {
+  // Vehicle identification number.
+  string vin = 1;
+
+  // Make.
+  string make = 2;
+
+  // Model.
+  string model = 3;
+
+  // Plate number.
+  string plate_number = 4;
+
+  // Average fuel consumption.
+  double average_fuel_consumption = 5;
+
+  // Fuel tank capacity.
+  double fuel_tank_capacity = 6;
+
+  // Fuel type.
+  FuelType fuel_type = 7;
+
+  // Fuel type.
+  enum FuelType {
+    FUEL_TYPE_UNSPECIFIED = 0;
+    FUEL_TYPE_UNKNOWN = 1;
+    FUEL_TYPE_NOT_AVAILABLE = 2;
+    DIESEL = 3;
+    ELECTRICITY = 4;
+    LPG = 5;
+    OTHER = 6;
+    PETROL = 7;
+  }
+
+  // This is used when fuel_type is FUEL_TYPE_UNKNOWN.
+  string unknown_fuel_type = 8;
+}
