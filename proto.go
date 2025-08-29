@@ -105,3 +105,17 @@ func coordinateToProto(input *ttoapi.ExternalLastCoordinate) *trusttrackv1.Coord
 	}
 	return &output
 }
+
+func objectGroupToProto(input *ttoapi.ExternalObjectGroup) *trusttrackv1.ObjectGroup {
+	var output trusttrackv1.ObjectGroup
+	if input.ID != nil {
+		output.SetId(*input.ID)
+	}
+	if input.Name != nil {
+		output.SetName(*input.Name)
+	}
+	if input.ObjectsIds != nil {
+		output.SetObjectIds(input.ObjectsIds)
+	}
+	return &output
+}

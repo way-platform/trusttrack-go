@@ -3,8 +3,10 @@ package trusttrack
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 
 	"github.com/way-platform/trusttrack-go/internal/oapi/ttoapi"
 	trusttrackv1 "github.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1"
@@ -20,6 +22,19 @@ type ListObjectsLastCoordinateRequest struct {
 	ContinuationToken string `json:"continuationToken"`
 }
 
+// Query returns the query parameters for the request.
+func (r *ListObjectsLastCoordinateRequest) Query() url.Values {
+	q := url.Values{}
+	q.Set("version", "2")
+	if r.Limit > 0 {
+		q.Set("limit", fmt.Sprintf("%d", r.Limit))
+	}
+	if r.ContinuationToken != "" {
+		q.Set("continuation_token", r.ContinuationToken)
+	}
+	return q
+}
+
 // ListObjectsLastCoordinateResponse is the response for the [Client.ListObjectsLastCoordinate] method.
 type ListObjectsLastCoordinateResponse struct {
 	// The objects with their last coordinate.
@@ -33,11 +48,12 @@ func (c *Client) ListObjectsLastCoordinate(
 	ctx context.Context,
 	request *ListObjectsLastCoordinateRequest,
 ) (*ListObjectsLastCoordinateResponse, error) {
-	httpRequest, err := c.newRequest(ctx, "GET", "/objects-last-coordinate?version=2", nil)
-	if err != nil {
-		return nil, err
-	}
-	httpResponse, err := c.do(ctx, httpRequest)
+	httpResponse, err := c.doRequest(
+		ctx,
+		http.MethodGet,
+		"/objects-last-coordinate",
+		request.Query(),
+	)
 	if err != nil {
 		return nil, err
 	}
