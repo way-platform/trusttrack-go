@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"net/url"
 
 	"github.com/way-platform/trusttrack-go/internal/oapi/ttoapi"
 	trusttrackv1 "github.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1"
@@ -13,6 +14,13 @@ import (
 // ListObjectsRequest is the request for the [Client.ListObjects] method.
 type ListObjectsRequest struct{}
 
+// Query returns the query parameters for the request.
+func (r *ListObjectsRequest) Query() url.Values {
+	q := url.Values{}
+	q.Set("version", "1")
+	return q
+}
+
 // ListObjectsResponse is the response for the [Client.ListObjects] method.
 type ListObjectsResponse struct {
 	Objects []*trusttrackv1.Object `json:"objects"`
@@ -20,11 +28,12 @@ type ListObjectsResponse struct {
 
 // ListObjects lists all objects.
 func (c *Client) ListObjects(ctx context.Context, request *ListObjectsRequest) (*ListObjectsResponse, error) {
-	httpRequest, err := c.newRequest(ctx, "GET", "/objects?version=1", nil)
-	if err != nil {
-		return nil, err
-	}
-	httpResponse, err := c.do(ctx, httpRequest)
+	httpResponse, err := c.doRequest(
+		ctx,
+		http.MethodGet,
+		"/objects",
+		request.Query(),
+	)
 	if err != nil {
 		return nil, err
 	}
