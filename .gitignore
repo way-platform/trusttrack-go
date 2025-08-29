@@ -3,3 +3,4 @@
 build/
 dist/
 cmd/trusttrack/trusttrack
+__pycache__

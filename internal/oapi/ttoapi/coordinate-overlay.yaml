@@ -1,0 +1,2141 @@
+overlay: 1.0.0
+info:
+  title: Overlay for TrustTrack API
+  version: 1.0.0
+actions:
+- target: $.paths
+  description: Skip code generation for requests
+  remove: true
+- target: $.components.responses
+  description: Skip code generation for responses
+  remove: true
+- target: $.components.securitySchemes
+  description: Skip code generation for security schemes
+  remove: true
+- target: $..[?(@.format == "uuid")].format
+  remove: true
+- target: $..[?(@.type=="array")]
+  description: Skip pointer to Go slices
+  update:
+    x-go-type-skip-optional-pointer: true
+- target: $..[?(@.format == "email")].format
+  description: Skip email format
+  remove: true
+- target: $.components.schemas
+  update:
+    Coordinate:
+      type: object
+      properties:
+        object_id:
+          type: string
+          description: Object identifier
+        datetime:
+          type: string
+          format: date-time
+          description: Date and time point of coordinate generated in hardware
+        ignition_status:
+          type: string
+          enum:
+          - 'ON'
+          - 'OFF'
+          - UNKNOWN
+          description: Indicates if the object's ignition is on
+        trip_type:
+          type: string
+          enum:
+          - UNKNOWN
+          - NONE
+          - PRIVATE
+          - BUSINESS
+          - WORK
+          description: Trip type
+        position:
+          type: object
+          description: Container for all record GPS parameters
+          properties:
+            altitude:
+              type: number
+              description: 'Altitude (units: m)'
+            longitude:
+              type: number
+              description: 'Longitude (units: Degrees)'
+            latitude:
+              type: number
+              description: 'Latitude (units: Degrees)'
+            direction:
+              type: number
+              description: 'Direction (units: Degrees)'
+            satellites_count:
+              type: number
+              description: Satellites count
+            speed:
+              type: number
+              description: 'Speed (units: km/h)'
+        geozone_ids:
+          type: array
+          items:
+            type: string
+          description: Container for all geozones IDs
+        inputs:
+          type: object
+          properties:
+            other:
+              type: object
+              description: Container for other system parameters
+              properties:
+                country_code_geonames:
+                  type: number
+                  description: Country code numeral
+                virtual_gps_odometer:
+                  type: number
+                  description: 'Virtual odometer value (units: km)'
+            calculated_inputs:
+              type: object
+              description: Container for parameters calculated in the system from
+                other parameters according to the configuration
+              properties:
+                fuel_consumption:
+                  type: number
+                  description: 'Fuel consumption (units: l)'
+                fuel_level:
+                  type: number
+                  description: 'Fuel level (units: l)'
+                mileage:
+                  type: number
+                  description: 'Mileage (units: km)'
+                rpm:
+                  type: number
+                  description: 'Engine RPM (units: RPM)'
+                temperature:
+                  type: number
+                  description: "Temperature (units: \xB0C)"
+                custom_input_1:
+                  type: number
+                  description: Custom input 1
+                custom_input_2:
+                  type: number
+                  description: Custom input 2
+                custom_input_3:
+                  type: number
+                  description: Custom input 3
+                custom_input_4:
+                  type: number
+                  description: Custom input 4
+                custom_input_5:
+                  type: number
+                  description: Custom input 5
+                custom_input_6:
+                  type: number
+                  description: Custom input 6
+                custom_input_7:
+                  type: number
+                  description: Custom input 7
+                custom_input_8:
+                  type: number
+                  description: Custom input 8
+                din1_working_time:
+                  type: number
+                  description: DIN1 working time
+                din2_working_time:
+                  type: number
+                  description: DIN2 working time
+                din3_working_time:
+                  type: number
+                  description: DIN3 working time
+                din4_working_time:
+                  type: number
+                  description: DIN4 working time
+                weight:
+                  type: number
+                  description: 'Weight (units: kg)'
+            device_inputs:
+              type: object
+              description: Container for parameters received from hardware
+              properties:
+                x_axis:
+                  type: number
+                  description: 'Accelerometer X axis (units: G)'
+                y_axis:
+                  type: number
+                  description: 'Accelerometer Y axis (units: G)'
+                z_axis:
+                  type: number
+                  description: 'Accelerometer Z axis (units: G)'
+                g_peak_x:
+                  type: number
+                  description: 'G peak in X axis (units: G)'
+                g_peak_y:
+                  type: number
+                  description: 'G peak in Y axis (units: G)'
+                g_peak_z:
+                  type: number
+                  description: 'G peak in Z axis (units: G)'
+                x_axis_tilt_angle:
+                  type: number
+                  description: 'X axis tilt angle (units: Degrees)'
+                y_axis_tilt_angle:
+                  type: number
+                  description: 'Y axis tilt angle (units: Degrees)'
+                z_axis_tilt_angle:
+                  type: number
+                  description: 'Z axis tilt angle (units: Degrees)'
+                canbus_distance:
+                  type: number
+                  description: 'CAN high resolution total vehicle distance (units:
+                    km)'
+                canbus_engine_coolant_temperature:
+                  type: number
+                  description: "CAN engine coolant temperature (units: \xB0C)"
+                canbus_fuel_rate:
+                  type: number
+                  description: 'CAN fuel rate (units: l/h)'
+                engine_rpm:
+                  type: number
+                  description: 'CAN engine speed (units: RPM)'
+                engine_hours:
+                  type: number
+                  description: 'CAN engine hours (units: h)'
+                service_dist:
+                  type: number
+                  description: 'CAN service distance (units: km)'
+                pedal_pos:
+                  type: number
+                  description: 'CAN accelerator pedal position (units: %)'
+                fuel_level_can:
+                  type: number
+                  description: 'CAN fuel level (units: %)'
+                fuel_used:
+                  type: number
+                  description: 'CAN engine total fuel used (units: l)'
+                speed_wheel:
+                  type: number
+                  description: 'CAN wheel based speed (units: km/h)'
+                speed_tacho:
+                  type: number
+                  description: 'CAN tachograph vehicle speed (units: km/h)'
+                tacho_status:
+                  type: string
+                  enum:
+                  - NORMAL_PERFORMANCE
+                  - PERFORMANCE_ANALYSIS
+                  description: 'CAN tachograph performance Possible values: NORMAL_PERFORMANCE
+                    PERFORMANCE_ANALYSIS'
+                overspeeding_events:
+                  type: string
+                  enum:
+                  - NO_OVERSPEED
+                  - OVERSPEED
+                  description: 'CAN tacho vehicle overspeed Possible values: NO_OVERSPEED
+                    OVERSPEED'
+                axle_count:
+                  type: number
+                  description: CAN axle location
+                canbus_brake_switch:
+                  type: string
+                  enum:
+                  - RELEASED
+                  - PRESSED
+                  description: 'CAN brake switch Possible values: RELEASED PRESSED'
+                canbus_clutch_switch:
+                  type: string
+                  enum:
+                  - RELEASED
+                  - PRESSED
+                  description: 'CAN clutch switch Possible values: RELEASED PRESSED'
+                canbus_pto_state:
+                  type: string
+                  enum:
+                  - OFF_DISABLED
+                  - SET
+                  - NOT_AVAILABLE
+                  description: 'CAN PTO state Possible values: OFF_DISABLED SET NOT_AVAILABLE'
+                canbus_cruise_control_state:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'CAN cruise control active Possible values: OFF ON'
+                canbus_request_supported:
+                  type: string
+                  enum:
+                  - NOT_SUPPORTED
+                  - SUPPORTED
+                  - RESERVED
+                  - DO_NOT_CARE
+                  description: 'CAN request supported Possible values: NOT_SUPPORTED
+                    SUPPORTED RESERVED DO_NOT_CARE'
+                canbus_diagnostics_supported:
+                  type: string
+                  enum:
+                  - NOT_SUPPORTED
+                  - SUPPORTED
+                  - RESERVED
+                  - DO_NOT_CARE
+                  description: 'CAN diagnostics supported Possible values: NOT_SUPPORTED
+                    SUPPORTED RESERVED DO_NOT_CARE'
+                canbus_vehicle_motion:
+                  type: string
+                  enum:
+                  - NOT_DETECTED
+                  - DETECTED
+                  description: 'CAN tacho vehicle motion Possible values: NOT_DETECTED
+                    DETECTED'
+                canbus_driver_1_time:
+                  type: string
+                  enum:
+                  - NORMAL
+                  - 15_MIN_BEFORE_4,5H
+                  - 4,5H_REACHED
+                  - 15_MIN_BEFORE_9H
+                  - 9H_REACHED
+                  - 15_MIN_BEFORE_16H
+                  - 16H_REACHED
+                  - ERROR
+                  - NOT_AVAILABLE
+                  description: 'CAN tacho driver 1 time related status Possible values:
+                    NORMAL 15_MIN_BEFORE_4,5H 4,5H_REACHED 15_MIN_BEFORE_9H 9H_REACHED
+                    15_MIN_BEFORE_16H 16H_REACHED ERROR NOT_AVAILABLE'
+                canbus_driver_1_card:
+                  type: string
+                  enum:
+                  - CARD_NOT_PRESENT
+                  - CARD_PRESENT
+                  - ERROR
+                  - NOT_AVAILABLE
+                  description: 'CAN tacho driver 1 card Possible values: CARD_NOT_PRESENT
+                    CARD_PRESENT ERROR NOT_AVAILABLE'
+                canbus_driver_2_time:
+                  type: string
+                  enum:
+                  - NORMAL
+                  - 15_MIN_BEFORE_4,5H
+                  - 4,5H_REACHED
+                  - 15_MIN_BEFORE_9H
+                  - 9H_REACHED
+                  - 15_MIN_BEFORE_16H
+                  - 16H_REACHED
+                  - ERROR
+                  - NOT_AVAILABLE
+                  description: 'CAN tacho driver 2 time related status Possible values:
+                    NORMAL 15_MIN_BEFORE_4,5H 4,5H_REACHED 15_MIN_BEFORE_9H 9H_REACHED
+                    15_MIN_BEFORE_16H 16H_REACHED ERROR NOT_AVAILABLE'
+                canbus_driver_2_card:
+                  type: string
+                  enum:
+                  - CARD_NOT_PRESENT
+                  - CARD_PRESENT
+                  - ERROR
+                  - NOT_AVAILABLE
+                  description: 'CAN tacho driver 2 card Possible values: CARD_NOT_PRESENT
+                    CARD_PRESENT ERROR NOT_AVAILABLE'
+                canbus_engine_plcs:
+                  type: number
+                  description: 'CAN engine percent load at current speed (units: %)'
+                canbus_tire_location:
+                  type: number
+                  description: CAN tire location
+                canbus_system_event:
+                  type: string
+                  enum:
+                  - NO_TACHO_EVENT
+                  - TACHO_EVENT
+                  description: 'CAN system event Possible values: NO_TACHO_EVENT TACHO_EVENT'
+                canbus_handling_information:
+                  type: string
+                  enum:
+                  - NO_HANDLING_INFORMATION
+                  - HANDLING_INFORMATION
+                  description: 'CAN tacho handling information Possible values: NO_HANDLING_INFORMATION
+                    HANDLING_INFORMATION'
+                canbus_direction_indicator:
+                  type: string
+                  enum:
+                  - FORWARD
+                  - REVERSE
+                  description: 'CAN tacho direction indicator Possible values: FORWARD
+                    REVERSE'
+                canbus_ambient_air_temperature:
+                  type: number
+                  description: "CAN ambient air temperature (units: \xB0C)"
+                canbus_fuel_economy:
+                  type: number
+                  description: 'CAN instantaneous fuel economy (units: km/l)'
+                canbus_pto:
+                  type: string
+                  enum:
+                  - NO_PTO_DRIVER
+                  - AT_LEAST_ONE_PTO_DRIVER
+                  - ERROR
+                  - NOT_AVAILABLE
+                  description: 'CAN at least one PTO engaged Possible values: NO_PTO_DRIVER
+                    AT_LEAST_ONE_PTO_DRIVER ERROR NOT_AVAILABLE'
+                canbus_hrfc:
+                  type: number
+                  description: 'CAN high resolution engine total fuel used (units:
+                    l)'
+                vehicle_id:
+                  type: string
+                  description: CAN vehicle ID
+                first_driver_id:
+                  type: string
+                  description: CAN first driver ID
+                second_driver_id:
+                  type: string
+                  description: CAN second driver ID
+                canbus_driver_1_state:
+                  type: string
+                  enum:
+                  - REST
+                  - DRIVER_AVAILABLE
+                  - WORK
+                  - DRIVE
+                  - ERROR
+                  - NOT_AVAILABLE
+                  description: 'CAN tacho driver 1 working state Possible values:
+                    REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE'
+                canbus_driver_2_state:
+                  type: string
+                  enum:
+                  - REST
+                  - DRIVER_AVAILABLE
+                  - WORK
+                  - DRIVE
+                  - ERROR
+                  - NOT_AVAILABLE
+                  description: 'CAN tacho driver 2 working state Possible values:
+                    REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE'
+                canbus_axle_weight_1:
+                  type: number
+                  description: 'CAN axle 1 weight (units: kg)'
+                canbus_axle_weight_2:
+                  type: number
+                  description: 'CAN axle 2 weight (units: kg)'
+                canbus_axle_weight_3:
+                  type: number
+                  description: 'CAN axle 3 weight (units: kg)'
+                canbus_axle_weight_4:
+                  type: number
+                  description: 'CAN axle 4 weight (units: kg)'
+                canbus_axle_weight_5:
+                  type: number
+                  description: 'CAN axle 5 weight (units: kg)'
+                fuel_level_can_l:
+                  type: number
+                  description: 'CAN fuel level liters (units: l)'
+                fuel_used_diff:
+                  type: number
+                  description: 'CAN fuel used delta (units: l)'
+                canbus_parking_brake_switch:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'CAN parking brake switch Possible values: OFF ON'
+                canbus_battery_power:
+                  type: number
+                  description: 'CAN battery power (units: %)'
+                canbus_distance_until_recharge:
+                  type: number
+                  description: 'CAN distance until recharge (units: km)'
+                canbus_battery_charging:
+                  type: string
+                  enum:
+                  - NO_CHARGING
+                  - CHARGING
+                  description: 'CAN battery charging Possible values: NO_CHARGING
+                    CHARGING'
+                lcv_hood:
+                  type: string
+                  enum:
+                  - CLOSE
+                  - OPEN
+                  description: 'LCV hood Possible values: CLOSE OPEN'
+                lcv_driver_doors:
+                  type: string
+                  enum:
+                  - CLOSE
+                  - OPEN
+                  description: 'LCV driver doors Possible values: CLOSE OPEN'
+                lcv_passenger_doors:
+                  type: string
+                  enum:
+                  - CLOSE
+                  - OPEN
+                  description: 'LCV passenger doors Possible values: CLOSE OPEN'
+                lcv_left_back_doors:
+                  type: string
+                  enum:
+                  - CLOSE
+                  - OPEN
+                  description: 'LCV left back doors Possible values: CLOSE OPEN'
+                lcv_right_back_doors:
+                  type: string
+                  enum:
+                  - CLOSE
+                  - OPEN
+                  description: 'LCV right back doors Possible values: CLOSE OPEN'
+                lcv_trunk:
+                  type: string
+                  enum:
+                  - CLOSE
+                  - OPEN
+                  description: 'LCV trunk Possible values: CLOSE OPEN'
+                canbus_hours_to_service:
+                  type: number
+                  description: 'CAN hours to service (units: h)'
+                can_interface_configuration_can1_interface:
+                  type: string
+                  enum:
+                  - NONE
+                  - FMS
+                  - LCV
+                  - OBD
+                  - TACHO
+                  - MOBILEYE
+                  - TRAILERS
+                  - DXP
+                  description: 'CAN interface configuration CAN1 interface Possible
+                    values: NONE FMS LCV OBD TACHO MOBILEYE TRAILERS DXP'
+                can_interface_configuration_can2_interface:
+                  type: string
+                  enum:
+                  - NONE
+                  - FMS
+                  - LCV
+                  - OBD
+                  - TACHO
+                  - MOBILEYE
+                  - TRAILERS
+                  - DXP
+                  description: 'CAN interface configuration CAN2 interface Possible
+                    values: NONE FMS LCV OBD TACHO MOBILEYE TRAILERS DXP'
+                can_interface_configuration_can1_status:
+                  type: string
+                  enum:
+                  - INACTIVE
+                  - ACTIVE
+                  description: 'CAN interface configuration CAN1 status Possible values:
+                    INACTIVE ACTIVE'
+                can_interface_configuration_can1_mode:
+                  type: string
+                  enum:
+                  - SILENT
+                  - ACTIVE
+                  description: 'CAN interface configuration CAN1 mode Possible values:
+                    SILENT ACTIVE'
+                can_interface_configuration_can1_auto_baud_rate:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'CAN interface configuration CAN1 auto baud rate Possible
+                    values: OFF ON'
+                can_interface_configuration_can1_ff_filters_status:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'CAN interface configuration CAN1 filters status Possible
+                    values: OFF ON'
+                can_interface_configuration_can2_status:
+                  type: string
+                  enum:
+                  - INACTIVE
+                  - ACTIVE
+                  description: 'CAN interface configuration CAN2 status Possible values:
+                    INACTIVE ACTIVE'
+                can_interface_configuration_can2_mode:
+                  type: string
+                  enum:
+                  - SILENT
+                  - ACTIVE
+                  description: 'CAN interface configuration CAN2 mode Possible values:
+                    SILENT ACTIVE'
+                can_interface_configuration_can2_auto_baud_rate:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'CAN interface configuration CAN2 auto baud rate Possible
+                    values: OFF ON'
+                can_interface_configuration_can2_ff_filters_status:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'CAN interface configuration CAN2 filters status Possible
+                    values: OFF ON'
+                canbus_electric_motor_temperature:
+                  type: number
+                  description: "CAN electric motor temperature (units: \xB0C)"
+                can_lcv_configuration_can2_subgroup:
+                  type: number
+                  description: CAN LCV configuration CAN2 subgroup
+                can_lcv_configuration_can1_subgroup:
+                  type: number
+                  description: CAN LCV configuration CAN1 subgroup
+                can_lcv_configuration_can2_group:
+                  type: string
+                  enum:
+                  - VAG
+                  - MERCEDES
+                  - CITROEN
+                  - FORD
+                  - FIAT
+                  - OPEL
+                  - RENAULT
+                  - TOYOTA
+                  - TRACTOR
+                  - TRUCK
+                  - HYUNDAI
+                  - LEXUS
+                  - VOLVO
+                  - BMW
+                  - NISSAN
+                  - HONDA
+                  - MITSUBISHI
+                  - SUBARU
+                  - CHRYSLER
+                  - ISUZU
+                  - SSANGYONG
+                  - MAZDA
+                  - KOMATSU
+                  - RANGEROVER
+                  - CLAAS
+                  - SAAB
+                  - LANDROVER
+                  - PORSCHE
+                  - KIA
+                  - JAGUAR
+                  - INFINITI
+                  - LINDE
+                  - HITACHI
+                  - SUZUKI
+                  description: 'CAN LCV configuration CAN2 group Possible values:
+                    VAG MERCEDES CITROEN FORD FIAT OPEL RENAULT TOYOTA TRACTOR TRUCK
+                    HYUNDAI LEXUS VOLVO BMW NISSAN HONDA MITSUBISHI SUBARU CHRYSLER
+                    ISUZU SSANGYONG MAZDA KOMATSU RANGEROVER CLAAS SAAB LANDROVER
+                    PORSCHE KIA JAGUAR INFINITI LINDE HITACHI SUZUKI'
+                can_lcv_configuration_can1_group:
+                  type: string
+                  enum:
+                  - VAG
+                  - MERCEDES
+                  - CITROEN
+                  - FORD
+                  - FIAT
+                  - OPEL
+                  - RENAULT
+                  - TOYOTA
+                  - TRACTOR
+                  - TRUCK
+                  - HYUNDAI
+                  - LEXUS
+                  - VOLVO
+                  - BMW
+                  - NISSAN
+                  - HONDA
+                  - MITSUBISHI
+                  - SUBARU
+                  - CHRYSLER
+                  - ISUZU
+                  - SSANGYONG
+                  - MAZDA
+                  - KOMATSU
+                  - RANGEROVER
+                  - CLAAS
+                  - SAAB
+                  - LANDROVER
+                  - PORSCHE
+                  - KIA
+                  - JAGUAR
+                  - INFINITI
+                  - LINDE
+                  - HITACHI
+                  - SUZUKI
+                  description: 'CAN LCV configuration CAN1 group Possible values:
+                    VAG MERCEDES CITROEN FORD FIAT OPEL RENAULT TOYOTA TRACTOR TRUCK
+                    HYUNDAI LEXUS VOLVO BMW NISSAN HONDA MITSUBISHI SUBARU CHRYSLER
+                    ISUZU SSANGYONG MAZDA KOMATSU RANGEROVER CLAAS SAAB LANDROVER
+                    PORSCHE KIA JAGUAR INFINITI LINDE HITACHI SUZUKI'
+                can_ignition:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'CAN ignition Possible values: OFF ON'
+                can_lcv_window_state_front_left:
+                  type: number
+                  description: CAN LCV window state Front Left
+                can_lcv_window_state_front_right:
+                  type: number
+                  description: CAN LCV window state Front Right
+                can_lcv_window_state_back_left:
+                  type: number
+                  description: CAN LCV window state Back Left
+                can_lcv_window_state_back_right:
+                  type: number
+                  description: CAN LCV window state Back Right
+                can_lcv_window_state_sunroof:
+                  type: number
+                  description: CAN LCV window state Sunroof
+                can_fuel_level_milliliters:
+                  type: number
+                  description: 'CAN fuel level millliliters (units: ml)'
+                can_door_lock_state:
+                  type: string
+                  enum:
+                  - UNLOCKED
+                  - LOCKED
+                  - NOT_AVAILABLE
+                  description: 'CAN door lock state Possible values: UNLOCKED LOCKED
+                    NOT_AVAILABLE'
+                gsm_signal_strength:
+                  type: number
+                  description: GSM signal strength
+                operator:
+                  type: number
+                  description: GSM operator
+                gps_speed:
+                  type: number
+                  description: 'GPS speed (units: km/h)'
+                gsm_umts_signal_strength:
+                  type: number
+                  description: GSM/UMTS signal strength
+                gsm_umts_operator:
+                  type: number
+                  description: GSM/UMTS operator
+                umts_enabled:
+                  type: string
+                  enum:
+                  - DISABLED
+                  - ENABLED
+                  description: 'UMTS enabled status Possible values: DISABLED ENABLED'
+                gnss_antenna:
+                  type: string
+                  enum:
+                  - DISABLED
+                  - ENABLED
+                  - UNKNOWN
+                  description: 'GNSS antenna status Possible values: DISABLED ENABLED
+                    UNKNOWN'
+                gsm_umts_jamming:
+                  type: string
+                  description: 'GSM/UMTS jamming status Possible status: JAMMING_NOT_DETECTED
+                    JAMMING_DETECTED'
+                gprs_errors:
+                  type: number
+                  description: GPRS errors
+                gprs_status:
+                  type: string
+                  enum:
+                  - DISCONNECTED
+                  - CONNECTED
+                  description: 'GPRS status Possible values: DISCONNECTED CONNECTED'
+                gps_altitude:
+                  type: number
+                  description: 'GPS altitude (units: m)'
+                dout1_status:
+                  type: string
+                  enum:
+                  - ACTIVE
+                  - INACTIVE
+                  description: 'DOUT1 status Possible values: ACTIVE INACTIVE'
+                dout2_status:
+                  type: string
+                  enum:
+                  - ACTIVE
+                  - INACTIVE
+                  description: 'DOUT2 status Possible values: ACTIVE INACTIVE'
+                dxp_battery_battery_voltage:
+                  type: number
+                  description: 'DXP battery voltage (units: V)'
+                dxp_battery_nominal_capacity_used:
+                  type: number
+                  description: 'DXP battery nominal capacity used (units: A)'
+                dxp_battery_charging_counter:
+                  type: number
+                  description: DXP battery charging counter
+                dxp_battery_state_of_charge:
+                  type: number
+                  description: 'DXP battery charging state (units: %)'
+                dxp_battery_charging_current:
+                  type: number
+                  description: 'DXP battery charging current (units: A)'
+                dxp_battery_battery_current:
+                  type: number
+                  description: 'DXP battery current (units: A)'
+                dxp_battery_battery_temp:
+                  type: number
+                  description: "DXP battery temperature (units: \xB0C)"
+                dxp_battery_charger_stop_reason:
+                  type: number
+                  description: DXP battery charge stop reason
+                dxp_switches_switch1:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'DXP switch 1 value Possible values: OFF ON'
+                dxp_switches_switch2:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'DXP switch 2 value Possible values: OFF ON'
+                dxp_switches_switch3:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'DXP switch 3 value Possible values: OFF ON'
+                dxp_switches_switch4:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'DXP switch 4 value Possible values: OFF ON'
+                dxp_switches_switch5:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'DXP switch 5 value Possible values: OFF ON'
+                dxp_switches_switch6:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'DXP switch 6 value Possible values: OFF ON'
+                dxp_switches_switch7:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'DXP switch 7 value Possible values: OFF ON'
+                dxp_switches_switch8:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'DXP switch 8 value Possible values: OFF ON'
+                dxp_switches_parameters_set:
+                  type: number
+                  description: DXP switch parameters set
+                dxp_other_parameters_chassis_number_nr:
+                  type: number
+                  description: DXP chassis number
+                dxp_other_parameters_servie_odometer:
+                  type: number
+                  description: DXP service odometer
+                dxp_other_parameters_vcl_version:
+                  type: number
+                  description: DXP VCL version
+                dxp_other_parameters_parameter_blk_version:
+                  type: number
+                  description: DXP parameter BLK version
+                dxp_faults1_status1_faults_error_codes:
+                  type: number
+                  description: DXP status 1 fault error codes
+                dxp_faults1_status2_faults_error_codes:
+                  type: number
+                  description: DXP status 2 fault error codes
+                dxp_faults1_status3_faults_error_codes:
+                  type: number
+                  description: DXP status 3 fault error codes
+                dxp_faults1_status4_faults_error_codes:
+                  type: number
+                  description: DXP status 4 fault error codes
+                dxp_faults1_status5_faults_error_codes:
+                  type: number
+                  description: DXP status 5 fault error codes
+                dxp_faults1_status6_faults_error_codes:
+                  type: number
+                  description: DXP status 6 fault error codes
+                dxp_faults1_status7_faults_error_codes:
+                  type: number
+                  description: DXP status 7 fault error codes
+                dxp_faults1_status8_faults_error_codes:
+                  type: number
+                  description: DXP status 8 fault error codes
+                dxp_faults2_user_fault_1_error_codes:
+                  type: number
+                  description: DXP user fault 1 error codes
+                dxp_faults2_user_fault_2_error_codes:
+                  type: number
+                  description: DXP user fault 2 error codes
+                dxp_faults2_user_fault_2_history_error_codes:
+                  type: number
+                  description: DXP user fault 1 history error codes
+                dxp_faults2_user_fault_1_history_error_codes:
+                  type: number
+                  description: DXP user fault 2 history error codes
+                dxp_faults2_kyb_hist_fault_codes:
+                  type: number
+                  description: DXP KYB hist fault codes
+                dxp_charger_status:
+                  type: number
+                  description: DXP charger status
+                ecodrive_maximum_speed:
+                  type: number
+                  description: 'Eco-Drive maximum speed (units: km/h)'
+                ecodrive_overspeed:
+                  type: number
+                  description: 'Eco-Drive overspeeding timer (units: s)'
+                ecodrive_rpm_on_red:
+                  type: number
+                  description: 'Eco-Drive RPM in red band timer (units: s)'
+                ecodrive_maximum_rpm:
+                  type: number
+                  description: 'Eco-Drive maximum RPM (units: RPM)'
+                ecodrive_braking_events:
+                  type: number
+                  description: Eco-Drive brake counter
+                ecodrive_harsh_acceleration:
+                  type: number
+                  description: Eco-Drive harsh acceleration counter
+                ecodrive_idling_time:
+                  type: number
+                  description: 'Eco-Drive idling counter (units: s)'
+                ecodrive_engine_on:
+                  type: number
+                  description: 'Eco-Drive engine on timer (units: s)'
+                ecodrive_time_cruise_control_could_be_on:
+                  type: number
+                  description: 'Eco-Drive time cruise control could be on (units:
+                    s)'
+                ecodrive_time_cruise_control_was_on_when_it_could_be_on:
+                  type: number
+                  description: 'Eco-Drive time cruise control was on when it could
+                    be on (units: s)'
+                ecodrive_extreme_braking_count:
+                  type: number
+                  description: Eco-Drive extreme braking count
+                ecodrive_harsh_braking_count:
+                  type: number
+                  description: Eco-Drive harsh braking count
+                ecodrive_mileage_in_rpm_green_zone:
+                  type: number
+                  description: 'Eco-Drive mileage in RPM green zone (units: m)'
+                ecodrive_mileage_when_speed_is_below_overspeed:
+                  type: number
+                  description: 'Eco-Drive mileage when speed is below overspeed (units:
+                    m)'
+                ecodrive_mileage_when_cruise_control_could_be_on:
+                  type: number
+                  description: 'Eco-Drive mileage when cruise control could be on
+                    (units: m)'
+                ecodrive_mileage_when_cruise_control_was_on_when_it_could_be_on:
+                  type: number
+                  description: 'Eco-Drive mileage when cruise control was on when
+                    it could be on (units: m)'
+                ecodrive_cornering_counter:
+                  type: number
+                  description: Eco-Drive cornering counter
+                ecodrive_stops_counter:
+                  type: number
+                  description: Eco-Drive stop counter
+                ecodrive_fuel_used_at_stops:
+                  type: number
+                  description: 'Eco-Drive fuel used while idling (units: l)'
+                ecodrive_mileage_while_free_rolling:
+                  type: number
+                  description: 'Eco-Drive free rolling distance (units: m)'
+                ecodrive_mileage_while_engine_overloaded:
+                  type: number
+                  description: 'Eco-Drive engine overloaded distance (units: m)'
+                ecodrive_fuel_used_while_engine_overloaded:
+                  type: number
+                  description: 'Eco-Drive engine overloaded fuel used (units: l)'
+                ecodrive_mileage_while_overspeeding:
+                  type: number
+                  description: 'Eco-Drive overspeeding distance (units: m)'
+                ecodrive_fuel_used_while_overspeeding:
+                  type: number
+                  description: 'Eco-Drive overspeeding fuel used (units: l)'
+                ecodrive_mileage_when_cruise_control_was_on:
+                  type: number
+                  description: 'Eco-Drive cruise control on distance (units: m)'
+                ecodrive_fuel_used_when_when_cruise_control_was_on:
+                  type: number
+                  description: 'Eco-Drive cruise control on fuel used (units: l)'
+                ecodrive_mileage_in_highest_gear:
+                  type: number
+                  description: 'Eco-Drive highest gear distance (units: m)'
+                ecodrive_fuel_used_in_highest_gear:
+                  type: number
+                  description: 'Eco-Drive highest gear fuel used (units: l)'
+                ecodrive_mileage_in_range_1_900_rpm:
+                  type: number
+                  description: 'Eco-Drive RPM range 1 (<900 RPM) distance (units:
+                    m)'
+                ecodrive_fuel_used_in_range_1_900_rpm:
+                  type: number
+                  description: 'Eco-Drive RPM range 1 (<900 RPM) fuel used (units:
+                    l)'
+                ecodrive_mileage_in_range_900_1300_rpm:
+                  type: number
+                  description: 'Eco-Drive RPM range 2 (900-1300 RPM) distance (units:
+                    m)'
+                ecodrive_fuel_used_in_range_900_1300_rpm:
+                  type: number
+                  description: 'Eco-Drive RPM range 2 (900-1300 RPM) fuel used (units:
+                    l)'
+                ecodrive_mileage_in_range_1300_1500_rpm:
+                  type: number
+                  description: 'Eco-Drive RPM range 3 (1300-1500 RPM) distance (units:
+                    m)'
+                ecodrive_fuel_used_in_range_1300_1500_rpm:
+                  type: number
+                  description: 'Eco-Drive RPM range 3 (1300-1500 RPM) fuel used (units:
+                    l)'
+                ecodrive_mileage_in_range_1500_2300_rpm:
+                  type: number
+                  description: 'Eco-Drive RPM range 4 (1500-2300 RPM) distance (units:
+                    m)'
+                ecodrive_fuel_used_in_range_1500_2300_rpm:
+                  type: number
+                  description: 'Eco-Drive RPM range 4 (1500-2300 RPM) fuel used (units:
+                    l)'
+                ecodrive_idling_state:
+                  type: string
+                  enum:
+                  - NO_IDLING
+                  - IDLING
+                  description: 'Eco-Drive idling state Possible values: NO_IDLING
+                    IDLING'
+                ecodrive_braking_value:
+                  type: number
+                  description: 'Eco-Drive braking value (units: m/s^2)'
+                ecodrive_acceleration_value:
+                  type: number
+                  description: 'Eco-Drive acceleration value (units: m/s^2)'
+                ecodrive_cornering_value:
+                  type: number
+                  description: 'Eco-Drive cornering value (units: m/s^2)'
+                eco_rpm_in_red_band_distance:
+                  type: number
+                  description: 'Eco-Drive RPM in red band distance (units: m)'
+                eco_engine_braking_distance:
+                  type: number
+                  description: 'Eco-Drive engine braking distance (units: m)'
+                eco_braking_distance:
+                  type: number
+                  description: 'Eco-Drive braking distance (units: m)'
+                eco_braking_duration:
+                  type: number
+                  description: 'Eco-Drive braking duration (units: s)'
+                eco_retarder_duration:
+                  type: number
+                  description: 'Eco-Drive retarder duration (units: s)'
+                eco_stops_counter:
+                  type: number
+                  description: Eco-Drive stop counter
+                thermoking_air_return_temp:
+                  type: number
+                  description: "ThermoKing air return temperature (units: \xB0C)"
+                thermoking_alarms:
+                  type: number
+                  description: ThermoKing alarm code
+                thermoking_set_point:
+                  type: number
+                  description: "ThermoKing temperature setpoint (units: \xB0C)"
+                thermoking_fuel_level:
+                  type: number
+                  description: 'ThermoKing fuel level (units: %)'
+                thermoking_battery_voltage:
+                  type: number
+                  description: 'ThermoKing battery voltage (units: V)'
+                thermoking_total_electric_hours:
+                  type: number
+                  description: 'ThermoKing total electric hours (units: h)'
+                thermoking_vehicle_hours:
+                  type: number
+                  description: 'ThermoKing total vehicle hours (units: h)'
+                thermoking_total_engine_hours:
+                  type: number
+                  description: 'ThermoKing total engine hours (units: h)'
+                thermoking_alarm_type:
+                  type: string
+                  enum:
+                  - NO_ALARM
+                  - LOG_STORED_OR_ROUTINE_MAINTENANCE
+                  - LOW_FUEL
+                  - MAINTENANCE_PAST_DUE
+                  - RESERVED
+                  - IMMEDIATE_ATTENTION_REQUIRED
+                  - SHUTDOWN_OR_CATASTROPHIC_SYSTEM_FAILURE
+                  description: 'ThermoKing alarm type Possible values: NO_ALARM LOG_STORED_OR_ROUTINE_MAINTENANCE
+                    LOW_FUEL MAINTENANCE_PAST_DUE RESERVED IMMEDIATE_ATTENTION_REQUIRED
+                    SHUTDOWN_OR_CATASTROPHIC_SYSTEM_FAILURE'
+                thermoking_discharge_temperature:
+                  type: number
+                  description: "ThermoKing discharge air temperature (units: \xB0\
+                    C)"
+                thermoking_evaporator_coil_temperature:
+                  type: number
+                  description: "ThermoKing evaporator coil temperature (units: \xB0\
+                    C)"
+                thermoking_operating_mode:
+                  type: string
+                  enum:
+                  - POWER_OFF_OR_UNKNOWN
+                  - COOLING
+                  - HEATING
+                  - DEFROST
+                  - 'NULL'
+                  - PRETRIP
+                  - SLEEP
+                  - RESERVED
+                  description: 'ThermoKing operating mode Possible values: POWER_OFF_OR_UNKNOWN
+                    COOLING HEATING DEFROST NULL PRETRIP SLEEP RESERVED'
+                thermoking_cycle_mode:
+                  type: string
+                  enum:
+                  - CYCLE_SENTRY_MODE
+                  - CONTINUOUS_MODE
+                  - START_STOP_MODE
+                  description: 'ThermoKing cycle mode Possible values: CYCLE_SENTRY_MODE
+                    CONTINUOUS_MODE START_STOP_MODE'
+                thermoking_high_speed_status:
+                  type: boolean
+                  description: ThermoKing high speed status
+                thermoking_door_status:
+                  type: string
+                  enum:
+                  - CLOSED
+                  - OPEN
+                  description: 'ThermoKing door status Possible values: CLOSED OPEN'
+                thermoking_diesel_electric_status:
+                  type: string
+                  enum:
+                  - DIESEL_MODE
+                  - ELECTRIC_MODE
+                  description: 'ThermoKing diesel/electric status Possible values:
+                    DIESEL_MODE ELECTRIC_MODE'
+                tk_touchprint_input_1:
+                  type: number
+                  description: "TK Touchprint input 1 (units: \xB0C)"
+                tk_touchprint_input_2:
+                  type: number
+                  description: "TK Touchprint input 2 (units: \xB0C)"
+                tk_touchprint_input_3:
+                  type: number
+                  description: "TK Touchprint input 3 (units: \xB0C)"
+                tk_touchprint_input_4:
+                  type: number
+                  description: "TK Touchprint input 4 (units: \xB0C)"
+                tk_touchprint_input_5:
+                  type: number
+                  description: "TK Touchprint input 5 (units: \xB0C)"
+                tk_touchprint_input_6:
+                  type: number
+                  description: "TK Touchprint input 6 (units: \xB0C)"
+                tk_temperature_sensor1:
+                  type: number
+                  description: "TK temperature sensor 1 (units: \xB0C)"
+                tk_temperature_sensor2:
+                  type: number
+                  description: "TK temperature sensor 2 (units: \xB0C)"
+                tk_temperature_sensor3:
+                  type: number
+                  description: "TK temperature sensor 3 (units: \xB0C)"
+                tk_temperature_sensor4:
+                  type: number
+                  description: "TK temperature sensor 4 (units: \xB0C)"
+                tk_temperature_sensor5:
+                  type: number
+                  description: "TK temperature sensor 5 (units: \xB0C)"
+                tk_temperature_sensor6:
+                  type: number
+                  description: "TK temperature sensor 6 (units: \xB0C)"
+                fuel_counter:
+                  type: number
+                  description: Fuel counter 1
+                digital_fuel_sensor_a1:
+                  type: number
+                  description: Digital fuel sensor A1
+                fuel_counter_2:
+                  type: number
+                  description: Fuel counter 2
+                digital_fuel_sensor_b1:
+                  type: number
+                  description: Digital fuel sensor B1
+                digital_fuel_sensor_a2:
+                  type: number
+                  description: Digital fuel sensor A2
+                digital_fuel_sensor_a3:
+                  type: number
+                  description: Digital fuel sensor A3
+                digital_fuel_sensor_a4:
+                  type: number
+                  description: Digital fuel sensor A4
+                digital_fuel_sensor_a5:
+                  type: number
+                  description: Digital fuel sensor A5
+                digital_fuel_sensor_a6:
+                  type: number
+                  description: Digital fuel sensor A6
+                digital_fuel_sensor_a7:
+                  type: number
+                  description: Digital fuel sensor A7
+                digital_fuel_sensor_a8:
+                  type: number
+                  description: Digital fuel sensor A8
+                digital_fuel_sensor_a9:
+                  type: number
+                  description: Digital fuel sensor A9
+                digital_fuel_sensor_a10:
+                  type: number
+                  description: Digital fuel sensor A10
+                digital_fuel_sensorc1_temperature:
+                  type: number
+                  description: "Digital fuel sensor C1 temperature (units: \xB0C)"
+                digital_fuel_sensorc2_temperature:
+                  type: number
+                  description: "Digital fuel sensor C2 temperature (units: \xB0C)"
+                digital_fuel_sensorc3_temperature:
+                  type: number
+                  description: "Digital fuel sensor C3 temperature (units: \xB0C)"
+                digital_fuel_sensorc4_temperature:
+                  type: number
+                  description: "Digital fuel sensor C4 temperature (units: \xB0C)"
+                digital_fuel_sensorc5_temperature:
+                  type: number
+                  description: "Digital fuel sensor C5 temperature (units: \xB0C)"
+                digital_fuel_sensorc6_temperature:
+                  type: number
+                  description: "Digital fuel sensor C6 temperature (units: \xB0C)"
+                digital_fuel_sensorc7_temperature:
+                  type: number
+                  description: "Digital fuel sensor C7 temperature (units: \xB0C)"
+                digital_fuel_sensorc8_temperature:
+                  type: number
+                  description: "Digital fuel sensor C8 temperature (units: \xB0C)"
+                digital_fuel_sensorc9_temperature:
+                  type: number
+                  description: "Digital fuel sensor C9 temperature (units: \xB0C)"
+                digital_fuel_sensorc10_temperature:
+                  type: number
+                  description: "Digital fuel sensor C10 temperature (units: \xB0C)"
+                digital_fuel_sensorc1:
+                  type: number
+                  description: Digital fuel sensor C1
+                digital_fuel_sensorc2:
+                  type: number
+                  description: Digital fuel sensor C2
+                digital_fuel_sensorc3:
+                  type: number
+                  description: Digital fuel sensor C3
+                digital_fuel_sensorc4:
+                  type: number
+                  description: Digital fuel sensor C4
+                digital_fuel_sensorc5:
+                  type: number
+                  description: Digital fuel sensor C5
+                digital_fuel_sensorc6:
+                  type: number
+                  description: Digital fuel sensor C6
+                digital_fuel_sensorc7:
+                  type: number
+                  description: Digital fuel sensor C7
+                digital_fuel_sensorc8:
+                  type: number
+                  description: Digital fuel sensor C8
+                digital_fuel_sensorc9:
+                  type: number
+                  description: Digital fuel sensor C9
+                digital_fuel_sensorc10:
+                  type: number
+                  description: Digital fuel sensor C10
+                digital_fuel_sensora1_temperature:
+                  type: number
+                  description: "Digital fuel sensor A1 temperature (units: \xB0C)"
+                fuel_level_sensorb1_temperature:
+                  type: number
+                  description: "Fuel level sensor B1 temperature (units: \xB0C)"
+                bt_humidity_sensor_0:
+                  type: number
+                  description: 'BT humidity sensor 0 (units: %)'
+                bt_humidity_sensor_1:
+                  type: number
+                  description: 'BT humidity sensor 1 (units: %)'
+                bt_humidity_sensor_2:
+                  type: number
+                  description: 'BT humidity sensor 2 (units: %)'
+                bt_humidity_sensor_3:
+                  type: number
+                  description: 'BT humidity sensor 3 (units: %)'
+                bt_humidity_sensor_4:
+                  type: number
+                  description: 'BT humidity sensor 4 (units: %)'
+                ibutton:
+                  type: string
+                  description: iButton driver ID
+                rfid_a:
+                  type: string
+                  description: RFID PortA
+                rfid_b:
+                  type: string
+                  description: RFID PortB
+                magnetic_card_id:
+                  type: string
+                  description: Magnetic card ID
+                ds1971_ibutton_internal_8b_driver_id:
+                  type: string
+                  description: DS1971 iButton internal 8B driver ID
+                ds1971_ibutton_internal_16b_driver_id:
+                  type: string
+                  description: DS1971 iButton internal 16B driver ID
+                ds1971_ibutton_internal_8b_passenger_id:
+                  type: string
+                  description: DS1971 iButton internal 8B passenger ID
+                ds1971_ibutton_internal_16b_passenger_id:
+                  type: string
+                  description: DS1971 iButton internal 16B passenger ID
+                ultra_high_frequency_rfid_port_b:
+                  type: string
+                  description: Ultra High Frequency RFID port B
+                ultra_high_frequency_rfid_port_a:
+                  type: string
+                  description: Ultra High Frequency RFID port A
+                digital_input_1:
+                  type: boolean
+                  description: DIN1 value
+                digital_input_2:
+                  type: boolean
+                  description: DIN2 value
+                digital_input_3:
+                  type: boolean
+                  description: DIN3 value
+                digital_input_4:
+                  type: boolean
+                  description: DIN4 value
+                analog_input_1:
+                  type: number
+                  description: 'AIN1 value (units: V)'
+                analog_input_2:
+                  type: number
+                  description: 'AIN2 value (units: V)'
+                din1_working_time_diff:
+                  type: number
+                  description: 'DIN1 hour counter (units: s)'
+                din2_working_time_diff:
+                  type: number
+                  description: 'DIN2 hour counter (units: s)'
+                din3_working_time_diff:
+                  type: number
+                  description: 'DIN3 hour counter (units: s)'
+                din4_working_time_diff:
+                  type: number
+                  description: 'DIN4 hour counter (units: s)'
+                ot_digital_input_1:
+                  type: boolean
+                  description: OT digital input 1
+                ot_digital_input_2:
+                  type: boolean
+                  description: OT digital input 2
+                ot_digital_input_3:
+                  type: boolean
+                  description: OT digital input 3
+                ot_digital_input_4:
+                  type: boolean
+                  description: OT digital input 4
+                frequency_input_1:
+                  type: number
+                  description: 'Frequency input 1 (units: Hz)'
+                frequency_input_2:
+                  type: number
+                  description: 'Frequency input 2 (units: Hz)'
+                kimax_total_trailer_weight:
+                  type: number
+                  description: 'Kimax total trailer weight (units: kg)'
+                kimax_total_truck_weight:
+                  type: number
+                  description: 'Kimax total truck weight (units: kg)'
+                moba_netto_weight:
+                  type: number
+                  description: 'MOBA netto weight (units: g)'
+                moba_timestamp:
+                  type: string
+                  format: date-time
+                  description: MOBA timestamp
+                moba_rfid_id:
+                  type: string
+                  description: MOBA RFID ID
+                mobileye_sound_type:
+                  type: string
+                  enum:
+                  - SILENT
+                  - LDWL
+                  - LDWR
+                  - HW1
+                  - TSR
+                  - UFCW
+                  - FCW_PCW
+                  - PEDS_IN_DZ
+                  description: 'Mobileye sound type Possible values: SILENT LDWL LDWR
+                    HW1 TSR UFCW FCW_PCW PEDS_IN_DZ'
+                mobileye_pedestrians_in_dz:
+                  type: boolean
+                  description: Mobileye pedestrians in danger zone
+                mobileye_pedestrians_fcw:
+                  type: boolean
+                  description: Mobileye pedestrians forward collision warning
+                mobileye_night_time_indicator:
+                  type: string
+                  enum:
+                  - DAY
+                  - NIGHT
+                  description: 'Mobileye night time indicator Possible values: DAY
+                    NIGHT'
+                mobileye_dusk_time_indicator:
+                  type: string
+                  enum:
+                  - DAY
+                  - DUSK
+                  description: 'Mobileye dusk time indicator Possible values: DAY
+                    DUSK'
+                mobileye_error_code:
+                  type: number
+                  description: Mobileye error code
+                mobileye_error_valid:
+                  type: boolean
+                  description: Mobileye error valid
+                mobileye_zero_speed:
+                  type: boolean
+                  description: Mobileye zero speed
+                mobileye_headway_valid:
+                  type: boolean
+                  description: Mobileye headway valid
+                mobileye_headway_measurement:
+                  type: number
+                  description: Mobileye headway measurement
+                mobileye_ldw_off:
+                  type: boolean
+                  description: Mobileye LDW off
+                mobileye_right_ldw_on:
+                  type: boolean
+                  description: Mobileye right LDW on
+                mobileye_left_ldw_on:
+                  type: boolean
+                  description: Mobileye left LDW on
+                mobileye_maintenance:
+                  type: string
+                  enum:
+                  - NO_ERROR
+                  - ERROR
+                  description: 'Mobileye maintenance Possible values: NO_ERROR ERROR'
+                mobileye_failsafe:
+                  type: boolean
+                  description: Mobileye failsafe
+                mobileye_fcw_on:
+                  type: boolean
+                  description: Mobileye forward collision warning on
+                mobileye_headway_warning_level:
+                  type: string
+                  enum:
+                  - NO_COPV
+                  - CIPV_WITH_HW_MORE_THAN_HW_CONFIG
+                  - CIPV_WITH_LESS_THAN_HW_CONFIG
+                  description: 'Mobileye headway warning level Possible values: NO_COPV
+                    CIPV_WITH_HW_MORE_THAN_HW_CONFIG CIPV_WITH_LESS_THAN_HW_CONFIG'
+                mobileye_hi_beam:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'Mobileye high beam Possible values: OFF ON'
+                mobileye_low_beam:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'Mobileye low beam Possible values: OFF ON'
+                mobileye_wipers:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'Mobileye wipers Possible values: OFF ON'
+                mobileye_right_signal:
+                  type: boolean
+                  description: Mobileye right signal
+                mobileye_left_signal:
+                  type: boolean
+                  description: Mobileye left signal
+                mobileye_brake_signal:
+                  type: boolean
+                  description: Mobileye brake signal
+                mobileye_wipers_available:
+                  type: boolean
+                  description: Mobileye wipers available
+                mobileye_low_beam_available:
+                  type: boolean
+                  description: Mobileye low beam available
+                mobileye_hi_beam_available:
+                  type: boolean
+                  description: Mobileye high beam available
+                mobileye_speed_available:
+                  type: boolean
+                  description: Mobileye speed available
+                mobileye_speed:
+                  type: number
+                  description: 'Mobileye speed (units: km/h)'
+                mobileye_tamper_alert:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'Mobileye tamper alert Possible values: OFF ON'
+                mobileye_tsr_enabled:
+                  type: boolean
+                  description: Mobileye TSR enabled
+                mobileye_tsr_warning_level:
+                  type: number
+                  description: Mobileye TSR warning level
+                mobileye_hw_repeat_enabled:
+                  type: boolean
+                  description: Mobileye headway warning repeat enabled
+                mobileye_vision_only_sign:
+                  type: number
+                  description: Mobileye vision only sign
+                mobileye_vision_only_supplementary_sign_type:
+                  type: number
+                  description: Mobileye vision only supplementary sign type
+                mobileye_sign_position_x:
+                  type: number
+                  description: Mobileye sign position X
+                mobileye_sign_position_y:
+                  type: number
+                  description: Mobileye sign position Y
+                mobileye_sign_position_z:
+                  type: number
+                  description: Mobileye sign position Z
+                mobileye_filter_type:
+                  type: number
+                  description: Mobileye filter type
+                mobileye_vision_sign_type_display_1:
+                  type: number
+                  description: Mobileye vision sign type display 1
+                mobileye_vision_only_suplementary_sign_type_display_1:
+                  type: number
+                  description: Mobileye vision only supplementary sign type display
+                    1
+                mobileye_vision_sign_type_display_2:
+                  type: number
+                  description: Mobileye vision sign type display 2
+                mobileye_vision_only_suplementary_sign_type_display_2:
+                  type: number
+                  description: Mobileye vision only suplementary sign type display
+                    2
+                mobileye_vision_sign_type_display_3:
+                  type: number
+                  description: Mobileye vision sign type display 3
+                mobileye_vision_only_suplementary_sign_type_display_3:
+                  type: number
+                  description: Mobileye vision only suplementary sign type display
+                    3
+                mobileye_vision_sign_type_display_4:
+                  type: number
+                  description: Mobileye vision sign type display 4
+                mobileye_vision_only_suplementary_sign_type_display_4:
+                  type: number
+                  description: Mobileye vision only suplementary sign type display
+                    4
+                obd_kline_dtc_and_mil:
+                  type: number
+                  description: OBD DTC and MIL
+                obd_kline_rpm:
+                  type: number
+                  description: 'OBD RPM (units: RPM)'
+                obd_kline_vehicle_speed_sensor:
+                  type: number
+                  description: 'OBD vehicle speed (units: km/h)'
+                obd_kline_engine_coolant_temperature:
+                  type: number
+                  description: "OBD engine coolant temperature (units: \xB0C)"
+                obd_kline_ambient_air_temperature:
+                  type: number
+                  description: "OBD ambient air temperature (units: \xB0C)"
+                obd_kline_fuel_level_input:
+                  type: number
+                  description: 'OBD fuel level (units: %)'
+                obd_kline_type_of_fuel:
+                  type: string
+                  enum:
+                  - NOT_AVAILABLE
+                  - GASOLINE
+                  - METHANOL
+                  - ETHANOL
+                  - DIESEL
+                  - LPG
+                  - CNG
+                  - PROPANE
+                  - ELECTRIC
+                  - BIFUEL_RUNNING_GASOLINE
+                  - BIFUEL_RUNNING_METHANOL
+                  - BIFUEL_RUNNING_ETHANOL
+                  - BIFUEL_RUNNING_LPG
+                  - BIFUEL_RUNNING_CNG
+                  - BIFUEL_RUNNING_PROPANE
+                  - BIFUEL_RUNNING_ELECTRICITY
+                  - BIFUEL_RUNNING_ELECTRIC_AND_COMBUSTION_ENGINE
+                  - HYBRID_GASOLINE
+                  - HYBRID_ETHANOL
+                  - HYBRID_DIESEL
+                  - HYBRID_ELECTRIC
+                  - HYBRID_RUNNING_ELECTRIC_AND_COMBUSTION_ENGINE
+                  - HYBRID_REGENERATIVE
+                  - BIFUEL_DIESEL
+                  description: 'OBD fuel type Possible values: NOT_AVAILABLE GASOLINE
+                    METHANOL ETHANOL DIESEL LPG CNG PROPANE ELECTRIC BIFUEL_RUNNING_GASOLINE
+                    BIFUEL_RUNNING_METHANOL BIFUEL_RUNNING_ETHANOL BIFUEL_RUNNING_LPG
+                    BIFUEL_RUNNING_CNG BIFUEL_RUNNING_PROPANE BIFUEL_RUNNING_ELECTRICITY
+                    BIFUEL_RUNNING_ELECTRIC_AND_COMBUSTION_ENGINE HYBRID_GASOLINE
+                    HYBRID_ETHANOL HYBRID_DIESEL HYBRID_ELECTRIC HYBRID_RUNNING_ELECTRIC_AND_COMBUSTION_ENGINE
+                    HYBRID_REGENERATIVE BIFUEL_DIESEL'
+                obd_kline_engine_fuel_rate:
+                  type: number
+                  description: 'OBD engine fuel rate (units: l/h)'
+                obd_kline_actual_engine_percent_torque:
+                  type: number
+                  description: 'OBD actual engine percent torque (units: %)'
+                obd_kline_distance_traveled_while_mil_is_activated:
+                  type: number
+                  description: 'OBD distance traveled while MIL is activated (units:
+                    km)'
+                obd_kline_relative_accelerator_pedal_position:
+                  type: number
+                  description: 'OBD accelerator pedal position (units: %)'
+                obd_kline_vin_1:
+                  type: string
+                  description: OBD VIN 1
+                obd_kline_vin_2:
+                  type: string
+                  description: OBD VIN 2
+                obd_kline_vin_3:
+                  type: string
+                  description: OBD VIN 3
+                obd_kline_time_since_engine_start:
+                  type: number
+                  description: 'OBD time since engine start (units: s)'
+                obd_kline_dtc_counted:
+                  type: number
+                  description: OBD DTC count
+                satellite_messages_sent:
+                  type: number
+                  description: Satellite messages sent
+                pending_satellite_messages:
+                  type: number
+                  description: Pending satellite messages
+                spr_spreader_mode:
+                  type: number
+                  description: Spreader mode
+                spr_spreader_adjustment_of_simulation_driving_speed:
+                  type: number
+                  description: 'Spreader adjustment of simulation driving speed (units:
+                    km/h)'
+                spr_spreader_spreading_width:
+                  type: number
+                  description: 'Spreader spreading width (units: m)'
+                spr_spreading_solid_material_dosage_from_reservoir_1:
+                  type: number
+                  description: 'Spreader spreading solid material dosage from reservoir
+                    1 (units: g/m^2)'
+                spr_spreading_brine_dosage:
+                  type: number
+                  description: 'Spreader spreading brine dosage (units: g/m^2)'
+                spr_spread_solid_material_from_reservoir_1:
+                  type: number
+                  description: 'Spreader spread solid material from reservoir 1 (units:
+                    kg)'
+                spr_spread_brine_material:
+                  type: number
+                  description: 'Spreader spread brine material (units: l)'
+                spr_driven_length_while_spreading:
+                  type: number
+                  description: 'Spreader driven length while spreading (units: m)'
+                spr_driven_hours_while_spreading:
+                  type: number
+                  description: 'Spreader driven hours while spreading (units: h)'
+                spr_error_code:
+                  type: string
+                  description: 'Spreader error code Possible values: RESERVED NO_SALT
+                    NO_BRINE MIN_LEVEL_OF_TANK MIN_LEVEL_OF_HOPPER NO_FEEDBACK_FROM_SPINNER
+                    NO_FEEDBACK_FROM_CONVEYER NO_FEEDBACK_FROM_CONVEYER_2 NO_FEEDBACK_FROM_PUMP
+                    SPINNER_RPM_OUT_OF_RANGE CONVEYER_RPM_OUT_OF_RANGE CONVEYER_2_RPM_OUT_OF_RANGE
+                    PUMP_RPM_OUT_OF_RANGE SETTING_OUT_OF_RANGE AUX_ENGINE_CHARGE_CONTROL_FAULT
+                    AUX_ENGINE_OIL_PRESSURE_TOO_LOW AUX_ENGINE_WATER_TEMP_TOO_HIGH
+                    RESERVED'
+                spr_liquid_material:
+                  type: string
+                  description: Spreader liquid material
+                spr_solid_material:
+                  type: string
+                  description: Spreader solid material
+                driver_1_state:
+                  type: string
+                  enum:
+                  - REST
+                  - DRIVER_AVAILABLE
+                  - WORK
+                  - DRIVE
+                  - ERROR
+                  - NOT_AVAILABLE
+                  description: 'Driver 1 state Possible values: REST DRIVER_AVAILABLE
+                    WORK DRIVE ERROR NOT_AVAILABLE'
+                driver_2_state:
+                  type: string
+                  enum:
+                  - REST
+                  - DRIVER_AVAILABLE
+                  - WORK
+                  - DRIVE
+                  - ERROR
+                  - NOT_AVAILABLE
+                  description: 'Driver 2 state Possible values: REST DRIVER_AVAILABLE
+                    WORK DRIVE ERROR NOT_AVAILABLE'
+                tco_first_driver_state:
+                  type: string
+                  enum:
+                  - REST
+                  - DRIVER_AVAILABLE
+                  - WORK
+                  - DRIVE
+                  - ERROR
+                  - NOT_AVAILABLE
+                  description: 'TCO first driver state Possible values: REST DRIVER_AVAILABLE
+                    WORK DRIVE ERROR NOT_AVAILABLE'
+                tco_second_driver_state:
+                  type: string
+                  enum:
+                  - REST
+                  - DRIVER_AVAILABLE
+                  - WORK
+                  - DRIVE
+                  - ERROR
+                  - NOT_AVAILABLE
+                  description: 'TCO second driver state Possible values: REST DRIVER_AVAILABLE
+                    WORK DRIVE ERROR NOT_AVAILABLE'
+                tco_first_driver_card:
+                  type: string
+                  enum:
+                  - NOT_INSERTED
+                  - INSERTED
+                  description: 'TCO first driver card Possible values: NOT_INSERTED
+                    INSERTED'
+                tco_second_driver_card:
+                  type: string
+                  enum:
+                  - NOT_INSERTED
+                  - INSERTED
+                  description: 'TCO second driver card Possible values: NOT_INSERTED
+                    INSERTED'
+                tco_distance:
+                  type: number
+                  description: 'TCO distance (units: km)'
+                tco_trip:
+                  type: number
+                  description: 'TCO trip distance (units: km)'
+                tco_vehicle_speed:
+                  type: number
+                  description: 'TCO vehicle speed (units: km/h)'
+                tco_rpm:
+                  type: number
+                  description: 'TCO engine speed (units: RPM)'
+                tco_registration_number:
+                  type: string
+                  description: TCO registration number
+                tacho_ddd_available:
+                  type: string
+                  description: Tacho card reader state NOT_AVAILABLE AVAILABLE
+                tco_first_driver_driving_time_prev_and_curr_week:
+                  type: number
+                  description: 'TCO first driver driving time (prev. and curr. week)
+                    (units: min)'
+                tco_second_driver_driving_time_prev_and_curr_week:
+                  type: number
+                  description: 'TCO second driver driving time (prev. and curr. week)
+                    (units: min)'
+                tco_first_driver_duration_of_selected_activity:
+                  type: number
+                  description: 'TCO first driver duration of selected activity (units:
+                    min)'
+                tco_second_driver_duration_of_selected_activity:
+                  type: number
+                  description: 'TCO second driver duration of selected activity (units:
+                    min)'
+                tco_first_driver_continuous_driving_time:
+                  type: number
+                  description: 'TCO first driver continuous driving time (units: min)'
+                tco_second_driver_continuous_driving_time:
+                  type: number
+                  description: 'TCO second driver continuous driving time (units:
+                    min)'
+                tco_first_driver_cumulated_break_time:
+                  type: number
+                  description: 'TCO first driver accumulated break time (units: min)'
+                tco_second_driver_cumulated_break_time:
+                  type: number
+                  description: 'TCO second driver accumulated break time (units: min)'
+                tco_first_driver_time_related_states:
+                  type: number
+                  description: TCO first driver time related states
+                tco_second_driver_time_related_states:
+                  type: number
+                  description: TCO second driver time related states
+                tco_time:
+                  type: string
+                  format: date-time
+                  description: TCO tacho time
+                tco_can_tacho_time:
+                  type: string
+                  format: date-time
+                  description: TCO CAN tacho Time
+                temperature_sensor_0:
+                  type: number
+                  description: "Temperature sensor 0 (units: \xB0C)"
+                temperature_sensor_1:
+                  type: number
+                  description: "Temperature sensor 1 (units: \xB0C)"
+                temperature_sensor_2:
+                  type: number
+                  description: "Temperature sensor 2 (units: \xB0C)"
+                temperature_sensor_3:
+                  type: number
+                  description: "Temperature sensor 3 (units: \xB0C)"
+                temperature_sensor_0_id:
+                  type: string
+                  description: Temperature sensor 0 ID
+                temperature_sensor_1_id:
+                  type: string
+                  description: Temperature sensor 1 ID
+                temperature_sensor_2_id:
+                  type: string
+                  description: Temperature sensor 2 ID
+                temperature_sensor_3_id:
+                  type: string
+                  description: Temperature sensor 3 ID
+                ot_temperature_sensor_1:
+                  type: number
+                  description: "OT temperature sensor 1 (units: \xB0C)"
+                ot_temperature_sensor_2:
+                  type: number
+                  description: "OT temperature sensor 2 (units: \xB0C)"
+                ot_temperature_sensor_3:
+                  type: number
+                  description: "OT temperature sensor 3 (units: \xB0C)"
+                ot_temperature_sensor_4:
+                  type: number
+                  description: "OT temperature sensor 4 (units: \xB0C)"
+                ot_temperature_sensor_5:
+                  type: number
+                  description: "OT temperature sensor 5 (units: \xB0C)"
+                ot_temperature_sensor_6:
+                  type: number
+                  description: "OT temperature sensor 6 (units: \xB0C)"
+                bt_temperature_sensor_1:
+                  type: number
+                  description: "BT Temperature sensor 0 (units: \xB0C)"
+                bt_temperature_sensor_2:
+                  type: number
+                  description: "BT Temperature sensor 1 (units: \xB0C)"
+                bt_temperature_sensor_3:
+                  type: number
+                  description: "BT Temperature sensor 2 (units: \xB0C)"
+                bt_temperature_sensor_4:
+                  type: number
+                  description: "BT Temperature sensor 3 (units: \xB0C)"
+                bt_temperature_sensor_5:
+                  type: number
+                  description: "BT Temperature sensor 4 (units: \xB0C)"
+                trailers_vehicle_abs_status:
+                  type: string
+                  enum:
+                  - PASSIVE
+                  - ACTIVE
+                  description: 'Trailers vehicle ABS status Possible values: PASSIVE
+                    ACTIVE'
+                trailers_vehicle_service_brake_status:
+                  type: string
+                  enum:
+                  - PASSIVE
+                  - ACTIVE
+                  description: 'Trailers vehicle service brake status Possible values:
+                    PASSIVE ACTIVE'
+                trailers_vdc_active:
+                  type: string
+                  enum:
+                  - PASSIVE
+                  - ACTIVE
+                  description: 'Trailers VDC active Possible values: PASSIVE ACTIVE'
+                trailers_vehicle_electrical_supply_status:
+                  type: string
+                  enum:
+                  - INSUFFICIENT
+                  - SUFFICIENT
+                  description: 'Trailers vehicle electrical supply status Possible
+                    values: INSUFFICIENT SUFFICIENT'
+                trailers_external_brake_request_status:
+                  type: string
+                  description: Trailers external brake request status NO_REQUEST REQUEST_ACTIVE
+                trailers_braking_via_electric_control_line_support:
+                  type: string
+                  enum:
+                  - NOT_SUPPORTED
+                  - SUPPORTED
+                  description: 'Trailers braking via electric control line support
+                    Possible values: NOT_SUPPORTED SUPPORTED'
+                trailers_electrical_supply_of_non_braking_system_status:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'Trailers electrical supply of non-braking system status
+                    Possible values: OFF ON'
+                trailers_electrical_load_proportional_function_installation_status:
+                  type: string
+                  enum:
+                  - NOT_INSTALLED
+                  - INSTALLED
+                  description: 'Trailers electrical load proportional function installation
+                    status Possible values: NOT_INSTALLED INSTALLED'
+                trailers_vehicle_type:
+                  type: string
+                  enum:
+                  - TOWED_VEHICLE
+                  - CONVERTED_DOLLY_AXLE_LSB
+                  description: 'Trailers vehicle type Possible values: TOWED_VEHICLE
+                    CONVERTED_DOLLY_AXLE_LSB'
+                trailers_stop_lamps_request:
+                  type: string
+                  enum:
+                  - NO_REQUEST
+                  - REQUEST_ACTIVE
+                  description: 'Trailers stop lamps request Possible values: NO_REQUEST
+                    REQUEST_ACTIVE'
+                trailers_red_warning_signal_request:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'Trailers red warning signal request Possible values:
+                    OFF ON'
+                trailers_amber_warning_signal_request:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'Trailers amber warning signal request Possible values:
+                    OFF ON'
+                trailers_vehicle_pneumatic_supply_status:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'Trailers vehicle pneumatic supply status Possible
+                    values: OFF ON'
+                trailers_braking_system_wheel_based_vehicle_speed:
+                  type: number
+                  description: "Trailers braking system wheel\u2013based vehicle speed\
+                    \ (units: km/h)"
+                trailers_wheel_speed_difference_main_axle:
+                  type: number
+                  description: 'Trailers wheel speed difference main axle (units:
+                    km/h)'
+                trailers_lateral_acceleration:
+                  type: number
+                  description: 'Trailers lateral acceleration (units: m/s^2)'
+                trailers_axle_load_sum:
+                  type: number
+                  description: 'Trailers axle load sum (units: kg)'
+                trailers_pneumatic_supply_pressure:
+                  type: number
+                  description: 'Trailers pneumatic supply pressure (units: kPa)'
+                trailers_brake_cylinder_pressure_first_axle_left_wheel:
+                  type: number
+                  description: 'Trailers brake cylinder pressure first axle, left
+                    wheel (units: kPa)'
+                trailers_brake_cylinder_pressure_first_axle_right_wheel:
+                  type: number
+                  description: 'Trailers brake cylinder pressure first axle, right
+                    wheel (units: kPa)'
+                trailers_brake_cylinder_pressure_second_axle_left_wheel:
+                  type: number
+                  description: 'Trailers brake cylinder pressure second axle, left
+                    wheel (units: kPa)'
+                trailers_brake_cylinder_pressure_second_axle_right_wheel:
+                  type: number
+                  description: 'Trailers brake cylinder pressure second axle, right
+                    wheel (units: kPa)'
+                trailers_brake_cylinder_pressure_third_axle_left_wheel:
+                  type: number
+                  description: 'Trailers brake cylinder pressure third axle, left
+                    wheel (units: kPa)'
+                trailers_brake_cylinder_pressure_third_axle_right_wheel:
+                  type: number
+                  description: 'Trailers brake cylinder pressure third axle, right
+                    wheel (units: kPa)'
+                trailers_high_resolution_vehicle_distance:
+                  type: number
+                  description: 'Trailers high resolution vehicle distance (units:
+                    km)'
+                trailers_service_distance:
+                  type: number
+                  description: 'Trailers service distance (units: km)'
+                wireless_enabled:
+                  type: string
+                  enum:
+                  - DISABLED
+                  - ENABLED
+                  description: 'Wireless enabled Possible values: DISABLED ENABLED'
+                wireless_pair:
+                  type: boolean
+                  description: Wireless pair
+                wireless_driver_id:
+                  type: number
+                  description: Wireless driver ID
+                current_profile:
+                  type: number
+                  description: Current profile
+                power_supply_voltage:
+                  type: number
+                  description: 'Power supply voltage (units: V)'
+                battery_voltage:
+                  type: number
+                  description: 'Battery voltage (units: V)'
+                pcb_temperature:
+                  type: number
+                  description: "PCB temperature (units: \xB0C)"
+                virtual_odometer:
+                  type: number
+                  description: 'Virtual odometer (units: km)'
+                input_trigger:
+                  type: number
+                  description: Input trigger
+                priority:
+                  type: string
+                  enum:
+                  - LOW
+                  - HIGH
+                  description: 'Priority Possible values: LOW HIGH'
+                battery_current:
+                  type: number
+                  description: 'Battery charge current (units: mA)'
+                movement:
+                  type: string
+                  enum:
+                  - STILL
+                  - MOVING
+                  description: 'Movement sensor Possible values: STILL MOVING'
+                hdop:
+                  type: string
+                  description: HDOP
+                modem_temperature:
+                  type: number
+                  description: "Modem temperature (units: \xB0C)"
+                virtual_odometer_diff:
+                  type: number
+                  description: 'Virtual odometer DIFF (units: m)'
+                ignition_plugtrack:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'Virtual ignition Possible values: OFF ON'
+                sleep_timer:
+                  type: string
+                  enum:
+                  - NO_EVENT
+                  - DEVICE_WAKE_UP_BY_TIMER_EVENT
+                  description: 'Sleep timer Possible values: NO_EVENT DEVICE_WAKE_UP_BY_TIMER_EVENT'
+                custom_ignition:
+                  type: string
+                  enum:
+                  - 'OFF'
+                  - 'ON'
+                  description: 'Custom ignition Possible values: OFF ON'
+                panic:
+                  type: boolean
+                  description: Panic status
+                shock_duration:
+                  type: number
+                  description: 'Shock duration (units: ms)'
+                roll_over_alarm:
+                  type: boolean
+                  description: Rollover alarm
+            tires:
+              type: object
+              description: Container for TPMS parameters received from device
+              patternProperties:
+                ^tire(0[1-9]|[12][0-9]|3[0-6])$:
+                  type: object
+                  properties:
+                    tire_pressure_threshold_detection:
+                      type: number
+                      description: 'Signal indicating the pressure level of the tire.
+                        The levels defined represent different pressure conditions
+                        of the tire: 000 Extreme over pressure - The tire pressure
+                        is at a level where the safety of the vehicle may be jeopardised.
+                        001 Over pressure - The tire pressure is higher than the pressure
+                        defined by the vehicle or tire manufacturer. 010 No warning
+                        pressure - The tire pressure is within the thresholds defined
+                        by the vehicle or tire manufacturer. 011 Under pressure -
+                        The tire pressure is lower than the pressure defined by the
+                        vehicle or tire manufacturer. 100 Extreme under pressure -
+                        The tire pressure is at a level where the safety of the vehicle
+                        may be jeopardised. 101 Not defined 110 Error indicator 111
+                        Not available'
+                    tire_sensor_electrical_fault:
+                      type: number
+                      description: Indicates the status of electrical fault on the
+                        tire sensor. 00 Ok (No Fault) 01 Not Defined (Fault) 10 Error
+                        11 Not Supported
+                    tire_status:
+                      type: number
+                      description: Indicates the status of the tire. 00 Ok (no fault)
+                        01 Tire leak detected 10 Error 11 Not Supported
+                    tire_temperature:
+                      type: number
+                      description: "Temperature at the surface of the tire sidewall.\
+                        \ Resolution: 0.03125 \xB0C/bit Offset: 0 Data Range: -273\
+                        \ to 1734.96875 \xB0C (units: \xB0C)"
+                    tire_air_leakage_rate:
+                      type: number
+                      description: 'The pressure loss rate of a tire. Resolution:
+                        0.05 kPa/bit Offset: 0 Data Range: 0 to 12.5 kPa (units: kPa)'
+                    tire_pressure:
+                      type: number
+                      description: 'Pressure at which air is contained in cavity formed
+                        by tire and rim. Resolution: 0.05 kPa/bit Offset: 0 Data Range:
+                        0 to 125 kPa (units: kPa)'
+                    tire_sensor_enable_status:
+                      type: number
+                      description: Indicates whether the tire sensor is being monitored
+                        by the controller or is Enabled/Disabled. 00 Off / Isolated
+                        / Disabled 01 On (tire is polled) / Enabled 10 Not Defined
+                        11 Not Supported
+                    tire_location:
+                      type: number
+                      description: 'Identifies which tire is associated with the parametric
+                        data in this PGN. The low order 4 bits represent a position
+                        number, counting left to right when facing in the direction
+                        of normal vehicle travel (forward). The high order 4 bits
+                        represent a position number, counting front to back on the
+                        vehicle. The value 0xFF indicates not available. It is recommended
+                        that output devices add 1 to the position number (range 1
+                        to 15, not 0 to 14) for use by drivers and service technicians.
+                        Examples: Tire pressure for location 0x00 would be left front
+                        tire. Tire pressure for location 0x23 would be right outside
+                        rear rear on a 3-axle tractor with dual axle per side (3rd
+                        axle, 4th tire).'
+                    tire_extended_tire_pressure_support:
+                      type: number
+                      description: Defines the choice of using the tire pressure (PGN
+                        65268) or Extended Tire Pressure (PGN 64578). The state value
+                        '01' indicates the extended tire pressure SPN is used for
+                        the pressure data. Any other value indicates the extended
+                        tire pressure SPN is not being used. 00 - Not Using Extended
+                        Tire Pressure 01 - Using Extended Tire Pressure 10 - Error
+                        11 - Not Available/Not Supported
