@@ -26,3 +26,13 @@ When developing this SDK, use the API docs and specs:
 - Re-generate code with `./tools/mage generate`
 
 - Leave all version control and git to the user/developer. If you see a build error related to having a git diff, this is normal.
+
+## Project-specific guidance
+
+- Always represent identifiers and continuation tokens as strings.
+
+- One API operation per file. Naming convention is `client_<collection>_<operation>.go`.
+
+- Use http.MethodGet constants instead of "GET", etc.
+
+- The CLI tool organizes subcommands by entity using `cobra.Group`.

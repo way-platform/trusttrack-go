@@ -3,9 +3,9 @@ package trusttrack
 import (
 	"context"
 	"fmt"
-	"io"
 	"net/http"
 	"net/http/httputil"
+	"net/url"
 	"os"
 	"runtime/debug"
 )
@@ -60,31 +60,28 @@ func WithDebug(debug bool) ClientOption {
 	}
 }
 
-func (c *Client) newRequest(
+func (c *Client) doRequest(
 	ctx context.Context,
 	method string,
 	requestPath string,
-	body io.Reader,
-) (_ *http.Request, err error) {
+	query url.Values,
+) (_ *http.Response, err error) {
 	defer func() {
 		if err != nil {
-			err = fmt.Errorf("new request: %w", err)
+			err = fmt.Errorf("http request: %w", err)
 		}
 	}()
 	fullURL := c.baseURL + requestPath
-	request, err := http.NewRequestWithContext(ctx, method, fullURL, body)
+	request, err := http.NewRequestWithContext(ctx, method, fullURL, nil)
 	if err != nil {
 		return nil, err
 	}
+	if c.config.apiKey != "" {
+		query.Set("api_key", c.config.apiKey)
+	}
+	request.URL.RawQuery = query.Encode()
 	request.Header.Set("User-Agent", getUserAgent())
 	request.Header.Set("Accept", "application/json")
-	return request, nil
-}
-
-func (c *Client) do(ctx context.Context, request *http.Request) (*http.Response, error) {
-	query := request.URL.Query()
-	query.Set("api_key", c.config.apiKey)
-	request.URL.RawQuery = query.Encode()
 	if c.config.debug {
 		dump, err := httputil.DumpRequestOut(request, true)
 		if err != nil {
