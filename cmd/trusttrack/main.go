@@ -54,15 +54,28 @@ func newRootCommand() *cobra.Command {
 		Title: "Objects",
 	})
 	cmd.AddCommand(newListObjectsCommand())
-	cmd.AddCommand(newListObjectsLastLocationCommand())
-	cmd.AddCommand(newListTripsCommand())
-	cmd.AddCommand(newListFuelEventsCommand())
+	cmd.AddCommand(newListObjectsLastPositionCommand())
 	cmd.AddGroup(&cobra.Group{
 		ID:    "object-groups",
 		Title: "Object Groups",
 	})
 	cmd.AddCommand(newListObjectGroupsCommand())
 	cmd.AddCommand(newGetObjectGroupCommand())
+	cmd.AddGroup(&cobra.Group{
+		ID:    "coordinates",
+		Title: "Coordinates",
+	})
+	cmd.AddCommand(newListObjectCoordinatesCommand())
+	cmd.AddGroup(&cobra.Group{
+		ID:    "trips",
+		Title: "Trips",
+	})
+	cmd.AddCommand(newListTripsCommand())
+	cmd.AddGroup(&cobra.Group{
+		ID:    "fuel-events",
+		Title: "Fuel Events",
+	})
+	cmd.AddCommand(newListFuelEventsCommand())
 	cmd.AddGroup(auth.NewGroup())
 	cmd.AddCommand(auth.NewCommand())
 	cmd.AddGroup(&cobra.Group{
@@ -108,10 +121,10 @@ func newListObjectsCommand() *cobra.Command {
 	return cmd
 }
 
-func newListObjectsLastLocationCommand() *cobra.Command {
+func newListObjectsLastPositionCommand() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     "objects-last-location",
-		Short:   "List objects with their last location",
+		Use:     "objects-last-position",
+		Short:   "List objects with their last position",
 		GroupID: "objects",
 	}
 	cmd.RunE = func(cmd *cobra.Command, args []string) error {
@@ -119,11 +132,11 @@ func newListObjectsLastLocationCommand() *cobra.Command {
 		if err != nil {
 			return err
 		}
-		request := trusttrack.ListObjectsLastLocationRequest{
+		request := trusttrack.ListObjectsLastPositionRequest{
 			Limit: 1000,
 		}
 		for {
-			response, err := client.ListObjectsLastLocation(context.Background(), &request)
+			response, err := client.ListObjectsLastPosition(context.Background(), &request)
 			if err != nil {
 				return err
 			}
@@ -134,6 +147,48 @@ func newListObjectsLastLocationCommand() *cobra.Command {
 			if request.ContinuationToken == "" {
 				break
 			}
+		}
+		return nil
+	}
+	return cmd
+}
+
+func newListObjectCoordinatesCommand() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:     "object-coordinates [object-id]",
+		Short:   "List object coordinates for a time period",
+		GroupID: "coordinates",
+		Args:    cobra.ExactArgs(1),
+	}
+	fromTime := cmd.Flags().Time("from", time.Now().Add(-24*time.Hour), []string{time.RFC3339}, "From time (RFC3339 format)")
+	toTime := cmd.Flags().Time("to", time.Time{}, []string{time.RFC3339}, "To time (RFC3339 format, optional)")
+	includeGeozones := cmd.Flags().Bool("include-geozones", false, "Include geozone information")
+	includeTireParameters := cmd.Flags().Bool("include-tire-parameters", false, "Include tire pressure information")
+	cmd.RunE = func(cmd *cobra.Command, args []string) error {
+		client, err := newClient(cmd)
+		if err != nil {
+			return err
+		}
+		request := trusttrack.ListObjectCoordinatesRequest{
+			ObjectID:              args[0],
+			FromTime:              *fromTime,
+			ToTime:                *toTime,
+			Limit:                 1000,
+			IncludeGeozones:       *includeGeozones,
+			IncludeTireParameters: *includeTireParameters,
+		}
+		for {
+			response, err := client.ListObjectCoordinates(context.Background(), &request)
+			if err != nil {
+				return err
+			}
+			for _, coordinate := range response.Coordinates {
+				fmt.Println(protojson.Format(coordinate))
+			}
+			if response.ContinuationToken == "" {
+				break
+			}
+			request.ContinuationToken = response.ContinuationToken
 		}
 		return nil
 	}
@@ -201,7 +256,7 @@ func newListTripsCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "trips [object-id]",
 		Short:   "List trips for an object",
-		GroupID: "objects",
+		GroupID: "trips",
 		Args:    cobra.ExactArgs(1),
 	}
 	fromTime := cmd.Flags().Time("from", time.Now().Add(-24*time.Hour), []string{time.RFC3339}, "From time (RFC3339 format)")
@@ -239,7 +294,7 @@ func newListFuelEventsCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "fuel-events [object-id]",
 		Short:   "List fuel events for an object",
-		GroupID: "objects",
+		GroupID: "fuel-events",
 		Args:    cobra.ExactArgs(1),
 	}
 	fromTime := cmd.Flags().Time("from", time.Now().Add(-24*time.Hour), []string{time.RFC3339}, "From time (RFC3339 format)")

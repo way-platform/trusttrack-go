@@ -1,0 +1,11 @@
+edition = "2023";
+
+package wayplatform.connect.trusttrack.v1;
+
+// Indicates if the object's ignition is on
+enum IgnitionState {
+  IGNITION_STATE_UNSPECIFIED = 0;
+  IGNITION_STATE_UNKNOWN = 1;
+  OFF = 2;
+  ON = 3;
+}

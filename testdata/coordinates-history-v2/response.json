@@ -1,0 +1,330 @@
+{
+  "items": [
+    {
+      "object_id": "test-vehicle-001",
+      "datetime": "2024-01-15T10:30:00.000Z",
+      "trip_type": "BUSINESS",
+      "ignition_status": "OFF",
+      "position": {
+        "latitude": 52.5200,
+        "longitude": 13.4050,
+        "altitude": 34,
+        "direction": 90,
+        "speed": 0,
+        "satellites_count": 8
+      },
+      "inputs": {
+        "calculated_inputs": {
+          "fuel_consumption": 0.00,
+          "fuel_level": 75.50,
+          "mileage": 12500.25,
+          "rpm": 0.00,
+          "temperature": 18.5,
+          "custom_input_1": 1.23,
+          "custom_input_2": 2.34,
+          "custom_input_3": 3.45,
+          "custom_input_4": 4.56,
+          "custom_input_5": 5.67,
+          "custom_input_6": 6.78,
+          "custom_input_7": 7.89,
+          "custom_input_8": 8.90,
+          "din1_working_time": 120.00,
+          "din2_working_time": 240.00,
+          "din3_working_time": 360.00,
+          "din4_working_time": 480.00,
+          "weight": 1750.00
+        },
+        "device_inputs": {
+          "digital_input_1": false,
+          "digital_input_2": true,
+          "digital_input_3": false,
+          "digital_input_4": false,
+          "analog_input_1": 1.25,
+          "analog_input_2": 2.50,
+          "gsm_signal_strength": 85,
+          "power_supply_voltage": 12.8,
+          "battery_voltage": 4.2,
+          "pcb_temperature": 25,
+          "ibutton": "AB123456",
+          "virtual_odometer": 12500.25,
+          "input_trigger": 42,
+          "priority": "LOW",
+          "operator": 1001,
+          "movement": "STILL",
+          "hdop": "1.2",
+          "din1_working_time_diff": 5,
+          "din2_working_time_diff": 10,
+          "din3_working_time_diff": 15,
+          "din4_working_time_diff": 20,
+          "virtual_odometer_diff": 0,
+          "ecodrive_fuel_used_in_highest_gear": 0
+        },
+        "other": {
+          "country_code_geonames": 276,
+          "virtual_gps_odometer": 12501.00
+        }
+      }
+    },
+    {
+      "object_id": "test-vehicle-001",
+      "datetime": "2024-01-15T10:30:30.000Z",
+      "trip_type": "BUSINESS",
+      "ignition_status": "ON",
+      "position": {
+        "latitude": 52.5205,
+        "longitude": 13.4055,
+        "altitude": 35,
+        "direction": 95,
+        "speed": 15,
+        "satellites_count": 10
+      },
+      "inputs": {
+        "calculated_inputs": {
+          "fuel_consumption": 2.1,
+          "fuel_level": 75.45,
+          "mileage": 12500.30,
+          "rpm": 850.00,
+          "temperature": 19.2,
+          "custom_input_1": 1.24,
+          "custom_input_2": 2.35,
+          "custom_input_3": 3.46,
+          "custom_input_4": 4.57,
+          "custom_input_5": 5.68,
+          "custom_input_6": 6.79,
+          "custom_input_7": 7.90,
+          "custom_input_8": 8.91,
+          "din1_working_time": 125.00,
+          "din2_working_time": 245.00,
+          "din3_working_time": 365.00,
+          "din4_working_time": 485.00,
+          "weight": 1752.00
+        },
+        "device_inputs": {
+          "digital_input_1": true,
+          "digital_input_2": false,
+          "digital_input_3": true,
+          "digital_input_4": true,
+          "analog_input_1": 1.28,
+          "analog_input_2": 2.53,
+          "gsm_signal_strength": 78,
+          "power_supply_voltage": 13.2,
+          "battery_voltage": 4.1,
+          "pcb_temperature": 28,
+          "ibutton": "AB123456",
+          "virtual_odometer": 12500.30,
+          "input_trigger": 15,
+          "priority": "HIGH",
+          "operator": 1001,
+          "movement": "MOVING",
+          "hdop": "0.8",
+          "din1_working_time_diff": 5,
+          "din2_working_time_diff": 10,
+          "din3_working_time_diff": 15,
+          "din4_working_time_diff": 25,
+          "virtual_odometer_diff": 5,
+          "ecodrive_fuel_used_in_highest_gear": 1
+        },
+        "other": {
+          "country_code_geonames": 276,
+          "virtual_gps_odometer": 12501.05
+        }
+      }
+    },
+    {
+      "object_id": "test-vehicle-001",
+      "datetime": "2024-01-15T10:31:00.000Z",
+      "trip_type": "BUSINESS",
+      "ignition_status": "ON",
+      "position": {
+        "latitude": 52.5210,
+        "longitude": 13.4060,
+        "altitude": 36,
+        "direction": 100,
+        "speed": 25,
+        "satellites_count": 12
+      },
+      "inputs": {
+        "calculated_inputs": {
+          "fuel_consumption": 3.2,
+          "fuel_level": 75.40,
+          "mileage": 12500.50,
+          "rpm": 1200.00,
+          "temperature": 20.1,
+          "custom_input_1": 1.25,
+          "custom_input_2": 2.36,
+          "custom_input_3": 3.47,
+          "custom_input_4": 4.58,
+          "custom_input_5": 5.69,
+          "custom_input_6": 6.80,
+          "custom_input_7": 7.91,
+          "custom_input_8": 8.92,
+          "din1_working_time": 130.00,
+          "din2_working_time": 250.00,
+          "din3_working_time": 370.00,
+          "din4_working_time": 490.00,
+          "weight": 1755.00
+        },
+        "device_inputs": {
+          "digital_input_1": false,
+          "digital_input_2": true,
+          "digital_input_3": false,
+          "digital_input_4": true,
+          "analog_input_1": 1.30,
+          "analog_input_2": 2.55,
+          "gsm_signal_strength": 92,
+          "power_supply_voltage": 13.5,
+          "battery_voltage": 4.15,
+          "pcb_temperature": 30,
+          "ibutton": "AB123456",
+          "virtual_odometer": 12500.50,
+          "input_trigger": 88,
+          "priority": "HIGH",
+          "operator": 1001,
+          "movement": "MOVING",
+          "hdop": "0.6",
+          "din1_working_time_diff": 5,
+          "din2_working_time_diff": 10,
+          "din3_working_time_diff": 15,
+          "din4_working_time_diff": 30,
+          "virtual_odometer_diff": 20,
+          "ecodrive_fuel_used_in_highest_gear": 2
+        },
+        "other": {
+          "country_code_geonames": 276,
+          "virtual_gps_odometer": 12501.20
+        }
+      }
+    },
+    {
+      "object_id": "test-vehicle-001",
+      "datetime": "2024-01-15T10:32:30.000Z",
+      "trip_type": "BUSINESS",
+      "ignition_status": "ON",
+      "position": {
+        "latitude": 52.5215,
+        "longitude": 13.4065,
+        "altitude": 38,
+        "direction": 105,
+        "speed": 35,
+        "satellites_count": 11
+      },
+      "inputs": {
+        "calculated_inputs": {
+          "fuel_consumption": 4.5,
+          "fuel_level": 75.30,
+          "mileage": 12501.00,
+          "rpm": 1650.00,
+          "temperature": 21.8,
+          "custom_input_1": 1.26,
+          "custom_input_2": 2.37,
+          "custom_input_3": 3.48,
+          "custom_input_4": 4.59,
+          "custom_input_5": 5.70,
+          "custom_input_6": 6.81,
+          "custom_input_7": 7.92,
+          "custom_input_8": 8.93,
+          "din1_working_time": 135.00,
+          "din2_working_time": 255.00,
+          "din3_working_time": 375.00,
+          "din4_working_time": 495.00,
+          "weight": 1758.00
+        },
+        "device_inputs": {
+          "digital_input_1": true,
+          "digital_input_2": true,
+          "digital_input_3": false,
+          "digital_input_4": true,
+          "analog_input_1": 1.35,
+          "analog_input_2": 2.60,
+          "gsm_signal_strength": 88,
+          "power_supply_voltage": 13.8,
+          "battery_voltage": 4.18,
+          "pcb_temperature": 32,
+          "ibutton": "AB123456",
+          "virtual_odometer": 12501.00,
+          "input_trigger": 99,
+          "priority": "HIGH",
+          "operator": 1001,
+          "movement": "MOVING",
+          "hdop": "0.5",
+          "din1_working_time_diff": 10,
+          "din2_working_time_diff": 15,
+          "din3_working_time_diff": 20,
+          "din4_working_time_diff": 90,
+          "virtual_odometer_diff": 50,
+          "ecodrive_fuel_used_in_highest_gear": 3
+        },
+        "other": {
+          "country_code_geonames": 276,
+          "virtual_gps_odometer": 12501.50
+        }
+      }
+    },
+    {
+      "object_id": "test-vehicle-001",
+      "datetime": "2024-01-15T10:35:00.000Z",
+      "trip_type": "BUSINESS",
+      "ignition_status": "ON",
+      "position": {
+        "latitude": 52.5220,
+        "longitude": 13.4070,
+        "altitude": 40,
+        "direction": 110,
+        "speed": 45,
+        "satellites_count": 13
+      },
+      "inputs": {
+        "calculated_inputs": {
+          "fuel_consumption": 6.8,
+          "fuel_level": 75.15,
+          "mileage": 12502.00,
+          "rpm": 2100.00,
+          "temperature": 23.5,
+          "custom_input_1": 1.27,
+          "custom_input_2": 2.38,
+          "custom_input_3": 3.49,
+          "custom_input_4": 4.60,
+          "custom_input_5": 5.71,
+          "custom_input_6": 6.82,
+          "custom_input_7": 7.93,
+          "custom_input_8": 8.94,
+          "din1_working_time": 140.00,
+          "din2_working_time": 260.00,
+          "din3_working_time": 380.00,
+          "din4_working_time": 500.00,
+          "weight": 1760.00
+        },
+        "device_inputs": {
+          "digital_input_1": false,
+          "digital_input_2": false,
+          "digital_input_3": true,
+          "digital_input_4": true,
+          "analog_input_1": 1.40,
+          "analog_input_2": 2.65,
+          "gsm_signal_strength": 95,
+          "power_supply_voltage": 14.1,
+          "battery_voltage": 4.20,
+          "pcb_temperature": 35,
+          "ibutton": "AB123456",
+          "virtual_odometer": 12502.00,
+          "input_trigger": 75,
+          "priority": "MEDIUM",
+          "operator": 1001,
+          "movement": "MOVING",
+          "hdop": "0.4",
+          "din1_working_time_diff": 15,
+          "din2_working_time_diff": 20,
+          "din3_working_time_diff": 25,
+          "din4_working_time_diff": 150,
+          "virtual_odometer_diff": 100,
+          "ecodrive_fuel_used_in_highest_gear": 5
+        },
+        "other": {
+          "country_code_geonames": 276,
+          "virtual_gps_odometer": 12502.00
+        }
+      }
+    }
+  ],
+  "continuation_token": "2024-01-15T11:00:00.000Z"
+}

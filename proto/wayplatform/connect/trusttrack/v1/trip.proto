@@ -4,6 +4,7 @@ package wayplatform.connect.trusttrack.v1;
 
 import "google/protobuf/timestamp.proto";
 import "wayplatform/connect/trusttrack/v1/address.proto";
+import "wayplatform/connect/trusttrack/v1/trip_type.proto";
 
 // A trip made by an object.
 message Trip {
@@ -11,22 +12,11 @@ message Trip {
   string object_id = 1;
 
   // The type of trip.
-  Type type = 2;
+  TripType type = 2;
 
   // The unknown type of trip.
   // This field is used when the type is TYPE_UNKNOWN.
   string unknown_type = 3;
-
-  // Represents a trip type.
-  enum Type {
-    TYPE_UNSPECIFIED = 0;
-    TYPE_UNKNOWN = 1;
-    TYPE_NOT_AVAILABLE = 2;
-    NONE = 3;
-    PRIVATE = 4;
-    BUSINESS = 5;
-    WORK = 6;
-  }
 
   // The IDs of drivers associated with this trip.
   repeated string driver_ids = 4;

@@ -1,0 +1,14 @@
+edition = "2023";
+
+package wayplatform.connect.trusttrack.v1;
+
+// Represents a trip type.
+enum TripType {
+  TRIP_TYPE_UNSPECIFIED = 0;
+  TRIP_TYPE_UNKNOWN = 1;
+  TRIP_TYPE_NOT_AVAILABLE = 2;
+  TRIP_TYPE_NONE = 3;
+  PRIVATE = 4;
+  BUSINESS = 5;
+  WORK = 6;
+}
