@@ -21,7 +21,7 @@ type ListFuelEventsRequest struct {
 	// The start time for the fuel events search.
 	FromTime time.Time `json:"fromDatetime"`
 	// The end time for the fuel events search (optional).
-	ToTime time.Time `json:"toDatetime,omitempty"`
+	ToTime time.Time `json:"toDatetime,omitzero"`
 	// The limit of the number of fuel events to return.
 	// Default: 100.
 	Limit int `json:"limit"`
