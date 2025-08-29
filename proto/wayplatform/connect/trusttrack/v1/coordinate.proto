@@ -15,14 +15,14 @@ message Coordinate {
   // The longitude of the coordinate.
   double longitude = 2;
 
-  // The altitude of the coordinate.
-  double altitude = 4;
+  // The altitude of the coordinate in meters.
+  double altitude_m = 4;
 
-  // The speed of the coordinate.
-  double speed = 5;
+  // The speed of the coordinate in kilometers per hour.
+  double speed_kmh = 5;
 
-  // The direction of the coordinate.
-  double direction = 6;
+  // The direction of the coordinate in degrees.
+  double direction_deg = 6;
 
   // The datetime of the coordinate.
   google.protobuf.Timestamp time = 7;

@@ -41,10 +41,10 @@ func vehicleParamsToProto(input *ttoapi.ExternalVehicleParams) *trusttrackv1.Veh
 		output.SetPlateNumber(*input.PlateNumber)
 	}
 	if input.AverageFuelConsumption != nil {
-		output.SetAverageFuelConsumption(float64(*input.AverageFuelConsumption))
+		output.SetAverageFuelConsumptionLPer_100Km(float64(*input.AverageFuelConsumption))
 	}
 	if input.FuelTankCapacity != nil {
-		output.SetFuelTankCapacity(float64(*input.FuelTankCapacity))
+		output.SetFuelTankCapacityL(float64(*input.FuelTankCapacity))
 	}
 	if input.FuelType != nil {
 		output.SetFuelType(fuelTypeToProto(*input.FuelType))
@@ -83,13 +83,13 @@ func coordinateToProto(input *ttoapi.ExternalLastCoordinate) *trusttrackv1.Coord
 		output.SetLongitude(*input.Longitude)
 	}
 	if input.Altitude != nil {
-		output.SetAltitude(float64(*input.Altitude))
+		output.SetAltitudeM(float64(*input.Altitude))
 	}
 	if input.Speed != nil {
-		output.SetSpeed(float64(*input.Speed))
+		output.SetSpeedKmh(float64(*input.Speed))
 	}
 	if input.Direction != nil {
-		output.SetDirection(float64(*input.Direction))
+		output.SetDirectionDeg(float64(*input.Direction))
 	}
 	if input.Datetime != nil {
 		output.SetTime(timestamppb.New(*input.Datetime))
@@ -118,4 +118,97 @@ func objectGroupToProto(input *ttoapi.ExternalObjectGroup) *trusttrackv1.ObjectG
 		output.SetObjectIds(input.ObjectsIds)
 	}
 	return &output
+}
+
+func tripToProto(input *ttoapi.Trip) *trusttrackv1.Trip {
+	var output trusttrackv1.Trip
+	if input.ObjectID != nil {
+		output.SetObjectId(*input.ObjectID)
+	}
+	if input.TripType != nil {
+		tripType := tripTypeToProto(*input.TripType)
+		output.SetType(tripType)
+		if tripType == trusttrackv1.Trip_TYPE_UNKNOWN {
+			output.SetUnknownType(string(*input.TripType))
+		}
+	}
+	if input.DriverIds != nil {
+		output.SetDriverIds(input.DriverIds)
+	}
+	if input.TripDuration != nil {
+		output.SetDurationS(float64(*input.TripDuration))
+	}
+	if input.Mileage != nil {
+		output.SetMileageKm(*input.Mileage)
+	}
+	if input.TripStart != nil {
+		output.SetStart(tripMetricsToProto(input.TripStart))
+	}
+	if input.TripEnd != nil {
+		output.SetEnd(tripMetricsToProto(input.TripEnd))
+	}
+	return &output
+}
+
+func tripMetricsToProto(input *ttoapi.TripMetrics) *trusttrackv1.Trip_Metrics {
+	var output trusttrackv1.Trip_Metrics
+	if input.Datetime != nil {
+		output.SetTime(timestamppb.New(*input.Datetime))
+	}
+	if input.Latitude != nil {
+		output.SetLatitude(*input.Latitude)
+	}
+	if input.Longitude != nil {
+		output.SetLongitude(*input.Longitude)
+	}
+	if input.Address != nil {
+		output.SetAddress(addressToProto(input.Address))
+	}
+	return &output
+}
+
+func addressToProto(input *ttoapi.Address) *trusttrackv1.Address {
+	var output trusttrackv1.Address
+	if input.Country != nil {
+		output.SetCountry(*input.Country)
+	}
+	if input.CountryCode != nil {
+		output.SetCountryCode(*input.CountryCode)
+	}
+	if input.County != nil {
+		output.SetCounty(*input.County)
+	}
+	if input.HouseNumber != nil {
+		output.SetHouseNumber(*input.HouseNumber)
+	}
+	if input.Locality != nil {
+		output.SetLocality(*input.Locality)
+	}
+	if input.Region != nil {
+		output.SetRegion(*input.Region)
+	}
+	if input.Street != nil {
+		output.SetStreet(*input.Street)
+	}
+	if input.Zip != nil {
+		output.SetZip(*input.Zip)
+	}
+	return &output
+}
+
+func tripTypeToProto(input ttoapi.TripTripType) trusttrackv1.Trip_Type {
+	switch input {
+	case ttoapi.TripTripTypeNONE:
+		return trusttrackv1.Trip_NONE
+	case ttoapi.TripTripTypePRIVATE:
+		return trusttrackv1.Trip_PRIVATE
+	case ttoapi.TripTripTypeBUSINESS:
+		return trusttrackv1.Trip_BUSINESS
+	case ttoapi.TripTripTypeWORK:
+		return trusttrackv1.Trip_WORK
+	case ttoapi.TripTripTypeUNKNOWN:
+		return trusttrackv1.Trip_TYPE_UNKNOWN
+	default:
+		return trusttrackv1.Trip_TYPE_UNSPECIFIED
+	}
 }
