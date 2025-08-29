@@ -1,6 +1,6 @@
 # AGENTS.md
 
-This SDK provides a client and CLI tool for the ABAX Open API.
+This SDK provides a client and CLI tool for the [TrustTrack FMS API](https://www.fmsdocumentation.com/apis/).
 
 ## Docs
 
@@ -25,6 +25,10 @@ When developing this SDK, use the API docs and specs:
 
 - One API operation per file. Naming convention is `client_<collection>_<operation>.go`.
 
+- Put all protobuf conversion functions in [./proto.go](./proto.go).
+
+- Always handle enum conversion as separate functions in [./proto.go](./proto.go).
+
 ## Developing
 
 - Run tests with `./tools/mage test`
@@ -35,7 +39,9 @@ When developing this SDK, use the API docs and specs:
 
 ## OpenAPI schemas
 
-- Use the generated types in [internal/ttoapi](./internal/ttoapi) to parse API responses.
+- Use the generated types in [internal/oapi/ttoapi](./internal/oapi/ttoapi) to parse API responses.
+
+- Always refer to the original OpenAPI spec in [internal/oapi/ttoapi/01-original.json](./internal/oapi/ttoapi/01-original.json) for API documentation and definitions.
 
 ## Protobuf schemas
 

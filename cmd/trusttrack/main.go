@@ -48,6 +48,7 @@ func newRootCommand() *cobra.Command {
 		Use:   "trusttrack",
 		Short: "TrustTrack API CLI",
 	}
+	cmd.PersistentFlags().Bool("debug", false, "Enable debug logging")
 	cmd.AddGroup(&cobra.Group{
 		ID:    "objects",
 		Title: "Objects",
@@ -55,6 +56,7 @@ func newRootCommand() *cobra.Command {
 	cmd.AddCommand(newListObjectsCommand())
 	cmd.AddCommand(newListObjectsLastCoordinateCommand())
 	cmd.AddCommand(newListTripsCommand())
+	cmd.AddCommand(newListFuelEventsCommand())
 	cmd.AddGroup(&cobra.Group{
 		ID:    "object-groups",
 		Title: "Object Groups",
@@ -72,6 +74,17 @@ func newRootCommand() *cobra.Command {
 	return cmd
 }
 
+func newClient(cmd *cobra.Command) (*trusttrack.Client, error) {
+	debug, _ := cmd.Root().PersistentFlags().GetBool("debug")
+	client, err := auth.NewClient(
+		trusttrack.WithDebug(debug),
+	)
+	if err != nil {
+		return nil, err
+	}
+	return client, nil
+}
+
 func newListObjectsCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "objects",
@@ -79,7 +92,7 @@ func newListObjectsCommand() *cobra.Command {
 		GroupID: "objects",
 	}
 	cmd.RunE = func(cmd *cobra.Command, args []string) error {
-		client, err := auth.NewClient()
+		client, err := newClient(cmd)
 		if err != nil {
 			return err
 		}
@@ -102,7 +115,7 @@ func newListObjectsLastCoordinateCommand() *cobra.Command {
 		GroupID: "objects",
 	}
 	cmd.RunE = func(cmd *cobra.Command, args []string) error {
-		client, err := auth.NewClient()
+		client, err := newClient(cmd)
 		if err != nil {
 			return err
 		}
@@ -134,7 +147,7 @@ func newListObjectGroupsCommand() *cobra.Command {
 		GroupID: "object-groups",
 	}
 	cmd.RunE = func(cmd *cobra.Command, args []string) error {
-		client, err := auth.NewClient()
+		client, err := newClient(cmd)
 		if err != nil {
 			return err
 		}
@@ -167,7 +180,7 @@ func newGetObjectGroupCommand() *cobra.Command {
 		Args:    cobra.ExactArgs(1),
 	}
 	cmd.RunE = func(cmd *cobra.Command, args []string) error {
-		client, err := auth.NewClient()
+		client, err := newClient(cmd)
 		if err != nil {
 			return err
 		}
@@ -211,6 +224,44 @@ func newListTripsCommand() *cobra.Command {
 			}
 			for _, trip := range response.Trips {
 				fmt.Println(protojson.Format(trip))
+			}
+			if response.ContinuationToken == "" {
+				break
+			}
+			request.ContinuationToken = response.ContinuationToken
+		}
+		return nil
+	}
+	return cmd
+}
+
+func newListFuelEventsCommand() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:     "fuel-events [object-id]",
+		Short:   "List fuel events for an object",
+		GroupID: "objects",
+		Args:    cobra.ExactArgs(1),
+	}
+	fromTime := cmd.Flags().Time("from", time.Now().Add(-24*time.Hour), []string{time.RFC3339}, "From time (RFC3339 format)")
+	toTime := cmd.Flags().Time("to", time.Now(), []string{time.RFC3339}, "To time (RFC3339 format)")
+	cmd.RunE = func(cmd *cobra.Command, args []string) error {
+		client, err := newClient(cmd)
+		if err != nil {
+			return err
+		}
+		request := trusttrack.ListFuelEventsRequest{
+			ObjectID: args[0],
+			FromTime: *fromTime,
+			ToTime:   *toTime,
+			Limit:    1000,
+		}
+		for {
+			response, err := client.ListFuelEvents(context.Background(), &request)
+			if err != nil {
+				return err
+			}
+			for _, fuelEvent := range response.FuelEvents {
+				fmt.Println(protojson.Format(fuelEvent))
 			}
 			if response.ContinuationToken == "" {
 				break
