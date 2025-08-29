@@ -1,0 +1,15 @@
+edition = "2023";
+
+package wayplatform.connect.trusttrack.v1;
+
+// An object group.
+message ObjectGroup {
+  // The ID of the object group.
+  string id = 1;
+
+  // The name of the object group.
+  string name = 2;
+
+  // The IDs of the objects in this group.
+  repeated string object_ids = 3;
+}

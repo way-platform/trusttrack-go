@@ -53,6 +53,12 @@ func newRootCommand() *cobra.Command {
 	})
 	cmd.AddCommand(newListObjectsCommand())
 	cmd.AddCommand(newListObjectsLastCoordinateCommand())
+	cmd.AddGroup(&cobra.Group{
+		ID:    "object-groups",
+		Title: "Object Groups",
+	})
+	cmd.AddCommand(newListObjectGroupsCommand())
+	cmd.AddCommand(newGetObjectGroupCommand())
 	cmd.AddGroup(auth.NewGroup())
 	cmd.AddCommand(auth.NewCommand())
 	cmd.AddGroup(&cobra.Group{
@@ -114,6 +120,63 @@ func newListObjectsLastCoordinateCommand() *cobra.Command {
 				break
 			}
 		}
+		return nil
+	}
+	return cmd
+}
+
+func newListObjectGroupsCommand() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:     "object-groups",
+		Short:   "List object groups",
+		GroupID: "object-groups",
+	}
+	cmd.RunE = func(cmd *cobra.Command, args []string) error {
+		client, err := auth.NewClient()
+		if err != nil {
+			return err
+		}
+		request := trusttrack.ListObjectGroupsRequest{
+			Limit: 1000,
+		}
+		for {
+			response, err := client.ListObjectGroups(context.Background(), &request)
+			if err != nil {
+				return err
+			}
+			for _, objectGroup := range response.ObjectGroups {
+				fmt.Println(protojson.Format(objectGroup))
+			}
+			request.ContinuationToken = response.ContinuationToken
+			if request.ContinuationToken == "" {
+				break
+			}
+		}
+		return nil
+	}
+	return cmd
+}
+
+func newGetObjectGroupCommand() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:     "object-group [external-id]",
+		Short:   "Get a specific object group by external ID",
+		GroupID: "object-groups",
+		Args:    cobra.ExactArgs(1),
+	}
+	cmd.RunE = func(cmd *cobra.Command, args []string) error {
+		client, err := auth.NewClient()
+		if err != nil {
+			return err
+		}
+		request := trusttrack.GetObjectGroupRequest{
+			ExternalID: args[0],
+		}
+		response, err := client.GetObjectGroup(context.Background(), &request)
+		if err != nil {
+			return err
+		}
+		fmt.Println(protojson.Format(response.ObjectGroup))
 		return nil
 	}
 	return cmd
