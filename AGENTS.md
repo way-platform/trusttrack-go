@@ -66,3 +66,5 @@ When developing this SDK, use the API docs and specs:
 - Always represent identifiers and continuation tokens as strings.
 
 - Use http.MethodGet constants instead of "GET", etc.
+
+- Don't use pointers to `time.Time`. Use `.IsZero()` and the `omitzero` annotation.
