@@ -82,19 +82,19 @@ func (x VehicleParams_FuelType) Number() protoreflect.EnumNumber {
 
 // Vehicle parameters.
 type VehicleParams struct {
-	state                             protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Vin                    *string                `protobuf:"bytes,1,opt,name=vin"`
-	xxx_hidden_Make                   *string                `protobuf:"bytes,2,opt,name=make"`
-	xxx_hidden_Model                  *string                `protobuf:"bytes,3,opt,name=model"`
-	xxx_hidden_PlateNumber            *string                `protobuf:"bytes,4,opt,name=plate_number,json=plateNumber"`
-	xxx_hidden_AverageFuelConsumption float64                `protobuf:"fixed64,5,opt,name=average_fuel_consumption,json=averageFuelConsumption"`
-	xxx_hidden_FuelTankCapacity       float64                `protobuf:"fixed64,6,opt,name=fuel_tank_capacity,json=fuelTankCapacity"`
-	xxx_hidden_FuelType               VehicleParams_FuelType `protobuf:"varint,7,opt,name=fuel_type,json=fuelType,enum=wayplatform.connect.trusttrack.v1.VehicleParams_FuelType"`
-	xxx_hidden_UnknownFuelType        *string                `protobuf:"bytes,8,opt,name=unknown_fuel_type,json=unknownFuelType"`
-	XXX_raceDetectHookData            protoimpl.RaceDetectHookData
-	XXX_presence                      [1]uint32
-	unknownFields                     protoimpl.UnknownFields
-	sizeCache                         protoimpl.SizeCache
+	state                                       protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Vin                              *string                `protobuf:"bytes,1,opt,name=vin"`
+	xxx_hidden_Make                             *string                `protobuf:"bytes,2,opt,name=make"`
+	xxx_hidden_Model                            *string                `protobuf:"bytes,3,opt,name=model"`
+	xxx_hidden_PlateNumber                      *string                `protobuf:"bytes,4,opt,name=plate_number,json=plateNumber"`
+	xxx_hidden_AverageFuelConsumptionLPer_100Km float64                `protobuf:"fixed64,5,opt,name=average_fuel_consumption_l_per_100km,json=averageFuelConsumptionLPer100km"`
+	xxx_hidden_FuelTankCapacityL                float64                `protobuf:"fixed64,6,opt,name=fuel_tank_capacity_l,json=fuelTankCapacityL"`
+	xxx_hidden_FuelType                         VehicleParams_FuelType `protobuf:"varint,7,opt,name=fuel_type,json=fuelType,enum=wayplatform.connect.trusttrack.v1.VehicleParams_FuelType"`
+	xxx_hidden_UnknownFuelType                  *string                `protobuf:"bytes,8,opt,name=unknown_fuel_type,json=unknownFuelType"`
+	XXX_raceDetectHookData                      protoimpl.RaceDetectHookData
+	XXX_presence                                [1]uint32
+	unknownFields                               protoimpl.UnknownFields
+	sizeCache                                   protoimpl.SizeCache
 }
 
 func (x *VehicleParams) Reset() {
@@ -162,16 +162,16 @@ func (x *VehicleParams) GetPlateNumber() string {
 	return ""
 }
 
-func (x *VehicleParams) GetAverageFuelConsumption() float64 {
+func (x *VehicleParams) GetAverageFuelConsumptionLPer_100Km() float64 {
 	if x != nil {
-		return x.xxx_hidden_AverageFuelConsumption
+		return x.xxx_hidden_AverageFuelConsumptionLPer_100Km
 	}
 	return 0
 }
 
-func (x *VehicleParams) GetFuelTankCapacity() float64 {
+func (x *VehicleParams) GetFuelTankCapacityL() float64 {
 	if x != nil {
-		return x.xxx_hidden_FuelTankCapacity
+		return x.xxx_hidden_FuelTankCapacityL
 	}
 	return 0
 }
@@ -215,13 +215,13 @@ func (x *VehicleParams) SetPlateNumber(v string) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 8)
 }
 
-func (x *VehicleParams) SetAverageFuelConsumption(v float64) {
-	x.xxx_hidden_AverageFuelConsumption = v
+func (x *VehicleParams) SetAverageFuelConsumptionLPer_100Km(v float64) {
+	x.xxx_hidden_AverageFuelConsumptionLPer_100Km = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 8)
 }
 
-func (x *VehicleParams) SetFuelTankCapacity(v float64) {
-	x.xxx_hidden_FuelTankCapacity = v
+func (x *VehicleParams) SetFuelTankCapacityL(v float64) {
+	x.xxx_hidden_FuelTankCapacityL = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 8)
 }
 
@@ -263,14 +263,14 @@ func (x *VehicleParams) HasPlateNumber() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
 }
 
-func (x *VehicleParams) HasAverageFuelConsumption() bool {
+func (x *VehicleParams) HasAverageFuelConsumptionLPer_100Km() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
 }
 
-func (x *VehicleParams) HasFuelTankCapacity() bool {
+func (x *VehicleParams) HasFuelTankCapacityL() bool {
 	if x == nil {
 		return false
 	}
@@ -311,14 +311,14 @@ func (x *VehicleParams) ClearPlateNumber() {
 	x.xxx_hidden_PlateNumber = nil
 }
 
-func (x *VehicleParams) ClearAverageFuelConsumption() {
+func (x *VehicleParams) ClearAverageFuelConsumptionLPer_100Km() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
-	x.xxx_hidden_AverageFuelConsumption = 0
+	x.xxx_hidden_AverageFuelConsumptionLPer_100Km = 0
 }
 
-func (x *VehicleParams) ClearFuelTankCapacity() {
+func (x *VehicleParams) ClearFuelTankCapacityL() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
-	x.xxx_hidden_FuelTankCapacity = 0
+	x.xxx_hidden_FuelTankCapacityL = 0
 }
 
 func (x *VehicleParams) ClearFuelType() {
@@ -342,10 +342,10 @@ type VehicleParams_builder struct {
 	Model *string
 	// Plate number.
 	PlateNumber *string
-	// Average fuel consumption.
-	AverageFuelConsumption *float64
-	// Fuel tank capacity.
-	FuelTankCapacity *float64
+	// Average fuel consumption in liters per 100 kilometers.
+	AverageFuelConsumptionLPer_100Km *float64
+	// Fuel tank capacity in liters.
+	FuelTankCapacityL *float64
 	// Fuel type.
 	FuelType *VehicleParams_FuelType
 	// This is used when fuel_type is FUEL_TYPE_UNKNOWN.
@@ -372,13 +372,13 @@ func (b0 VehicleParams_builder) Build() *VehicleParams {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 8)
 		x.xxx_hidden_PlateNumber = b.PlateNumber
 	}
-	if b.AverageFuelConsumption != nil {
+	if b.AverageFuelConsumptionLPer_100Km != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 8)
-		x.xxx_hidden_AverageFuelConsumption = *b.AverageFuelConsumption
+		x.xxx_hidden_AverageFuelConsumptionLPer_100Km = *b.AverageFuelConsumptionLPer_100Km
 	}
-	if b.FuelTankCapacity != nil {
+	if b.FuelTankCapacityL != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 8)
-		x.xxx_hidden_FuelTankCapacity = *b.FuelTankCapacity
+		x.xxx_hidden_FuelTankCapacityL = *b.FuelTankCapacityL
 	}
 	if b.FuelType != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 8)
@@ -395,14 +395,14 @@ var File_wayplatform_connect_trusttrack_v1_vehicle_params_proto protoreflect.Fil
 
 const file_wayplatform_connect_trusttrack_v1_vehicle_params_proto_rawDesc = "" +
 	"\n" +
-	"6wayplatform/connect/trusttrack/v1/vehicle_params.proto\x12!wayplatform.connect.trusttrack.v1\"\xf3\x03\n" +
+	"6wayplatform/connect/trusttrack/v1/vehicle_params.proto\x12!wayplatform.connect.trusttrack.v1\"\x8b\x04\n" +
 	"\rVehicleParams\x12\x10\n" +
 	"\x03vin\x18\x01 \x01(\tR\x03vin\x12\x12\n" +
 	"\x04make\x18\x02 \x01(\tR\x04make\x12\x14\n" +
 	"\x05model\x18\x03 \x01(\tR\x05model\x12!\n" +
-	"\fplate_number\x18\x04 \x01(\tR\vplateNumber\x128\n" +
-	"\x18average_fuel_consumption\x18\x05 \x01(\x01R\x16averageFuelConsumption\x12,\n" +
-	"\x12fuel_tank_capacity\x18\x06 \x01(\x01R\x10fuelTankCapacity\x12V\n" +
+	"\fplate_number\x18\x04 \x01(\tR\vplateNumber\x12M\n" +
+	"$average_fuel_consumption_l_per_100km\x18\x05 \x01(\x01R\x1faverageFuelConsumptionLPer100km\x12/\n" +
+	"\x14fuel_tank_capacity_l\x18\x06 \x01(\x01R\x11fuelTankCapacityL\x12V\n" +
 	"\tfuel_type\x18\a \x01(\x0e29.wayplatform.connect.trusttrack.v1.VehicleParams.FuelTypeR\bfuelType\x12*\n" +
 	"\x11unknown_fuel_type\x18\b \x01(\tR\x0funknownFuelType\"\x96\x01\n" +
 	"\bFuelType\x12\x19\n" +

@@ -16,11 +16,11 @@ message VehicleParams {
   // Plate number.
   string plate_number = 4;
 
-  // Average fuel consumption.
-  double average_fuel_consumption = 5;
+  // Average fuel consumption in liters per 100 kilometers.
+  double average_fuel_consumption_l_per_100km = 5;
 
-  // Fuel tank capacity.
-  double fuel_tank_capacity = 6;
+  // Fuel tank capacity in liters.
+  double fuel_tank_capacity_l = 6;
 
   // Fuel type.
   FuelType fuel_type = 7;
