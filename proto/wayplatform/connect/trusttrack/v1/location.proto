@@ -4,8 +4,8 @@ package wayplatform.connect.trusttrack.v1;
 
 import "google/protobuf/timestamp.proto";
 
-// A coordinate.
-message Coordinate {
+// A location.
+message Location {
   // The number of satellites used to calculate the coordinate.
   int32 satellites_count = 3;
 

@@ -54,7 +54,7 @@ func newRootCommand() *cobra.Command {
 		Title: "Objects",
 	})
 	cmd.AddCommand(newListObjectsCommand())
-	cmd.AddCommand(newListObjectsLastCoordinateCommand())
+	cmd.AddCommand(newListObjectsLastLocationCommand())
 	cmd.AddCommand(newListTripsCommand())
 	cmd.AddCommand(newListFuelEventsCommand())
 	cmd.AddGroup(&cobra.Group{
@@ -108,10 +108,10 @@ func newListObjectsCommand() *cobra.Command {
 	return cmd
 }
 
-func newListObjectsLastCoordinateCommand() *cobra.Command {
+func newListObjectsLastLocationCommand() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     "objects-last-coordinate",
-		Short:   "List objects with their last coordinate",
+		Use:     "objects-last-location",
+		Short:   "List objects with their last location",
 		GroupID: "objects",
 	}
 	cmd.RunE = func(cmd *cobra.Command, args []string) error {
@@ -119,11 +119,11 @@ func newListObjectsLastCoordinateCommand() *cobra.Command {
 		if err != nil {
 			return err
 		}
-		request := trusttrack.ListObjectsLastCoordinateRequest{
+		request := trusttrack.ListObjectsLastLocationRequest{
 			Limit: 1000,
 		}
 		for {
-			response, err := client.ListObjectsLastCoordinate(context.Background(), &request)
+			response, err := client.ListObjectsLastLocation(context.Background(), &request)
 			if err != nil {
 				return err
 			}
