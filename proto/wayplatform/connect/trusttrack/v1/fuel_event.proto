@@ -1,0 +1,51 @@
+edition = "2023";
+
+package wayplatform.connect.trusttrack.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// A fuel event for an object.
+message FuelEvent {
+  // The ID of the object that experienced this fuel event.
+  string object_id = 1;
+
+  // The ID of the driver associated with this fuel event.
+  string driver_id = 2;
+
+  // The type of fuel event.
+  EventType event_type = 3;
+
+  // The unknown event type.
+  // This field is used when the event_type is EVENT_TYPE_UNKNOWN.
+  string unknown_event_type = 4;
+
+  // Represents a fuel event type.
+  enum EventType {
+    EVENT_TYPE_UNSPECIFIED = 0;
+    EVENT_TYPE_UNKNOWN = 1;
+    EVENT_TYPE_NOT_AVAILABLE = 2;
+    DRAIN = 3;
+    REFUEL = 4;
+  }
+
+  // The latitude coordinate where the event occurred.
+  double latitude = 5;
+
+  // The longitude coordinate where the event occurred.
+  double longitude = 6;
+
+  // The fuel level at the start of the event (percentage).
+  double fuel_level_start = 7;
+
+  // The fuel level at the end of the event (percentage).
+  double fuel_level_end = 8;
+
+  // The difference in fuel level (positive for refuel, negative for drain).
+  double difference = 9;
+
+  // The start time of the fuel event.
+  google.protobuf.Timestamp start_time = 10;
+
+  // The end time of the fuel event.
+  google.protobuf.Timestamp end_time = 11;
+}
