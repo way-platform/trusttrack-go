@@ -1,0 +1,35 @@
+edition = "2023";
+
+package wayplatform.connect.trusttrack.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// Tire pressure monitoring system (TPMS) data for a single tire.
+message TireData {
+  // Signal indicating the pressure level of the tire. The levels defined represent different pressure conditions of the tire: 000 Extreme over pressure - The tire pressure is at a level where the safety of the vehicle may be jeopardised. 001 Over pressure - The tire pressure is higher than the pressure defined by the vehicle or tire manufacturer. 010 No warning pressure - The tire pressure is within the thresholds defined by the vehicle or tire manufacturer. 011 Under pressure - The tire pressure is lower than the pressure defined by the vehicle or tire manufacturer. 100 Extreme under pressure - The tire pressure is at a level where the safety of the vehicle may be jeopardised. 101 Not defined 110 Error indicator 111 Not available
+  double tire_pressure_threshold_detection = 1;
+
+  // Indicates the status of electrical fault on the tire sensor. 00 Ok (No Fault) 01 Not Defined (Fault) 10 Error 11 Not Supported
+  double tire_sensor_electrical_fault = 2;
+
+  // Indicates the status of the tire. 00 Ok (no fault) 01 Tire leak detected 10 Error 11 Not Supported
+  double tire_status = 3;
+
+  // Temperature at the surface of the tire sidewall. Resolution: 0.03125 °C/bit Offset: 0 Data Range: -273 to 1734.96875 °C (units: °C)
+  double tire_temperature = 4;
+
+  // The pressure loss rate of a tire. Resolution: 0.05 kPa/bit Offset: 0 Data Range: 0 to 12.5 kPa (units: kPa)
+  double tire_air_leakage_rate = 5;
+
+  // Pressure at which air is contained in cavity formed by tire and rim. Resolution: 0.05 kPa/bit Offset: 0 Data Range: 0 to 125 kPa (units: kPa)
+  double tire_pressure = 6;
+
+  // Indicates whether the tire sensor is being monitored by the controller or is Enabled/Disabled. 00 Off / Isolated / Disabled 01 On (tire is polled) / Enabled 10 Not Defined 11 Not Supported
+  double tire_sensor_enable_status = 7;
+
+  // Identifies which tire is associated with the parametric data in this PGN. The low order 4 bits represent a position number, counting left to right when facing in the direction of normal vehicle travel (forward). The high order 4 bits represent a position number, counting front to back on the vehicle. The value 0xFF indicates not available. It is recommended that output devices add 1 to the position number (range 1 to 15, not 0 to 14) for use by drivers and service technicians. Examples: Tire pressure for location 0x00 would be left front tire. Tire pressure for location 0x23 would be right outside rear rear on a 3-axle tractor with dual axle per side (3rd axle, 4th tire).
+  double tire_location = 8;
+
+  // Defines the choice of using the tire pressure (PGN 65268) or Extended Tire Pressure (PGN 64578). The state value '01' indicates the extended tire pressure SPN is used for the pressure data. Any other value indicates the extended tire pressure SPN is not being used. 00 - Not Using Extended Tire Pressure 01 - Using Extended Tire Pressure 10 - Error 11 - Not Available/Not Supported
+  double tire_extended_tire_pressure_support = 9;
+}

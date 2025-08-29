@@ -4,8 +4,6 @@
 package ttoapi
 
 import (
-	"encoding/json"
-	"fmt"
 	"time"
 )
 
@@ -14,738 +12,6 @@ const (
 	CoordinateIgnitionStatusOFF     CoordinateIgnitionStatus = "OFF"
 	CoordinateIgnitionStatusON      CoordinateIgnitionStatus = "ON"
 	CoordinateIgnitionStatusUNKNOWN CoordinateIgnitionStatus = "UNKNOWN"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanDoorLockState.
-const (
-	CoordinateInputsDeviceInputsCanDoorLockStateLOCKED       CoordinateInputsDeviceInputsCanDoorLockState = "LOCKED"
-	CoordinateInputsDeviceInputsCanDoorLockStateNOTAVAILABLE CoordinateInputsDeviceInputsCanDoorLockState = "NOT_AVAILABLE"
-	CoordinateInputsDeviceInputsCanDoorLockStateUNLOCKED     CoordinateInputsDeviceInputsCanDoorLockState = "UNLOCKED"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanIgnition.
-const (
-	CoordinateInputsDeviceInputsCanIgnitionOFF CoordinateInputsDeviceInputsCanIgnition = "OFF"
-	CoordinateInputsDeviceInputsCanIgnitionON  CoordinateInputsDeviceInputsCanIgnition = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1AutoBaudRate.
-const (
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1AutoBaudRateOFF CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1AutoBaudRate = "OFF"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1AutoBaudRateON  CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1AutoBaudRate = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1FfFiltersStatus.
-const (
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1FfFiltersStatusOFF CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1FfFiltersStatus = "OFF"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1FfFiltersStatusON  CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1FfFiltersStatus = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Interface.
-const (
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1InterfaceDXP      CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Interface = "DXP"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1InterfaceFMS      CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Interface = "FMS"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1InterfaceLCV      CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Interface = "LCV"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1InterfaceMOBILEYE CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Interface = "MOBILEYE"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1InterfaceNONE     CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Interface = "NONE"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1InterfaceOBD      CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Interface = "OBD"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1InterfaceTACHO    CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Interface = "TACHO"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1InterfaceTRAILERS CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Interface = "TRAILERS"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Mode.
-const (
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1ModeACTIVE CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Mode = "ACTIVE"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1ModeSILENT CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Mode = "SILENT"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Status.
-const (
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1StatusACTIVE   CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Status = "ACTIVE"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1StatusINACTIVE CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Status = "INACTIVE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2AutoBaudRate.
-const (
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2AutoBaudRateOFF CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2AutoBaudRate = "OFF"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2AutoBaudRateON  CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2AutoBaudRate = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2FfFiltersStatus.
-const (
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2FfFiltersStatusOFF CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2FfFiltersStatus = "OFF"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2FfFiltersStatusON  CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2FfFiltersStatus = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Interface.
-const (
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2InterfaceDXP      CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Interface = "DXP"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2InterfaceFMS      CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Interface = "FMS"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2InterfaceLCV      CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Interface = "LCV"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2InterfaceMOBILEYE CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Interface = "MOBILEYE"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2InterfaceNONE     CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Interface = "NONE"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2InterfaceOBD      CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Interface = "OBD"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2InterfaceTACHO    CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Interface = "TACHO"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2InterfaceTRAILERS CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Interface = "TRAILERS"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Mode.
-const (
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2ModeACTIVE CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Mode = "ACTIVE"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2ModeSILENT CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Mode = "SILENT"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Status.
-const (
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2StatusACTIVE   CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Status = "ACTIVE"
-	CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2StatusINACTIVE CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Status = "INACTIVE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group.
-const (
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupBMW        CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "BMW"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupCHRYSLER   CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "CHRYSLER"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupCITROEN    CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "CITROEN"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupCLAAS      CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "CLAAS"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupFIAT       CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "FIAT"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupFORD       CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "FORD"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupHITACHI    CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "HITACHI"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupHONDA      CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "HONDA"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupHYUNDAI    CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "HYUNDAI"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupINFINITI   CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "INFINITI"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupISUZU      CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "ISUZU"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupJAGUAR     CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "JAGUAR"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupKIA        CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "KIA"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupKOMATSU    CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "KOMATSU"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupLANDROVER  CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "LANDROVER"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupLEXUS      CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "LEXUS"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupLINDE      CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "LINDE"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupMAZDA      CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "MAZDA"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupMERCEDES   CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "MERCEDES"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupMITSUBISHI CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "MITSUBISHI"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupNISSAN     CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "NISSAN"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupOPEL       CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "OPEL"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupPORSCHE    CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "PORSCHE"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupRANGEROVER CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "RANGEROVER"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupRENAULT    CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "RENAULT"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupSAAB       CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "SAAB"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupSSANGYONG  CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "SSANGYONG"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupSUBARU     CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "SUBARU"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupSUZUKI     CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "SUZUKI"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupTOYOTA     CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "TOYOTA"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupTRACTOR    CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "TRACTOR"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupTRUCK      CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "TRUCK"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupVAG        CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "VAG"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan1GroupVOLVO      CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group = "VOLVO"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group.
-const (
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupBMW        CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "BMW"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupCHRYSLER   CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "CHRYSLER"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupCITROEN    CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "CITROEN"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupCLAAS      CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "CLAAS"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupFIAT       CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "FIAT"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupFORD       CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "FORD"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupHITACHI    CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "HITACHI"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupHONDA      CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "HONDA"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupHYUNDAI    CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "HYUNDAI"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupINFINITI   CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "INFINITI"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupISUZU      CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "ISUZU"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupJAGUAR     CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "JAGUAR"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupKIA        CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "KIA"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupKOMATSU    CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "KOMATSU"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupLANDROVER  CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "LANDROVER"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupLEXUS      CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "LEXUS"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupLINDE      CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "LINDE"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupMAZDA      CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "MAZDA"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupMERCEDES   CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "MERCEDES"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupMITSUBISHI CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "MITSUBISHI"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupNISSAN     CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "NISSAN"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupOPEL       CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "OPEL"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupPORSCHE    CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "PORSCHE"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupRANGEROVER CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "RANGEROVER"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupRENAULT    CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "RENAULT"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupSAAB       CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "SAAB"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupSSANGYONG  CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "SSANGYONG"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupSUBARU     CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "SUBARU"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupSUZUKI     CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "SUZUKI"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupTOYOTA     CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "TOYOTA"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupTRACTOR    CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "TRACTOR"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupTRUCK      CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "TRUCK"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupVAG        CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "VAG"
-	CoordinateInputsDeviceInputsCanLcvConfigurationCan2GroupVOLVO      CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group = "VOLVO"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusBatteryCharging.
-const (
-	CoordinateInputsDeviceInputsCanbusBatteryChargingCHARGING   CoordinateInputsDeviceInputsCanbusBatteryCharging = "CHARGING"
-	CoordinateInputsDeviceInputsCanbusBatteryChargingNOCHARGING CoordinateInputsDeviceInputsCanbusBatteryCharging = "NO_CHARGING"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusBrakeSwitch.
-const (
-	CoordinateInputsDeviceInputsCanbusBrakeSwitchPRESSED  CoordinateInputsDeviceInputsCanbusBrakeSwitch = "PRESSED"
-	CoordinateInputsDeviceInputsCanbusBrakeSwitchRELEASED CoordinateInputsDeviceInputsCanbusBrakeSwitch = "RELEASED"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusClutchSwitch.
-const (
-	CoordinateInputsDeviceInputsCanbusClutchSwitchPRESSED  CoordinateInputsDeviceInputsCanbusClutchSwitch = "PRESSED"
-	CoordinateInputsDeviceInputsCanbusClutchSwitchRELEASED CoordinateInputsDeviceInputsCanbusClutchSwitch = "RELEASED"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusCruiseControlState.
-const (
-	CoordinateInputsDeviceInputsCanbusCruiseControlStateOFF CoordinateInputsDeviceInputsCanbusCruiseControlState = "OFF"
-	CoordinateInputsDeviceInputsCanbusCruiseControlStateON  CoordinateInputsDeviceInputsCanbusCruiseControlState = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusDiagnosticsSupported.
-const (
-	CoordinateInputsDeviceInputsCanbusDiagnosticsSupportedDONOTCARE    CoordinateInputsDeviceInputsCanbusDiagnosticsSupported = "DO_NOT_CARE"
-	CoordinateInputsDeviceInputsCanbusDiagnosticsSupportedNOTSUPPORTED CoordinateInputsDeviceInputsCanbusDiagnosticsSupported = "NOT_SUPPORTED"
-	CoordinateInputsDeviceInputsCanbusDiagnosticsSupportedRESERVED     CoordinateInputsDeviceInputsCanbusDiagnosticsSupported = "RESERVED"
-	CoordinateInputsDeviceInputsCanbusDiagnosticsSupportedSUPPORTED    CoordinateInputsDeviceInputsCanbusDiagnosticsSupported = "SUPPORTED"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusDirectionIndicator.
-const (
-	CoordinateInputsDeviceInputsCanbusDirectionIndicatorFORWARD CoordinateInputsDeviceInputsCanbusDirectionIndicator = "FORWARD"
-	CoordinateInputsDeviceInputsCanbusDirectionIndicatorREVERSE CoordinateInputsDeviceInputsCanbusDirectionIndicator = "REVERSE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusDriver1Card.
-const (
-	CoordinateInputsDeviceInputsCanbusDriver1CardCARDNOTPRESENT CoordinateInputsDeviceInputsCanbusDriver1Card = "CARD_NOT_PRESENT"
-	CoordinateInputsDeviceInputsCanbusDriver1CardCARDPRESENT    CoordinateInputsDeviceInputsCanbusDriver1Card = "CARD_PRESENT"
-	CoordinateInputsDeviceInputsCanbusDriver1CardERROR          CoordinateInputsDeviceInputsCanbusDriver1Card = "ERROR"
-	CoordinateInputsDeviceInputsCanbusDriver1CardNOTAVAILABLE   CoordinateInputsDeviceInputsCanbusDriver1Card = "NOT_AVAILABLE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusDriver1State.
-const (
-	CoordinateInputsDeviceInputsCanbusDriver1StateDRIVE           CoordinateInputsDeviceInputsCanbusDriver1State = "DRIVE"
-	CoordinateInputsDeviceInputsCanbusDriver1StateDRIVERAVAILABLE CoordinateInputsDeviceInputsCanbusDriver1State = "DRIVER_AVAILABLE"
-	CoordinateInputsDeviceInputsCanbusDriver1StateERROR           CoordinateInputsDeviceInputsCanbusDriver1State = "ERROR"
-	CoordinateInputsDeviceInputsCanbusDriver1StateNOTAVAILABLE    CoordinateInputsDeviceInputsCanbusDriver1State = "NOT_AVAILABLE"
-	CoordinateInputsDeviceInputsCanbusDriver1StateREST            CoordinateInputsDeviceInputsCanbusDriver1State = "REST"
-	CoordinateInputsDeviceInputsCanbusDriver1StateWORK            CoordinateInputsDeviceInputsCanbusDriver1State = "WORK"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusDriver1Time.
-const (
-	CoordinateInputsDeviceInputsCanbusDriver1TimeERROR           CoordinateInputsDeviceInputsCanbusDriver1Time = "ERROR"
-	CoordinateInputsDeviceInputsCanbusDriver1TimeN15MINBEFORE16H CoordinateInputsDeviceInputsCanbusDriver1Time = "15_MIN_BEFORE_16H"
-	CoordinateInputsDeviceInputsCanbusDriver1TimeN15MINBEFORE45H CoordinateInputsDeviceInputsCanbusDriver1Time = "15_MIN_BEFORE_4,5H"
-	CoordinateInputsDeviceInputsCanbusDriver1TimeN15MINBEFORE9H  CoordinateInputsDeviceInputsCanbusDriver1Time = "15_MIN_BEFORE_9H"
-	CoordinateInputsDeviceInputsCanbusDriver1TimeN16HREACHED     CoordinateInputsDeviceInputsCanbusDriver1Time = "16H_REACHED"
-	CoordinateInputsDeviceInputsCanbusDriver1TimeN45HREACHED     CoordinateInputsDeviceInputsCanbusDriver1Time = "4,5H_REACHED"
-	CoordinateInputsDeviceInputsCanbusDriver1TimeN9HREACHED      CoordinateInputsDeviceInputsCanbusDriver1Time = "9H_REACHED"
-	CoordinateInputsDeviceInputsCanbusDriver1TimeNORMAL          CoordinateInputsDeviceInputsCanbusDriver1Time = "NORMAL"
-	CoordinateInputsDeviceInputsCanbusDriver1TimeNOTAVAILABLE    CoordinateInputsDeviceInputsCanbusDriver1Time = "NOT_AVAILABLE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusDriver2Card.
-const (
-	CoordinateInputsDeviceInputsCanbusDriver2CardCARDNOTPRESENT CoordinateInputsDeviceInputsCanbusDriver2Card = "CARD_NOT_PRESENT"
-	CoordinateInputsDeviceInputsCanbusDriver2CardCARDPRESENT    CoordinateInputsDeviceInputsCanbusDriver2Card = "CARD_PRESENT"
-	CoordinateInputsDeviceInputsCanbusDriver2CardERROR          CoordinateInputsDeviceInputsCanbusDriver2Card = "ERROR"
-	CoordinateInputsDeviceInputsCanbusDriver2CardNOTAVAILABLE   CoordinateInputsDeviceInputsCanbusDriver2Card = "NOT_AVAILABLE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusDriver2State.
-const (
-	CoordinateInputsDeviceInputsCanbusDriver2StateDRIVE           CoordinateInputsDeviceInputsCanbusDriver2State = "DRIVE"
-	CoordinateInputsDeviceInputsCanbusDriver2StateDRIVERAVAILABLE CoordinateInputsDeviceInputsCanbusDriver2State = "DRIVER_AVAILABLE"
-	CoordinateInputsDeviceInputsCanbusDriver2StateERROR           CoordinateInputsDeviceInputsCanbusDriver2State = "ERROR"
-	CoordinateInputsDeviceInputsCanbusDriver2StateNOTAVAILABLE    CoordinateInputsDeviceInputsCanbusDriver2State = "NOT_AVAILABLE"
-	CoordinateInputsDeviceInputsCanbusDriver2StateREST            CoordinateInputsDeviceInputsCanbusDriver2State = "REST"
-	CoordinateInputsDeviceInputsCanbusDriver2StateWORK            CoordinateInputsDeviceInputsCanbusDriver2State = "WORK"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusDriver2Time.
-const (
-	CoordinateInputsDeviceInputsCanbusDriver2TimeERROR           CoordinateInputsDeviceInputsCanbusDriver2Time = "ERROR"
-	CoordinateInputsDeviceInputsCanbusDriver2TimeN15MINBEFORE16H CoordinateInputsDeviceInputsCanbusDriver2Time = "15_MIN_BEFORE_16H"
-	CoordinateInputsDeviceInputsCanbusDriver2TimeN15MINBEFORE45H CoordinateInputsDeviceInputsCanbusDriver2Time = "15_MIN_BEFORE_4,5H"
-	CoordinateInputsDeviceInputsCanbusDriver2TimeN15MINBEFORE9H  CoordinateInputsDeviceInputsCanbusDriver2Time = "15_MIN_BEFORE_9H"
-	CoordinateInputsDeviceInputsCanbusDriver2TimeN16HREACHED     CoordinateInputsDeviceInputsCanbusDriver2Time = "16H_REACHED"
-	CoordinateInputsDeviceInputsCanbusDriver2TimeN45HREACHED     CoordinateInputsDeviceInputsCanbusDriver2Time = "4,5H_REACHED"
-	CoordinateInputsDeviceInputsCanbusDriver2TimeN9HREACHED      CoordinateInputsDeviceInputsCanbusDriver2Time = "9H_REACHED"
-	CoordinateInputsDeviceInputsCanbusDriver2TimeNORMAL          CoordinateInputsDeviceInputsCanbusDriver2Time = "NORMAL"
-	CoordinateInputsDeviceInputsCanbusDriver2TimeNOTAVAILABLE    CoordinateInputsDeviceInputsCanbusDriver2Time = "NOT_AVAILABLE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusHandlingInformation.
-const (
-	CoordinateInputsDeviceInputsCanbusHandlingInformationHANDLINGINFORMATION   CoordinateInputsDeviceInputsCanbusHandlingInformation = "HANDLING_INFORMATION"
-	CoordinateInputsDeviceInputsCanbusHandlingInformationNOHANDLINGINFORMATION CoordinateInputsDeviceInputsCanbusHandlingInformation = "NO_HANDLING_INFORMATION"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusParkingBrakeSwitch.
-const (
-	CoordinateInputsDeviceInputsCanbusParkingBrakeSwitchOFF CoordinateInputsDeviceInputsCanbusParkingBrakeSwitch = "OFF"
-	CoordinateInputsDeviceInputsCanbusParkingBrakeSwitchON  CoordinateInputsDeviceInputsCanbusParkingBrakeSwitch = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusPto.
-const (
-	CoordinateInputsDeviceInputsCanbusPtoATLEASTONEPTODRIVER CoordinateInputsDeviceInputsCanbusPto = "AT_LEAST_ONE_PTO_DRIVER"
-	CoordinateInputsDeviceInputsCanbusPtoERROR               CoordinateInputsDeviceInputsCanbusPto = "ERROR"
-	CoordinateInputsDeviceInputsCanbusPtoNOPTODRIVER         CoordinateInputsDeviceInputsCanbusPto = "NO_PTO_DRIVER"
-	CoordinateInputsDeviceInputsCanbusPtoNOTAVAILABLE        CoordinateInputsDeviceInputsCanbusPto = "NOT_AVAILABLE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusPtoState.
-const (
-	CoordinateInputsDeviceInputsCanbusPtoStateNOTAVAILABLE CoordinateInputsDeviceInputsCanbusPtoState = "NOT_AVAILABLE"
-	CoordinateInputsDeviceInputsCanbusPtoStateOFFDISABLED  CoordinateInputsDeviceInputsCanbusPtoState = "OFF_DISABLED"
-	CoordinateInputsDeviceInputsCanbusPtoStateSET          CoordinateInputsDeviceInputsCanbusPtoState = "SET"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusRequestSupported.
-const (
-	CoordinateInputsDeviceInputsCanbusRequestSupportedDONOTCARE    CoordinateInputsDeviceInputsCanbusRequestSupported = "DO_NOT_CARE"
-	CoordinateInputsDeviceInputsCanbusRequestSupportedNOTSUPPORTED CoordinateInputsDeviceInputsCanbusRequestSupported = "NOT_SUPPORTED"
-	CoordinateInputsDeviceInputsCanbusRequestSupportedRESERVED     CoordinateInputsDeviceInputsCanbusRequestSupported = "RESERVED"
-	CoordinateInputsDeviceInputsCanbusRequestSupportedSUPPORTED    CoordinateInputsDeviceInputsCanbusRequestSupported = "SUPPORTED"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusSystemEvent.
-const (
-	CoordinateInputsDeviceInputsCanbusSystemEventNOTACHOEVENT CoordinateInputsDeviceInputsCanbusSystemEvent = "NO_TACHO_EVENT"
-	CoordinateInputsDeviceInputsCanbusSystemEventTACHOEVENT   CoordinateInputsDeviceInputsCanbusSystemEvent = "TACHO_EVENT"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCanbusVehicleMotion.
-const (
-	CoordinateInputsDeviceInputsCanbusVehicleMotionDETECTED    CoordinateInputsDeviceInputsCanbusVehicleMotion = "DETECTED"
-	CoordinateInputsDeviceInputsCanbusVehicleMotionNOTDETECTED CoordinateInputsDeviceInputsCanbusVehicleMotion = "NOT_DETECTED"
-)
-
-// Defines values for CoordinateInputsDeviceInputsCustomIgnition.
-const (
-	CoordinateInputsDeviceInputsCustomIgnitionOFF CoordinateInputsDeviceInputsCustomIgnition = "OFF"
-	CoordinateInputsDeviceInputsCustomIgnitionON  CoordinateInputsDeviceInputsCustomIgnition = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsDout1Status.
-const (
-	CoordinateInputsDeviceInputsDout1StatusACTIVE   CoordinateInputsDeviceInputsDout1Status = "ACTIVE"
-	CoordinateInputsDeviceInputsDout1StatusINACTIVE CoordinateInputsDeviceInputsDout1Status = "INACTIVE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsDout2Status.
-const (
-	CoordinateInputsDeviceInputsDout2StatusACTIVE   CoordinateInputsDeviceInputsDout2Status = "ACTIVE"
-	CoordinateInputsDeviceInputsDout2StatusINACTIVE CoordinateInputsDeviceInputsDout2Status = "INACTIVE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsDriver1State.
-const (
-	CoordinateInputsDeviceInputsDriver1StateDRIVE           CoordinateInputsDeviceInputsDriver1State = "DRIVE"
-	CoordinateInputsDeviceInputsDriver1StateDRIVERAVAILABLE CoordinateInputsDeviceInputsDriver1State = "DRIVER_AVAILABLE"
-	CoordinateInputsDeviceInputsDriver1StateERROR           CoordinateInputsDeviceInputsDriver1State = "ERROR"
-	CoordinateInputsDeviceInputsDriver1StateNOTAVAILABLE    CoordinateInputsDeviceInputsDriver1State = "NOT_AVAILABLE"
-	CoordinateInputsDeviceInputsDriver1StateREST            CoordinateInputsDeviceInputsDriver1State = "REST"
-	CoordinateInputsDeviceInputsDriver1StateWORK            CoordinateInputsDeviceInputsDriver1State = "WORK"
-)
-
-// Defines values for CoordinateInputsDeviceInputsDriver2State.
-const (
-	CoordinateInputsDeviceInputsDriver2StateDRIVE           CoordinateInputsDeviceInputsDriver2State = "DRIVE"
-	CoordinateInputsDeviceInputsDriver2StateDRIVERAVAILABLE CoordinateInputsDeviceInputsDriver2State = "DRIVER_AVAILABLE"
-	CoordinateInputsDeviceInputsDriver2StateERROR           CoordinateInputsDeviceInputsDriver2State = "ERROR"
-	CoordinateInputsDeviceInputsDriver2StateNOTAVAILABLE    CoordinateInputsDeviceInputsDriver2State = "NOT_AVAILABLE"
-	CoordinateInputsDeviceInputsDriver2StateREST            CoordinateInputsDeviceInputsDriver2State = "REST"
-	CoordinateInputsDeviceInputsDriver2StateWORK            CoordinateInputsDeviceInputsDriver2State = "WORK"
-)
-
-// Defines values for CoordinateInputsDeviceInputsDxpSwitchesSwitch1.
-const (
-	CoordinateInputsDeviceInputsDxpSwitchesSwitch1OFF CoordinateInputsDeviceInputsDxpSwitchesSwitch1 = "OFF"
-	CoordinateInputsDeviceInputsDxpSwitchesSwitch1ON  CoordinateInputsDeviceInputsDxpSwitchesSwitch1 = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsDxpSwitchesSwitch2.
-const (
-	CoordinateInputsDeviceInputsDxpSwitchesSwitch2OFF CoordinateInputsDeviceInputsDxpSwitchesSwitch2 = "OFF"
-	CoordinateInputsDeviceInputsDxpSwitchesSwitch2ON  CoordinateInputsDeviceInputsDxpSwitchesSwitch2 = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsDxpSwitchesSwitch3.
-const (
-	CoordinateInputsDeviceInputsDxpSwitchesSwitch3OFF CoordinateInputsDeviceInputsDxpSwitchesSwitch3 = "OFF"
-	CoordinateInputsDeviceInputsDxpSwitchesSwitch3ON  CoordinateInputsDeviceInputsDxpSwitchesSwitch3 = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsDxpSwitchesSwitch4.
-const (
-	CoordinateInputsDeviceInputsDxpSwitchesSwitch4OFF CoordinateInputsDeviceInputsDxpSwitchesSwitch4 = "OFF"
-	CoordinateInputsDeviceInputsDxpSwitchesSwitch4ON  CoordinateInputsDeviceInputsDxpSwitchesSwitch4 = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsDxpSwitchesSwitch5.
-const (
-	CoordinateInputsDeviceInputsDxpSwitchesSwitch5OFF CoordinateInputsDeviceInputsDxpSwitchesSwitch5 = "OFF"
-	CoordinateInputsDeviceInputsDxpSwitchesSwitch5ON  CoordinateInputsDeviceInputsDxpSwitchesSwitch5 = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsDxpSwitchesSwitch6.
-const (
-	CoordinateInputsDeviceInputsDxpSwitchesSwitch6OFF CoordinateInputsDeviceInputsDxpSwitchesSwitch6 = "OFF"
-	CoordinateInputsDeviceInputsDxpSwitchesSwitch6ON  CoordinateInputsDeviceInputsDxpSwitchesSwitch6 = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsDxpSwitchesSwitch7.
-const (
-	CoordinateInputsDeviceInputsDxpSwitchesSwitch7OFF CoordinateInputsDeviceInputsDxpSwitchesSwitch7 = "OFF"
-	CoordinateInputsDeviceInputsDxpSwitchesSwitch7ON  CoordinateInputsDeviceInputsDxpSwitchesSwitch7 = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsDxpSwitchesSwitch8.
-const (
-	CoordinateInputsDeviceInputsDxpSwitchesSwitch8OFF CoordinateInputsDeviceInputsDxpSwitchesSwitch8 = "OFF"
-	CoordinateInputsDeviceInputsDxpSwitchesSwitch8ON  CoordinateInputsDeviceInputsDxpSwitchesSwitch8 = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsEcodriveIdlingState.
-const (
-	CoordinateInputsDeviceInputsEcodriveIdlingStateIDLING   CoordinateInputsDeviceInputsEcodriveIdlingState = "IDLING"
-	CoordinateInputsDeviceInputsEcodriveIdlingStateNOIDLING CoordinateInputsDeviceInputsEcodriveIdlingState = "NO_IDLING"
-)
-
-// Defines values for CoordinateInputsDeviceInputsGnssAntenna.
-const (
-	CoordinateInputsDeviceInputsGnssAntennaDISABLED CoordinateInputsDeviceInputsGnssAntenna = "DISABLED"
-	CoordinateInputsDeviceInputsGnssAntennaENABLED  CoordinateInputsDeviceInputsGnssAntenna = "ENABLED"
-	CoordinateInputsDeviceInputsGnssAntennaUNKNOWN  CoordinateInputsDeviceInputsGnssAntenna = "UNKNOWN"
-)
-
-// Defines values for CoordinateInputsDeviceInputsGprsStatus.
-const (
-	CoordinateInputsDeviceInputsGprsStatusCONNECTED    CoordinateInputsDeviceInputsGprsStatus = "CONNECTED"
-	CoordinateInputsDeviceInputsGprsStatusDISCONNECTED CoordinateInputsDeviceInputsGprsStatus = "DISCONNECTED"
-)
-
-// Defines values for CoordinateInputsDeviceInputsIgnitionPlugtrack.
-const (
-	CoordinateInputsDeviceInputsIgnitionPlugtrackOFF CoordinateInputsDeviceInputsIgnitionPlugtrack = "OFF"
-	CoordinateInputsDeviceInputsIgnitionPlugtrackON  CoordinateInputsDeviceInputsIgnitionPlugtrack = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsLcvDriverDoors.
-const (
-	CoordinateInputsDeviceInputsLcvDriverDoorsCLOSE CoordinateInputsDeviceInputsLcvDriverDoors = "CLOSE"
-	CoordinateInputsDeviceInputsLcvDriverDoorsOPEN  CoordinateInputsDeviceInputsLcvDriverDoors = "OPEN"
-)
-
-// Defines values for CoordinateInputsDeviceInputsLcvHood.
-const (
-	CoordinateInputsDeviceInputsLcvHoodCLOSE CoordinateInputsDeviceInputsLcvHood = "CLOSE"
-	CoordinateInputsDeviceInputsLcvHoodOPEN  CoordinateInputsDeviceInputsLcvHood = "OPEN"
-)
-
-// Defines values for CoordinateInputsDeviceInputsLcvLeftBackDoors.
-const (
-	CoordinateInputsDeviceInputsLcvLeftBackDoorsCLOSE CoordinateInputsDeviceInputsLcvLeftBackDoors = "CLOSE"
-	CoordinateInputsDeviceInputsLcvLeftBackDoorsOPEN  CoordinateInputsDeviceInputsLcvLeftBackDoors = "OPEN"
-)
-
-// Defines values for CoordinateInputsDeviceInputsLcvPassengerDoors.
-const (
-	CoordinateInputsDeviceInputsLcvPassengerDoorsCLOSE CoordinateInputsDeviceInputsLcvPassengerDoors = "CLOSE"
-	CoordinateInputsDeviceInputsLcvPassengerDoorsOPEN  CoordinateInputsDeviceInputsLcvPassengerDoors = "OPEN"
-)
-
-// Defines values for CoordinateInputsDeviceInputsLcvRightBackDoors.
-const (
-	CoordinateInputsDeviceInputsLcvRightBackDoorsCLOSE CoordinateInputsDeviceInputsLcvRightBackDoors = "CLOSE"
-	CoordinateInputsDeviceInputsLcvRightBackDoorsOPEN  CoordinateInputsDeviceInputsLcvRightBackDoors = "OPEN"
-)
-
-// Defines values for CoordinateInputsDeviceInputsLcvTrunk.
-const (
-	CoordinateInputsDeviceInputsLcvTrunkCLOSE CoordinateInputsDeviceInputsLcvTrunk = "CLOSE"
-	CoordinateInputsDeviceInputsLcvTrunkOPEN  CoordinateInputsDeviceInputsLcvTrunk = "OPEN"
-)
-
-// Defines values for CoordinateInputsDeviceInputsMobileyeDuskTimeIndicator.
-const (
-	CoordinateInputsDeviceInputsMobileyeDuskTimeIndicatorDAY  CoordinateInputsDeviceInputsMobileyeDuskTimeIndicator = "DAY"
-	CoordinateInputsDeviceInputsMobileyeDuskTimeIndicatorDUSK CoordinateInputsDeviceInputsMobileyeDuskTimeIndicator = "DUSK"
-)
-
-// Defines values for CoordinateInputsDeviceInputsMobileyeHeadwayWarningLevel.
-const (
-	CoordinateInputsDeviceInputsMobileyeHeadwayWarningLevelCIPVWITHHWMORETHANHWCONFIG CoordinateInputsDeviceInputsMobileyeHeadwayWarningLevel = "CIPV_WITH_HW_MORE_THAN_HW_CONFIG"
-	CoordinateInputsDeviceInputsMobileyeHeadwayWarningLevelCIPVWITHLESSTHANHWCONFIG   CoordinateInputsDeviceInputsMobileyeHeadwayWarningLevel = "CIPV_WITH_LESS_THAN_HW_CONFIG"
-	CoordinateInputsDeviceInputsMobileyeHeadwayWarningLevelNOCOPV                     CoordinateInputsDeviceInputsMobileyeHeadwayWarningLevel = "NO_COPV"
-)
-
-// Defines values for CoordinateInputsDeviceInputsMobileyeHiBeam.
-const (
-	CoordinateInputsDeviceInputsMobileyeHiBeamOFF CoordinateInputsDeviceInputsMobileyeHiBeam = "OFF"
-	CoordinateInputsDeviceInputsMobileyeHiBeamON  CoordinateInputsDeviceInputsMobileyeHiBeam = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsMobileyeLowBeam.
-const (
-	CoordinateInputsDeviceInputsMobileyeLowBeamOFF CoordinateInputsDeviceInputsMobileyeLowBeam = "OFF"
-	CoordinateInputsDeviceInputsMobileyeLowBeamON  CoordinateInputsDeviceInputsMobileyeLowBeam = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsMobileyeMaintenance.
-const (
-	CoordinateInputsDeviceInputsMobileyeMaintenanceERROR   CoordinateInputsDeviceInputsMobileyeMaintenance = "ERROR"
-	CoordinateInputsDeviceInputsMobileyeMaintenanceNOERROR CoordinateInputsDeviceInputsMobileyeMaintenance = "NO_ERROR"
-)
-
-// Defines values for CoordinateInputsDeviceInputsMobileyeNightTimeIndicator.
-const (
-	CoordinateInputsDeviceInputsMobileyeNightTimeIndicatorDAY   CoordinateInputsDeviceInputsMobileyeNightTimeIndicator = "DAY"
-	CoordinateInputsDeviceInputsMobileyeNightTimeIndicatorNIGHT CoordinateInputsDeviceInputsMobileyeNightTimeIndicator = "NIGHT"
-)
-
-// Defines values for CoordinateInputsDeviceInputsMobileyeSoundType.
-const (
-	CoordinateInputsDeviceInputsMobileyeSoundTypeFCWPCW   CoordinateInputsDeviceInputsMobileyeSoundType = "FCW_PCW"
-	CoordinateInputsDeviceInputsMobileyeSoundTypeHW1      CoordinateInputsDeviceInputsMobileyeSoundType = "HW1"
-	CoordinateInputsDeviceInputsMobileyeSoundTypeLDWL     CoordinateInputsDeviceInputsMobileyeSoundType = "LDWL"
-	CoordinateInputsDeviceInputsMobileyeSoundTypeLDWR     CoordinateInputsDeviceInputsMobileyeSoundType = "LDWR"
-	CoordinateInputsDeviceInputsMobileyeSoundTypePEDSINDZ CoordinateInputsDeviceInputsMobileyeSoundType = "PEDS_IN_DZ"
-	CoordinateInputsDeviceInputsMobileyeSoundTypeSILENT   CoordinateInputsDeviceInputsMobileyeSoundType = "SILENT"
-	CoordinateInputsDeviceInputsMobileyeSoundTypeTSR      CoordinateInputsDeviceInputsMobileyeSoundType = "TSR"
-	CoordinateInputsDeviceInputsMobileyeSoundTypeUFCW     CoordinateInputsDeviceInputsMobileyeSoundType = "UFCW"
-)
-
-// Defines values for CoordinateInputsDeviceInputsMobileyeTamperAlert.
-const (
-	CoordinateInputsDeviceInputsMobileyeTamperAlertOFF CoordinateInputsDeviceInputsMobileyeTamperAlert = "OFF"
-	CoordinateInputsDeviceInputsMobileyeTamperAlertON  CoordinateInputsDeviceInputsMobileyeTamperAlert = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsMobileyeWipers.
-const (
-	CoordinateInputsDeviceInputsMobileyeWipersOFF CoordinateInputsDeviceInputsMobileyeWipers = "OFF"
-	CoordinateInputsDeviceInputsMobileyeWipersON  CoordinateInputsDeviceInputsMobileyeWipers = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsMovement.
-const (
-	CoordinateInputsDeviceInputsMovementMOVING CoordinateInputsDeviceInputsMovement = "MOVING"
-	CoordinateInputsDeviceInputsMovementSTILL  CoordinateInputsDeviceInputsMovement = "STILL"
-)
-
-// Defines values for CoordinateInputsDeviceInputsObdKlineTypeOfFuel.
-const (
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelBIFUELDIESEL                             CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "BIFUEL_DIESEL"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelBIFUELRUNNINGCNG                         CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "BIFUEL_RUNNING_CNG"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelBIFUELRUNNINGELECTRICANDCOMBUSTIONENGINE CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "BIFUEL_RUNNING_ELECTRIC_AND_COMBUSTION_ENGINE"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelBIFUELRUNNINGELECTRICITY                 CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "BIFUEL_RUNNING_ELECTRICITY"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelBIFUELRUNNINGETHANOL                     CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "BIFUEL_RUNNING_ETHANOL"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelBIFUELRUNNINGGASOLINE                    CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "BIFUEL_RUNNING_GASOLINE"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelBIFUELRUNNINGLPG                         CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "BIFUEL_RUNNING_LPG"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelBIFUELRUNNINGMETHANOL                    CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "BIFUEL_RUNNING_METHANOL"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelBIFUELRUNNINGPROPANE                     CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "BIFUEL_RUNNING_PROPANE"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelCNG                                      CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "CNG"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelDIESEL                                   CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "DIESEL"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelELECTRIC                                 CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "ELECTRIC"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelETHANOL                                  CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "ETHANOL"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelGASOLINE                                 CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "GASOLINE"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelHYBRIDDIESEL                             CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "HYBRID_DIESEL"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelHYBRIDELECTRIC                           CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "HYBRID_ELECTRIC"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelHYBRIDETHANOL                            CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "HYBRID_ETHANOL"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelHYBRIDGASOLINE                           CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "HYBRID_GASOLINE"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelHYBRIDREGENERATIVE                       CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "HYBRID_REGENERATIVE"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelHYBRIDRUNNINGELECTRICANDCOMBUSTIONENGINE CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "HYBRID_RUNNING_ELECTRIC_AND_COMBUSTION_ENGINE"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelLPG                                      CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "LPG"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelMETHANOL                                 CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "METHANOL"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelNOTAVAILABLE                             CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "NOT_AVAILABLE"
-	CoordinateInputsDeviceInputsObdKlineTypeOfFuelPROPANE                                  CoordinateInputsDeviceInputsObdKlineTypeOfFuel = "PROPANE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsOverspeedingEvents.
-const (
-	CoordinateInputsDeviceInputsOverspeedingEventsNOOVERSPEED CoordinateInputsDeviceInputsOverspeedingEvents = "NO_OVERSPEED"
-	CoordinateInputsDeviceInputsOverspeedingEventsOVERSPEED   CoordinateInputsDeviceInputsOverspeedingEvents = "OVERSPEED"
-)
-
-// Defines values for CoordinateInputsDeviceInputsPriority.
-const (
-	CoordinateInputsDeviceInputsPriorityHIGH CoordinateInputsDeviceInputsPriority = "HIGH"
-	CoordinateInputsDeviceInputsPriorityLOW  CoordinateInputsDeviceInputsPriority = "LOW"
-)
-
-// Defines values for CoordinateInputsDeviceInputsSleepTimer.
-const (
-	CoordinateInputsDeviceInputsSleepTimerDEVICEWAKEUPBYTIMEREVENT CoordinateInputsDeviceInputsSleepTimer = "DEVICE_WAKE_UP_BY_TIMER_EVENT"
-	CoordinateInputsDeviceInputsSleepTimerNOEVENT                  CoordinateInputsDeviceInputsSleepTimer = "NO_EVENT"
-)
-
-// Defines values for CoordinateInputsDeviceInputsTachoStatus.
-const (
-	CoordinateInputsDeviceInputsTachoStatusNORMALPERFORMANCE   CoordinateInputsDeviceInputsTachoStatus = "NORMAL_PERFORMANCE"
-	CoordinateInputsDeviceInputsTachoStatusPERFORMANCEANALYSIS CoordinateInputsDeviceInputsTachoStatus = "PERFORMANCE_ANALYSIS"
-)
-
-// Defines values for CoordinateInputsDeviceInputsTcoFirstDriverCard.
-const (
-	CoordinateInputsDeviceInputsTcoFirstDriverCardINSERTED    CoordinateInputsDeviceInputsTcoFirstDriverCard = "INSERTED"
-	CoordinateInputsDeviceInputsTcoFirstDriverCardNOTINSERTED CoordinateInputsDeviceInputsTcoFirstDriverCard = "NOT_INSERTED"
-)
-
-// Defines values for CoordinateInputsDeviceInputsTcoFirstDriverState.
-const (
-	CoordinateInputsDeviceInputsTcoFirstDriverStateDRIVE           CoordinateInputsDeviceInputsTcoFirstDriverState = "DRIVE"
-	CoordinateInputsDeviceInputsTcoFirstDriverStateDRIVERAVAILABLE CoordinateInputsDeviceInputsTcoFirstDriverState = "DRIVER_AVAILABLE"
-	CoordinateInputsDeviceInputsTcoFirstDriverStateERROR           CoordinateInputsDeviceInputsTcoFirstDriverState = "ERROR"
-	CoordinateInputsDeviceInputsTcoFirstDriverStateNOTAVAILABLE    CoordinateInputsDeviceInputsTcoFirstDriverState = "NOT_AVAILABLE"
-	CoordinateInputsDeviceInputsTcoFirstDriverStateREST            CoordinateInputsDeviceInputsTcoFirstDriverState = "REST"
-	CoordinateInputsDeviceInputsTcoFirstDriverStateWORK            CoordinateInputsDeviceInputsTcoFirstDriverState = "WORK"
-)
-
-// Defines values for CoordinateInputsDeviceInputsTcoSecondDriverCard.
-const (
-	CoordinateInputsDeviceInputsTcoSecondDriverCardINSERTED    CoordinateInputsDeviceInputsTcoSecondDriverCard = "INSERTED"
-	CoordinateInputsDeviceInputsTcoSecondDriverCardNOTINSERTED CoordinateInputsDeviceInputsTcoSecondDriverCard = "NOT_INSERTED"
-)
-
-// Defines values for CoordinateInputsDeviceInputsTcoSecondDriverState.
-const (
-	CoordinateInputsDeviceInputsTcoSecondDriverStateDRIVE           CoordinateInputsDeviceInputsTcoSecondDriverState = "DRIVE"
-	CoordinateInputsDeviceInputsTcoSecondDriverStateDRIVERAVAILABLE CoordinateInputsDeviceInputsTcoSecondDriverState = "DRIVER_AVAILABLE"
-	CoordinateInputsDeviceInputsTcoSecondDriverStateERROR           CoordinateInputsDeviceInputsTcoSecondDriverState = "ERROR"
-	CoordinateInputsDeviceInputsTcoSecondDriverStateNOTAVAILABLE    CoordinateInputsDeviceInputsTcoSecondDriverState = "NOT_AVAILABLE"
-	CoordinateInputsDeviceInputsTcoSecondDriverStateREST            CoordinateInputsDeviceInputsTcoSecondDriverState = "REST"
-	CoordinateInputsDeviceInputsTcoSecondDriverStateWORK            CoordinateInputsDeviceInputsTcoSecondDriverState = "WORK"
-)
-
-// Defines values for CoordinateInputsDeviceInputsThermokingAlarmType.
-const (
-	CoordinateInputsDeviceInputsThermokingAlarmTypeIMMEDIATEATTENTIONREQUIRED          CoordinateInputsDeviceInputsThermokingAlarmType = "IMMEDIATE_ATTENTION_REQUIRED"
-	CoordinateInputsDeviceInputsThermokingAlarmTypeLOGSTOREDORROUTINEMAINTENANCE       CoordinateInputsDeviceInputsThermokingAlarmType = "LOG_STORED_OR_ROUTINE_MAINTENANCE"
-	CoordinateInputsDeviceInputsThermokingAlarmTypeLOWFUEL                             CoordinateInputsDeviceInputsThermokingAlarmType = "LOW_FUEL"
-	CoordinateInputsDeviceInputsThermokingAlarmTypeMAINTENANCEPASTDUE                  CoordinateInputsDeviceInputsThermokingAlarmType = "MAINTENANCE_PAST_DUE"
-	CoordinateInputsDeviceInputsThermokingAlarmTypeNOALARM                             CoordinateInputsDeviceInputsThermokingAlarmType = "NO_ALARM"
-	CoordinateInputsDeviceInputsThermokingAlarmTypeRESERVED                            CoordinateInputsDeviceInputsThermokingAlarmType = "RESERVED"
-	CoordinateInputsDeviceInputsThermokingAlarmTypeSHUTDOWNORCATASTROPHICSYSTEMFAILURE CoordinateInputsDeviceInputsThermokingAlarmType = "SHUTDOWN_OR_CATASTROPHIC_SYSTEM_FAILURE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsThermokingCycleMode.
-const (
-	CoordinateInputsDeviceInputsThermokingCycleModeCONTINUOUSMODE  CoordinateInputsDeviceInputsThermokingCycleMode = "CONTINUOUS_MODE"
-	CoordinateInputsDeviceInputsThermokingCycleModeCYCLESENTRYMODE CoordinateInputsDeviceInputsThermokingCycleMode = "CYCLE_SENTRY_MODE"
-	CoordinateInputsDeviceInputsThermokingCycleModeSTARTSTOPMODE   CoordinateInputsDeviceInputsThermokingCycleMode = "START_STOP_MODE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsThermokingDieselElectricStatus.
-const (
-	CoordinateInputsDeviceInputsThermokingDieselElectricStatusDIESELMODE   CoordinateInputsDeviceInputsThermokingDieselElectricStatus = "DIESEL_MODE"
-	CoordinateInputsDeviceInputsThermokingDieselElectricStatusELECTRICMODE CoordinateInputsDeviceInputsThermokingDieselElectricStatus = "ELECTRIC_MODE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsThermokingDoorStatus.
-const (
-	CoordinateInputsDeviceInputsThermokingDoorStatusCLOSED CoordinateInputsDeviceInputsThermokingDoorStatus = "CLOSED"
-	CoordinateInputsDeviceInputsThermokingDoorStatusOPEN   CoordinateInputsDeviceInputsThermokingDoorStatus = "OPEN"
-)
-
-// Defines values for CoordinateInputsDeviceInputsThermokingOperatingMode.
-const (
-	CoordinateInputsDeviceInputsThermokingOperatingModeCOOLING           CoordinateInputsDeviceInputsThermokingOperatingMode = "COOLING"
-	CoordinateInputsDeviceInputsThermokingOperatingModeDEFROST           CoordinateInputsDeviceInputsThermokingOperatingMode = "DEFROST"
-	CoordinateInputsDeviceInputsThermokingOperatingModeHEATING           CoordinateInputsDeviceInputsThermokingOperatingMode = "HEATING"
-	CoordinateInputsDeviceInputsThermokingOperatingModeNULL              CoordinateInputsDeviceInputsThermokingOperatingMode = "NULL"
-	CoordinateInputsDeviceInputsThermokingOperatingModePOWEROFFORUNKNOWN CoordinateInputsDeviceInputsThermokingOperatingMode = "POWER_OFF_OR_UNKNOWN"
-	CoordinateInputsDeviceInputsThermokingOperatingModePRETRIP           CoordinateInputsDeviceInputsThermokingOperatingMode = "PRETRIP"
-	CoordinateInputsDeviceInputsThermokingOperatingModeRESERVED          CoordinateInputsDeviceInputsThermokingOperatingMode = "RESERVED"
-	CoordinateInputsDeviceInputsThermokingOperatingModeSLEEP             CoordinateInputsDeviceInputsThermokingOperatingMode = "SLEEP"
-)
-
-// Defines values for CoordinateInputsDeviceInputsTrailersAmberWarningSignalRequest.
-const (
-	CoordinateInputsDeviceInputsTrailersAmberWarningSignalRequestOFF CoordinateInputsDeviceInputsTrailersAmberWarningSignalRequest = "OFF"
-	CoordinateInputsDeviceInputsTrailersAmberWarningSignalRequestON  CoordinateInputsDeviceInputsTrailersAmberWarningSignalRequest = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsTrailersBrakingViaElectricControlLineSupport.
-const (
-	CoordinateInputsDeviceInputsTrailersBrakingViaElectricControlLineSupportNOTSUPPORTED CoordinateInputsDeviceInputsTrailersBrakingViaElectricControlLineSupport = "NOT_SUPPORTED"
-	CoordinateInputsDeviceInputsTrailersBrakingViaElectricControlLineSupportSUPPORTED    CoordinateInputsDeviceInputsTrailersBrakingViaElectricControlLineSupport = "SUPPORTED"
-)
-
-// Defines values for CoordinateInputsDeviceInputsTrailersElectricalLoadProportionalFunctionInstallationStatus.
-const (
-	CoordinateInputsDeviceInputsTrailersElectricalLoadProportionalFunctionInstallationStatusINSTALLED    CoordinateInputsDeviceInputsTrailersElectricalLoadProportionalFunctionInstallationStatus = "INSTALLED"
-	CoordinateInputsDeviceInputsTrailersElectricalLoadProportionalFunctionInstallationStatusNOTINSTALLED CoordinateInputsDeviceInputsTrailersElectricalLoadProportionalFunctionInstallationStatus = "NOT_INSTALLED"
-)
-
-// Defines values for CoordinateInputsDeviceInputsTrailersElectricalSupplyOfNonBrakingSystemStatus.
-const (
-	CoordinateInputsDeviceInputsTrailersElectricalSupplyOfNonBrakingSystemStatusOFF CoordinateInputsDeviceInputsTrailersElectricalSupplyOfNonBrakingSystemStatus = "OFF"
-	CoordinateInputsDeviceInputsTrailersElectricalSupplyOfNonBrakingSystemStatusON  CoordinateInputsDeviceInputsTrailersElectricalSupplyOfNonBrakingSystemStatus = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsTrailersRedWarningSignalRequest.
-const (
-	CoordinateInputsDeviceInputsTrailersRedWarningSignalRequestOFF CoordinateInputsDeviceInputsTrailersRedWarningSignalRequest = "OFF"
-	CoordinateInputsDeviceInputsTrailersRedWarningSignalRequestON  CoordinateInputsDeviceInputsTrailersRedWarningSignalRequest = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsTrailersStopLampsRequest.
-const (
-	CoordinateInputsDeviceInputsTrailersStopLampsRequestNOREQUEST     CoordinateInputsDeviceInputsTrailersStopLampsRequest = "NO_REQUEST"
-	CoordinateInputsDeviceInputsTrailersStopLampsRequestREQUESTACTIVE CoordinateInputsDeviceInputsTrailersStopLampsRequest = "REQUEST_ACTIVE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsTrailersVdcActive.
-const (
-	CoordinateInputsDeviceInputsTrailersVdcActiveACTIVE  CoordinateInputsDeviceInputsTrailersVdcActive = "ACTIVE"
-	CoordinateInputsDeviceInputsTrailersVdcActivePASSIVE CoordinateInputsDeviceInputsTrailersVdcActive = "PASSIVE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsTrailersVehicleAbsStatus.
-const (
-	CoordinateInputsDeviceInputsTrailersVehicleAbsStatusACTIVE  CoordinateInputsDeviceInputsTrailersVehicleAbsStatus = "ACTIVE"
-	CoordinateInputsDeviceInputsTrailersVehicleAbsStatusPASSIVE CoordinateInputsDeviceInputsTrailersVehicleAbsStatus = "PASSIVE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsTrailersVehicleElectricalSupplyStatus.
-const (
-	CoordinateInputsDeviceInputsTrailersVehicleElectricalSupplyStatusINSUFFICIENT CoordinateInputsDeviceInputsTrailersVehicleElectricalSupplyStatus = "INSUFFICIENT"
-	CoordinateInputsDeviceInputsTrailersVehicleElectricalSupplyStatusSUFFICIENT   CoordinateInputsDeviceInputsTrailersVehicleElectricalSupplyStatus = "SUFFICIENT"
-)
-
-// Defines values for CoordinateInputsDeviceInputsTrailersVehiclePneumaticSupplyStatus.
-const (
-	CoordinateInputsDeviceInputsTrailersVehiclePneumaticSupplyStatusOFF CoordinateInputsDeviceInputsTrailersVehiclePneumaticSupplyStatus = "OFF"
-	CoordinateInputsDeviceInputsTrailersVehiclePneumaticSupplyStatusON  CoordinateInputsDeviceInputsTrailersVehiclePneumaticSupplyStatus = "ON"
-)
-
-// Defines values for CoordinateInputsDeviceInputsTrailersVehicleServiceBrakeStatus.
-const (
-	CoordinateInputsDeviceInputsTrailersVehicleServiceBrakeStatusACTIVE  CoordinateInputsDeviceInputsTrailersVehicleServiceBrakeStatus = "ACTIVE"
-	CoordinateInputsDeviceInputsTrailersVehicleServiceBrakeStatusPASSIVE CoordinateInputsDeviceInputsTrailersVehicleServiceBrakeStatus = "PASSIVE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsTrailersVehicleType.
-const (
-	CoordinateInputsDeviceInputsTrailersVehicleTypeCONVERTEDDOLLYAXLELSB CoordinateInputsDeviceInputsTrailersVehicleType = "CONVERTED_DOLLY_AXLE_LSB"
-	CoordinateInputsDeviceInputsTrailersVehicleTypeTOWEDVEHICLE          CoordinateInputsDeviceInputsTrailersVehicleType = "TOWED_VEHICLE"
-)
-
-// Defines values for CoordinateInputsDeviceInputsUmtsEnabled.
-const (
-	CoordinateInputsDeviceInputsUmtsEnabledDISABLED CoordinateInputsDeviceInputsUmtsEnabled = "DISABLED"
-	CoordinateInputsDeviceInputsUmtsEnabledENABLED  CoordinateInputsDeviceInputsUmtsEnabled = "ENABLED"
-)
-
-// Defines values for CoordinateInputsDeviceInputsWirelessEnabled.
-const (
-	CoordinateInputsDeviceInputsWirelessEnabledDISABLED CoordinateInputsDeviceInputsWirelessEnabled = "DISABLED"
-	CoordinateInputsDeviceInputsWirelessEnabledENABLED  CoordinateInputsDeviceInputsWirelessEnabled = "ENABLED"
 )
 
 // Defines values for CoordinateTripType.
@@ -784,6 +50,738 @@ const (
 	DetectedEventTripTypePRIVATE  DetectedEventTripType = "PRIVATE"
 	DetectedEventTripTypeUNKNOWN  DetectedEventTripType = "UNKNOWN"
 	DetectedEventTripTypeWORK     DetectedEventTripType = "WORK"
+)
+
+// Defines values for DeviceInputsCanDoorLockState.
+const (
+	DeviceInputsCanDoorLockStateLOCKED       DeviceInputsCanDoorLockState = "LOCKED"
+	DeviceInputsCanDoorLockStateNOTAVAILABLE DeviceInputsCanDoorLockState = "NOT_AVAILABLE"
+	DeviceInputsCanDoorLockStateUNLOCKED     DeviceInputsCanDoorLockState = "UNLOCKED"
+)
+
+// Defines values for DeviceInputsCanIgnition.
+const (
+	DeviceInputsCanIgnitionOFF DeviceInputsCanIgnition = "OFF"
+	DeviceInputsCanIgnitionON  DeviceInputsCanIgnition = "ON"
+)
+
+// Defines values for DeviceInputsCanInterfaceConfigurationCan1AutoBaudRate.
+const (
+	DeviceInputsCanInterfaceConfigurationCan1AutoBaudRateOFF DeviceInputsCanInterfaceConfigurationCan1AutoBaudRate = "OFF"
+	DeviceInputsCanInterfaceConfigurationCan1AutoBaudRateON  DeviceInputsCanInterfaceConfigurationCan1AutoBaudRate = "ON"
+)
+
+// Defines values for DeviceInputsCanInterfaceConfigurationCan1FfFiltersStatus.
+const (
+	DeviceInputsCanInterfaceConfigurationCan1FfFiltersStatusOFF DeviceInputsCanInterfaceConfigurationCan1FfFiltersStatus = "OFF"
+	DeviceInputsCanInterfaceConfigurationCan1FfFiltersStatusON  DeviceInputsCanInterfaceConfigurationCan1FfFiltersStatus = "ON"
+)
+
+// Defines values for DeviceInputsCanInterfaceConfigurationCan1Interface.
+const (
+	DeviceInputsCanInterfaceConfigurationCan1InterfaceDXP      DeviceInputsCanInterfaceConfigurationCan1Interface = "DXP"
+	DeviceInputsCanInterfaceConfigurationCan1InterfaceFMS      DeviceInputsCanInterfaceConfigurationCan1Interface = "FMS"
+	DeviceInputsCanInterfaceConfigurationCan1InterfaceLCV      DeviceInputsCanInterfaceConfigurationCan1Interface = "LCV"
+	DeviceInputsCanInterfaceConfigurationCan1InterfaceMOBILEYE DeviceInputsCanInterfaceConfigurationCan1Interface = "MOBILEYE"
+	DeviceInputsCanInterfaceConfigurationCan1InterfaceNONE     DeviceInputsCanInterfaceConfigurationCan1Interface = "NONE"
+	DeviceInputsCanInterfaceConfigurationCan1InterfaceOBD      DeviceInputsCanInterfaceConfigurationCan1Interface = "OBD"
+	DeviceInputsCanInterfaceConfigurationCan1InterfaceTACHO    DeviceInputsCanInterfaceConfigurationCan1Interface = "TACHO"
+	DeviceInputsCanInterfaceConfigurationCan1InterfaceTRAILERS DeviceInputsCanInterfaceConfigurationCan1Interface = "TRAILERS"
+)
+
+// Defines values for DeviceInputsCanInterfaceConfigurationCan1Mode.
+const (
+	DeviceInputsCanInterfaceConfigurationCan1ModeACTIVE DeviceInputsCanInterfaceConfigurationCan1Mode = "ACTIVE"
+	DeviceInputsCanInterfaceConfigurationCan1ModeSILENT DeviceInputsCanInterfaceConfigurationCan1Mode = "SILENT"
+)
+
+// Defines values for DeviceInputsCanInterfaceConfigurationCan1Status.
+const (
+	DeviceInputsCanInterfaceConfigurationCan1StatusACTIVE   DeviceInputsCanInterfaceConfigurationCan1Status = "ACTIVE"
+	DeviceInputsCanInterfaceConfigurationCan1StatusINACTIVE DeviceInputsCanInterfaceConfigurationCan1Status = "INACTIVE"
+)
+
+// Defines values for DeviceInputsCanInterfaceConfigurationCan2AutoBaudRate.
+const (
+	DeviceInputsCanInterfaceConfigurationCan2AutoBaudRateOFF DeviceInputsCanInterfaceConfigurationCan2AutoBaudRate = "OFF"
+	DeviceInputsCanInterfaceConfigurationCan2AutoBaudRateON  DeviceInputsCanInterfaceConfigurationCan2AutoBaudRate = "ON"
+)
+
+// Defines values for DeviceInputsCanInterfaceConfigurationCan2FfFiltersStatus.
+const (
+	DeviceInputsCanInterfaceConfigurationCan2FfFiltersStatusOFF DeviceInputsCanInterfaceConfigurationCan2FfFiltersStatus = "OFF"
+	DeviceInputsCanInterfaceConfigurationCan2FfFiltersStatusON  DeviceInputsCanInterfaceConfigurationCan2FfFiltersStatus = "ON"
+)
+
+// Defines values for DeviceInputsCanInterfaceConfigurationCan2Interface.
+const (
+	DeviceInputsCanInterfaceConfigurationCan2InterfaceDXP      DeviceInputsCanInterfaceConfigurationCan2Interface = "DXP"
+	DeviceInputsCanInterfaceConfigurationCan2InterfaceFMS      DeviceInputsCanInterfaceConfigurationCan2Interface = "FMS"
+	DeviceInputsCanInterfaceConfigurationCan2InterfaceLCV      DeviceInputsCanInterfaceConfigurationCan2Interface = "LCV"
+	DeviceInputsCanInterfaceConfigurationCan2InterfaceMOBILEYE DeviceInputsCanInterfaceConfigurationCan2Interface = "MOBILEYE"
+	DeviceInputsCanInterfaceConfigurationCan2InterfaceNONE     DeviceInputsCanInterfaceConfigurationCan2Interface = "NONE"
+	DeviceInputsCanInterfaceConfigurationCan2InterfaceOBD      DeviceInputsCanInterfaceConfigurationCan2Interface = "OBD"
+	DeviceInputsCanInterfaceConfigurationCan2InterfaceTACHO    DeviceInputsCanInterfaceConfigurationCan2Interface = "TACHO"
+	DeviceInputsCanInterfaceConfigurationCan2InterfaceTRAILERS DeviceInputsCanInterfaceConfigurationCan2Interface = "TRAILERS"
+)
+
+// Defines values for DeviceInputsCanInterfaceConfigurationCan2Mode.
+const (
+	DeviceInputsCanInterfaceConfigurationCan2ModeACTIVE DeviceInputsCanInterfaceConfigurationCan2Mode = "ACTIVE"
+	DeviceInputsCanInterfaceConfigurationCan2ModeSILENT DeviceInputsCanInterfaceConfigurationCan2Mode = "SILENT"
+)
+
+// Defines values for DeviceInputsCanInterfaceConfigurationCan2Status.
+const (
+	DeviceInputsCanInterfaceConfigurationCan2StatusACTIVE   DeviceInputsCanInterfaceConfigurationCan2Status = "ACTIVE"
+	DeviceInputsCanInterfaceConfigurationCan2StatusINACTIVE DeviceInputsCanInterfaceConfigurationCan2Status = "INACTIVE"
+)
+
+// Defines values for DeviceInputsCanLcvConfigurationCan1Group.
+const (
+	DeviceInputsCanLcvConfigurationCan1GroupBMW        DeviceInputsCanLcvConfigurationCan1Group = "BMW"
+	DeviceInputsCanLcvConfigurationCan1GroupCHRYSLER   DeviceInputsCanLcvConfigurationCan1Group = "CHRYSLER"
+	DeviceInputsCanLcvConfigurationCan1GroupCITROEN    DeviceInputsCanLcvConfigurationCan1Group = "CITROEN"
+	DeviceInputsCanLcvConfigurationCan1GroupCLAAS      DeviceInputsCanLcvConfigurationCan1Group = "CLAAS"
+	DeviceInputsCanLcvConfigurationCan1GroupFIAT       DeviceInputsCanLcvConfigurationCan1Group = "FIAT"
+	DeviceInputsCanLcvConfigurationCan1GroupFORD       DeviceInputsCanLcvConfigurationCan1Group = "FORD"
+	DeviceInputsCanLcvConfigurationCan1GroupHITACHI    DeviceInputsCanLcvConfigurationCan1Group = "HITACHI"
+	DeviceInputsCanLcvConfigurationCan1GroupHONDA      DeviceInputsCanLcvConfigurationCan1Group = "HONDA"
+	DeviceInputsCanLcvConfigurationCan1GroupHYUNDAI    DeviceInputsCanLcvConfigurationCan1Group = "HYUNDAI"
+	DeviceInputsCanLcvConfigurationCan1GroupINFINITI   DeviceInputsCanLcvConfigurationCan1Group = "INFINITI"
+	DeviceInputsCanLcvConfigurationCan1GroupISUZU      DeviceInputsCanLcvConfigurationCan1Group = "ISUZU"
+	DeviceInputsCanLcvConfigurationCan1GroupJAGUAR     DeviceInputsCanLcvConfigurationCan1Group = "JAGUAR"
+	DeviceInputsCanLcvConfigurationCan1GroupKIA        DeviceInputsCanLcvConfigurationCan1Group = "KIA"
+	DeviceInputsCanLcvConfigurationCan1GroupKOMATSU    DeviceInputsCanLcvConfigurationCan1Group = "KOMATSU"
+	DeviceInputsCanLcvConfigurationCan1GroupLANDROVER  DeviceInputsCanLcvConfigurationCan1Group = "LANDROVER"
+	DeviceInputsCanLcvConfigurationCan1GroupLEXUS      DeviceInputsCanLcvConfigurationCan1Group = "LEXUS"
+	DeviceInputsCanLcvConfigurationCan1GroupLINDE      DeviceInputsCanLcvConfigurationCan1Group = "LINDE"
+	DeviceInputsCanLcvConfigurationCan1GroupMAZDA      DeviceInputsCanLcvConfigurationCan1Group = "MAZDA"
+	DeviceInputsCanLcvConfigurationCan1GroupMERCEDES   DeviceInputsCanLcvConfigurationCan1Group = "MERCEDES"
+	DeviceInputsCanLcvConfigurationCan1GroupMITSUBISHI DeviceInputsCanLcvConfigurationCan1Group = "MITSUBISHI"
+	DeviceInputsCanLcvConfigurationCan1GroupNISSAN     DeviceInputsCanLcvConfigurationCan1Group = "NISSAN"
+	DeviceInputsCanLcvConfigurationCan1GroupOPEL       DeviceInputsCanLcvConfigurationCan1Group = "OPEL"
+	DeviceInputsCanLcvConfigurationCan1GroupPORSCHE    DeviceInputsCanLcvConfigurationCan1Group = "PORSCHE"
+	DeviceInputsCanLcvConfigurationCan1GroupRANGEROVER DeviceInputsCanLcvConfigurationCan1Group = "RANGEROVER"
+	DeviceInputsCanLcvConfigurationCan1GroupRENAULT    DeviceInputsCanLcvConfigurationCan1Group = "RENAULT"
+	DeviceInputsCanLcvConfigurationCan1GroupSAAB       DeviceInputsCanLcvConfigurationCan1Group = "SAAB"
+	DeviceInputsCanLcvConfigurationCan1GroupSSANGYONG  DeviceInputsCanLcvConfigurationCan1Group = "SSANGYONG"
+	DeviceInputsCanLcvConfigurationCan1GroupSUBARU     DeviceInputsCanLcvConfigurationCan1Group = "SUBARU"
+	DeviceInputsCanLcvConfigurationCan1GroupSUZUKI     DeviceInputsCanLcvConfigurationCan1Group = "SUZUKI"
+	DeviceInputsCanLcvConfigurationCan1GroupTOYOTA     DeviceInputsCanLcvConfigurationCan1Group = "TOYOTA"
+	DeviceInputsCanLcvConfigurationCan1GroupTRACTOR    DeviceInputsCanLcvConfigurationCan1Group = "TRACTOR"
+	DeviceInputsCanLcvConfigurationCan1GroupTRUCK      DeviceInputsCanLcvConfigurationCan1Group = "TRUCK"
+	DeviceInputsCanLcvConfigurationCan1GroupVAG        DeviceInputsCanLcvConfigurationCan1Group = "VAG"
+	DeviceInputsCanLcvConfigurationCan1GroupVOLVO      DeviceInputsCanLcvConfigurationCan1Group = "VOLVO"
+)
+
+// Defines values for DeviceInputsCanLcvConfigurationCan2Group.
+const (
+	DeviceInputsCanLcvConfigurationCan2GroupBMW        DeviceInputsCanLcvConfigurationCan2Group = "BMW"
+	DeviceInputsCanLcvConfigurationCan2GroupCHRYSLER   DeviceInputsCanLcvConfigurationCan2Group = "CHRYSLER"
+	DeviceInputsCanLcvConfigurationCan2GroupCITROEN    DeviceInputsCanLcvConfigurationCan2Group = "CITROEN"
+	DeviceInputsCanLcvConfigurationCan2GroupCLAAS      DeviceInputsCanLcvConfigurationCan2Group = "CLAAS"
+	DeviceInputsCanLcvConfigurationCan2GroupFIAT       DeviceInputsCanLcvConfigurationCan2Group = "FIAT"
+	DeviceInputsCanLcvConfigurationCan2GroupFORD       DeviceInputsCanLcvConfigurationCan2Group = "FORD"
+	DeviceInputsCanLcvConfigurationCan2GroupHITACHI    DeviceInputsCanLcvConfigurationCan2Group = "HITACHI"
+	DeviceInputsCanLcvConfigurationCan2GroupHONDA      DeviceInputsCanLcvConfigurationCan2Group = "HONDA"
+	DeviceInputsCanLcvConfigurationCan2GroupHYUNDAI    DeviceInputsCanLcvConfigurationCan2Group = "HYUNDAI"
+	DeviceInputsCanLcvConfigurationCan2GroupINFINITI   DeviceInputsCanLcvConfigurationCan2Group = "INFINITI"
+	DeviceInputsCanLcvConfigurationCan2GroupISUZU      DeviceInputsCanLcvConfigurationCan2Group = "ISUZU"
+	DeviceInputsCanLcvConfigurationCan2GroupJAGUAR     DeviceInputsCanLcvConfigurationCan2Group = "JAGUAR"
+	DeviceInputsCanLcvConfigurationCan2GroupKIA        DeviceInputsCanLcvConfigurationCan2Group = "KIA"
+	DeviceInputsCanLcvConfigurationCan2GroupKOMATSU    DeviceInputsCanLcvConfigurationCan2Group = "KOMATSU"
+	DeviceInputsCanLcvConfigurationCan2GroupLANDROVER  DeviceInputsCanLcvConfigurationCan2Group = "LANDROVER"
+	DeviceInputsCanLcvConfigurationCan2GroupLEXUS      DeviceInputsCanLcvConfigurationCan2Group = "LEXUS"
+	DeviceInputsCanLcvConfigurationCan2GroupLINDE      DeviceInputsCanLcvConfigurationCan2Group = "LINDE"
+	DeviceInputsCanLcvConfigurationCan2GroupMAZDA      DeviceInputsCanLcvConfigurationCan2Group = "MAZDA"
+	DeviceInputsCanLcvConfigurationCan2GroupMERCEDES   DeviceInputsCanLcvConfigurationCan2Group = "MERCEDES"
+	DeviceInputsCanLcvConfigurationCan2GroupMITSUBISHI DeviceInputsCanLcvConfigurationCan2Group = "MITSUBISHI"
+	DeviceInputsCanLcvConfigurationCan2GroupNISSAN     DeviceInputsCanLcvConfigurationCan2Group = "NISSAN"
+	DeviceInputsCanLcvConfigurationCan2GroupOPEL       DeviceInputsCanLcvConfigurationCan2Group = "OPEL"
+	DeviceInputsCanLcvConfigurationCan2GroupPORSCHE    DeviceInputsCanLcvConfigurationCan2Group = "PORSCHE"
+	DeviceInputsCanLcvConfigurationCan2GroupRANGEROVER DeviceInputsCanLcvConfigurationCan2Group = "RANGEROVER"
+	DeviceInputsCanLcvConfigurationCan2GroupRENAULT    DeviceInputsCanLcvConfigurationCan2Group = "RENAULT"
+	DeviceInputsCanLcvConfigurationCan2GroupSAAB       DeviceInputsCanLcvConfigurationCan2Group = "SAAB"
+	DeviceInputsCanLcvConfigurationCan2GroupSSANGYONG  DeviceInputsCanLcvConfigurationCan2Group = "SSANGYONG"
+	DeviceInputsCanLcvConfigurationCan2GroupSUBARU     DeviceInputsCanLcvConfigurationCan2Group = "SUBARU"
+	DeviceInputsCanLcvConfigurationCan2GroupSUZUKI     DeviceInputsCanLcvConfigurationCan2Group = "SUZUKI"
+	DeviceInputsCanLcvConfigurationCan2GroupTOYOTA     DeviceInputsCanLcvConfigurationCan2Group = "TOYOTA"
+	DeviceInputsCanLcvConfigurationCan2GroupTRACTOR    DeviceInputsCanLcvConfigurationCan2Group = "TRACTOR"
+	DeviceInputsCanLcvConfigurationCan2GroupTRUCK      DeviceInputsCanLcvConfigurationCan2Group = "TRUCK"
+	DeviceInputsCanLcvConfigurationCan2GroupVAG        DeviceInputsCanLcvConfigurationCan2Group = "VAG"
+	DeviceInputsCanLcvConfigurationCan2GroupVOLVO      DeviceInputsCanLcvConfigurationCan2Group = "VOLVO"
+)
+
+// Defines values for DeviceInputsCanbusBatteryCharging.
+const (
+	DeviceInputsCanbusBatteryChargingCHARGING   DeviceInputsCanbusBatteryCharging = "CHARGING"
+	DeviceInputsCanbusBatteryChargingNOCHARGING DeviceInputsCanbusBatteryCharging = "NO_CHARGING"
+)
+
+// Defines values for DeviceInputsCanbusBrakeSwitch.
+const (
+	DeviceInputsCanbusBrakeSwitchPRESSED  DeviceInputsCanbusBrakeSwitch = "PRESSED"
+	DeviceInputsCanbusBrakeSwitchRELEASED DeviceInputsCanbusBrakeSwitch = "RELEASED"
+)
+
+// Defines values for DeviceInputsCanbusClutchSwitch.
+const (
+	DeviceInputsCanbusClutchSwitchPRESSED  DeviceInputsCanbusClutchSwitch = "PRESSED"
+	DeviceInputsCanbusClutchSwitchRELEASED DeviceInputsCanbusClutchSwitch = "RELEASED"
+)
+
+// Defines values for DeviceInputsCanbusCruiseControlState.
+const (
+	DeviceInputsCanbusCruiseControlStateOFF DeviceInputsCanbusCruiseControlState = "OFF"
+	DeviceInputsCanbusCruiseControlStateON  DeviceInputsCanbusCruiseControlState = "ON"
+)
+
+// Defines values for DeviceInputsCanbusDiagnosticsSupported.
+const (
+	DeviceInputsCanbusDiagnosticsSupportedDONOTCARE    DeviceInputsCanbusDiagnosticsSupported = "DO_NOT_CARE"
+	DeviceInputsCanbusDiagnosticsSupportedNOTSUPPORTED DeviceInputsCanbusDiagnosticsSupported = "NOT_SUPPORTED"
+	DeviceInputsCanbusDiagnosticsSupportedRESERVED     DeviceInputsCanbusDiagnosticsSupported = "RESERVED"
+	DeviceInputsCanbusDiagnosticsSupportedSUPPORTED    DeviceInputsCanbusDiagnosticsSupported = "SUPPORTED"
+)
+
+// Defines values for DeviceInputsCanbusDirectionIndicator.
+const (
+	DeviceInputsCanbusDirectionIndicatorFORWARD DeviceInputsCanbusDirectionIndicator = "FORWARD"
+	DeviceInputsCanbusDirectionIndicatorREVERSE DeviceInputsCanbusDirectionIndicator = "REVERSE"
+)
+
+// Defines values for DeviceInputsCanbusDriver1Card.
+const (
+	DeviceInputsCanbusDriver1CardCARDNOTPRESENT DeviceInputsCanbusDriver1Card = "CARD_NOT_PRESENT"
+	DeviceInputsCanbusDriver1CardCARDPRESENT    DeviceInputsCanbusDriver1Card = "CARD_PRESENT"
+	DeviceInputsCanbusDriver1CardERROR          DeviceInputsCanbusDriver1Card = "ERROR"
+	DeviceInputsCanbusDriver1CardNOTAVAILABLE   DeviceInputsCanbusDriver1Card = "NOT_AVAILABLE"
+)
+
+// Defines values for DeviceInputsCanbusDriver1State.
+const (
+	DeviceInputsCanbusDriver1StateDRIVE           DeviceInputsCanbusDriver1State = "DRIVE"
+	DeviceInputsCanbusDriver1StateDRIVERAVAILABLE DeviceInputsCanbusDriver1State = "DRIVER_AVAILABLE"
+	DeviceInputsCanbusDriver1StateERROR           DeviceInputsCanbusDriver1State = "ERROR"
+	DeviceInputsCanbusDriver1StateNOTAVAILABLE    DeviceInputsCanbusDriver1State = "NOT_AVAILABLE"
+	DeviceInputsCanbusDriver1StateREST            DeviceInputsCanbusDriver1State = "REST"
+	DeviceInputsCanbusDriver1StateWORK            DeviceInputsCanbusDriver1State = "WORK"
+)
+
+// Defines values for DeviceInputsCanbusDriver1Time.
+const (
+	DeviceInputsCanbusDriver1TimeERROR           DeviceInputsCanbusDriver1Time = "ERROR"
+	DeviceInputsCanbusDriver1TimeN15MINBEFORE16H DeviceInputsCanbusDriver1Time = "15_MIN_BEFORE_16H"
+	DeviceInputsCanbusDriver1TimeN15MINBEFORE45H DeviceInputsCanbusDriver1Time = "15_MIN_BEFORE_4,5H"
+	DeviceInputsCanbusDriver1TimeN15MINBEFORE9H  DeviceInputsCanbusDriver1Time = "15_MIN_BEFORE_9H"
+	DeviceInputsCanbusDriver1TimeN16HREACHED     DeviceInputsCanbusDriver1Time = "16H_REACHED"
+	DeviceInputsCanbusDriver1TimeN45HREACHED     DeviceInputsCanbusDriver1Time = "4,5H_REACHED"
+	DeviceInputsCanbusDriver1TimeN9HREACHED      DeviceInputsCanbusDriver1Time = "9H_REACHED"
+	DeviceInputsCanbusDriver1TimeNORMAL          DeviceInputsCanbusDriver1Time = "NORMAL"
+	DeviceInputsCanbusDriver1TimeNOTAVAILABLE    DeviceInputsCanbusDriver1Time = "NOT_AVAILABLE"
+)
+
+// Defines values for DeviceInputsCanbusDriver2Card.
+const (
+	DeviceInputsCanbusDriver2CardCARDNOTPRESENT DeviceInputsCanbusDriver2Card = "CARD_NOT_PRESENT"
+	DeviceInputsCanbusDriver2CardCARDPRESENT    DeviceInputsCanbusDriver2Card = "CARD_PRESENT"
+	DeviceInputsCanbusDriver2CardERROR          DeviceInputsCanbusDriver2Card = "ERROR"
+	DeviceInputsCanbusDriver2CardNOTAVAILABLE   DeviceInputsCanbusDriver2Card = "NOT_AVAILABLE"
+)
+
+// Defines values for DeviceInputsCanbusDriver2State.
+const (
+	DeviceInputsCanbusDriver2StateDRIVE           DeviceInputsCanbusDriver2State = "DRIVE"
+	DeviceInputsCanbusDriver2StateDRIVERAVAILABLE DeviceInputsCanbusDriver2State = "DRIVER_AVAILABLE"
+	DeviceInputsCanbusDriver2StateERROR           DeviceInputsCanbusDriver2State = "ERROR"
+	DeviceInputsCanbusDriver2StateNOTAVAILABLE    DeviceInputsCanbusDriver2State = "NOT_AVAILABLE"
+	DeviceInputsCanbusDriver2StateREST            DeviceInputsCanbusDriver2State = "REST"
+	DeviceInputsCanbusDriver2StateWORK            DeviceInputsCanbusDriver2State = "WORK"
+)
+
+// Defines values for DeviceInputsCanbusDriver2Time.
+const (
+	DeviceInputsCanbusDriver2TimeERROR           DeviceInputsCanbusDriver2Time = "ERROR"
+	DeviceInputsCanbusDriver2TimeN15MINBEFORE16H DeviceInputsCanbusDriver2Time = "15_MIN_BEFORE_16H"
+	DeviceInputsCanbusDriver2TimeN15MINBEFORE45H DeviceInputsCanbusDriver2Time = "15_MIN_BEFORE_4,5H"
+	DeviceInputsCanbusDriver2TimeN15MINBEFORE9H  DeviceInputsCanbusDriver2Time = "15_MIN_BEFORE_9H"
+	DeviceInputsCanbusDriver2TimeN16HREACHED     DeviceInputsCanbusDriver2Time = "16H_REACHED"
+	DeviceInputsCanbusDriver2TimeN45HREACHED     DeviceInputsCanbusDriver2Time = "4,5H_REACHED"
+	DeviceInputsCanbusDriver2TimeN9HREACHED      DeviceInputsCanbusDriver2Time = "9H_REACHED"
+	DeviceInputsCanbusDriver2TimeNORMAL          DeviceInputsCanbusDriver2Time = "NORMAL"
+	DeviceInputsCanbusDriver2TimeNOTAVAILABLE    DeviceInputsCanbusDriver2Time = "NOT_AVAILABLE"
+)
+
+// Defines values for DeviceInputsCanbusHandlingInformation.
+const (
+	DeviceInputsCanbusHandlingInformationHANDLINGINFORMATION   DeviceInputsCanbusHandlingInformation = "HANDLING_INFORMATION"
+	DeviceInputsCanbusHandlingInformationNOHANDLINGINFORMATION DeviceInputsCanbusHandlingInformation = "NO_HANDLING_INFORMATION"
+)
+
+// Defines values for DeviceInputsCanbusParkingBrakeSwitch.
+const (
+	DeviceInputsCanbusParkingBrakeSwitchOFF DeviceInputsCanbusParkingBrakeSwitch = "OFF"
+	DeviceInputsCanbusParkingBrakeSwitchON  DeviceInputsCanbusParkingBrakeSwitch = "ON"
+)
+
+// Defines values for DeviceInputsCanbusPto.
+const (
+	DeviceInputsCanbusPtoATLEASTONEPTODRIVER DeviceInputsCanbusPto = "AT_LEAST_ONE_PTO_DRIVER"
+	DeviceInputsCanbusPtoERROR               DeviceInputsCanbusPto = "ERROR"
+	DeviceInputsCanbusPtoNOPTODRIVER         DeviceInputsCanbusPto = "NO_PTO_DRIVER"
+	DeviceInputsCanbusPtoNOTAVAILABLE        DeviceInputsCanbusPto = "NOT_AVAILABLE"
+)
+
+// Defines values for DeviceInputsCanbusPtoState.
+const (
+	DeviceInputsCanbusPtoStateNOTAVAILABLE DeviceInputsCanbusPtoState = "NOT_AVAILABLE"
+	DeviceInputsCanbusPtoStateOFFDISABLED  DeviceInputsCanbusPtoState = "OFF_DISABLED"
+	DeviceInputsCanbusPtoStateSET          DeviceInputsCanbusPtoState = "SET"
+)
+
+// Defines values for DeviceInputsCanbusRequestSupported.
+const (
+	DeviceInputsCanbusRequestSupportedDONOTCARE    DeviceInputsCanbusRequestSupported = "DO_NOT_CARE"
+	DeviceInputsCanbusRequestSupportedNOTSUPPORTED DeviceInputsCanbusRequestSupported = "NOT_SUPPORTED"
+	DeviceInputsCanbusRequestSupportedRESERVED     DeviceInputsCanbusRequestSupported = "RESERVED"
+	DeviceInputsCanbusRequestSupportedSUPPORTED    DeviceInputsCanbusRequestSupported = "SUPPORTED"
+)
+
+// Defines values for DeviceInputsCanbusSystemEvent.
+const (
+	DeviceInputsCanbusSystemEventNOTACHOEVENT DeviceInputsCanbusSystemEvent = "NO_TACHO_EVENT"
+	DeviceInputsCanbusSystemEventTACHOEVENT   DeviceInputsCanbusSystemEvent = "TACHO_EVENT"
+)
+
+// Defines values for DeviceInputsCanbusVehicleMotion.
+const (
+	DeviceInputsCanbusVehicleMotionDETECTED    DeviceInputsCanbusVehicleMotion = "DETECTED"
+	DeviceInputsCanbusVehicleMotionNOTDETECTED DeviceInputsCanbusVehicleMotion = "NOT_DETECTED"
+)
+
+// Defines values for DeviceInputsCustomIgnition.
+const (
+	DeviceInputsCustomIgnitionOFF DeviceInputsCustomIgnition = "OFF"
+	DeviceInputsCustomIgnitionON  DeviceInputsCustomIgnition = "ON"
+)
+
+// Defines values for DeviceInputsDout1Status.
+const (
+	DeviceInputsDout1StatusACTIVE   DeviceInputsDout1Status = "ACTIVE"
+	DeviceInputsDout1StatusINACTIVE DeviceInputsDout1Status = "INACTIVE"
+)
+
+// Defines values for DeviceInputsDout2Status.
+const (
+	DeviceInputsDout2StatusACTIVE   DeviceInputsDout2Status = "ACTIVE"
+	DeviceInputsDout2StatusINACTIVE DeviceInputsDout2Status = "INACTIVE"
+)
+
+// Defines values for DeviceInputsDriver1State.
+const (
+	DeviceInputsDriver1StateDRIVE           DeviceInputsDriver1State = "DRIVE"
+	DeviceInputsDriver1StateDRIVERAVAILABLE DeviceInputsDriver1State = "DRIVER_AVAILABLE"
+	DeviceInputsDriver1StateERROR           DeviceInputsDriver1State = "ERROR"
+	DeviceInputsDriver1StateNOTAVAILABLE    DeviceInputsDriver1State = "NOT_AVAILABLE"
+	DeviceInputsDriver1StateREST            DeviceInputsDriver1State = "REST"
+	DeviceInputsDriver1StateWORK            DeviceInputsDriver1State = "WORK"
+)
+
+// Defines values for DeviceInputsDriver2State.
+const (
+	DeviceInputsDriver2StateDRIVE           DeviceInputsDriver2State = "DRIVE"
+	DeviceInputsDriver2StateDRIVERAVAILABLE DeviceInputsDriver2State = "DRIVER_AVAILABLE"
+	DeviceInputsDriver2StateERROR           DeviceInputsDriver2State = "ERROR"
+	DeviceInputsDriver2StateNOTAVAILABLE    DeviceInputsDriver2State = "NOT_AVAILABLE"
+	DeviceInputsDriver2StateREST            DeviceInputsDriver2State = "REST"
+	DeviceInputsDriver2StateWORK            DeviceInputsDriver2State = "WORK"
+)
+
+// Defines values for DeviceInputsDxpSwitchesSwitch1.
+const (
+	DeviceInputsDxpSwitchesSwitch1OFF DeviceInputsDxpSwitchesSwitch1 = "OFF"
+	DeviceInputsDxpSwitchesSwitch1ON  DeviceInputsDxpSwitchesSwitch1 = "ON"
+)
+
+// Defines values for DeviceInputsDxpSwitchesSwitch2.
+const (
+	DeviceInputsDxpSwitchesSwitch2OFF DeviceInputsDxpSwitchesSwitch2 = "OFF"
+	DeviceInputsDxpSwitchesSwitch2ON  DeviceInputsDxpSwitchesSwitch2 = "ON"
+)
+
+// Defines values for DeviceInputsDxpSwitchesSwitch3.
+const (
+	DeviceInputsDxpSwitchesSwitch3OFF DeviceInputsDxpSwitchesSwitch3 = "OFF"
+	DeviceInputsDxpSwitchesSwitch3ON  DeviceInputsDxpSwitchesSwitch3 = "ON"
+)
+
+// Defines values for DeviceInputsDxpSwitchesSwitch4.
+const (
+	DeviceInputsDxpSwitchesSwitch4OFF DeviceInputsDxpSwitchesSwitch4 = "OFF"
+	DeviceInputsDxpSwitchesSwitch4ON  DeviceInputsDxpSwitchesSwitch4 = "ON"
+)
+
+// Defines values for DeviceInputsDxpSwitchesSwitch5.
+const (
+	DeviceInputsDxpSwitchesSwitch5OFF DeviceInputsDxpSwitchesSwitch5 = "OFF"
+	DeviceInputsDxpSwitchesSwitch5ON  DeviceInputsDxpSwitchesSwitch5 = "ON"
+)
+
+// Defines values for DeviceInputsDxpSwitchesSwitch6.
+const (
+	DeviceInputsDxpSwitchesSwitch6OFF DeviceInputsDxpSwitchesSwitch6 = "OFF"
+	DeviceInputsDxpSwitchesSwitch6ON  DeviceInputsDxpSwitchesSwitch6 = "ON"
+)
+
+// Defines values for DeviceInputsDxpSwitchesSwitch7.
+const (
+	DeviceInputsDxpSwitchesSwitch7OFF DeviceInputsDxpSwitchesSwitch7 = "OFF"
+	DeviceInputsDxpSwitchesSwitch7ON  DeviceInputsDxpSwitchesSwitch7 = "ON"
+)
+
+// Defines values for DeviceInputsDxpSwitchesSwitch8.
+const (
+	DeviceInputsDxpSwitchesSwitch8OFF DeviceInputsDxpSwitchesSwitch8 = "OFF"
+	DeviceInputsDxpSwitchesSwitch8ON  DeviceInputsDxpSwitchesSwitch8 = "ON"
+)
+
+// Defines values for DeviceInputsEcodriveIdlingState.
+const (
+	DeviceInputsEcodriveIdlingStateIDLING   DeviceInputsEcodriveIdlingState = "IDLING"
+	DeviceInputsEcodriveIdlingStateNOIDLING DeviceInputsEcodriveIdlingState = "NO_IDLING"
+)
+
+// Defines values for DeviceInputsGnssAntenna.
+const (
+	DeviceInputsGnssAntennaDISABLED DeviceInputsGnssAntenna = "DISABLED"
+	DeviceInputsGnssAntennaENABLED  DeviceInputsGnssAntenna = "ENABLED"
+	DeviceInputsGnssAntennaUNKNOWN  DeviceInputsGnssAntenna = "UNKNOWN"
+)
+
+// Defines values for DeviceInputsGprsStatus.
+const (
+	DeviceInputsGprsStatusCONNECTED    DeviceInputsGprsStatus = "CONNECTED"
+	DeviceInputsGprsStatusDISCONNECTED DeviceInputsGprsStatus = "DISCONNECTED"
+)
+
+// Defines values for DeviceInputsIgnitionPlugtrack.
+const (
+	DeviceInputsIgnitionPlugtrackOFF DeviceInputsIgnitionPlugtrack = "OFF"
+	DeviceInputsIgnitionPlugtrackON  DeviceInputsIgnitionPlugtrack = "ON"
+)
+
+// Defines values for DeviceInputsLcvDriverDoors.
+const (
+	DeviceInputsLcvDriverDoorsCLOSE DeviceInputsLcvDriverDoors = "CLOSE"
+	DeviceInputsLcvDriverDoorsOPEN  DeviceInputsLcvDriverDoors = "OPEN"
+)
+
+// Defines values for DeviceInputsLcvHood.
+const (
+	DeviceInputsLcvHoodCLOSE DeviceInputsLcvHood = "CLOSE"
+	DeviceInputsLcvHoodOPEN  DeviceInputsLcvHood = "OPEN"
+)
+
+// Defines values for DeviceInputsLcvLeftBackDoors.
+const (
+	DeviceInputsLcvLeftBackDoorsCLOSE DeviceInputsLcvLeftBackDoors = "CLOSE"
+	DeviceInputsLcvLeftBackDoorsOPEN  DeviceInputsLcvLeftBackDoors = "OPEN"
+)
+
+// Defines values for DeviceInputsLcvPassengerDoors.
+const (
+	DeviceInputsLcvPassengerDoorsCLOSE DeviceInputsLcvPassengerDoors = "CLOSE"
+	DeviceInputsLcvPassengerDoorsOPEN  DeviceInputsLcvPassengerDoors = "OPEN"
+)
+
+// Defines values for DeviceInputsLcvRightBackDoors.
+const (
+	DeviceInputsLcvRightBackDoorsCLOSE DeviceInputsLcvRightBackDoors = "CLOSE"
+	DeviceInputsLcvRightBackDoorsOPEN  DeviceInputsLcvRightBackDoors = "OPEN"
+)
+
+// Defines values for DeviceInputsLcvTrunk.
+const (
+	DeviceInputsLcvTrunkCLOSE DeviceInputsLcvTrunk = "CLOSE"
+	DeviceInputsLcvTrunkOPEN  DeviceInputsLcvTrunk = "OPEN"
+)
+
+// Defines values for DeviceInputsMobileyeDuskTimeIndicator.
+const (
+	DeviceInputsMobileyeDuskTimeIndicatorDAY  DeviceInputsMobileyeDuskTimeIndicator = "DAY"
+	DeviceInputsMobileyeDuskTimeIndicatorDUSK DeviceInputsMobileyeDuskTimeIndicator = "DUSK"
+)
+
+// Defines values for DeviceInputsMobileyeHeadwayWarningLevel.
+const (
+	DeviceInputsMobileyeHeadwayWarningLevelCIPVWITHHWMORETHANHWCONFIG DeviceInputsMobileyeHeadwayWarningLevel = "CIPV_WITH_HW_MORE_THAN_HW_CONFIG"
+	DeviceInputsMobileyeHeadwayWarningLevelCIPVWITHLESSTHANHWCONFIG   DeviceInputsMobileyeHeadwayWarningLevel = "CIPV_WITH_LESS_THAN_HW_CONFIG"
+	DeviceInputsMobileyeHeadwayWarningLevelNOCOPV                     DeviceInputsMobileyeHeadwayWarningLevel = "NO_COPV"
+)
+
+// Defines values for DeviceInputsMobileyeHiBeam.
+const (
+	DeviceInputsMobileyeHiBeamOFF DeviceInputsMobileyeHiBeam = "OFF"
+	DeviceInputsMobileyeHiBeamON  DeviceInputsMobileyeHiBeam = "ON"
+)
+
+// Defines values for DeviceInputsMobileyeLowBeam.
+const (
+	DeviceInputsMobileyeLowBeamOFF DeviceInputsMobileyeLowBeam = "OFF"
+	DeviceInputsMobileyeLowBeamON  DeviceInputsMobileyeLowBeam = "ON"
+)
+
+// Defines values for DeviceInputsMobileyeMaintenance.
+const (
+	DeviceInputsMobileyeMaintenanceERROR   DeviceInputsMobileyeMaintenance = "ERROR"
+	DeviceInputsMobileyeMaintenanceNOERROR DeviceInputsMobileyeMaintenance = "NO_ERROR"
+)
+
+// Defines values for DeviceInputsMobileyeNightTimeIndicator.
+const (
+	DeviceInputsMobileyeNightTimeIndicatorDAY   DeviceInputsMobileyeNightTimeIndicator = "DAY"
+	DeviceInputsMobileyeNightTimeIndicatorNIGHT DeviceInputsMobileyeNightTimeIndicator = "NIGHT"
+)
+
+// Defines values for DeviceInputsMobileyeSoundType.
+const (
+	DeviceInputsMobileyeSoundTypeFCWPCW   DeviceInputsMobileyeSoundType = "FCW_PCW"
+	DeviceInputsMobileyeSoundTypeHW1      DeviceInputsMobileyeSoundType = "HW1"
+	DeviceInputsMobileyeSoundTypeLDWL     DeviceInputsMobileyeSoundType = "LDWL"
+	DeviceInputsMobileyeSoundTypeLDWR     DeviceInputsMobileyeSoundType = "LDWR"
+	DeviceInputsMobileyeSoundTypePEDSINDZ DeviceInputsMobileyeSoundType = "PEDS_IN_DZ"
+	DeviceInputsMobileyeSoundTypeSILENT   DeviceInputsMobileyeSoundType = "SILENT"
+	DeviceInputsMobileyeSoundTypeTSR      DeviceInputsMobileyeSoundType = "TSR"
+	DeviceInputsMobileyeSoundTypeUFCW     DeviceInputsMobileyeSoundType = "UFCW"
+)
+
+// Defines values for DeviceInputsMobileyeTamperAlert.
+const (
+	DeviceInputsMobileyeTamperAlertOFF DeviceInputsMobileyeTamperAlert = "OFF"
+	DeviceInputsMobileyeTamperAlertON  DeviceInputsMobileyeTamperAlert = "ON"
+)
+
+// Defines values for DeviceInputsMobileyeWipers.
+const (
+	DeviceInputsMobileyeWipersOFF DeviceInputsMobileyeWipers = "OFF"
+	DeviceInputsMobileyeWipersON  DeviceInputsMobileyeWipers = "ON"
+)
+
+// Defines values for DeviceInputsMovement.
+const (
+	DeviceInputsMovementMOVING DeviceInputsMovement = "MOVING"
+	DeviceInputsMovementSTILL  DeviceInputsMovement = "STILL"
+)
+
+// Defines values for DeviceInputsObdKlineTypeOfFuel.
+const (
+	DeviceInputsObdKlineTypeOfFuelBIFUELDIESEL                             DeviceInputsObdKlineTypeOfFuel = "BIFUEL_DIESEL"
+	DeviceInputsObdKlineTypeOfFuelBIFUELRUNNINGCNG                         DeviceInputsObdKlineTypeOfFuel = "BIFUEL_RUNNING_CNG"
+	DeviceInputsObdKlineTypeOfFuelBIFUELRUNNINGELECTRICANDCOMBUSTIONENGINE DeviceInputsObdKlineTypeOfFuel = "BIFUEL_RUNNING_ELECTRIC_AND_COMBUSTION_ENGINE"
+	DeviceInputsObdKlineTypeOfFuelBIFUELRUNNINGELECTRICITY                 DeviceInputsObdKlineTypeOfFuel = "BIFUEL_RUNNING_ELECTRICITY"
+	DeviceInputsObdKlineTypeOfFuelBIFUELRUNNINGETHANOL                     DeviceInputsObdKlineTypeOfFuel = "BIFUEL_RUNNING_ETHANOL"
+	DeviceInputsObdKlineTypeOfFuelBIFUELRUNNINGGASOLINE                    DeviceInputsObdKlineTypeOfFuel = "BIFUEL_RUNNING_GASOLINE"
+	DeviceInputsObdKlineTypeOfFuelBIFUELRUNNINGLPG                         DeviceInputsObdKlineTypeOfFuel = "BIFUEL_RUNNING_LPG"
+	DeviceInputsObdKlineTypeOfFuelBIFUELRUNNINGMETHANOL                    DeviceInputsObdKlineTypeOfFuel = "BIFUEL_RUNNING_METHANOL"
+	DeviceInputsObdKlineTypeOfFuelBIFUELRUNNINGPROPANE                     DeviceInputsObdKlineTypeOfFuel = "BIFUEL_RUNNING_PROPANE"
+	DeviceInputsObdKlineTypeOfFuelCNG                                      DeviceInputsObdKlineTypeOfFuel = "CNG"
+	DeviceInputsObdKlineTypeOfFuelDIESEL                                   DeviceInputsObdKlineTypeOfFuel = "DIESEL"
+	DeviceInputsObdKlineTypeOfFuelELECTRIC                                 DeviceInputsObdKlineTypeOfFuel = "ELECTRIC"
+	DeviceInputsObdKlineTypeOfFuelETHANOL                                  DeviceInputsObdKlineTypeOfFuel = "ETHANOL"
+	DeviceInputsObdKlineTypeOfFuelGASOLINE                                 DeviceInputsObdKlineTypeOfFuel = "GASOLINE"
+	DeviceInputsObdKlineTypeOfFuelHYBRIDDIESEL                             DeviceInputsObdKlineTypeOfFuel = "HYBRID_DIESEL"
+	DeviceInputsObdKlineTypeOfFuelHYBRIDELECTRIC                           DeviceInputsObdKlineTypeOfFuel = "HYBRID_ELECTRIC"
+	DeviceInputsObdKlineTypeOfFuelHYBRIDETHANOL                            DeviceInputsObdKlineTypeOfFuel = "HYBRID_ETHANOL"
+	DeviceInputsObdKlineTypeOfFuelHYBRIDGASOLINE                           DeviceInputsObdKlineTypeOfFuel = "HYBRID_GASOLINE"
+	DeviceInputsObdKlineTypeOfFuelHYBRIDREGENERATIVE                       DeviceInputsObdKlineTypeOfFuel = "HYBRID_REGENERATIVE"
+	DeviceInputsObdKlineTypeOfFuelHYBRIDRUNNINGELECTRICANDCOMBUSTIONENGINE DeviceInputsObdKlineTypeOfFuel = "HYBRID_RUNNING_ELECTRIC_AND_COMBUSTION_ENGINE"
+	DeviceInputsObdKlineTypeOfFuelLPG                                      DeviceInputsObdKlineTypeOfFuel = "LPG"
+	DeviceInputsObdKlineTypeOfFuelMETHANOL                                 DeviceInputsObdKlineTypeOfFuel = "METHANOL"
+	DeviceInputsObdKlineTypeOfFuelNOTAVAILABLE                             DeviceInputsObdKlineTypeOfFuel = "NOT_AVAILABLE"
+	DeviceInputsObdKlineTypeOfFuelPROPANE                                  DeviceInputsObdKlineTypeOfFuel = "PROPANE"
+)
+
+// Defines values for DeviceInputsOverspeedingEvents.
+const (
+	DeviceInputsOverspeedingEventsNOOVERSPEED DeviceInputsOverspeedingEvents = "NO_OVERSPEED"
+	DeviceInputsOverspeedingEventsOVERSPEED   DeviceInputsOverspeedingEvents = "OVERSPEED"
+)
+
+// Defines values for DeviceInputsPriority.
+const (
+	DeviceInputsPriorityHIGH DeviceInputsPriority = "HIGH"
+	DeviceInputsPriorityLOW  DeviceInputsPriority = "LOW"
+)
+
+// Defines values for DeviceInputsSleepTimer.
+const (
+	DeviceInputsSleepTimerDEVICEWAKEUPBYTIMEREVENT DeviceInputsSleepTimer = "DEVICE_WAKE_UP_BY_TIMER_EVENT"
+	DeviceInputsSleepTimerNOEVENT                  DeviceInputsSleepTimer = "NO_EVENT"
+)
+
+// Defines values for DeviceInputsTachoStatus.
+const (
+	DeviceInputsTachoStatusNORMALPERFORMANCE   DeviceInputsTachoStatus = "NORMAL_PERFORMANCE"
+	DeviceInputsTachoStatusPERFORMANCEANALYSIS DeviceInputsTachoStatus = "PERFORMANCE_ANALYSIS"
+)
+
+// Defines values for DeviceInputsTcoFirstDriverCard.
+const (
+	DeviceInputsTcoFirstDriverCardINSERTED    DeviceInputsTcoFirstDriverCard = "INSERTED"
+	DeviceInputsTcoFirstDriverCardNOTINSERTED DeviceInputsTcoFirstDriverCard = "NOT_INSERTED"
+)
+
+// Defines values for DeviceInputsTcoFirstDriverState.
+const (
+	DeviceInputsTcoFirstDriverStateDRIVE           DeviceInputsTcoFirstDriverState = "DRIVE"
+	DeviceInputsTcoFirstDriverStateDRIVERAVAILABLE DeviceInputsTcoFirstDriverState = "DRIVER_AVAILABLE"
+	DeviceInputsTcoFirstDriverStateERROR           DeviceInputsTcoFirstDriverState = "ERROR"
+	DeviceInputsTcoFirstDriverStateNOTAVAILABLE    DeviceInputsTcoFirstDriverState = "NOT_AVAILABLE"
+	DeviceInputsTcoFirstDriverStateREST            DeviceInputsTcoFirstDriverState = "REST"
+	DeviceInputsTcoFirstDriverStateWORK            DeviceInputsTcoFirstDriverState = "WORK"
+)
+
+// Defines values for DeviceInputsTcoSecondDriverCard.
+const (
+	DeviceInputsTcoSecondDriverCardINSERTED    DeviceInputsTcoSecondDriverCard = "INSERTED"
+	DeviceInputsTcoSecondDriverCardNOTINSERTED DeviceInputsTcoSecondDriverCard = "NOT_INSERTED"
+)
+
+// Defines values for DeviceInputsTcoSecondDriverState.
+const (
+	DeviceInputsTcoSecondDriverStateDRIVE           DeviceInputsTcoSecondDriverState = "DRIVE"
+	DeviceInputsTcoSecondDriverStateDRIVERAVAILABLE DeviceInputsTcoSecondDriverState = "DRIVER_AVAILABLE"
+	DeviceInputsTcoSecondDriverStateERROR           DeviceInputsTcoSecondDriverState = "ERROR"
+	DeviceInputsTcoSecondDriverStateNOTAVAILABLE    DeviceInputsTcoSecondDriverState = "NOT_AVAILABLE"
+	DeviceInputsTcoSecondDriverStateREST            DeviceInputsTcoSecondDriverState = "REST"
+	DeviceInputsTcoSecondDriverStateWORK            DeviceInputsTcoSecondDriverState = "WORK"
+)
+
+// Defines values for DeviceInputsThermokingAlarmType.
+const (
+	DeviceInputsThermokingAlarmTypeIMMEDIATEATTENTIONREQUIRED          DeviceInputsThermokingAlarmType = "IMMEDIATE_ATTENTION_REQUIRED"
+	DeviceInputsThermokingAlarmTypeLOGSTOREDORROUTINEMAINTENANCE       DeviceInputsThermokingAlarmType = "LOG_STORED_OR_ROUTINE_MAINTENANCE"
+	DeviceInputsThermokingAlarmTypeLOWFUEL                             DeviceInputsThermokingAlarmType = "LOW_FUEL"
+	DeviceInputsThermokingAlarmTypeMAINTENANCEPASTDUE                  DeviceInputsThermokingAlarmType = "MAINTENANCE_PAST_DUE"
+	DeviceInputsThermokingAlarmTypeNOALARM                             DeviceInputsThermokingAlarmType = "NO_ALARM"
+	DeviceInputsThermokingAlarmTypeRESERVED                            DeviceInputsThermokingAlarmType = "RESERVED"
+	DeviceInputsThermokingAlarmTypeSHUTDOWNORCATASTROPHICSYSTEMFAILURE DeviceInputsThermokingAlarmType = "SHUTDOWN_OR_CATASTROPHIC_SYSTEM_FAILURE"
+)
+
+// Defines values for DeviceInputsThermokingCycleMode.
+const (
+	DeviceInputsThermokingCycleModeCONTINUOUSMODE  DeviceInputsThermokingCycleMode = "CONTINUOUS_MODE"
+	DeviceInputsThermokingCycleModeCYCLESENTRYMODE DeviceInputsThermokingCycleMode = "CYCLE_SENTRY_MODE"
+	DeviceInputsThermokingCycleModeSTARTSTOPMODE   DeviceInputsThermokingCycleMode = "START_STOP_MODE"
+)
+
+// Defines values for DeviceInputsThermokingDieselElectricStatus.
+const (
+	DeviceInputsThermokingDieselElectricStatusDIESELMODE   DeviceInputsThermokingDieselElectricStatus = "DIESEL_MODE"
+	DeviceInputsThermokingDieselElectricStatusELECTRICMODE DeviceInputsThermokingDieselElectricStatus = "ELECTRIC_MODE"
+)
+
+// Defines values for DeviceInputsThermokingDoorStatus.
+const (
+	DeviceInputsThermokingDoorStatusCLOSED DeviceInputsThermokingDoorStatus = "CLOSED"
+	DeviceInputsThermokingDoorStatusOPEN   DeviceInputsThermokingDoorStatus = "OPEN"
+)
+
+// Defines values for DeviceInputsThermokingOperatingMode.
+const (
+	DeviceInputsThermokingOperatingModeCOOLING           DeviceInputsThermokingOperatingMode = "COOLING"
+	DeviceInputsThermokingOperatingModeDEFROST           DeviceInputsThermokingOperatingMode = "DEFROST"
+	DeviceInputsThermokingOperatingModeHEATING           DeviceInputsThermokingOperatingMode = "HEATING"
+	DeviceInputsThermokingOperatingModeNULL              DeviceInputsThermokingOperatingMode = "NULL"
+	DeviceInputsThermokingOperatingModePOWEROFFORUNKNOWN DeviceInputsThermokingOperatingMode = "POWER_OFF_OR_UNKNOWN"
+	DeviceInputsThermokingOperatingModePRETRIP           DeviceInputsThermokingOperatingMode = "PRETRIP"
+	DeviceInputsThermokingOperatingModeRESERVED          DeviceInputsThermokingOperatingMode = "RESERVED"
+	DeviceInputsThermokingOperatingModeSLEEP             DeviceInputsThermokingOperatingMode = "SLEEP"
+)
+
+// Defines values for DeviceInputsTrailersAmberWarningSignalRequest.
+const (
+	DeviceInputsTrailersAmberWarningSignalRequestOFF DeviceInputsTrailersAmberWarningSignalRequest = "OFF"
+	DeviceInputsTrailersAmberWarningSignalRequestON  DeviceInputsTrailersAmberWarningSignalRequest = "ON"
+)
+
+// Defines values for DeviceInputsTrailersBrakingViaElectricControlLineSupport.
+const (
+	DeviceInputsTrailersBrakingViaElectricControlLineSupportNOTSUPPORTED DeviceInputsTrailersBrakingViaElectricControlLineSupport = "NOT_SUPPORTED"
+	DeviceInputsTrailersBrakingViaElectricControlLineSupportSUPPORTED    DeviceInputsTrailersBrakingViaElectricControlLineSupport = "SUPPORTED"
+)
+
+// Defines values for DeviceInputsTrailersElectricalLoadProportionalFunctionInstallationStatus.
+const (
+	DeviceInputsTrailersElectricalLoadProportionalFunctionInstallationStatusINSTALLED    DeviceInputsTrailersElectricalLoadProportionalFunctionInstallationStatus = "INSTALLED"
+	DeviceInputsTrailersElectricalLoadProportionalFunctionInstallationStatusNOTINSTALLED DeviceInputsTrailersElectricalLoadProportionalFunctionInstallationStatus = "NOT_INSTALLED"
+)
+
+// Defines values for DeviceInputsTrailersElectricalSupplyOfNonBrakingSystemStatus.
+const (
+	DeviceInputsTrailersElectricalSupplyOfNonBrakingSystemStatusOFF DeviceInputsTrailersElectricalSupplyOfNonBrakingSystemStatus = "OFF"
+	DeviceInputsTrailersElectricalSupplyOfNonBrakingSystemStatusON  DeviceInputsTrailersElectricalSupplyOfNonBrakingSystemStatus = "ON"
+)
+
+// Defines values for DeviceInputsTrailersRedWarningSignalRequest.
+const (
+	DeviceInputsTrailersRedWarningSignalRequestOFF DeviceInputsTrailersRedWarningSignalRequest = "OFF"
+	DeviceInputsTrailersRedWarningSignalRequestON  DeviceInputsTrailersRedWarningSignalRequest = "ON"
+)
+
+// Defines values for DeviceInputsTrailersStopLampsRequest.
+const (
+	DeviceInputsTrailersStopLampsRequestNOREQUEST     DeviceInputsTrailersStopLampsRequest = "NO_REQUEST"
+	DeviceInputsTrailersStopLampsRequestREQUESTACTIVE DeviceInputsTrailersStopLampsRequest = "REQUEST_ACTIVE"
+)
+
+// Defines values for DeviceInputsTrailersVdcActive.
+const (
+	DeviceInputsTrailersVdcActiveACTIVE  DeviceInputsTrailersVdcActive = "ACTIVE"
+	DeviceInputsTrailersVdcActivePASSIVE DeviceInputsTrailersVdcActive = "PASSIVE"
+)
+
+// Defines values for DeviceInputsTrailersVehicleAbsStatus.
+const (
+	DeviceInputsTrailersVehicleAbsStatusACTIVE  DeviceInputsTrailersVehicleAbsStatus = "ACTIVE"
+	DeviceInputsTrailersVehicleAbsStatusPASSIVE DeviceInputsTrailersVehicleAbsStatus = "PASSIVE"
+)
+
+// Defines values for DeviceInputsTrailersVehicleElectricalSupplyStatus.
+const (
+	DeviceInputsTrailersVehicleElectricalSupplyStatusINSUFFICIENT DeviceInputsTrailersVehicleElectricalSupplyStatus = "INSUFFICIENT"
+	DeviceInputsTrailersVehicleElectricalSupplyStatusSUFFICIENT   DeviceInputsTrailersVehicleElectricalSupplyStatus = "SUFFICIENT"
+)
+
+// Defines values for DeviceInputsTrailersVehiclePneumaticSupplyStatus.
+const (
+	DeviceInputsTrailersVehiclePneumaticSupplyStatusOFF DeviceInputsTrailersVehiclePneumaticSupplyStatus = "OFF"
+	DeviceInputsTrailersVehiclePneumaticSupplyStatusON  DeviceInputsTrailersVehiclePneumaticSupplyStatus = "ON"
+)
+
+// Defines values for DeviceInputsTrailersVehicleServiceBrakeStatus.
+const (
+	DeviceInputsTrailersVehicleServiceBrakeStatusACTIVE  DeviceInputsTrailersVehicleServiceBrakeStatus = "ACTIVE"
+	DeviceInputsTrailersVehicleServiceBrakeStatusPASSIVE DeviceInputsTrailersVehicleServiceBrakeStatus = "PASSIVE"
+)
+
+// Defines values for DeviceInputsTrailersVehicleType.
+const (
+	DeviceInputsTrailersVehicleTypeCONVERTEDDOLLYAXLELSB DeviceInputsTrailersVehicleType = "CONVERTED_DOLLY_AXLE_LSB"
+	DeviceInputsTrailersVehicleTypeTOWEDVEHICLE          DeviceInputsTrailersVehicleType = "TOWED_VEHICLE"
+)
+
+// Defines values for DeviceInputsUmtsEnabled.
+const (
+	DeviceInputsUmtsEnabledDISABLED DeviceInputsUmtsEnabled = "DISABLED"
+	DeviceInputsUmtsEnabledENABLED  DeviceInputsUmtsEnabled = "ENABLED"
+)
+
+// Defines values for DeviceInputsWirelessEnabled.
+const (
+	DeviceInputsWirelessEnabledDISABLED DeviceInputsWirelessEnabled = "DISABLED"
+	DeviceInputsWirelessEnabledENABLED  DeviceInputsWirelessEnabled = "ENABLED"
 )
 
 // Defines values for DriverCardTachoScheduleRequestSlot.
@@ -1250,9 +1248,61 @@ type Address struct {
 	Zip         *string `json:"zip,omitempty"`
 }
 
-// CalculatedInputs defines model for CalculatedInputs.
+// CalculatedInputs Container for parameters calculated in the system from other parameters according to the configuration
 type CalculatedInputs struct {
+	// CustomInput1 Custom input 1
+	CustomInput1 *float32 `json:"custom_input_1,omitempty"`
+
+	// CustomInput2 Custom input 2
+	CustomInput2 *float32 `json:"custom_input_2,omitempty"`
+
+	// CustomInput3 Custom input 3
+	CustomInput3 *float32 `json:"custom_input_3,omitempty"`
+
+	// CustomInput4 Custom input 4
+	CustomInput4 *float32 `json:"custom_input_4,omitempty"`
+
+	// CustomInput5 Custom input 5
+	CustomInput5 *float32 `json:"custom_input_5,omitempty"`
+
+	// CustomInput6 Custom input 6
+	CustomInput6 *float32 `json:"custom_input_6,omitempty"`
+
+	// CustomInput7 Custom input 7
+	CustomInput7 *float32 `json:"custom_input_7,omitempty"`
+
+	// CustomInput8 Custom input 8
+	CustomInput8 *float32 `json:"custom_input_8,omitempty"`
+
+	// Din1WorkingTime DIN1 working time
+	Din1WorkingTime *float32 `json:"din1_working_time,omitempty"`
+
+	// Din2WorkingTime DIN2 working time
+	Din2WorkingTime *float32 `json:"din2_working_time,omitempty"`
+
+	// Din3WorkingTime DIN3 working time
+	Din3WorkingTime *float32 `json:"din3_working_time,omitempty"`
+
+	// Din4WorkingTime DIN4 working time
+	Din4WorkingTime *float32 `json:"din4_working_time,omitempty"`
+
+	// FuelConsumption Fuel consumption (units: l)
+	FuelConsumption *float32 `json:"fuel_consumption,omitempty"`
+
+	// FuelLevel Fuel level (units: l)
+	FuelLevel *float32 `json:"fuel_level,omitempty"`
+
+	// Mileage Mileage (units: km)
 	Mileage *float32 `json:"mileage,omitempty"`
+
+	// Rpm Engine RPM (units: RPM)
+	Rpm *float32 `json:"rpm,omitempty"`
+
+	// Temperature Temperature (units: °C)
+	Temperature *float32 `json:"temperature,omitempty"`
+
+	// Weight Weight (units: kg)
+	Weight *float32 `json:"weight,omitempty"`
 }
 
 // Coordinate defines model for Coordinate.
@@ -1265,11 +1315,15 @@ type Coordinate struct {
 
 	// IgnitionStatus Indicates if the object's ignition is on
 	IgnitionStatus *CoordinateIgnitionStatus `json:"ignition_status,omitempty"`
-	Inputs         *Coordinate_Inputs        `json:"inputs,omitempty"`
-	NearestGeozone *ExternalNearestGeozone   `json:"nearest_geozone,omitempty"`
+
+	// Inputs Container for all coordinate input parameters
+	Inputs         *CoordinateInputs       `json:"inputs,omitempty"`
+	NearestGeozone *ExternalNearestGeozone `json:"nearest_geozone,omitempty"`
 
 	// ObjectID Object identifier
-	ObjectID *string   `json:"object_id,omitempty"`
+	ObjectID *string `json:"object_id,omitempty"`
+
+	// Position Container for all record GPS parameters
 	Position *Position `json:"position,omitempty"`
 
 	// TripType Trip type
@@ -1279,1708 +1333,6 @@ type Coordinate struct {
 // CoordinateIgnitionStatus Indicates if the object's ignition is on
 type CoordinateIgnitionStatus string
 
-// CoordinateInputsDeviceInputsCanDoorLockState CAN door lock state Possible values: UNLOCKED LOCKED NOT_AVAILABLE
-type CoordinateInputsDeviceInputsCanDoorLockState string
-
-// CoordinateInputsDeviceInputsCanIgnition CAN ignition Possible values: OFF ON
-type CoordinateInputsDeviceInputsCanIgnition string
-
-// CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1AutoBaudRate CAN interface configuration CAN1 auto baud rate Possible values: OFF ON
-type CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1AutoBaudRate string
-
-// CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1FfFiltersStatus CAN interface configuration CAN1 filters status Possible values: OFF ON
-type CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1FfFiltersStatus string
-
-// CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Interface CAN interface configuration CAN1 interface Possible values: NONE FMS LCV OBD TACHO MOBILEYE TRAILERS DXP
-type CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Interface string
-
-// CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Mode CAN interface configuration CAN1 mode Possible values: SILENT ACTIVE
-type CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Mode string
-
-// CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Status CAN interface configuration CAN1 status Possible values: INACTIVE ACTIVE
-type CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Status string
-
-// CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2AutoBaudRate CAN interface configuration CAN2 auto baud rate Possible values: OFF ON
-type CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2AutoBaudRate string
-
-// CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2FfFiltersStatus CAN interface configuration CAN2 filters status Possible values: OFF ON
-type CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2FfFiltersStatus string
-
-// CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Interface CAN interface configuration CAN2 interface Possible values: NONE FMS LCV OBD TACHO MOBILEYE TRAILERS DXP
-type CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Interface string
-
-// CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Mode CAN interface configuration CAN2 mode Possible values: SILENT ACTIVE
-type CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Mode string
-
-// CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Status CAN interface configuration CAN2 status Possible values: INACTIVE ACTIVE
-type CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Status string
-
-// CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group CAN LCV configuration CAN1 group Possible values: VAG MERCEDES CITROEN FORD FIAT OPEL RENAULT TOYOTA TRACTOR TRUCK HYUNDAI LEXUS VOLVO BMW NISSAN HONDA MITSUBISHI SUBARU CHRYSLER ISUZU SSANGYONG MAZDA KOMATSU RANGEROVER CLAAS SAAB LANDROVER PORSCHE KIA JAGUAR INFINITI LINDE HITACHI SUZUKI
-type CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group string
-
-// CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group CAN LCV configuration CAN2 group Possible values: VAG MERCEDES CITROEN FORD FIAT OPEL RENAULT TOYOTA TRACTOR TRUCK HYUNDAI LEXUS VOLVO BMW NISSAN HONDA MITSUBISHI SUBARU CHRYSLER ISUZU SSANGYONG MAZDA KOMATSU RANGEROVER CLAAS SAAB LANDROVER PORSCHE KIA JAGUAR INFINITI LINDE HITACHI SUZUKI
-type CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group string
-
-// CoordinateInputsDeviceInputsCanbusBatteryCharging CAN battery charging Possible values: NO_CHARGING CHARGING
-type CoordinateInputsDeviceInputsCanbusBatteryCharging string
-
-// CoordinateInputsDeviceInputsCanbusBrakeSwitch CAN brake switch Possible values: RELEASED PRESSED
-type CoordinateInputsDeviceInputsCanbusBrakeSwitch string
-
-// CoordinateInputsDeviceInputsCanbusClutchSwitch CAN clutch switch Possible values: RELEASED PRESSED
-type CoordinateInputsDeviceInputsCanbusClutchSwitch string
-
-// CoordinateInputsDeviceInputsCanbusCruiseControlState CAN cruise control active Possible values: OFF ON
-type CoordinateInputsDeviceInputsCanbusCruiseControlState string
-
-// CoordinateInputsDeviceInputsCanbusDiagnosticsSupported CAN diagnostics supported Possible values: NOT_SUPPORTED SUPPORTED RESERVED DO_NOT_CARE
-type CoordinateInputsDeviceInputsCanbusDiagnosticsSupported string
-
-// CoordinateInputsDeviceInputsCanbusDirectionIndicator CAN tacho direction indicator Possible values: FORWARD REVERSE
-type CoordinateInputsDeviceInputsCanbusDirectionIndicator string
-
-// CoordinateInputsDeviceInputsCanbusDriver1Card CAN tacho driver 1 card Possible values: CARD_NOT_PRESENT CARD_PRESENT ERROR NOT_AVAILABLE
-type CoordinateInputsDeviceInputsCanbusDriver1Card string
-
-// CoordinateInputsDeviceInputsCanbusDriver1State CAN tacho driver 1 working state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
-type CoordinateInputsDeviceInputsCanbusDriver1State string
-
-// CoordinateInputsDeviceInputsCanbusDriver1Time CAN tacho driver 1 time related status Possible values: NORMAL 15_MIN_BEFORE_4,5H 4,5H_REACHED 15_MIN_BEFORE_9H 9H_REACHED 15_MIN_BEFORE_16H 16H_REACHED ERROR NOT_AVAILABLE
-type CoordinateInputsDeviceInputsCanbusDriver1Time string
-
-// CoordinateInputsDeviceInputsCanbusDriver2Card CAN tacho driver 2 card Possible values: CARD_NOT_PRESENT CARD_PRESENT ERROR NOT_AVAILABLE
-type CoordinateInputsDeviceInputsCanbusDriver2Card string
-
-// CoordinateInputsDeviceInputsCanbusDriver2State CAN tacho driver 2 working state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
-type CoordinateInputsDeviceInputsCanbusDriver2State string
-
-// CoordinateInputsDeviceInputsCanbusDriver2Time CAN tacho driver 2 time related status Possible values: NORMAL 15_MIN_BEFORE_4,5H 4,5H_REACHED 15_MIN_BEFORE_9H 9H_REACHED 15_MIN_BEFORE_16H 16H_REACHED ERROR NOT_AVAILABLE
-type CoordinateInputsDeviceInputsCanbusDriver2Time string
-
-// CoordinateInputsDeviceInputsCanbusHandlingInformation CAN tacho handling information Possible values: NO_HANDLING_INFORMATION HANDLING_INFORMATION
-type CoordinateInputsDeviceInputsCanbusHandlingInformation string
-
-// CoordinateInputsDeviceInputsCanbusParkingBrakeSwitch CAN parking brake switch Possible values: OFF ON
-type CoordinateInputsDeviceInputsCanbusParkingBrakeSwitch string
-
-// CoordinateInputsDeviceInputsCanbusPto CAN at least one PTO engaged Possible values: NO_PTO_DRIVER AT_LEAST_ONE_PTO_DRIVER ERROR NOT_AVAILABLE
-type CoordinateInputsDeviceInputsCanbusPto string
-
-// CoordinateInputsDeviceInputsCanbusPtoState CAN PTO state Possible values: OFF_DISABLED SET NOT_AVAILABLE
-type CoordinateInputsDeviceInputsCanbusPtoState string
-
-// CoordinateInputsDeviceInputsCanbusRequestSupported CAN request supported Possible values: NOT_SUPPORTED SUPPORTED RESERVED DO_NOT_CARE
-type CoordinateInputsDeviceInputsCanbusRequestSupported string
-
-// CoordinateInputsDeviceInputsCanbusSystemEvent CAN system event Possible values: NO_TACHO_EVENT TACHO_EVENT
-type CoordinateInputsDeviceInputsCanbusSystemEvent string
-
-// CoordinateInputsDeviceInputsCanbusVehicleMotion CAN tacho vehicle motion Possible values: NOT_DETECTED DETECTED
-type CoordinateInputsDeviceInputsCanbusVehicleMotion string
-
-// CoordinateInputsDeviceInputsCustomIgnition Custom ignition Possible values: OFF ON
-type CoordinateInputsDeviceInputsCustomIgnition string
-
-// CoordinateInputsDeviceInputsDout1Status DOUT1 status Possible values: ACTIVE INACTIVE
-type CoordinateInputsDeviceInputsDout1Status string
-
-// CoordinateInputsDeviceInputsDout2Status DOUT2 status Possible values: ACTIVE INACTIVE
-type CoordinateInputsDeviceInputsDout2Status string
-
-// CoordinateInputsDeviceInputsDriver1State Driver 1 state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
-type CoordinateInputsDeviceInputsDriver1State string
-
-// CoordinateInputsDeviceInputsDriver2State Driver 2 state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
-type CoordinateInputsDeviceInputsDriver2State string
-
-// CoordinateInputsDeviceInputsDxpSwitchesSwitch1 DXP switch 1 value Possible values: OFF ON
-type CoordinateInputsDeviceInputsDxpSwitchesSwitch1 string
-
-// CoordinateInputsDeviceInputsDxpSwitchesSwitch2 DXP switch 2 value Possible values: OFF ON
-type CoordinateInputsDeviceInputsDxpSwitchesSwitch2 string
-
-// CoordinateInputsDeviceInputsDxpSwitchesSwitch3 DXP switch 3 value Possible values: OFF ON
-type CoordinateInputsDeviceInputsDxpSwitchesSwitch3 string
-
-// CoordinateInputsDeviceInputsDxpSwitchesSwitch4 DXP switch 4 value Possible values: OFF ON
-type CoordinateInputsDeviceInputsDxpSwitchesSwitch4 string
-
-// CoordinateInputsDeviceInputsDxpSwitchesSwitch5 DXP switch 5 value Possible values: OFF ON
-type CoordinateInputsDeviceInputsDxpSwitchesSwitch5 string
-
-// CoordinateInputsDeviceInputsDxpSwitchesSwitch6 DXP switch 6 value Possible values: OFF ON
-type CoordinateInputsDeviceInputsDxpSwitchesSwitch6 string
-
-// CoordinateInputsDeviceInputsDxpSwitchesSwitch7 DXP switch 7 value Possible values: OFF ON
-type CoordinateInputsDeviceInputsDxpSwitchesSwitch7 string
-
-// CoordinateInputsDeviceInputsDxpSwitchesSwitch8 DXP switch 8 value Possible values: OFF ON
-type CoordinateInputsDeviceInputsDxpSwitchesSwitch8 string
-
-// CoordinateInputsDeviceInputsEcodriveIdlingState Eco-Drive idling state Possible values: NO_IDLING IDLING
-type CoordinateInputsDeviceInputsEcodriveIdlingState string
-
-// CoordinateInputsDeviceInputsGnssAntenna GNSS antenna status Possible values: DISABLED ENABLED UNKNOWN
-type CoordinateInputsDeviceInputsGnssAntenna string
-
-// CoordinateInputsDeviceInputsGprsStatus GPRS status Possible values: DISCONNECTED CONNECTED
-type CoordinateInputsDeviceInputsGprsStatus string
-
-// CoordinateInputsDeviceInputsIgnitionPlugtrack Virtual ignition Possible values: OFF ON
-type CoordinateInputsDeviceInputsIgnitionPlugtrack string
-
-// CoordinateInputsDeviceInputsLcvDriverDoors LCV driver doors Possible values: CLOSE OPEN
-type CoordinateInputsDeviceInputsLcvDriverDoors string
-
-// CoordinateInputsDeviceInputsLcvHood LCV hood Possible values: CLOSE OPEN
-type CoordinateInputsDeviceInputsLcvHood string
-
-// CoordinateInputsDeviceInputsLcvLeftBackDoors LCV left back doors Possible values: CLOSE OPEN
-type CoordinateInputsDeviceInputsLcvLeftBackDoors string
-
-// CoordinateInputsDeviceInputsLcvPassengerDoors LCV passenger doors Possible values: CLOSE OPEN
-type CoordinateInputsDeviceInputsLcvPassengerDoors string
-
-// CoordinateInputsDeviceInputsLcvRightBackDoors LCV right back doors Possible values: CLOSE OPEN
-type CoordinateInputsDeviceInputsLcvRightBackDoors string
-
-// CoordinateInputsDeviceInputsLcvTrunk LCV trunk Possible values: CLOSE OPEN
-type CoordinateInputsDeviceInputsLcvTrunk string
-
-// CoordinateInputsDeviceInputsMobileyeDuskTimeIndicator Mobileye dusk time indicator Possible values: DAY DUSK
-type CoordinateInputsDeviceInputsMobileyeDuskTimeIndicator string
-
-// CoordinateInputsDeviceInputsMobileyeHeadwayWarningLevel Mobileye headway warning level Possible values: NO_COPV CIPV_WITH_HW_MORE_THAN_HW_CONFIG CIPV_WITH_LESS_THAN_HW_CONFIG
-type CoordinateInputsDeviceInputsMobileyeHeadwayWarningLevel string
-
-// CoordinateInputsDeviceInputsMobileyeHiBeam Mobileye high beam Possible values: OFF ON
-type CoordinateInputsDeviceInputsMobileyeHiBeam string
-
-// CoordinateInputsDeviceInputsMobileyeLowBeam Mobileye low beam Possible values: OFF ON
-type CoordinateInputsDeviceInputsMobileyeLowBeam string
-
-// CoordinateInputsDeviceInputsMobileyeMaintenance Mobileye maintenance Possible values: NO_ERROR ERROR
-type CoordinateInputsDeviceInputsMobileyeMaintenance string
-
-// CoordinateInputsDeviceInputsMobileyeNightTimeIndicator Mobileye night time indicator Possible values: DAY NIGHT
-type CoordinateInputsDeviceInputsMobileyeNightTimeIndicator string
-
-// CoordinateInputsDeviceInputsMobileyeSoundType Mobileye sound type Possible values: SILENT LDWL LDWR HW1 TSR UFCW FCW_PCW PEDS_IN_DZ
-type CoordinateInputsDeviceInputsMobileyeSoundType string
-
-// CoordinateInputsDeviceInputsMobileyeTamperAlert Mobileye tamper alert Possible values: OFF ON
-type CoordinateInputsDeviceInputsMobileyeTamperAlert string
-
-// CoordinateInputsDeviceInputsMobileyeWipers Mobileye wipers Possible values: OFF ON
-type CoordinateInputsDeviceInputsMobileyeWipers string
-
-// CoordinateInputsDeviceInputsMovement Movement sensor Possible values: STILL MOVING
-type CoordinateInputsDeviceInputsMovement string
-
-// CoordinateInputsDeviceInputsObdKlineTypeOfFuel OBD fuel type Possible values: NOT_AVAILABLE GASOLINE METHANOL ETHANOL DIESEL LPG CNG PROPANE ELECTRIC BIFUEL_RUNNING_GASOLINE BIFUEL_RUNNING_METHANOL BIFUEL_RUNNING_ETHANOL BIFUEL_RUNNING_LPG BIFUEL_RUNNING_CNG BIFUEL_RUNNING_PROPANE BIFUEL_RUNNING_ELECTRICITY BIFUEL_RUNNING_ELECTRIC_AND_COMBUSTION_ENGINE HYBRID_GASOLINE HYBRID_ETHANOL HYBRID_DIESEL HYBRID_ELECTRIC HYBRID_RUNNING_ELECTRIC_AND_COMBUSTION_ENGINE HYBRID_REGENERATIVE BIFUEL_DIESEL
-type CoordinateInputsDeviceInputsObdKlineTypeOfFuel string
-
-// CoordinateInputsDeviceInputsOverspeedingEvents CAN tacho vehicle overspeed Possible values: NO_OVERSPEED OVERSPEED
-type CoordinateInputsDeviceInputsOverspeedingEvents string
-
-// CoordinateInputsDeviceInputsPriority Priority Possible values: LOW HIGH
-type CoordinateInputsDeviceInputsPriority string
-
-// CoordinateInputsDeviceInputsSleepTimer Sleep timer Possible values: NO_EVENT DEVICE_WAKE_UP_BY_TIMER_EVENT
-type CoordinateInputsDeviceInputsSleepTimer string
-
-// CoordinateInputsDeviceInputsTachoStatus CAN tachograph performance Possible values: NORMAL_PERFORMANCE PERFORMANCE_ANALYSIS
-type CoordinateInputsDeviceInputsTachoStatus string
-
-// CoordinateInputsDeviceInputsTcoFirstDriverCard TCO first driver card Possible values: NOT_INSERTED INSERTED
-type CoordinateInputsDeviceInputsTcoFirstDriverCard string
-
-// CoordinateInputsDeviceInputsTcoFirstDriverState TCO first driver state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
-type CoordinateInputsDeviceInputsTcoFirstDriverState string
-
-// CoordinateInputsDeviceInputsTcoSecondDriverCard TCO second driver card Possible values: NOT_INSERTED INSERTED
-type CoordinateInputsDeviceInputsTcoSecondDriverCard string
-
-// CoordinateInputsDeviceInputsTcoSecondDriverState TCO second driver state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
-type CoordinateInputsDeviceInputsTcoSecondDriverState string
-
-// CoordinateInputsDeviceInputsThermokingAlarmType ThermoKing alarm type Possible values: NO_ALARM LOG_STORED_OR_ROUTINE_MAINTENANCE LOW_FUEL MAINTENANCE_PAST_DUE RESERVED IMMEDIATE_ATTENTION_REQUIRED SHUTDOWN_OR_CATASTROPHIC_SYSTEM_FAILURE
-type CoordinateInputsDeviceInputsThermokingAlarmType string
-
-// CoordinateInputsDeviceInputsThermokingCycleMode ThermoKing cycle mode Possible values: CYCLE_SENTRY_MODE CONTINUOUS_MODE START_STOP_MODE
-type CoordinateInputsDeviceInputsThermokingCycleMode string
-
-// CoordinateInputsDeviceInputsThermokingDieselElectricStatus ThermoKing diesel/electric status Possible values: DIESEL_MODE ELECTRIC_MODE
-type CoordinateInputsDeviceInputsThermokingDieselElectricStatus string
-
-// CoordinateInputsDeviceInputsThermokingDoorStatus ThermoKing door status Possible values: CLOSED OPEN
-type CoordinateInputsDeviceInputsThermokingDoorStatus string
-
-// CoordinateInputsDeviceInputsThermokingOperatingMode ThermoKing operating mode Possible values: POWER_OFF_OR_UNKNOWN COOLING HEATING DEFROST NULL PRETRIP SLEEP RESERVED
-type CoordinateInputsDeviceInputsThermokingOperatingMode string
-
-// CoordinateInputsDeviceInputsTrailersAmberWarningSignalRequest Trailers amber warning signal request Possible values: OFF ON
-type CoordinateInputsDeviceInputsTrailersAmberWarningSignalRequest string
-
-// CoordinateInputsDeviceInputsTrailersBrakingViaElectricControlLineSupport Trailers braking via electric control line support Possible values: NOT_SUPPORTED SUPPORTED
-type CoordinateInputsDeviceInputsTrailersBrakingViaElectricControlLineSupport string
-
-// CoordinateInputsDeviceInputsTrailersElectricalLoadProportionalFunctionInstallationStatus Trailers electrical load proportional function installation status Possible values: NOT_INSTALLED INSTALLED
-type CoordinateInputsDeviceInputsTrailersElectricalLoadProportionalFunctionInstallationStatus string
-
-// CoordinateInputsDeviceInputsTrailersElectricalSupplyOfNonBrakingSystemStatus Trailers electrical supply of non-braking system status Possible values: OFF ON
-type CoordinateInputsDeviceInputsTrailersElectricalSupplyOfNonBrakingSystemStatus string
-
-// CoordinateInputsDeviceInputsTrailersRedWarningSignalRequest Trailers red warning signal request Possible values: OFF ON
-type CoordinateInputsDeviceInputsTrailersRedWarningSignalRequest string
-
-// CoordinateInputsDeviceInputsTrailersStopLampsRequest Trailers stop lamps request Possible values: NO_REQUEST REQUEST_ACTIVE
-type CoordinateInputsDeviceInputsTrailersStopLampsRequest string
-
-// CoordinateInputsDeviceInputsTrailersVdcActive Trailers VDC active Possible values: PASSIVE ACTIVE
-type CoordinateInputsDeviceInputsTrailersVdcActive string
-
-// CoordinateInputsDeviceInputsTrailersVehicleAbsStatus Trailers vehicle ABS status Possible values: PASSIVE ACTIVE
-type CoordinateInputsDeviceInputsTrailersVehicleAbsStatus string
-
-// CoordinateInputsDeviceInputsTrailersVehicleElectricalSupplyStatus Trailers vehicle electrical supply status Possible values: INSUFFICIENT SUFFICIENT
-type CoordinateInputsDeviceInputsTrailersVehicleElectricalSupplyStatus string
-
-// CoordinateInputsDeviceInputsTrailersVehiclePneumaticSupplyStatus Trailers vehicle pneumatic supply status Possible values: OFF ON
-type CoordinateInputsDeviceInputsTrailersVehiclePneumaticSupplyStatus string
-
-// CoordinateInputsDeviceInputsTrailersVehicleServiceBrakeStatus Trailers vehicle service brake status Possible values: PASSIVE ACTIVE
-type CoordinateInputsDeviceInputsTrailersVehicleServiceBrakeStatus string
-
-// CoordinateInputsDeviceInputsTrailersVehicleType Trailers vehicle type Possible values: TOWED_VEHICLE CONVERTED_DOLLY_AXLE_LSB
-type CoordinateInputsDeviceInputsTrailersVehicleType string
-
-// CoordinateInputsDeviceInputsUmtsEnabled UMTS enabled status Possible values: DISABLED ENABLED
-type CoordinateInputsDeviceInputsUmtsEnabled string
-
-// CoordinateInputsDeviceInputsWirelessEnabled Wireless enabled Possible values: DISABLED ENABLED
-type CoordinateInputsDeviceInputsWirelessEnabled string
-
-// Coordinate_Inputs defines model for Coordinate.Inputs.
-type Coordinate_Inputs struct {
-	// CalculatedInputs Container for parameters calculated in the system from other parameters according to the configuration
-	CalculatedInputs *struct {
-		// CustomInput1 Custom input 1
-		CustomInput1 *float32 `json:"custom_input_1,omitempty"`
-
-		// CustomInput2 Custom input 2
-		CustomInput2 *float32 `json:"custom_input_2,omitempty"`
-
-		// CustomInput3 Custom input 3
-		CustomInput3 *float32 `json:"custom_input_3,omitempty"`
-
-		// CustomInput4 Custom input 4
-		CustomInput4 *float32 `json:"custom_input_4,omitempty"`
-
-		// CustomInput5 Custom input 5
-		CustomInput5 *float32 `json:"custom_input_5,omitempty"`
-
-		// CustomInput6 Custom input 6
-		CustomInput6 *float32 `json:"custom_input_6,omitempty"`
-
-		// CustomInput7 Custom input 7
-		CustomInput7 *float32 `json:"custom_input_7,omitempty"`
-
-		// CustomInput8 Custom input 8
-		CustomInput8 *float32 `json:"custom_input_8,omitempty"`
-
-		// Din1WorkingTime DIN1 working time
-		Din1WorkingTime *float32 `json:"din1_working_time,omitempty"`
-
-		// Din2WorkingTime DIN2 working time
-		Din2WorkingTime *float32 `json:"din2_working_time,omitempty"`
-
-		// Din3WorkingTime DIN3 working time
-		Din3WorkingTime *float32 `json:"din3_working_time,omitempty"`
-
-		// Din4WorkingTime DIN4 working time
-		Din4WorkingTime *float32 `json:"din4_working_time,omitempty"`
-
-		// FuelConsumption Fuel consumption (units: l)
-		FuelConsumption *float32 `json:"fuel_consumption,omitempty"`
-
-		// FuelLevel Fuel level (units: l)
-		FuelLevel *float32 `json:"fuel_level,omitempty"`
-
-		// Mileage Mileage (units: km)
-		Mileage *float32 `json:"mileage,omitempty"`
-
-		// Rpm Engine RPM (units: RPM)
-		Rpm *float32 `json:"rpm,omitempty"`
-
-		// Temperature Temperature (units: °C)
-		Temperature *float32 `json:"temperature,omitempty"`
-
-		// Weight Weight (units: kg)
-		Weight *float32 `json:"weight,omitempty"`
-	} `json:"calculated_inputs,omitempty"`
-
-	// DeviceInputs Container for parameters received from hardware
-	DeviceInputs *struct {
-		// AnalogInput1 AIN1 value (units: V)
-		AnalogInput1 *float32 `json:"analog_input_1,omitempty"`
-
-		// AnalogInput2 AIN2 value (units: V)
-		AnalogInput2 *float32 `json:"analog_input_2,omitempty"`
-
-		// AxleCount CAN axle location
-		AxleCount *float32 `json:"axle_count,omitempty"`
-
-		// BatteryCurrent Battery charge current (units: mA)
-		BatteryCurrent *float32 `json:"battery_current,omitempty"`
-
-		// BatteryVoltage Battery voltage (units: V)
-		BatteryVoltage *float32 `json:"battery_voltage,omitempty"`
-
-		// BtHumiditySensor0 BT humidity sensor 0 (units: %)
-		BtHumiditySensor0 *float32 `json:"bt_humidity_sensor_0,omitempty"`
-
-		// BtHumiditySensor1 BT humidity sensor 1 (units: %)
-		BtHumiditySensor1 *float32 `json:"bt_humidity_sensor_1,omitempty"`
-
-		// BtHumiditySensor2 BT humidity sensor 2 (units: %)
-		BtHumiditySensor2 *float32 `json:"bt_humidity_sensor_2,omitempty"`
-
-		// BtHumiditySensor3 BT humidity sensor 3 (units: %)
-		BtHumiditySensor3 *float32 `json:"bt_humidity_sensor_3,omitempty"`
-
-		// BtHumiditySensor4 BT humidity sensor 4 (units: %)
-		BtHumiditySensor4 *float32 `json:"bt_humidity_sensor_4,omitempty"`
-
-		// BtTemperatureSensor1 BT Temperature sensor 0 (units: °C)
-		BtTemperatureSensor1 *float32 `json:"bt_temperature_sensor_1,omitempty"`
-
-		// BtTemperatureSensor2 BT Temperature sensor 1 (units: °C)
-		BtTemperatureSensor2 *float32 `json:"bt_temperature_sensor_2,omitempty"`
-
-		// BtTemperatureSensor3 BT Temperature sensor 2 (units: °C)
-		BtTemperatureSensor3 *float32 `json:"bt_temperature_sensor_3,omitempty"`
-
-		// BtTemperatureSensor4 BT Temperature sensor 3 (units: °C)
-		BtTemperatureSensor4 *float32 `json:"bt_temperature_sensor_4,omitempty"`
-
-		// BtTemperatureSensor5 BT Temperature sensor 4 (units: °C)
-		BtTemperatureSensor5 *float32 `json:"bt_temperature_sensor_5,omitempty"`
-
-		// CanDoorLockState CAN door lock state Possible values: UNLOCKED LOCKED NOT_AVAILABLE
-		CanDoorLockState *CoordinateInputsDeviceInputsCanDoorLockState `json:"can_door_lock_state,omitempty"`
-
-		// CanFuelLevelMilliliters CAN fuel level millliliters (units: ml)
-		CanFuelLevelMilliliters *float32 `json:"can_fuel_level_milliliters,omitempty"`
-
-		// CanIgnition CAN ignition Possible values: OFF ON
-		CanIgnition *CoordinateInputsDeviceInputsCanIgnition `json:"can_ignition,omitempty"`
-
-		// CanInterfaceConfigurationCan1AutoBaudRate CAN interface configuration CAN1 auto baud rate Possible values: OFF ON
-		CanInterfaceConfigurationCan1AutoBaudRate *CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1AutoBaudRate `json:"can_interface_configuration_can1_auto_baud_rate,omitempty"`
-
-		// CanInterfaceConfigurationCan1FfFiltersStatus CAN interface configuration CAN1 filters status Possible values: OFF ON
-		CanInterfaceConfigurationCan1FfFiltersStatus *CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1FfFiltersStatus `json:"can_interface_configuration_can1_ff_filters_status,omitempty"`
-
-		// CanInterfaceConfigurationCan1Interface CAN interface configuration CAN1 interface Possible values: NONE FMS LCV OBD TACHO MOBILEYE TRAILERS DXP
-		CanInterfaceConfigurationCan1Interface *CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Interface `json:"can_interface_configuration_can1_interface,omitempty"`
-
-		// CanInterfaceConfigurationCan1Mode CAN interface configuration CAN1 mode Possible values: SILENT ACTIVE
-		CanInterfaceConfigurationCan1Mode *CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Mode `json:"can_interface_configuration_can1_mode,omitempty"`
-
-		// CanInterfaceConfigurationCan1Status CAN interface configuration CAN1 status Possible values: INACTIVE ACTIVE
-		CanInterfaceConfigurationCan1Status *CoordinateInputsDeviceInputsCanInterfaceConfigurationCan1Status `json:"can_interface_configuration_can1_status,omitempty"`
-
-		// CanInterfaceConfigurationCan2AutoBaudRate CAN interface configuration CAN2 auto baud rate Possible values: OFF ON
-		CanInterfaceConfigurationCan2AutoBaudRate *CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2AutoBaudRate `json:"can_interface_configuration_can2_auto_baud_rate,omitempty"`
-
-		// CanInterfaceConfigurationCan2FfFiltersStatus CAN interface configuration CAN2 filters status Possible values: OFF ON
-		CanInterfaceConfigurationCan2FfFiltersStatus *CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2FfFiltersStatus `json:"can_interface_configuration_can2_ff_filters_status,omitempty"`
-
-		// CanInterfaceConfigurationCan2Interface CAN interface configuration CAN2 interface Possible values: NONE FMS LCV OBD TACHO MOBILEYE TRAILERS DXP
-		CanInterfaceConfigurationCan2Interface *CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Interface `json:"can_interface_configuration_can2_interface,omitempty"`
-
-		// CanInterfaceConfigurationCan2Mode CAN interface configuration CAN2 mode Possible values: SILENT ACTIVE
-		CanInterfaceConfigurationCan2Mode *CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Mode `json:"can_interface_configuration_can2_mode,omitempty"`
-
-		// CanInterfaceConfigurationCan2Status CAN interface configuration CAN2 status Possible values: INACTIVE ACTIVE
-		CanInterfaceConfigurationCan2Status *CoordinateInputsDeviceInputsCanInterfaceConfigurationCan2Status `json:"can_interface_configuration_can2_status,omitempty"`
-
-		// CanLcvConfigurationCan1Group CAN LCV configuration CAN1 group Possible values: VAG MERCEDES CITROEN FORD FIAT OPEL RENAULT TOYOTA TRACTOR TRUCK HYUNDAI LEXUS VOLVO BMW NISSAN HONDA MITSUBISHI SUBARU CHRYSLER ISUZU SSANGYONG MAZDA KOMATSU RANGEROVER CLAAS SAAB LANDROVER PORSCHE KIA JAGUAR INFINITI LINDE HITACHI SUZUKI
-		CanLcvConfigurationCan1Group *CoordinateInputsDeviceInputsCanLcvConfigurationCan1Group `json:"can_lcv_configuration_can1_group,omitempty"`
-
-		// CanLcvConfigurationCan1Subgroup CAN LCV configuration CAN1 subgroup
-		CanLcvConfigurationCan1Subgroup *float32 `json:"can_lcv_configuration_can1_subgroup,omitempty"`
-
-		// CanLcvConfigurationCan2Group CAN LCV configuration CAN2 group Possible values: VAG MERCEDES CITROEN FORD FIAT OPEL RENAULT TOYOTA TRACTOR TRUCK HYUNDAI LEXUS VOLVO BMW NISSAN HONDA MITSUBISHI SUBARU CHRYSLER ISUZU SSANGYONG MAZDA KOMATSU RANGEROVER CLAAS SAAB LANDROVER PORSCHE KIA JAGUAR INFINITI LINDE HITACHI SUZUKI
-		CanLcvConfigurationCan2Group *CoordinateInputsDeviceInputsCanLcvConfigurationCan2Group `json:"can_lcv_configuration_can2_group,omitempty"`
-
-		// CanLcvConfigurationCan2Subgroup CAN LCV configuration CAN2 subgroup
-		CanLcvConfigurationCan2Subgroup *float32 `json:"can_lcv_configuration_can2_subgroup,omitempty"`
-
-		// CanLcvWindowStateBackLeft CAN LCV window state Back Left
-		CanLcvWindowStateBackLeft *float32 `json:"can_lcv_window_state_back_left,omitempty"`
-
-		// CanLcvWindowStateBackRight CAN LCV window state Back Right
-		CanLcvWindowStateBackRight *float32 `json:"can_lcv_window_state_back_right,omitempty"`
-
-		// CanLcvWindowStateFrontLeft CAN LCV window state Front Left
-		CanLcvWindowStateFrontLeft *float32 `json:"can_lcv_window_state_front_left,omitempty"`
-
-		// CanLcvWindowStateFrontRight CAN LCV window state Front Right
-		CanLcvWindowStateFrontRight *float32 `json:"can_lcv_window_state_front_right,omitempty"`
-
-		// CanLcvWindowStateSunroof CAN LCV window state Sunroof
-		CanLcvWindowStateSunroof *float32 `json:"can_lcv_window_state_sunroof,omitempty"`
-
-		// CanbusAmbientAirTemperature CAN ambient air temperature (units: °C)
-		CanbusAmbientAirTemperature *float32 `json:"canbus_ambient_air_temperature,omitempty"`
-
-		// CanbusAxleWeight1 CAN axle 1 weight (units: kg)
-		CanbusAxleWeight1 *float32 `json:"canbus_axle_weight_1,omitempty"`
-
-		// CanbusAxleWeight2 CAN axle 2 weight (units: kg)
-		CanbusAxleWeight2 *float32 `json:"canbus_axle_weight_2,omitempty"`
-
-		// CanbusAxleWeight3 CAN axle 3 weight (units: kg)
-		CanbusAxleWeight3 *float32 `json:"canbus_axle_weight_3,omitempty"`
-
-		// CanbusAxleWeight4 CAN axle 4 weight (units: kg)
-		CanbusAxleWeight4 *float32 `json:"canbus_axle_weight_4,omitempty"`
-
-		// CanbusAxleWeight5 CAN axle 5 weight (units: kg)
-		CanbusAxleWeight5 *float32 `json:"canbus_axle_weight_5,omitempty"`
-
-		// CanbusBatteryCharging CAN battery charging Possible values: NO_CHARGING CHARGING
-		CanbusBatteryCharging *CoordinateInputsDeviceInputsCanbusBatteryCharging `json:"canbus_battery_charging,omitempty"`
-
-		// CanbusBatteryPower CAN battery power (units: %)
-		CanbusBatteryPower *float32 `json:"canbus_battery_power,omitempty"`
-
-		// CanbusBrakeSwitch CAN brake switch Possible values: RELEASED PRESSED
-		CanbusBrakeSwitch *CoordinateInputsDeviceInputsCanbusBrakeSwitch `json:"canbus_brake_switch,omitempty"`
-
-		// CanbusClutchSwitch CAN clutch switch Possible values: RELEASED PRESSED
-		CanbusClutchSwitch *CoordinateInputsDeviceInputsCanbusClutchSwitch `json:"canbus_clutch_switch,omitempty"`
-
-		// CanbusCruiseControlState CAN cruise control active Possible values: OFF ON
-		CanbusCruiseControlState *CoordinateInputsDeviceInputsCanbusCruiseControlState `json:"canbus_cruise_control_state,omitempty"`
-
-		// CanbusDiagnosticsSupported CAN diagnostics supported Possible values: NOT_SUPPORTED SUPPORTED RESERVED DO_NOT_CARE
-		CanbusDiagnosticsSupported *CoordinateInputsDeviceInputsCanbusDiagnosticsSupported `json:"canbus_diagnostics_supported,omitempty"`
-
-		// CanbusDirectionIndicator CAN tacho direction indicator Possible values: FORWARD REVERSE
-		CanbusDirectionIndicator *CoordinateInputsDeviceInputsCanbusDirectionIndicator `json:"canbus_direction_indicator,omitempty"`
-
-		// CanbusDistance CAN high resolution total vehicle distance (units: km)
-		CanbusDistance *float32 `json:"canbus_distance,omitempty"`
-
-		// CanbusDistanceUntilRecharge CAN distance until recharge (units: km)
-		CanbusDistanceUntilRecharge *float32 `json:"canbus_distance_until_recharge,omitempty"`
-
-		// CanbusDriver1Card CAN tacho driver 1 card Possible values: CARD_NOT_PRESENT CARD_PRESENT ERROR NOT_AVAILABLE
-		CanbusDriver1Card *CoordinateInputsDeviceInputsCanbusDriver1Card `json:"canbus_driver_1_card,omitempty"`
-
-		// CanbusDriver1State CAN tacho driver 1 working state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
-		CanbusDriver1State *CoordinateInputsDeviceInputsCanbusDriver1State `json:"canbus_driver_1_state,omitempty"`
-
-		// CanbusDriver1Time CAN tacho driver 1 time related status Possible values: NORMAL 15_MIN_BEFORE_4,5H 4,5H_REACHED 15_MIN_BEFORE_9H 9H_REACHED 15_MIN_BEFORE_16H 16H_REACHED ERROR NOT_AVAILABLE
-		CanbusDriver1Time *CoordinateInputsDeviceInputsCanbusDriver1Time `json:"canbus_driver_1_time,omitempty"`
-
-		// CanbusDriver2Card CAN tacho driver 2 card Possible values: CARD_NOT_PRESENT CARD_PRESENT ERROR NOT_AVAILABLE
-		CanbusDriver2Card *CoordinateInputsDeviceInputsCanbusDriver2Card `json:"canbus_driver_2_card,omitempty"`
-
-		// CanbusDriver2State CAN tacho driver 2 working state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
-		CanbusDriver2State *CoordinateInputsDeviceInputsCanbusDriver2State `json:"canbus_driver_2_state,omitempty"`
-
-		// CanbusDriver2Time CAN tacho driver 2 time related status Possible values: NORMAL 15_MIN_BEFORE_4,5H 4,5H_REACHED 15_MIN_BEFORE_9H 9H_REACHED 15_MIN_BEFORE_16H 16H_REACHED ERROR NOT_AVAILABLE
-		CanbusDriver2Time *CoordinateInputsDeviceInputsCanbusDriver2Time `json:"canbus_driver_2_time,omitempty"`
-
-		// CanbusElectricMotorTemperature CAN electric motor temperature (units: °C)
-		CanbusElectricMotorTemperature *float32 `json:"canbus_electric_motor_temperature,omitempty"`
-
-		// CanbusEngineCoolantTemperature CAN engine coolant temperature (units: °C)
-		CanbusEngineCoolantTemperature *float32 `json:"canbus_engine_coolant_temperature,omitempty"`
-
-		// CanbusEnginePlcs CAN engine percent load at current speed (units: %)
-		CanbusEnginePlcs *float32 `json:"canbus_engine_plcs,omitempty"`
-
-		// CanbusFuelEconomy CAN instantaneous fuel economy (units: km/l)
-		CanbusFuelEconomy *float32 `json:"canbus_fuel_economy,omitempty"`
-
-		// CanbusFuelRate CAN fuel rate (units: l/h)
-		CanbusFuelRate *float32 `json:"canbus_fuel_rate,omitempty"`
-
-		// CanbusHandlingInformation CAN tacho handling information Possible values: NO_HANDLING_INFORMATION HANDLING_INFORMATION
-		CanbusHandlingInformation *CoordinateInputsDeviceInputsCanbusHandlingInformation `json:"canbus_handling_information,omitempty"`
-
-		// CanbusHoursToService CAN hours to service (units: h)
-		CanbusHoursToService *float32 `json:"canbus_hours_to_service,omitempty"`
-
-		// CanbusHrfc CAN high resolution engine total fuel used (units: l)
-		CanbusHrfc *float32 `json:"canbus_hrfc,omitempty"`
-
-		// CanbusParkingBrakeSwitch CAN parking brake switch Possible values: OFF ON
-		CanbusParkingBrakeSwitch *CoordinateInputsDeviceInputsCanbusParkingBrakeSwitch `json:"canbus_parking_brake_switch,omitempty"`
-
-		// CanbusPto CAN at least one PTO engaged Possible values: NO_PTO_DRIVER AT_LEAST_ONE_PTO_DRIVER ERROR NOT_AVAILABLE
-		CanbusPto *CoordinateInputsDeviceInputsCanbusPto `json:"canbus_pto,omitempty"`
-
-		// CanbusPtoState CAN PTO state Possible values: OFF_DISABLED SET NOT_AVAILABLE
-		CanbusPtoState *CoordinateInputsDeviceInputsCanbusPtoState `json:"canbus_pto_state,omitempty"`
-
-		// CanbusRequestSupported CAN request supported Possible values: NOT_SUPPORTED SUPPORTED RESERVED DO_NOT_CARE
-		CanbusRequestSupported *CoordinateInputsDeviceInputsCanbusRequestSupported `json:"canbus_request_supported,omitempty"`
-
-		// CanbusSystemEvent CAN system event Possible values: NO_TACHO_EVENT TACHO_EVENT
-		CanbusSystemEvent *CoordinateInputsDeviceInputsCanbusSystemEvent `json:"canbus_system_event,omitempty"`
-
-		// CanbusTireLocation CAN tire location
-		CanbusTireLocation *float32 `json:"canbus_tire_location,omitempty"`
-
-		// CanbusVehicleMotion CAN tacho vehicle motion Possible values: NOT_DETECTED DETECTED
-		CanbusVehicleMotion *CoordinateInputsDeviceInputsCanbusVehicleMotion `json:"canbus_vehicle_motion,omitempty"`
-
-		// CurrentProfile Current profile
-		CurrentProfile *float32 `json:"current_profile,omitempty"`
-
-		// CustomIgnition Custom ignition Possible values: OFF ON
-		CustomIgnition *CoordinateInputsDeviceInputsCustomIgnition `json:"custom_ignition,omitempty"`
-
-		// DigitalFuelSensorA1 Digital fuel sensor A1
-		DigitalFuelSensorA1 *float32 `json:"digital_fuel_sensor_a1,omitempty"`
-
-		// DigitalFuelSensorA10 Digital fuel sensor A10
-		DigitalFuelSensorA10 *float32 `json:"digital_fuel_sensor_a10,omitempty"`
-
-		// DigitalFuelSensorA2 Digital fuel sensor A2
-		DigitalFuelSensorA2 *float32 `json:"digital_fuel_sensor_a2,omitempty"`
-
-		// DigitalFuelSensorA3 Digital fuel sensor A3
-		DigitalFuelSensorA3 *float32 `json:"digital_fuel_sensor_a3,omitempty"`
-
-		// DigitalFuelSensorA4 Digital fuel sensor A4
-		DigitalFuelSensorA4 *float32 `json:"digital_fuel_sensor_a4,omitempty"`
-
-		// DigitalFuelSensorA5 Digital fuel sensor A5
-		DigitalFuelSensorA5 *float32 `json:"digital_fuel_sensor_a5,omitempty"`
-
-		// DigitalFuelSensorA6 Digital fuel sensor A6
-		DigitalFuelSensorA6 *float32 `json:"digital_fuel_sensor_a6,omitempty"`
-
-		// DigitalFuelSensorA7 Digital fuel sensor A7
-		DigitalFuelSensorA7 *float32 `json:"digital_fuel_sensor_a7,omitempty"`
-
-		// DigitalFuelSensorA8 Digital fuel sensor A8
-		DigitalFuelSensorA8 *float32 `json:"digital_fuel_sensor_a8,omitempty"`
-
-		// DigitalFuelSensorA9 Digital fuel sensor A9
-		DigitalFuelSensorA9 *float32 `json:"digital_fuel_sensor_a9,omitempty"`
-
-		// DigitalFuelSensorB1 Digital fuel sensor B1
-		DigitalFuelSensorB1 *float32 `json:"digital_fuel_sensor_b1,omitempty"`
-
-		// DigitalFuelSensora1Temperature Digital fuel sensor A1 temperature (units: °C)
-		DigitalFuelSensora1Temperature *float32 `json:"digital_fuel_sensora1_temperature,omitempty"`
-
-		// DigitalFuelSensorc1 Digital fuel sensor C1
-		DigitalFuelSensorc1 *float32 `json:"digital_fuel_sensorc1,omitempty"`
-
-		// DigitalFuelSensorc10 Digital fuel sensor C10
-		DigitalFuelSensorc10 *float32 `json:"digital_fuel_sensorc10,omitempty"`
-
-		// DigitalFuelSensorc10Temperature Digital fuel sensor C10 temperature (units: °C)
-		DigitalFuelSensorc10Temperature *float32 `json:"digital_fuel_sensorc10_temperature,omitempty"`
-
-		// DigitalFuelSensorc1Temperature Digital fuel sensor C1 temperature (units: °C)
-		DigitalFuelSensorc1Temperature *float32 `json:"digital_fuel_sensorc1_temperature,omitempty"`
-
-		// DigitalFuelSensorc2 Digital fuel sensor C2
-		DigitalFuelSensorc2 *float32 `json:"digital_fuel_sensorc2,omitempty"`
-
-		// DigitalFuelSensorc2Temperature Digital fuel sensor C2 temperature (units: °C)
-		DigitalFuelSensorc2Temperature *float32 `json:"digital_fuel_sensorc2_temperature,omitempty"`
-
-		// DigitalFuelSensorc3 Digital fuel sensor C3
-		DigitalFuelSensorc3 *float32 `json:"digital_fuel_sensorc3,omitempty"`
-
-		// DigitalFuelSensorc3Temperature Digital fuel sensor C3 temperature (units: °C)
-		DigitalFuelSensorc3Temperature *float32 `json:"digital_fuel_sensorc3_temperature,omitempty"`
-
-		// DigitalFuelSensorc4 Digital fuel sensor C4
-		DigitalFuelSensorc4 *float32 `json:"digital_fuel_sensorc4,omitempty"`
-
-		// DigitalFuelSensorc4Temperature Digital fuel sensor C4 temperature (units: °C)
-		DigitalFuelSensorc4Temperature *float32 `json:"digital_fuel_sensorc4_temperature,omitempty"`
-
-		// DigitalFuelSensorc5 Digital fuel sensor C5
-		DigitalFuelSensorc5 *float32 `json:"digital_fuel_sensorc5,omitempty"`
-
-		// DigitalFuelSensorc5Temperature Digital fuel sensor C5 temperature (units: °C)
-		DigitalFuelSensorc5Temperature *float32 `json:"digital_fuel_sensorc5_temperature,omitempty"`
-
-		// DigitalFuelSensorc6 Digital fuel sensor C6
-		DigitalFuelSensorc6 *float32 `json:"digital_fuel_sensorc6,omitempty"`
-
-		// DigitalFuelSensorc6Temperature Digital fuel sensor C6 temperature (units: °C)
-		DigitalFuelSensorc6Temperature *float32 `json:"digital_fuel_sensorc6_temperature,omitempty"`
-
-		// DigitalFuelSensorc7 Digital fuel sensor C7
-		DigitalFuelSensorc7 *float32 `json:"digital_fuel_sensorc7,omitempty"`
-
-		// DigitalFuelSensorc7Temperature Digital fuel sensor C7 temperature (units: °C)
-		DigitalFuelSensorc7Temperature *float32 `json:"digital_fuel_sensorc7_temperature,omitempty"`
-
-		// DigitalFuelSensorc8 Digital fuel sensor C8
-		DigitalFuelSensorc8 *float32 `json:"digital_fuel_sensorc8,omitempty"`
-
-		// DigitalFuelSensorc8Temperature Digital fuel sensor C8 temperature (units: °C)
-		DigitalFuelSensorc8Temperature *float32 `json:"digital_fuel_sensorc8_temperature,omitempty"`
-
-		// DigitalFuelSensorc9 Digital fuel sensor C9
-		DigitalFuelSensorc9 *float32 `json:"digital_fuel_sensorc9,omitempty"`
-
-		// DigitalFuelSensorc9Temperature Digital fuel sensor C9 temperature (units: °C)
-		DigitalFuelSensorc9Temperature *float32 `json:"digital_fuel_sensorc9_temperature,omitempty"`
-
-		// DigitalInput1 DIN1 value
-		DigitalInput1 *bool `json:"digital_input_1,omitempty"`
-
-		// DigitalInput2 DIN2 value
-		DigitalInput2 *bool `json:"digital_input_2,omitempty"`
-
-		// DigitalInput3 DIN3 value
-		DigitalInput3 *bool `json:"digital_input_3,omitempty"`
-
-		// DigitalInput4 DIN4 value
-		DigitalInput4 *bool `json:"digital_input_4,omitempty"`
-
-		// Din1WorkingTimeDiff DIN1 hour counter (units: s)
-		Din1WorkingTimeDiff *float32 `json:"din1_working_time_diff,omitempty"`
-
-		// Din2WorkingTimeDiff DIN2 hour counter (units: s)
-		Din2WorkingTimeDiff *float32 `json:"din2_working_time_diff,omitempty"`
-
-		// Din3WorkingTimeDiff DIN3 hour counter (units: s)
-		Din3WorkingTimeDiff *float32 `json:"din3_working_time_diff,omitempty"`
-
-		// Din4WorkingTimeDiff DIN4 hour counter (units: s)
-		Din4WorkingTimeDiff *float32 `json:"din4_working_time_diff,omitempty"`
-
-		// Dout1Status DOUT1 status Possible values: ACTIVE INACTIVE
-		Dout1Status *CoordinateInputsDeviceInputsDout1Status `json:"dout1_status,omitempty"`
-
-		// Dout2Status DOUT2 status Possible values: ACTIVE INACTIVE
-		Dout2Status *CoordinateInputsDeviceInputsDout2Status `json:"dout2_status,omitempty"`
-
-		// Driver1State Driver 1 state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
-		Driver1State *CoordinateInputsDeviceInputsDriver1State `json:"driver_1_state,omitempty"`
-
-		// Driver2State Driver 2 state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
-		Driver2State *CoordinateInputsDeviceInputsDriver2State `json:"driver_2_state,omitempty"`
-
-		// Ds1971IbuttonInternal16BDriverID DS1971 iButton internal 16B driver ID
-		Ds1971IbuttonInternal16BDriverID *string `json:"ds1971_ibutton_internal_16b_driver_id,omitempty"`
-
-		// Ds1971IbuttonInternal16BPassengerID DS1971 iButton internal 16B passenger ID
-		Ds1971IbuttonInternal16BPassengerID *string `json:"ds1971_ibutton_internal_16b_passenger_id,omitempty"`
-
-		// Ds1971IbuttonInternal8BDriverID DS1971 iButton internal 8B driver ID
-		Ds1971IbuttonInternal8BDriverID *string `json:"ds1971_ibutton_internal_8b_driver_id,omitempty"`
-
-		// Ds1971IbuttonInternal8BPassengerID DS1971 iButton internal 8B passenger ID
-		Ds1971IbuttonInternal8BPassengerID *string `json:"ds1971_ibutton_internal_8b_passenger_id,omitempty"`
-
-		// DxpBatteryBatteryCurrent DXP battery current (units: A)
-		DxpBatteryBatteryCurrent *float32 `json:"dxp_battery_battery_current,omitempty"`
-
-		// DxpBatteryBatteryTemp DXP battery temperature (units: °C)
-		DxpBatteryBatteryTemp *float32 `json:"dxp_battery_battery_temp,omitempty"`
-
-		// DxpBatteryBatteryVoltage DXP battery voltage (units: V)
-		DxpBatteryBatteryVoltage *float32 `json:"dxp_battery_battery_voltage,omitempty"`
-
-		// DxpBatteryChargerStopReason DXP battery charge stop reason
-		DxpBatteryChargerStopReason *float32 `json:"dxp_battery_charger_stop_reason,omitempty"`
-
-		// DxpBatteryChargingCounter DXP battery charging counter
-		DxpBatteryChargingCounter *float32 `json:"dxp_battery_charging_counter,omitempty"`
-
-		// DxpBatteryChargingCurrent DXP battery charging current (units: A)
-		DxpBatteryChargingCurrent *float32 `json:"dxp_battery_charging_current,omitempty"`
-
-		// DxpBatteryNominalCapacityUsed DXP battery nominal capacity used (units: A)
-		DxpBatteryNominalCapacityUsed *float32 `json:"dxp_battery_nominal_capacity_used,omitempty"`
-
-		// DxpBatteryStateOfCharge DXP battery charging state (units: %)
-		DxpBatteryStateOfCharge *float32 `json:"dxp_battery_state_of_charge,omitempty"`
-
-		// DxpChargerStatus DXP charger status
-		DxpChargerStatus *float32 `json:"dxp_charger_status,omitempty"`
-
-		// DxpFaults1Status1FaultsErrorCodes DXP status 1 fault error codes
-		DxpFaults1Status1FaultsErrorCodes *float32 `json:"dxp_faults1_status1_faults_error_codes,omitempty"`
-
-		// DxpFaults1Status2FaultsErrorCodes DXP status 2 fault error codes
-		DxpFaults1Status2FaultsErrorCodes *float32 `json:"dxp_faults1_status2_faults_error_codes,omitempty"`
-
-		// DxpFaults1Status3FaultsErrorCodes DXP status 3 fault error codes
-		DxpFaults1Status3FaultsErrorCodes *float32 `json:"dxp_faults1_status3_faults_error_codes,omitempty"`
-
-		// DxpFaults1Status4FaultsErrorCodes DXP status 4 fault error codes
-		DxpFaults1Status4FaultsErrorCodes *float32 `json:"dxp_faults1_status4_faults_error_codes,omitempty"`
-
-		// DxpFaults1Status5FaultsErrorCodes DXP status 5 fault error codes
-		DxpFaults1Status5FaultsErrorCodes *float32 `json:"dxp_faults1_status5_faults_error_codes,omitempty"`
-
-		// DxpFaults1Status6FaultsErrorCodes DXP status 6 fault error codes
-		DxpFaults1Status6FaultsErrorCodes *float32 `json:"dxp_faults1_status6_faults_error_codes,omitempty"`
-
-		// DxpFaults1Status7FaultsErrorCodes DXP status 7 fault error codes
-		DxpFaults1Status7FaultsErrorCodes *float32 `json:"dxp_faults1_status7_faults_error_codes,omitempty"`
-
-		// DxpFaults1Status8FaultsErrorCodes DXP status 8 fault error codes
-		DxpFaults1Status8FaultsErrorCodes *float32 `json:"dxp_faults1_status8_faults_error_codes,omitempty"`
-
-		// DxpFaults2KybHistFaultCodes DXP KYB hist fault codes
-		DxpFaults2KybHistFaultCodes *float32 `json:"dxp_faults2_kyb_hist_fault_codes,omitempty"`
-
-		// DxpFaults2UserFault1ErrorCodes DXP user fault 1 error codes
-		DxpFaults2UserFault1ErrorCodes *float32 `json:"dxp_faults2_user_fault_1_error_codes,omitempty"`
-
-		// DxpFaults2UserFault1HistoryErrorCodes DXP user fault 2 history error codes
-		DxpFaults2UserFault1HistoryErrorCodes *float32 `json:"dxp_faults2_user_fault_1_history_error_codes,omitempty"`
-
-		// DxpFaults2UserFault2ErrorCodes DXP user fault 2 error codes
-		DxpFaults2UserFault2ErrorCodes *float32 `json:"dxp_faults2_user_fault_2_error_codes,omitempty"`
-
-		// DxpFaults2UserFault2HistoryErrorCodes DXP user fault 1 history error codes
-		DxpFaults2UserFault2HistoryErrorCodes *float32 `json:"dxp_faults2_user_fault_2_history_error_codes,omitempty"`
-
-		// DxpOtherParametersChassisNumberNr DXP chassis number
-		DxpOtherParametersChassisNumberNr *float32 `json:"dxp_other_parameters_chassis_number_nr,omitempty"`
-
-		// DxpOtherParametersParameterBlkVersion DXP parameter BLK version
-		DxpOtherParametersParameterBlkVersion *float32 `json:"dxp_other_parameters_parameter_blk_version,omitempty"`
-
-		// DxpOtherParametersServieOdometer DXP service odometer
-		DxpOtherParametersServieOdometer *float32 `json:"dxp_other_parameters_servie_odometer,omitempty"`
-
-		// DxpOtherParametersVclVersion DXP VCL version
-		DxpOtherParametersVclVersion *float32 `json:"dxp_other_parameters_vcl_version,omitempty"`
-
-		// DxpSwitchesParametersSet DXP switch parameters set
-		DxpSwitchesParametersSet *float32 `json:"dxp_switches_parameters_set,omitempty"`
-
-		// DxpSwitchesSwitch1 DXP switch 1 value Possible values: OFF ON
-		DxpSwitchesSwitch1 *CoordinateInputsDeviceInputsDxpSwitchesSwitch1 `json:"dxp_switches_switch1,omitempty"`
-
-		// DxpSwitchesSwitch2 DXP switch 2 value Possible values: OFF ON
-		DxpSwitchesSwitch2 *CoordinateInputsDeviceInputsDxpSwitchesSwitch2 `json:"dxp_switches_switch2,omitempty"`
-
-		// DxpSwitchesSwitch3 DXP switch 3 value Possible values: OFF ON
-		DxpSwitchesSwitch3 *CoordinateInputsDeviceInputsDxpSwitchesSwitch3 `json:"dxp_switches_switch3,omitempty"`
-
-		// DxpSwitchesSwitch4 DXP switch 4 value Possible values: OFF ON
-		DxpSwitchesSwitch4 *CoordinateInputsDeviceInputsDxpSwitchesSwitch4 `json:"dxp_switches_switch4,omitempty"`
-
-		// DxpSwitchesSwitch5 DXP switch 5 value Possible values: OFF ON
-		DxpSwitchesSwitch5 *CoordinateInputsDeviceInputsDxpSwitchesSwitch5 `json:"dxp_switches_switch5,omitempty"`
-
-		// DxpSwitchesSwitch6 DXP switch 6 value Possible values: OFF ON
-		DxpSwitchesSwitch6 *CoordinateInputsDeviceInputsDxpSwitchesSwitch6 `json:"dxp_switches_switch6,omitempty"`
-
-		// DxpSwitchesSwitch7 DXP switch 7 value Possible values: OFF ON
-		DxpSwitchesSwitch7 *CoordinateInputsDeviceInputsDxpSwitchesSwitch7 `json:"dxp_switches_switch7,omitempty"`
-
-		// DxpSwitchesSwitch8 DXP switch 8 value Possible values: OFF ON
-		DxpSwitchesSwitch8 *CoordinateInputsDeviceInputsDxpSwitchesSwitch8 `json:"dxp_switches_switch8,omitempty"`
-
-		// EcoBrakingDistance Eco-Drive braking distance (units: m)
-		EcoBrakingDistance *float32 `json:"eco_braking_distance,omitempty"`
-
-		// EcoBrakingDuration Eco-Drive braking duration (units: s)
-		EcoBrakingDuration *float32 `json:"eco_braking_duration,omitempty"`
-
-		// EcoEngineBrakingDistance Eco-Drive engine braking distance (units: m)
-		EcoEngineBrakingDistance *float32 `json:"eco_engine_braking_distance,omitempty"`
-
-		// EcoRetarderDuration Eco-Drive retarder duration (units: s)
-		EcoRetarderDuration *float32 `json:"eco_retarder_duration,omitempty"`
-
-		// EcoRpmInRedBandDistance Eco-Drive RPM in red band distance (units: m)
-		EcoRpmInRedBandDistance *float32 `json:"eco_rpm_in_red_band_distance,omitempty"`
-
-		// EcoStopsCounter Eco-Drive stop counter
-		EcoStopsCounter *float32 `json:"eco_stops_counter,omitempty"`
-
-		// EcodriveAccelerationValue Eco-Drive acceleration value (units: m/s^2)
-		EcodriveAccelerationValue *float32 `json:"ecodrive_acceleration_value,omitempty"`
-
-		// EcodriveBrakingEvents Eco-Drive brake counter
-		EcodriveBrakingEvents *float32 `json:"ecodrive_braking_events,omitempty"`
-
-		// EcodriveBrakingValue Eco-Drive braking value (units: m/s^2)
-		EcodriveBrakingValue *float32 `json:"ecodrive_braking_value,omitempty"`
-
-		// EcodriveCorneringCounter Eco-Drive cornering counter
-		EcodriveCorneringCounter *float32 `json:"ecodrive_cornering_counter,omitempty"`
-
-		// EcodriveCorneringValue Eco-Drive cornering value (units: m/s^2)
-		EcodriveCorneringValue *float32 `json:"ecodrive_cornering_value,omitempty"`
-
-		// EcodriveEngineOn Eco-Drive engine on timer (units: s)
-		EcodriveEngineOn *float32 `json:"ecodrive_engine_on,omitempty"`
-
-		// EcodriveExtremeBrakingCount Eco-Drive extreme braking count
-		EcodriveExtremeBrakingCount *float32 `json:"ecodrive_extreme_braking_count,omitempty"`
-
-		// EcodriveFuelUsedAtStops Eco-Drive fuel used while idling (units: l)
-		EcodriveFuelUsedAtStops *float32 `json:"ecodrive_fuel_used_at_stops,omitempty"`
-
-		// EcodriveFuelUsedInHighestGear Eco-Drive highest gear fuel used (units: l)
-		EcodriveFuelUsedInHighestGear *float32 `json:"ecodrive_fuel_used_in_highest_gear,omitempty"`
-
-		// EcodriveFuelUsedInRange13001500Rpm Eco-Drive RPM range 3 (1300-1500 RPM) fuel used (units: l)
-		EcodriveFuelUsedInRange13001500Rpm *float32 `json:"ecodrive_fuel_used_in_range_1300_1500_rpm,omitempty"`
-
-		// EcodriveFuelUsedInRange15002300Rpm Eco-Drive RPM range 4 (1500-2300 RPM) fuel used (units: l)
-		EcodriveFuelUsedInRange15002300Rpm *float32 `json:"ecodrive_fuel_used_in_range_1500_2300_rpm,omitempty"`
-
-		// EcodriveFuelUsedInRange1900Rpm Eco-Drive RPM range 1 (<900 RPM) fuel used (units: l)
-		EcodriveFuelUsedInRange1900Rpm *float32 `json:"ecodrive_fuel_used_in_range_1_900_rpm,omitempty"`
-
-		// EcodriveFuelUsedInRange9001300Rpm Eco-Drive RPM range 2 (900-1300 RPM) fuel used (units: l)
-		EcodriveFuelUsedInRange9001300Rpm *float32 `json:"ecodrive_fuel_used_in_range_900_1300_rpm,omitempty"`
-
-		// EcodriveFuelUsedWhenWhenCruiseControlWasOn Eco-Drive cruise control on fuel used (units: l)
-		EcodriveFuelUsedWhenWhenCruiseControlWasOn *float32 `json:"ecodrive_fuel_used_when_when_cruise_control_was_on,omitempty"`
-
-		// EcodriveFuelUsedWhileEngineOverloaded Eco-Drive engine overloaded fuel used (units: l)
-		EcodriveFuelUsedWhileEngineOverloaded *float32 `json:"ecodrive_fuel_used_while_engine_overloaded,omitempty"`
-
-		// EcodriveFuelUsedWhileOverspeeding Eco-Drive overspeeding fuel used (units: l)
-		EcodriveFuelUsedWhileOverspeeding *float32 `json:"ecodrive_fuel_used_while_overspeeding,omitempty"`
-
-		// EcodriveHarshAcceleration Eco-Drive harsh acceleration counter
-		EcodriveHarshAcceleration *float32 `json:"ecodrive_harsh_acceleration,omitempty"`
-
-		// EcodriveHarshBrakingCount Eco-Drive harsh braking count
-		EcodriveHarshBrakingCount *float32 `json:"ecodrive_harsh_braking_count,omitempty"`
-
-		// EcodriveIdlingState Eco-Drive idling state Possible values: NO_IDLING IDLING
-		EcodriveIdlingState *CoordinateInputsDeviceInputsEcodriveIdlingState `json:"ecodrive_idling_state,omitempty"`
-
-		// EcodriveIdlingTime Eco-Drive idling counter (units: s)
-		EcodriveIdlingTime *float32 `json:"ecodrive_idling_time,omitempty"`
-
-		// EcodriveMaximumRpm Eco-Drive maximum RPM (units: RPM)
-		EcodriveMaximumRpm *float32 `json:"ecodrive_maximum_rpm,omitempty"`
-
-		// EcodriveMaximumSpeed Eco-Drive maximum speed (units: km/h)
-		EcodriveMaximumSpeed *float32 `json:"ecodrive_maximum_speed,omitempty"`
-
-		// EcodriveMileageInHighestGear Eco-Drive highest gear distance (units: m)
-		EcodriveMileageInHighestGear *float32 `json:"ecodrive_mileage_in_highest_gear,omitempty"`
-
-		// EcodriveMileageInRange13001500Rpm Eco-Drive RPM range 3 (1300-1500 RPM) distance (units: m)
-		EcodriveMileageInRange13001500Rpm *float32 `json:"ecodrive_mileage_in_range_1300_1500_rpm,omitempty"`
-
-		// EcodriveMileageInRange15002300Rpm Eco-Drive RPM range 4 (1500-2300 RPM) distance (units: m)
-		EcodriveMileageInRange15002300Rpm *float32 `json:"ecodrive_mileage_in_range_1500_2300_rpm,omitempty"`
-
-		// EcodriveMileageInRange1900Rpm Eco-Drive RPM range 1 (<900 RPM) distance (units: m)
-		EcodriveMileageInRange1900Rpm *float32 `json:"ecodrive_mileage_in_range_1_900_rpm,omitempty"`
-
-		// EcodriveMileageInRange9001300Rpm Eco-Drive RPM range 2 (900-1300 RPM) distance (units: m)
-		EcodriveMileageInRange9001300Rpm *float32 `json:"ecodrive_mileage_in_range_900_1300_rpm,omitempty"`
-
-		// EcodriveMileageInRpmGreenZone Eco-Drive mileage in RPM green zone (units: m)
-		EcodriveMileageInRpmGreenZone *float32 `json:"ecodrive_mileage_in_rpm_green_zone,omitempty"`
-
-		// EcodriveMileageWhenCruiseControlCouldBeOn Eco-Drive mileage when cruise control could be on (units: m)
-		EcodriveMileageWhenCruiseControlCouldBeOn *float32 `json:"ecodrive_mileage_when_cruise_control_could_be_on,omitempty"`
-
-		// EcodriveMileageWhenCruiseControlWasOn Eco-Drive cruise control on distance (units: m)
-		EcodriveMileageWhenCruiseControlWasOn *float32 `json:"ecodrive_mileage_when_cruise_control_was_on,omitempty"`
-
-		// EcodriveMileageWhenCruiseControlWasOnWhenItCouldBeOn Eco-Drive mileage when cruise control was on when it could be on (units: m)
-		EcodriveMileageWhenCruiseControlWasOnWhenItCouldBeOn *float32 `json:"ecodrive_mileage_when_cruise_control_was_on_when_it_could_be_on,omitempty"`
-
-		// EcodriveMileageWhenSpeedIsBelowOverspeed Eco-Drive mileage when speed is below overspeed (units: m)
-		EcodriveMileageWhenSpeedIsBelowOverspeed *float32 `json:"ecodrive_mileage_when_speed_is_below_overspeed,omitempty"`
-
-		// EcodriveMileageWhileEngineOverloaded Eco-Drive engine overloaded distance (units: m)
-		EcodriveMileageWhileEngineOverloaded *float32 `json:"ecodrive_mileage_while_engine_overloaded,omitempty"`
-
-		// EcodriveMileageWhileFreeRolling Eco-Drive free rolling distance (units: m)
-		EcodriveMileageWhileFreeRolling *float32 `json:"ecodrive_mileage_while_free_rolling,omitempty"`
-
-		// EcodriveMileageWhileOverspeeding Eco-Drive overspeeding distance (units: m)
-		EcodriveMileageWhileOverspeeding *float32 `json:"ecodrive_mileage_while_overspeeding,omitempty"`
-
-		// EcodriveOverspeed Eco-Drive overspeeding timer (units: s)
-		EcodriveOverspeed *float32 `json:"ecodrive_overspeed,omitempty"`
-
-		// EcodriveRpmOnRed Eco-Drive RPM in red band timer (units: s)
-		EcodriveRpmOnRed *float32 `json:"ecodrive_rpm_on_red,omitempty"`
-
-		// EcodriveStopsCounter Eco-Drive stop counter
-		EcodriveStopsCounter *float32 `json:"ecodrive_stops_counter,omitempty"`
-
-		// EcodriveTimeCruiseControlCouldBeOn Eco-Drive time cruise control could be on (units: s)
-		EcodriveTimeCruiseControlCouldBeOn *float32 `json:"ecodrive_time_cruise_control_could_be_on,omitempty"`
-
-		// EcodriveTimeCruiseControlWasOnWhenItCouldBeOn Eco-Drive time cruise control was on when it could be on (units: s)
-		EcodriveTimeCruiseControlWasOnWhenItCouldBeOn *float32 `json:"ecodrive_time_cruise_control_was_on_when_it_could_be_on,omitempty"`
-
-		// EngineHours CAN engine hours (units: h)
-		EngineHours *float32 `json:"engine_hours,omitempty"`
-
-		// EngineRpm CAN engine speed (units: RPM)
-		EngineRpm *float32 `json:"engine_rpm,omitempty"`
-
-		// FirstDriverID CAN first driver ID
-		FirstDriverID *string `json:"first_driver_id,omitempty"`
-
-		// FrequencyInput1 Frequency input 1 (units: Hz)
-		FrequencyInput1 *float32 `json:"frequency_input_1,omitempty"`
-
-		// FrequencyInput2 Frequency input 2 (units: Hz)
-		FrequencyInput2 *float32 `json:"frequency_input_2,omitempty"`
-
-		// FuelCounter Fuel counter 1
-		FuelCounter *float32 `json:"fuel_counter,omitempty"`
-
-		// FuelCounter2 Fuel counter 2
-		FuelCounter2 *float32 `json:"fuel_counter_2,omitempty"`
-
-		// FuelLevelCan CAN fuel level (units: %)
-		FuelLevelCan *float32 `json:"fuel_level_can,omitempty"`
-
-		// FuelLevelCanL CAN fuel level liters (units: l)
-		FuelLevelCanL *float32 `json:"fuel_level_can_l,omitempty"`
-
-		// FuelLevelSensorb1Temperature Fuel level sensor B1 temperature (units: °C)
-		FuelLevelSensorb1Temperature *float32 `json:"fuel_level_sensorb1_temperature,omitempty"`
-
-		// FuelUsed CAN engine total fuel used (units: l)
-		FuelUsed *float32 `json:"fuel_used,omitempty"`
-
-		// FuelUsedDiff CAN fuel used delta (units: l)
-		FuelUsedDiff *float32 `json:"fuel_used_diff,omitempty"`
-
-		// GPeakX G peak in X axis (units: G)
-		GPeakX *float32 `json:"g_peak_x,omitempty"`
-
-		// GPeakY G peak in Y axis (units: G)
-		GPeakY *float32 `json:"g_peak_y,omitempty"`
-
-		// GPeakZ G peak in Z axis (units: G)
-		GPeakZ *float32 `json:"g_peak_z,omitempty"`
-
-		// GnssAntenna GNSS antenna status Possible values: DISABLED ENABLED UNKNOWN
-		GnssAntenna *CoordinateInputsDeviceInputsGnssAntenna `json:"gnss_antenna,omitempty"`
-
-		// GprsErrors GPRS errors
-		GprsErrors *float32 `json:"gprs_errors,omitempty"`
-
-		// GprsStatus GPRS status Possible values: DISCONNECTED CONNECTED
-		GprsStatus *CoordinateInputsDeviceInputsGprsStatus `json:"gprs_status,omitempty"`
-
-		// GpsAltitude GPS altitude (units: m)
-		GpsAltitude *float32 `json:"gps_altitude,omitempty"`
-
-		// GpsSpeed GPS speed (units: km/h)
-		GpsSpeed *float32 `json:"gps_speed,omitempty"`
-
-		// GsmSignalStrength GSM signal strength
-		GsmSignalStrength *float32 `json:"gsm_signal_strength,omitempty"`
-
-		// GsmUmtsJamming GSM/UMTS jamming status Possible status: JAMMING_NOT_DETECTED JAMMING_DETECTED
-		GsmUmtsJamming *string `json:"gsm_umts_jamming,omitempty"`
-
-		// GsmUmtsOperator GSM/UMTS operator
-		GsmUmtsOperator *float32 `json:"gsm_umts_operator,omitempty"`
-
-		// GsmUmtsSignalStrength GSM/UMTS signal strength
-		GsmUmtsSignalStrength *float32 `json:"gsm_umts_signal_strength,omitempty"`
-
-		// Hdop HDOP
-		Hdop *string `json:"hdop,omitempty"`
-
-		// Ibutton iButton driver ID
-		Ibutton *string `json:"ibutton,omitempty"`
-
-		// IgnitionPlugtrack Virtual ignition Possible values: OFF ON
-		IgnitionPlugtrack *CoordinateInputsDeviceInputsIgnitionPlugtrack `json:"ignition_plugtrack,omitempty"`
-
-		// InputTrigger Input trigger
-		InputTrigger *float32 `json:"input_trigger,omitempty"`
-
-		// KimaxTotalTrailerWeight Kimax total trailer weight (units: kg)
-		KimaxTotalTrailerWeight *float32 `json:"kimax_total_trailer_weight,omitempty"`
-
-		// KimaxTotalTruckWeight Kimax total truck weight (units: kg)
-		KimaxTotalTruckWeight *float32 `json:"kimax_total_truck_weight,omitempty"`
-
-		// LcvDriverDoors LCV driver doors Possible values: CLOSE OPEN
-		LcvDriverDoors *CoordinateInputsDeviceInputsLcvDriverDoors `json:"lcv_driver_doors,omitempty"`
-
-		// LcvHood LCV hood Possible values: CLOSE OPEN
-		LcvHood *CoordinateInputsDeviceInputsLcvHood `json:"lcv_hood,omitempty"`
-
-		// LcvLeftBackDoors LCV left back doors Possible values: CLOSE OPEN
-		LcvLeftBackDoors *CoordinateInputsDeviceInputsLcvLeftBackDoors `json:"lcv_left_back_doors,omitempty"`
-
-		// LcvPassengerDoors LCV passenger doors Possible values: CLOSE OPEN
-		LcvPassengerDoors *CoordinateInputsDeviceInputsLcvPassengerDoors `json:"lcv_passenger_doors,omitempty"`
-
-		// LcvRightBackDoors LCV right back doors Possible values: CLOSE OPEN
-		LcvRightBackDoors *CoordinateInputsDeviceInputsLcvRightBackDoors `json:"lcv_right_back_doors,omitempty"`
-
-		// LcvTrunk LCV trunk Possible values: CLOSE OPEN
-		LcvTrunk *CoordinateInputsDeviceInputsLcvTrunk `json:"lcv_trunk,omitempty"`
-
-		// MagneticCardID Magnetic card ID
-		MagneticCardID *string `json:"magnetic_card_id,omitempty"`
-
-		// MobaNettoWeight MOBA netto weight (units: g)
-		MobaNettoWeight *float32 `json:"moba_netto_weight,omitempty"`
-
-		// MobaRfidID MOBA RFID ID
-		MobaRfidID *string `json:"moba_rfid_id,omitempty"`
-
-		// MobaTimestamp MOBA timestamp
-		MobaTimestamp *time.Time `json:"moba_timestamp,omitempty"`
-
-		// MobileyeBrakeSignal Mobileye brake signal
-		MobileyeBrakeSignal *bool `json:"mobileye_brake_signal,omitempty"`
-
-		// MobileyeDuskTimeIndicator Mobileye dusk time indicator Possible values: DAY DUSK
-		MobileyeDuskTimeIndicator *CoordinateInputsDeviceInputsMobileyeDuskTimeIndicator `json:"mobileye_dusk_time_indicator,omitempty"`
-
-		// MobileyeErrorCode Mobileye error code
-		MobileyeErrorCode *float32 `json:"mobileye_error_code,omitempty"`
-
-		// MobileyeErrorValid Mobileye error valid
-		MobileyeErrorValid *bool `json:"mobileye_error_valid,omitempty"`
-
-		// MobileyeFailsafe Mobileye failsafe
-		MobileyeFailsafe *bool `json:"mobileye_failsafe,omitempty"`
-
-		// MobileyeFcwOn Mobileye forward collision warning on
-		MobileyeFcwOn *bool `json:"mobileye_fcw_on,omitempty"`
-
-		// MobileyeFilterType Mobileye filter type
-		MobileyeFilterType *float32 `json:"mobileye_filter_type,omitempty"`
-
-		// MobileyeHeadwayMeasurement Mobileye headway measurement
-		MobileyeHeadwayMeasurement *float32 `json:"mobileye_headway_measurement,omitempty"`
-
-		// MobileyeHeadwayValid Mobileye headway valid
-		MobileyeHeadwayValid *bool `json:"mobileye_headway_valid,omitempty"`
-
-		// MobileyeHeadwayWarningLevel Mobileye headway warning level Possible values: NO_COPV CIPV_WITH_HW_MORE_THAN_HW_CONFIG CIPV_WITH_LESS_THAN_HW_CONFIG
-		MobileyeHeadwayWarningLevel *CoordinateInputsDeviceInputsMobileyeHeadwayWarningLevel `json:"mobileye_headway_warning_level,omitempty"`
-
-		// MobileyeHiBeam Mobileye high beam Possible values: OFF ON
-		MobileyeHiBeam *CoordinateInputsDeviceInputsMobileyeHiBeam `json:"mobileye_hi_beam,omitempty"`
-
-		// MobileyeHiBeamAvailable Mobileye high beam available
-		MobileyeHiBeamAvailable *bool `json:"mobileye_hi_beam_available,omitempty"`
-
-		// MobileyeHwRepeatEnabled Mobileye headway warning repeat enabled
-		MobileyeHwRepeatEnabled *bool `json:"mobileye_hw_repeat_enabled,omitempty"`
-
-		// MobileyeLdwOff Mobileye LDW off
-		MobileyeLdwOff *bool `json:"mobileye_ldw_off,omitempty"`
-
-		// MobileyeLeftLdwOn Mobileye left LDW on
-		MobileyeLeftLdwOn *bool `json:"mobileye_left_ldw_on,omitempty"`
-
-		// MobileyeLeftSignal Mobileye left signal
-		MobileyeLeftSignal *bool `json:"mobileye_left_signal,omitempty"`
-
-		// MobileyeLowBeam Mobileye low beam Possible values: OFF ON
-		MobileyeLowBeam *CoordinateInputsDeviceInputsMobileyeLowBeam `json:"mobileye_low_beam,omitempty"`
-
-		// MobileyeLowBeamAvailable Mobileye low beam available
-		MobileyeLowBeamAvailable *bool `json:"mobileye_low_beam_available,omitempty"`
-
-		// MobileyeMaintenance Mobileye maintenance Possible values: NO_ERROR ERROR
-		MobileyeMaintenance *CoordinateInputsDeviceInputsMobileyeMaintenance `json:"mobileye_maintenance,omitempty"`
-
-		// MobileyeNightTimeIndicator Mobileye night time indicator Possible values: DAY NIGHT
-		MobileyeNightTimeIndicator *CoordinateInputsDeviceInputsMobileyeNightTimeIndicator `json:"mobileye_night_time_indicator,omitempty"`
-
-		// MobileyePedestriansFcw Mobileye pedestrians forward collision warning
-		MobileyePedestriansFcw *bool `json:"mobileye_pedestrians_fcw,omitempty"`
-
-		// MobileyePedestriansInDz Mobileye pedestrians in danger zone
-		MobileyePedestriansInDz *bool `json:"mobileye_pedestrians_in_dz,omitempty"`
-
-		// MobileyeRightLdwOn Mobileye right LDW on
-		MobileyeRightLdwOn *bool `json:"mobileye_right_ldw_on,omitempty"`
-
-		// MobileyeRightSignal Mobileye right signal
-		MobileyeRightSignal *bool `json:"mobileye_right_signal,omitempty"`
-
-		// MobileyeSignPositionX Mobileye sign position X
-		MobileyeSignPositionX *float32 `json:"mobileye_sign_position_x,omitempty"`
-
-		// MobileyeSignPositionY Mobileye sign position Y
-		MobileyeSignPositionY *float32 `json:"mobileye_sign_position_y,omitempty"`
-
-		// MobileyeSignPositionZ Mobileye sign position Z
-		MobileyeSignPositionZ *float32 `json:"mobileye_sign_position_z,omitempty"`
-
-		// MobileyeSoundType Mobileye sound type Possible values: SILENT LDWL LDWR HW1 TSR UFCW FCW_PCW PEDS_IN_DZ
-		MobileyeSoundType *CoordinateInputsDeviceInputsMobileyeSoundType `json:"mobileye_sound_type,omitempty"`
-
-		// MobileyeSpeed Mobileye speed (units: km/h)
-		MobileyeSpeed *float32 `json:"mobileye_speed,omitempty"`
-
-		// MobileyeSpeedAvailable Mobileye speed available
-		MobileyeSpeedAvailable *bool `json:"mobileye_speed_available,omitempty"`
-
-		// MobileyeTamperAlert Mobileye tamper alert Possible values: OFF ON
-		MobileyeTamperAlert *CoordinateInputsDeviceInputsMobileyeTamperAlert `json:"mobileye_tamper_alert,omitempty"`
-
-		// MobileyeTsrEnabled Mobileye TSR enabled
-		MobileyeTsrEnabled *bool `json:"mobileye_tsr_enabled,omitempty"`
-
-		// MobileyeTsrWarningLevel Mobileye TSR warning level
-		MobileyeTsrWarningLevel *float32 `json:"mobileye_tsr_warning_level,omitempty"`
-
-		// MobileyeVisionOnlySign Mobileye vision only sign
-		MobileyeVisionOnlySign *float32 `json:"mobileye_vision_only_sign,omitempty"`
-
-		// MobileyeVisionOnlySuplementarySignTypeDisplay1 Mobileye vision only supplementary sign type display 1
-		MobileyeVisionOnlySuplementarySignTypeDisplay1 *float32 `json:"mobileye_vision_only_suplementary_sign_type_display_1,omitempty"`
-
-		// MobileyeVisionOnlySuplementarySignTypeDisplay2 Mobileye vision only suplementary sign type display 2
-		MobileyeVisionOnlySuplementarySignTypeDisplay2 *float32 `json:"mobileye_vision_only_suplementary_sign_type_display_2,omitempty"`
-
-		// MobileyeVisionOnlySuplementarySignTypeDisplay3 Mobileye vision only suplementary sign type display 3
-		MobileyeVisionOnlySuplementarySignTypeDisplay3 *float32 `json:"mobileye_vision_only_suplementary_sign_type_display_3,omitempty"`
-
-		// MobileyeVisionOnlySuplementarySignTypeDisplay4 Mobileye vision only suplementary sign type display 4
-		MobileyeVisionOnlySuplementarySignTypeDisplay4 *float32 `json:"mobileye_vision_only_suplementary_sign_type_display_4,omitempty"`
-
-		// MobileyeVisionOnlySupplementarySignType Mobileye vision only supplementary sign type
-		MobileyeVisionOnlySupplementarySignType *float32 `json:"mobileye_vision_only_supplementary_sign_type,omitempty"`
-
-		// MobileyeVisionSignTypeDisplay1 Mobileye vision sign type display 1
-		MobileyeVisionSignTypeDisplay1 *float32 `json:"mobileye_vision_sign_type_display_1,omitempty"`
-
-		// MobileyeVisionSignTypeDisplay2 Mobileye vision sign type display 2
-		MobileyeVisionSignTypeDisplay2 *float32 `json:"mobileye_vision_sign_type_display_2,omitempty"`
-
-		// MobileyeVisionSignTypeDisplay3 Mobileye vision sign type display 3
-		MobileyeVisionSignTypeDisplay3 *float32 `json:"mobileye_vision_sign_type_display_3,omitempty"`
-
-		// MobileyeVisionSignTypeDisplay4 Mobileye vision sign type display 4
-		MobileyeVisionSignTypeDisplay4 *float32 `json:"mobileye_vision_sign_type_display_4,omitempty"`
-
-		// MobileyeWipers Mobileye wipers Possible values: OFF ON
-		MobileyeWipers *CoordinateInputsDeviceInputsMobileyeWipers `json:"mobileye_wipers,omitempty"`
-
-		// MobileyeWipersAvailable Mobileye wipers available
-		MobileyeWipersAvailable *bool `json:"mobileye_wipers_available,omitempty"`
-
-		// MobileyeZeroSpeed Mobileye zero speed
-		MobileyeZeroSpeed *bool `json:"mobileye_zero_speed,omitempty"`
-
-		// ModemTemperature Modem temperature (units: °C)
-		ModemTemperature *float32 `json:"modem_temperature,omitempty"`
-
-		// Movement Movement sensor Possible values: STILL MOVING
-		Movement *CoordinateInputsDeviceInputsMovement `json:"movement,omitempty"`
-
-		// ObdKlineActualEnginePercentTorque OBD actual engine percent torque (units: %)
-		ObdKlineActualEnginePercentTorque *float32 `json:"obd_kline_actual_engine_percent_torque,omitempty"`
-
-		// ObdKlineAmbientAirTemperature OBD ambient air temperature (units: °C)
-		ObdKlineAmbientAirTemperature *float32 `json:"obd_kline_ambient_air_temperature,omitempty"`
-
-		// ObdKlineDistanceTraveledWhileMilIsActivated OBD distance traveled while MIL is activated (units: km)
-		ObdKlineDistanceTraveledWhileMilIsActivated *float32 `json:"obd_kline_distance_traveled_while_mil_is_activated,omitempty"`
-
-		// ObdKlineDtcAndMil OBD DTC and MIL
-		ObdKlineDtcAndMil *float32 `json:"obd_kline_dtc_and_mil,omitempty"`
-
-		// ObdKlineDtcCounted OBD DTC count
-		ObdKlineDtcCounted *float32 `json:"obd_kline_dtc_counted,omitempty"`
-
-		// ObdKlineEngineCoolantTemperature OBD engine coolant temperature (units: °C)
-		ObdKlineEngineCoolantTemperature *float32 `json:"obd_kline_engine_coolant_temperature,omitempty"`
-
-		// ObdKlineEngineFuelRate OBD engine fuel rate (units: l/h)
-		ObdKlineEngineFuelRate *float32 `json:"obd_kline_engine_fuel_rate,omitempty"`
-
-		// ObdKlineFuelLevelInput OBD fuel level (units: %)
-		ObdKlineFuelLevelInput *float32 `json:"obd_kline_fuel_level_input,omitempty"`
-
-		// ObdKlineRelativeAcceleratorPedalPosition OBD accelerator pedal position (units: %)
-		ObdKlineRelativeAcceleratorPedalPosition *float32 `json:"obd_kline_relative_accelerator_pedal_position,omitempty"`
-
-		// ObdKlineRpm OBD RPM (units: RPM)
-		ObdKlineRpm *float32 `json:"obd_kline_rpm,omitempty"`
-
-		// ObdKlineTimeSinceEngineStart OBD time since engine start (units: s)
-		ObdKlineTimeSinceEngineStart *float32 `json:"obd_kline_time_since_engine_start,omitempty"`
-
-		// ObdKlineTypeOfFuel OBD fuel type Possible values: NOT_AVAILABLE GASOLINE METHANOL ETHANOL DIESEL LPG CNG PROPANE ELECTRIC BIFUEL_RUNNING_GASOLINE BIFUEL_RUNNING_METHANOL BIFUEL_RUNNING_ETHANOL BIFUEL_RUNNING_LPG BIFUEL_RUNNING_CNG BIFUEL_RUNNING_PROPANE BIFUEL_RUNNING_ELECTRICITY BIFUEL_RUNNING_ELECTRIC_AND_COMBUSTION_ENGINE HYBRID_GASOLINE HYBRID_ETHANOL HYBRID_DIESEL HYBRID_ELECTRIC HYBRID_RUNNING_ELECTRIC_AND_COMBUSTION_ENGINE HYBRID_REGENERATIVE BIFUEL_DIESEL
-		ObdKlineTypeOfFuel *CoordinateInputsDeviceInputsObdKlineTypeOfFuel `json:"obd_kline_type_of_fuel,omitempty"`
-
-		// ObdKlineVehicleSpeedSensor OBD vehicle speed (units: km/h)
-		ObdKlineVehicleSpeedSensor *float32 `json:"obd_kline_vehicle_speed_sensor,omitempty"`
-
-		// ObdKlineVin1 OBD VIN 1
-		ObdKlineVin1 *string `json:"obd_kline_vin_1,omitempty"`
-
-		// ObdKlineVin2 OBD VIN 2
-		ObdKlineVin2 *string `json:"obd_kline_vin_2,omitempty"`
-
-		// ObdKlineVin3 OBD VIN 3
-		ObdKlineVin3 *string `json:"obd_kline_vin_3,omitempty"`
-
-		// Operator GSM operator
-		Operator *float32 `json:"operator,omitempty"`
-
-		// OtDigitalInput1 OT digital input 1
-		OtDigitalInput1 *bool `json:"ot_digital_input_1,omitempty"`
-
-		// OtDigitalInput2 OT digital input 2
-		OtDigitalInput2 *bool `json:"ot_digital_input_2,omitempty"`
-
-		// OtDigitalInput3 OT digital input 3
-		OtDigitalInput3 *bool `json:"ot_digital_input_3,omitempty"`
-
-		// OtDigitalInput4 OT digital input 4
-		OtDigitalInput4 *bool `json:"ot_digital_input_4,omitempty"`
-
-		// OtTemperatureSensor1 OT temperature sensor 1 (units: °C)
-		OtTemperatureSensor1 *float32 `json:"ot_temperature_sensor_1,omitempty"`
-
-		// OtTemperatureSensor2 OT temperature sensor 2 (units: °C)
-		OtTemperatureSensor2 *float32 `json:"ot_temperature_sensor_2,omitempty"`
-
-		// OtTemperatureSensor3 OT temperature sensor 3 (units: °C)
-		OtTemperatureSensor3 *float32 `json:"ot_temperature_sensor_3,omitempty"`
-
-		// OtTemperatureSensor4 OT temperature sensor 4 (units: °C)
-		OtTemperatureSensor4 *float32 `json:"ot_temperature_sensor_4,omitempty"`
-
-		// OtTemperatureSensor5 OT temperature sensor 5 (units: °C)
-		OtTemperatureSensor5 *float32 `json:"ot_temperature_sensor_5,omitempty"`
-
-		// OtTemperatureSensor6 OT temperature sensor 6 (units: °C)
-		OtTemperatureSensor6 *float32 `json:"ot_temperature_sensor_6,omitempty"`
-
-		// OverspeedingEvents CAN tacho vehicle overspeed Possible values: NO_OVERSPEED OVERSPEED
-		OverspeedingEvents *CoordinateInputsDeviceInputsOverspeedingEvents `json:"overspeeding_events,omitempty"`
-
-		// Panic Panic status
-		Panic *bool `json:"panic,omitempty"`
-
-		// PcbTemperature PCB temperature (units: °C)
-		PcbTemperature *float32 `json:"pcb_temperature,omitempty"`
-
-		// PedalPos CAN accelerator pedal position (units: %)
-		PedalPos *float32 `json:"pedal_pos,omitempty"`
-
-		// PendingSatelliteMessages Pending satellite messages
-		PendingSatelliteMessages *float32 `json:"pending_satellite_messages,omitempty"`
-
-		// PowerSupplyVoltage Power supply voltage (units: V)
-		PowerSupplyVoltage *float32 `json:"power_supply_voltage,omitempty"`
-
-		// Priority Priority Possible values: LOW HIGH
-		Priority *CoordinateInputsDeviceInputsPriority `json:"priority,omitempty"`
-
-		// RfidA RFID PortA
-		RfidA *string `json:"rfid_a,omitempty"`
-
-		// RfidB RFID PortB
-		RfidB *string `json:"rfid_b,omitempty"`
-
-		// RollOverAlarm Rollover alarm
-		RollOverAlarm *bool `json:"roll_over_alarm,omitempty"`
-
-		// SatelliteMessagesSent Satellite messages sent
-		SatelliteMessagesSent *float32 `json:"satellite_messages_sent,omitempty"`
-
-		// SecondDriverID CAN second driver ID
-		SecondDriverID *string `json:"second_driver_id,omitempty"`
-
-		// ServiceDist CAN service distance (units: km)
-		ServiceDist *float32 `json:"service_dist,omitempty"`
-
-		// ShockDuration Shock duration (units: ms)
-		ShockDuration *float32 `json:"shock_duration,omitempty"`
-
-		// SleepTimer Sleep timer Possible values: NO_EVENT DEVICE_WAKE_UP_BY_TIMER_EVENT
-		SleepTimer *CoordinateInputsDeviceInputsSleepTimer `json:"sleep_timer,omitempty"`
-
-		// SpeedTacho CAN tachograph vehicle speed (units: km/h)
-		SpeedTacho *float32 `json:"speed_tacho,omitempty"`
-
-		// SpeedWheel CAN wheel based speed (units: km/h)
-		SpeedWheel *float32 `json:"speed_wheel,omitempty"`
-
-		// SprDrivenHoursWhileSpreading Spreader driven hours while spreading (units: h)
-		SprDrivenHoursWhileSpreading *float32 `json:"spr_driven_hours_while_spreading,omitempty"`
-
-		// SprDrivenLengthWhileSpreading Spreader driven length while spreading (units: m)
-		SprDrivenLengthWhileSpreading *float32 `json:"spr_driven_length_while_spreading,omitempty"`
-
-		// SprErrorCode Spreader error code Possible values: RESERVED NO_SALT NO_BRINE MIN_LEVEL_OF_TANK MIN_LEVEL_OF_HOPPER NO_FEEDBACK_FROM_SPINNER NO_FEEDBACK_FROM_CONVEYER NO_FEEDBACK_FROM_CONVEYER_2 NO_FEEDBACK_FROM_PUMP SPINNER_RPM_OUT_OF_RANGE CONVEYER_RPM_OUT_OF_RANGE CONVEYER_2_RPM_OUT_OF_RANGE PUMP_RPM_OUT_OF_RANGE SETTING_OUT_OF_RANGE AUX_ENGINE_CHARGE_CONTROL_FAULT AUX_ENGINE_OIL_PRESSURE_TOO_LOW AUX_ENGINE_WATER_TEMP_TOO_HIGH RESERVED
-		SprErrorCode *string `json:"spr_error_code,omitempty"`
-
-		// SprLiquidMaterial Spreader liquid material
-		SprLiquidMaterial *string `json:"spr_liquid_material,omitempty"`
-
-		// SprSolidMaterial Spreader solid material
-		SprSolidMaterial *string `json:"spr_solid_material,omitempty"`
-
-		// SprSpreadBrineMaterial Spreader spread brine material (units: l)
-		SprSpreadBrineMaterial *float32 `json:"spr_spread_brine_material,omitempty"`
-
-		// SprSpreadSolidMaterialFromReservoir1 Spreader spread solid material from reservoir 1 (units: kg)
-		SprSpreadSolidMaterialFromReservoir1 *float32 `json:"spr_spread_solid_material_from_reservoir_1,omitempty"`
-
-		// SprSpreaderAdjustmentOfSimulationDrivingSpeed Spreader adjustment of simulation driving speed (units: km/h)
-		SprSpreaderAdjustmentOfSimulationDrivingSpeed *float32 `json:"spr_spreader_adjustment_of_simulation_driving_speed,omitempty"`
-
-		// SprSpreaderMode Spreader mode
-		SprSpreaderMode *float32 `json:"spr_spreader_mode,omitempty"`
-
-		// SprSpreaderSpreadingWidth Spreader spreading width (units: m)
-		SprSpreaderSpreadingWidth *float32 `json:"spr_spreader_spreading_width,omitempty"`
-
-		// SprSpreadingBrineDosage Spreader spreading brine dosage (units: g/m^2)
-		SprSpreadingBrineDosage *float32 `json:"spr_spreading_brine_dosage,omitempty"`
-
-		// SprSpreadingSolidMaterialDosageFromReservoir1 Spreader spreading solid material dosage from reservoir 1 (units: g/m^2)
-		SprSpreadingSolidMaterialDosageFromReservoir1 *float32 `json:"spr_spreading_solid_material_dosage_from_reservoir_1,omitempty"`
-
-		// TachoDddAvailable Tacho card reader state NOT_AVAILABLE AVAILABLE
-		TachoDddAvailable *string `json:"tacho_ddd_available,omitempty"`
-
-		// TachoStatus CAN tachograph performance Possible values: NORMAL_PERFORMANCE PERFORMANCE_ANALYSIS
-		TachoStatus *CoordinateInputsDeviceInputsTachoStatus `json:"tacho_status,omitempty"`
-
-		// TcoCanTachoTime TCO CAN tacho Time
-		TcoCanTachoTime *time.Time `json:"tco_can_tacho_time,omitempty"`
-
-		// TcoDistance TCO distance (units: km)
-		TcoDistance *float32 `json:"tco_distance,omitempty"`
-
-		// TcoFirstDriverCard TCO first driver card Possible values: NOT_INSERTED INSERTED
-		TcoFirstDriverCard *CoordinateInputsDeviceInputsTcoFirstDriverCard `json:"tco_first_driver_card,omitempty"`
-
-		// TcoFirstDriverContinuousDrivingTime TCO first driver continuous driving time (units: min)
-		TcoFirstDriverContinuousDrivingTime *float32 `json:"tco_first_driver_continuous_driving_time,omitempty"`
-
-		// TcoFirstDriverCumulatedBreakTime TCO first driver accumulated break time (units: min)
-		TcoFirstDriverCumulatedBreakTime *float32 `json:"tco_first_driver_cumulated_break_time,omitempty"`
-
-		// TcoFirstDriverDrivingTimePrevAndCurrWeek TCO first driver driving time (prev. and curr. week) (units: min)
-		TcoFirstDriverDrivingTimePrevAndCurrWeek *float32 `json:"tco_first_driver_driving_time_prev_and_curr_week,omitempty"`
-
-		// TcoFirstDriverDurationOfSelectedActivity TCO first driver duration of selected activity (units: min)
-		TcoFirstDriverDurationOfSelectedActivity *float32 `json:"tco_first_driver_duration_of_selected_activity,omitempty"`
-
-		// TcoFirstDriverState TCO first driver state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
-		TcoFirstDriverState *CoordinateInputsDeviceInputsTcoFirstDriverState `json:"tco_first_driver_state,omitempty"`
-
-		// TcoFirstDriverTimeRelatedStates TCO first driver time related states
-		TcoFirstDriverTimeRelatedStates *float32 `json:"tco_first_driver_time_related_states,omitempty"`
-
-		// TcoRegistrationNumber TCO registration number
-		TcoRegistrationNumber *string `json:"tco_registration_number,omitempty"`
-
-		// TcoRpm TCO engine speed (units: RPM)
-		TcoRpm *float32 `json:"tco_rpm,omitempty"`
-
-		// TcoSecondDriverCard TCO second driver card Possible values: NOT_INSERTED INSERTED
-		TcoSecondDriverCard *CoordinateInputsDeviceInputsTcoSecondDriverCard `json:"tco_second_driver_card,omitempty"`
-
-		// TcoSecondDriverContinuousDrivingTime TCO second driver continuous driving time (units: min)
-		TcoSecondDriverContinuousDrivingTime *float32 `json:"tco_second_driver_continuous_driving_time,omitempty"`
-
-		// TcoSecondDriverCumulatedBreakTime TCO second driver accumulated break time (units: min)
-		TcoSecondDriverCumulatedBreakTime *float32 `json:"tco_second_driver_cumulated_break_time,omitempty"`
-
-		// TcoSecondDriverDrivingTimePrevAndCurrWeek TCO second driver driving time (prev. and curr. week) (units: min)
-		TcoSecondDriverDrivingTimePrevAndCurrWeek *float32 `json:"tco_second_driver_driving_time_prev_and_curr_week,omitempty"`
-
-		// TcoSecondDriverDurationOfSelectedActivity TCO second driver duration of selected activity (units: min)
-		TcoSecondDriverDurationOfSelectedActivity *float32 `json:"tco_second_driver_duration_of_selected_activity,omitempty"`
-
-		// TcoSecondDriverState TCO second driver state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
-		TcoSecondDriverState *CoordinateInputsDeviceInputsTcoSecondDriverState `json:"tco_second_driver_state,omitempty"`
-
-		// TcoSecondDriverTimeRelatedStates TCO second driver time related states
-		TcoSecondDriverTimeRelatedStates *float32 `json:"tco_second_driver_time_related_states,omitempty"`
-
-		// TcoTime TCO tacho time
-		TcoTime *time.Time `json:"tco_time,omitempty"`
-
-		// TcoTrip TCO trip distance (units: km)
-		TcoTrip *float32 `json:"tco_trip,omitempty"`
-
-		// TcoVehicleSpeed TCO vehicle speed (units: km/h)
-		TcoVehicleSpeed *float32 `json:"tco_vehicle_speed,omitempty"`
-
-		// TemperatureSensor0 Temperature sensor 0 (units: °C)
-		TemperatureSensor0 *float32 `json:"temperature_sensor_0,omitempty"`
-
-		// TemperatureSensor0ID Temperature sensor 0 ID
-		TemperatureSensor0ID *string `json:"temperature_sensor_0_id,omitempty"`
-
-		// TemperatureSensor1 Temperature sensor 1 (units: °C)
-		TemperatureSensor1 *float32 `json:"temperature_sensor_1,omitempty"`
-
-		// TemperatureSensor1ID Temperature sensor 1 ID
-		TemperatureSensor1ID *string `json:"temperature_sensor_1_id,omitempty"`
-
-		// TemperatureSensor2 Temperature sensor 2 (units: °C)
-		TemperatureSensor2 *float32 `json:"temperature_sensor_2,omitempty"`
-
-		// TemperatureSensor2ID Temperature sensor 2 ID
-		TemperatureSensor2ID *string `json:"temperature_sensor_2_id,omitempty"`
-
-		// TemperatureSensor3 Temperature sensor 3 (units: °C)
-		TemperatureSensor3 *float32 `json:"temperature_sensor_3,omitempty"`
-
-		// TemperatureSensor3ID Temperature sensor 3 ID
-		TemperatureSensor3ID *string `json:"temperature_sensor_3_id,omitempty"`
-
-		// ThermokingAirReturnTemp ThermoKing air return temperature (units: °C)
-		ThermokingAirReturnTemp *float32 `json:"thermoking_air_return_temp,omitempty"`
-
-		// ThermokingAlarmType ThermoKing alarm type Possible values: NO_ALARM LOG_STORED_OR_ROUTINE_MAINTENANCE LOW_FUEL MAINTENANCE_PAST_DUE RESERVED IMMEDIATE_ATTENTION_REQUIRED SHUTDOWN_OR_CATASTROPHIC_SYSTEM_FAILURE
-		ThermokingAlarmType *CoordinateInputsDeviceInputsThermokingAlarmType `json:"thermoking_alarm_type,omitempty"`
-
-		// ThermokingAlarms ThermoKing alarm code
-		ThermokingAlarms *float32 `json:"thermoking_alarms,omitempty"`
-
-		// ThermokingBatteryVoltage ThermoKing battery voltage (units: V)
-		ThermokingBatteryVoltage *float32 `json:"thermoking_battery_voltage,omitempty"`
-
-		// ThermokingCycleMode ThermoKing cycle mode Possible values: CYCLE_SENTRY_MODE CONTINUOUS_MODE START_STOP_MODE
-		ThermokingCycleMode *CoordinateInputsDeviceInputsThermokingCycleMode `json:"thermoking_cycle_mode,omitempty"`
-
-		// ThermokingDieselElectricStatus ThermoKing diesel/electric status Possible values: DIESEL_MODE ELECTRIC_MODE
-		ThermokingDieselElectricStatus *CoordinateInputsDeviceInputsThermokingDieselElectricStatus `json:"thermoking_diesel_electric_status,omitempty"`
-
-		// ThermokingDischargeTemperature ThermoKing discharge air temperature (units: °C)
-		ThermokingDischargeTemperature *float32 `json:"thermoking_discharge_temperature,omitempty"`
-
-		// ThermokingDoorStatus ThermoKing door status Possible values: CLOSED OPEN
-		ThermokingDoorStatus *CoordinateInputsDeviceInputsThermokingDoorStatus `json:"thermoking_door_status,omitempty"`
-
-		// ThermokingEvaporatorCoilTemperature ThermoKing evaporator coil temperature (units: °C)
-		ThermokingEvaporatorCoilTemperature *float32 `json:"thermoking_evaporator_coil_temperature,omitempty"`
-
-		// ThermokingFuelLevel ThermoKing fuel level (units: %)
-		ThermokingFuelLevel *float32 `json:"thermoking_fuel_level,omitempty"`
-
-		// ThermokingHighSpeedStatus ThermoKing high speed status
-		ThermokingHighSpeedStatus *bool `json:"thermoking_high_speed_status,omitempty"`
-
-		// ThermokingOperatingMode ThermoKing operating mode Possible values: POWER_OFF_OR_UNKNOWN COOLING HEATING DEFROST NULL PRETRIP SLEEP RESERVED
-		ThermokingOperatingMode *CoordinateInputsDeviceInputsThermokingOperatingMode `json:"thermoking_operating_mode,omitempty"`
-
-		// ThermokingSetPoint ThermoKing temperature setpoint (units: °C)
-		ThermokingSetPoint *float32 `json:"thermoking_set_point,omitempty"`
-
-		// ThermokingTotalElectricHours ThermoKing total electric hours (units: h)
-		ThermokingTotalElectricHours *float32 `json:"thermoking_total_electric_hours,omitempty"`
-
-		// ThermokingTotalEngineHours ThermoKing total engine hours (units: h)
-		ThermokingTotalEngineHours *float32 `json:"thermoking_total_engine_hours,omitempty"`
-
-		// ThermokingVehicleHours ThermoKing total vehicle hours (units: h)
-		ThermokingVehicleHours *float32 `json:"thermoking_vehicle_hours,omitempty"`
-
-		// TkTemperatureSensor1 TK temperature sensor 1 (units: °C)
-		TkTemperatureSensor1 *float32 `json:"tk_temperature_sensor1,omitempty"`
-
-		// TkTemperatureSensor2 TK temperature sensor 2 (units: °C)
-		TkTemperatureSensor2 *float32 `json:"tk_temperature_sensor2,omitempty"`
-
-		// TkTemperatureSensor3 TK temperature sensor 3 (units: °C)
-		TkTemperatureSensor3 *float32 `json:"tk_temperature_sensor3,omitempty"`
-
-		// TkTemperatureSensor4 TK temperature sensor 4 (units: °C)
-		TkTemperatureSensor4 *float32 `json:"tk_temperature_sensor4,omitempty"`
-
-		// TkTemperatureSensor5 TK temperature sensor 5 (units: °C)
-		TkTemperatureSensor5 *float32 `json:"tk_temperature_sensor5,omitempty"`
-
-		// TkTemperatureSensor6 TK temperature sensor 6 (units: °C)
-		TkTemperatureSensor6 *float32 `json:"tk_temperature_sensor6,omitempty"`
-
-		// TkTouchprintInput1 TK Touchprint input 1 (units: °C)
-		TkTouchprintInput1 *float32 `json:"tk_touchprint_input_1,omitempty"`
-
-		// TkTouchprintInput2 TK Touchprint input 2 (units: °C)
-		TkTouchprintInput2 *float32 `json:"tk_touchprint_input_2,omitempty"`
-
-		// TkTouchprintInput3 TK Touchprint input 3 (units: °C)
-		TkTouchprintInput3 *float32 `json:"tk_touchprint_input_3,omitempty"`
-
-		// TkTouchprintInput4 TK Touchprint input 4 (units: °C)
-		TkTouchprintInput4 *float32 `json:"tk_touchprint_input_4,omitempty"`
-
-		// TkTouchprintInput5 TK Touchprint input 5 (units: °C)
-		TkTouchprintInput5 *float32 `json:"tk_touchprint_input_5,omitempty"`
-
-		// TkTouchprintInput6 TK Touchprint input 6 (units: °C)
-		TkTouchprintInput6 *float32 `json:"tk_touchprint_input_6,omitempty"`
-
-		// TrailersAmberWarningSignalRequest Trailers amber warning signal request Possible values: OFF ON
-		TrailersAmberWarningSignalRequest *CoordinateInputsDeviceInputsTrailersAmberWarningSignalRequest `json:"trailers_amber_warning_signal_request,omitempty"`
-
-		// TrailersAxleLoadSum Trailers axle load sum (units: kg)
-		TrailersAxleLoadSum *float32 `json:"trailers_axle_load_sum,omitempty"`
-
-		// TrailersBrakeCylinderPressureFirstAxleLeftWheel Trailers brake cylinder pressure first axle, left wheel (units: kPa)
-		TrailersBrakeCylinderPressureFirstAxleLeftWheel *float32 `json:"trailers_brake_cylinder_pressure_first_axle_left_wheel,omitempty"`
-
-		// TrailersBrakeCylinderPressureFirstAxleRightWheel Trailers brake cylinder pressure first axle, right wheel (units: kPa)
-		TrailersBrakeCylinderPressureFirstAxleRightWheel *float32 `json:"trailers_brake_cylinder_pressure_first_axle_right_wheel,omitempty"`
-
-		// TrailersBrakeCylinderPressureSecondAxleLeftWheel Trailers brake cylinder pressure second axle, left wheel (units: kPa)
-		TrailersBrakeCylinderPressureSecondAxleLeftWheel *float32 `json:"trailers_brake_cylinder_pressure_second_axle_left_wheel,omitempty"`
-
-		// TrailersBrakeCylinderPressureSecondAxleRightWheel Trailers brake cylinder pressure second axle, right wheel (units: kPa)
-		TrailersBrakeCylinderPressureSecondAxleRightWheel *float32 `json:"trailers_brake_cylinder_pressure_second_axle_right_wheel,omitempty"`
-
-		// TrailersBrakeCylinderPressureThirdAxleLeftWheel Trailers brake cylinder pressure third axle, left wheel (units: kPa)
-		TrailersBrakeCylinderPressureThirdAxleLeftWheel *float32 `json:"trailers_brake_cylinder_pressure_third_axle_left_wheel,omitempty"`
-
-		// TrailersBrakeCylinderPressureThirdAxleRightWheel Trailers brake cylinder pressure third axle, right wheel (units: kPa)
-		TrailersBrakeCylinderPressureThirdAxleRightWheel *float32 `json:"trailers_brake_cylinder_pressure_third_axle_right_wheel,omitempty"`
-
-		// TrailersBrakingSystemWheelBasedVehicleSpeed Trailers braking system wheel–based vehicle speed (units: km/h)
-		TrailersBrakingSystemWheelBasedVehicleSpeed *float32 `json:"trailers_braking_system_wheel_based_vehicle_speed,omitempty"`
-
-		// TrailersBrakingViaElectricControlLineSupport Trailers braking via electric control line support Possible values: NOT_SUPPORTED SUPPORTED
-		TrailersBrakingViaElectricControlLineSupport *CoordinateInputsDeviceInputsTrailersBrakingViaElectricControlLineSupport `json:"trailers_braking_via_electric_control_line_support,omitempty"`
-
-		// TrailersElectricalLoadProportionalFunctionInstallationStatus Trailers electrical load proportional function installation status Possible values: NOT_INSTALLED INSTALLED
-		TrailersElectricalLoadProportionalFunctionInstallationStatus *CoordinateInputsDeviceInputsTrailersElectricalLoadProportionalFunctionInstallationStatus `json:"trailers_electrical_load_proportional_function_installation_status,omitempty"`
-
-		// TrailersElectricalSupplyOfNonBrakingSystemStatus Trailers electrical supply of non-braking system status Possible values: OFF ON
-		TrailersElectricalSupplyOfNonBrakingSystemStatus *CoordinateInputsDeviceInputsTrailersElectricalSupplyOfNonBrakingSystemStatus `json:"trailers_electrical_supply_of_non_braking_system_status,omitempty"`
-
-		// TrailersExternalBrakeRequestStatus Trailers external brake request status NO_REQUEST REQUEST_ACTIVE
-		TrailersExternalBrakeRequestStatus *string `json:"trailers_external_brake_request_status,omitempty"`
-
-		// TrailersHighResolutionVehicleDistance Trailers high resolution vehicle distance (units: km)
-		TrailersHighResolutionVehicleDistance *float32 `json:"trailers_high_resolution_vehicle_distance,omitempty"`
-
-		// TrailersLateralAcceleration Trailers lateral acceleration (units: m/s^2)
-		TrailersLateralAcceleration *float32 `json:"trailers_lateral_acceleration,omitempty"`
-
-		// TrailersPneumaticSupplyPressure Trailers pneumatic supply pressure (units: kPa)
-		TrailersPneumaticSupplyPressure *float32 `json:"trailers_pneumatic_supply_pressure,omitempty"`
-
-		// TrailersRedWarningSignalRequest Trailers red warning signal request Possible values: OFF ON
-		TrailersRedWarningSignalRequest *CoordinateInputsDeviceInputsTrailersRedWarningSignalRequest `json:"trailers_red_warning_signal_request,omitempty"`
-
-		// TrailersServiceDistance Trailers service distance (units: km)
-		TrailersServiceDistance *float32 `json:"trailers_service_distance,omitempty"`
-
-		// TrailersStopLampsRequest Trailers stop lamps request Possible values: NO_REQUEST REQUEST_ACTIVE
-		TrailersStopLampsRequest *CoordinateInputsDeviceInputsTrailersStopLampsRequest `json:"trailers_stop_lamps_request,omitempty"`
-
-		// TrailersVdcActive Trailers VDC active Possible values: PASSIVE ACTIVE
-		TrailersVdcActive *CoordinateInputsDeviceInputsTrailersVdcActive `json:"trailers_vdc_active,omitempty"`
-
-		// TrailersVehicleAbsStatus Trailers vehicle ABS status Possible values: PASSIVE ACTIVE
-		TrailersVehicleAbsStatus *CoordinateInputsDeviceInputsTrailersVehicleAbsStatus `json:"trailers_vehicle_abs_status,omitempty"`
-
-		// TrailersVehicleElectricalSupplyStatus Trailers vehicle electrical supply status Possible values: INSUFFICIENT SUFFICIENT
-		TrailersVehicleElectricalSupplyStatus *CoordinateInputsDeviceInputsTrailersVehicleElectricalSupplyStatus `json:"trailers_vehicle_electrical_supply_status,omitempty"`
-
-		// TrailersVehiclePneumaticSupplyStatus Trailers vehicle pneumatic supply status Possible values: OFF ON
-		TrailersVehiclePneumaticSupplyStatus *CoordinateInputsDeviceInputsTrailersVehiclePneumaticSupplyStatus `json:"trailers_vehicle_pneumatic_supply_status,omitempty"`
-
-		// TrailersVehicleServiceBrakeStatus Trailers vehicle service brake status Possible values: PASSIVE ACTIVE
-		TrailersVehicleServiceBrakeStatus *CoordinateInputsDeviceInputsTrailersVehicleServiceBrakeStatus `json:"trailers_vehicle_service_brake_status,omitempty"`
-
-		// TrailersVehicleType Trailers vehicle type Possible values: TOWED_VEHICLE CONVERTED_DOLLY_AXLE_LSB
-		TrailersVehicleType *CoordinateInputsDeviceInputsTrailersVehicleType `json:"trailers_vehicle_type,omitempty"`
-
-		// TrailersWheelSpeedDifferenceMainAxle Trailers wheel speed difference main axle (units: km/h)
-		TrailersWheelSpeedDifferenceMainAxle *float32 `json:"trailers_wheel_speed_difference_main_axle,omitempty"`
-
-		// UltraHighFrequencyRfidPortA Ultra High Frequency RFID port A
-		UltraHighFrequencyRfidPortA *string `json:"ultra_high_frequency_rfid_port_a,omitempty"`
-
-		// UltraHighFrequencyRfidPortB Ultra High Frequency RFID port B
-		UltraHighFrequencyRfidPortB *string `json:"ultra_high_frequency_rfid_port_b,omitempty"`
-
-		// UmtsEnabled UMTS enabled status Possible values: DISABLED ENABLED
-		UmtsEnabled *CoordinateInputsDeviceInputsUmtsEnabled `json:"umts_enabled,omitempty"`
-
-		// VehicleID CAN vehicle ID
-		VehicleID *string `json:"vehicle_id,omitempty"`
-
-		// VirtualOdometer Virtual odometer (units: km)
-		VirtualOdometer *float32 `json:"virtual_odometer,omitempty"`
-
-		// VirtualOdometerDiff Virtual odometer DIFF (units: m)
-		VirtualOdometerDiff *float32 `json:"virtual_odometer_diff,omitempty"`
-
-		// WirelessDriverID Wireless driver ID
-		WirelessDriverID *float32 `json:"wireless_driver_id,omitempty"`
-
-		// WirelessEnabled Wireless enabled Possible values: DISABLED ENABLED
-		WirelessEnabled *CoordinateInputsDeviceInputsWirelessEnabled `json:"wireless_enabled,omitempty"`
-
-		// WirelessPair Wireless pair
-		WirelessPair *bool `json:"wireless_pair,omitempty"`
-
-		// XAxis Accelerometer X axis (units: G)
-		XAxis *float32 `json:"x_axis,omitempty"`
-
-		// XAxisTiltAngle X axis tilt angle (units: Degrees)
-		XAxisTiltAngle *float32 `json:"x_axis_tilt_angle,omitempty"`
-
-		// YAxis Accelerometer Y axis (units: G)
-		YAxis *float32 `json:"y_axis,omitempty"`
-
-		// YAxisTiltAngle Y axis tilt angle (units: Degrees)
-		YAxisTiltAngle *float32 `json:"y_axis_tilt_angle,omitempty"`
-
-		// ZAxis Accelerometer Z axis (units: G)
-		ZAxis *float32 `json:"z_axis,omitempty"`
-
-		// ZAxisTiltAngle Z axis tilt angle (units: Degrees)
-		ZAxisTiltAngle *float32 `json:"z_axis_tilt_angle,omitempty"`
-	} `json:"device_inputs,omitempty"`
-
-	// Other Container for other system parameters
-	Other *struct {
-		// CountryCodeGeonames Country code numeral
-		CountryCodeGeonames *float32 `json:"country_code_geonames,omitempty"`
-
-		// VirtualGpsOdometer Virtual odometer value (units: km)
-		VirtualGpsOdometer *float32 `json:"virtual_gps_odometer,omitempty"`
-	} `json:"other,omitempty"`
-
-	// Tires Container for TPMS parameters received from device
-	Tires                *map[string]interface{}                      `json:"tires,omitempty"`
-	AdditionalProperties map[string]map[string]map[string]interface{} `json:"-"`
-}
-
 // CoordinateTripType Trip type
 type CoordinateTripType string
 
@@ -2988,6 +1340,21 @@ type CoordinateTripType string
 type CoordinateCollection struct {
 	ContinuationToken *time.Time   `json:"continuation_token,omitempty"`
 	Items             []Coordinate `json:"items,omitempty"`
+}
+
+// CoordinateInputs Container for all coordinate input parameters
+type CoordinateInputs struct {
+	// CalculatedInputs Container for parameters calculated in the system from other parameters according to the configuration
+	CalculatedInputs *CalculatedInputs `json:"calculated_inputs,omitempty"`
+
+	// DeviceInputs Container for parameters received from hardware
+	DeviceInputs *DeviceInputs `json:"device_inputs,omitempty"`
+
+	// Other Container for other system parameters
+	Other *OtherInputs `json:"other,omitempty"`
+
+	// Tires Container for TPMS parameters received from device
+	Tires *map[string]interface{} `json:"tires,omitempty"`
 }
 
 // Crs defines model for Crs.
@@ -3083,32 +1450,1640 @@ type DetectedEventTripType string
 
 // DetectedEventCollection defines model for DetectedEventCollection.
 type DetectedEventCollection struct {
-	ContinuationToken *int32          `json:"continuation_token,omitempty"`
+	ContinuationToken *int            `json:"continuation_token,omitempty"`
 	Events            []DetectedEvent `json:"events,omitempty"`
 }
 
-// DeviceInputs defines model for DeviceInputs.
+// DeviceInputs Container for parameters received from hardware
 type DeviceInputs struct {
-	DigitalInput1        *bool      `json:"digital_input_1,omitempty"`
-	DigitalInput2        *bool      `json:"digital_input_2,omitempty"`
-	DigitalInput3        *bool      `json:"digital_input_3,omitempty"`
-	DigitalInput4        *bool      `json:"digital_input_4,omitempty"`
-	FirstDriverID        *string    `json:"first_driver_id,omitempty"`
-	Hdop                 *string    `json:"hdop,omitempty"`
-	Ibutton              *string    `json:"ibutton,omitempty"`
-	MobaNettoWeight      *int32     `json:"moba_netto_weight,omitempty"`
-	MobaRfidID           *string    `json:"moba_rfid_id,omitempty"`
-	MobaTimestamp        *time.Time `json:"moba_timestamp,omitempty"`
-	PowerSupplyVoltage   *int32     `json:"power_supply_voltage,omitempty"`
-	SecondDriverID       *string    `json:"second_driver_id,omitempty"`
-	SecurityDout         *string    `json:"security_dout,omitempty"`
-	TemperatureSensor0   *float32   `json:"temperature_sensor_0,omitempty"`
-	TemperatureSensor0ID *string    `json:"temperature_sensor_0_id,omitempty"`
-	TemperatureSensor1   *float32   `json:"temperature_sensor_1,omitempty"`
-	TemperatureSensor2   *float32   `json:"temperature_sensor_2,omitempty"`
-	TemperatureSensor3   *float32   `json:"temperature_sensor_3,omitempty"`
-	WirelessTrailerID    *string    `json:"wireless_trailer_id,omitempty"`
+	// AnalogInput1 AIN1 value (units: V)
+	AnalogInput1 *float32 `json:"analog_input_1,omitempty"`
+
+	// AnalogInput2 AIN2 value (units: V)
+	AnalogInput2 *float32 `json:"analog_input_2,omitempty"`
+
+	// AxleCount CAN axle location
+	AxleCount *float32 `json:"axle_count,omitempty"`
+
+	// BatteryCurrent Battery charge current (units: mA)
+	BatteryCurrent *float32 `json:"battery_current,omitempty"`
+
+	// BatteryVoltage Battery voltage (units: V)
+	BatteryVoltage *float32 `json:"battery_voltage,omitempty"`
+
+	// BtHumiditySensor0 BT humidity sensor 0 (units: %)
+	BtHumiditySensor0 *float32 `json:"bt_humidity_sensor_0,omitempty"`
+
+	// BtHumiditySensor1 BT humidity sensor 1 (units: %)
+	BtHumiditySensor1 *float32 `json:"bt_humidity_sensor_1,omitempty"`
+
+	// BtHumiditySensor2 BT humidity sensor 2 (units: %)
+	BtHumiditySensor2 *float32 `json:"bt_humidity_sensor_2,omitempty"`
+
+	// BtHumiditySensor3 BT humidity sensor 3 (units: %)
+	BtHumiditySensor3 *float32 `json:"bt_humidity_sensor_3,omitempty"`
+
+	// BtHumiditySensor4 BT humidity sensor 4 (units: %)
+	BtHumiditySensor4 *float32 `json:"bt_humidity_sensor_4,omitempty"`
+
+	// BtTemperatureSensor1 BT Temperature sensor 0 (units: °C)
+	BtTemperatureSensor1 *float32 `json:"bt_temperature_sensor_1,omitempty"`
+
+	// BtTemperatureSensor2 BT Temperature sensor 1 (units: °C)
+	BtTemperatureSensor2 *float32 `json:"bt_temperature_sensor_2,omitempty"`
+
+	// BtTemperatureSensor3 BT Temperature sensor 2 (units: °C)
+	BtTemperatureSensor3 *float32 `json:"bt_temperature_sensor_3,omitempty"`
+
+	// BtTemperatureSensor4 BT Temperature sensor 3 (units: °C)
+	BtTemperatureSensor4 *float32 `json:"bt_temperature_sensor_4,omitempty"`
+
+	// BtTemperatureSensor5 BT Temperature sensor 4 (units: °C)
+	BtTemperatureSensor5 *float32 `json:"bt_temperature_sensor_5,omitempty"`
+
+	// CanDoorLockState CAN door lock state Possible values: UNLOCKED LOCKED NOT_AVAILABLE
+	CanDoorLockState *DeviceInputsCanDoorLockState `json:"can_door_lock_state,omitempty"`
+
+	// CanFuelLevelMilliliters CAN fuel level millliliters (units: ml)
+	CanFuelLevelMilliliters *float32 `json:"can_fuel_level_milliliters,omitempty"`
+
+	// CanIgnition CAN ignition Possible values: OFF ON
+	CanIgnition *DeviceInputsCanIgnition `json:"can_ignition,omitempty"`
+
+	// CanInterfaceConfigurationCan1AutoBaudRate CAN interface configuration CAN1 auto baud rate Possible values: OFF ON
+	CanInterfaceConfigurationCan1AutoBaudRate *DeviceInputsCanInterfaceConfigurationCan1AutoBaudRate `json:"can_interface_configuration_can1_auto_baud_rate,omitempty"`
+
+	// CanInterfaceConfigurationCan1FfFiltersStatus CAN interface configuration CAN1 filters status Possible values: OFF ON
+	CanInterfaceConfigurationCan1FfFiltersStatus *DeviceInputsCanInterfaceConfigurationCan1FfFiltersStatus `json:"can_interface_configuration_can1_ff_filters_status,omitempty"`
+
+	// CanInterfaceConfigurationCan1Interface CAN interface configuration CAN1 interface Possible values: NONE FMS LCV OBD TACHO MOBILEYE TRAILERS DXP
+	CanInterfaceConfigurationCan1Interface *DeviceInputsCanInterfaceConfigurationCan1Interface `json:"can_interface_configuration_can1_interface,omitempty"`
+
+	// CanInterfaceConfigurationCan1Mode CAN interface configuration CAN1 mode Possible values: SILENT ACTIVE
+	CanInterfaceConfigurationCan1Mode *DeviceInputsCanInterfaceConfigurationCan1Mode `json:"can_interface_configuration_can1_mode,omitempty"`
+
+	// CanInterfaceConfigurationCan1Status CAN interface configuration CAN1 status Possible values: INACTIVE ACTIVE
+	CanInterfaceConfigurationCan1Status *DeviceInputsCanInterfaceConfigurationCan1Status `json:"can_interface_configuration_can1_status,omitempty"`
+
+	// CanInterfaceConfigurationCan2AutoBaudRate CAN interface configuration CAN2 auto baud rate Possible values: OFF ON
+	CanInterfaceConfigurationCan2AutoBaudRate *DeviceInputsCanInterfaceConfigurationCan2AutoBaudRate `json:"can_interface_configuration_can2_auto_baud_rate,omitempty"`
+
+	// CanInterfaceConfigurationCan2FfFiltersStatus CAN interface configuration CAN2 filters status Possible values: OFF ON
+	CanInterfaceConfigurationCan2FfFiltersStatus *DeviceInputsCanInterfaceConfigurationCan2FfFiltersStatus `json:"can_interface_configuration_can2_ff_filters_status,omitempty"`
+
+	// CanInterfaceConfigurationCan2Interface CAN interface configuration CAN2 interface Possible values: NONE FMS LCV OBD TACHO MOBILEYE TRAILERS DXP
+	CanInterfaceConfigurationCan2Interface *DeviceInputsCanInterfaceConfigurationCan2Interface `json:"can_interface_configuration_can2_interface,omitempty"`
+
+	// CanInterfaceConfigurationCan2Mode CAN interface configuration CAN2 mode Possible values: SILENT ACTIVE
+	CanInterfaceConfigurationCan2Mode *DeviceInputsCanInterfaceConfigurationCan2Mode `json:"can_interface_configuration_can2_mode,omitempty"`
+
+	// CanInterfaceConfigurationCan2Status CAN interface configuration CAN2 status Possible values: INACTIVE ACTIVE
+	CanInterfaceConfigurationCan2Status *DeviceInputsCanInterfaceConfigurationCan2Status `json:"can_interface_configuration_can2_status,omitempty"`
+
+	// CanLcvConfigurationCan1Group CAN LCV configuration CAN1 group Possible values: VAG MERCEDES CITROEN FORD FIAT OPEL RENAULT TOYOTA TRACTOR TRUCK HYUNDAI LEXUS VOLVO BMW NISSAN HONDA MITSUBISHI SUBARU CHRYSLER ISUZU SSANGYONG MAZDA KOMATSU RANGEROVER CLAAS SAAB LANDROVER PORSCHE KIA JAGUAR INFINITI LINDE HITACHI SUZUKI
+	CanLcvConfigurationCan1Group *DeviceInputsCanLcvConfigurationCan1Group `json:"can_lcv_configuration_can1_group,omitempty"`
+
+	// CanLcvConfigurationCan1Subgroup CAN LCV configuration CAN1 subgroup
+	CanLcvConfigurationCan1Subgroup *float32 `json:"can_lcv_configuration_can1_subgroup,omitempty"`
+
+	// CanLcvConfigurationCan2Group CAN LCV configuration CAN2 group Possible values: VAG MERCEDES CITROEN FORD FIAT OPEL RENAULT TOYOTA TRACTOR TRUCK HYUNDAI LEXUS VOLVO BMW NISSAN HONDA MITSUBISHI SUBARU CHRYSLER ISUZU SSANGYONG MAZDA KOMATSU RANGEROVER CLAAS SAAB LANDROVER PORSCHE KIA JAGUAR INFINITI LINDE HITACHI SUZUKI
+	CanLcvConfigurationCan2Group *DeviceInputsCanLcvConfigurationCan2Group `json:"can_lcv_configuration_can2_group,omitempty"`
+
+	// CanLcvConfigurationCan2Subgroup CAN LCV configuration CAN2 subgroup
+	CanLcvConfigurationCan2Subgroup *float32 `json:"can_lcv_configuration_can2_subgroup,omitempty"`
+
+	// CanLcvWindowStateBackLeft CAN LCV window state Back Left
+	CanLcvWindowStateBackLeft *float32 `json:"can_lcv_window_state_back_left,omitempty"`
+
+	// CanLcvWindowStateBackRight CAN LCV window state Back Right
+	CanLcvWindowStateBackRight *float32 `json:"can_lcv_window_state_back_right,omitempty"`
+
+	// CanLcvWindowStateFrontLeft CAN LCV window state Front Left
+	CanLcvWindowStateFrontLeft *float32 `json:"can_lcv_window_state_front_left,omitempty"`
+
+	// CanLcvWindowStateFrontRight CAN LCV window state Front Right
+	CanLcvWindowStateFrontRight *float32 `json:"can_lcv_window_state_front_right,omitempty"`
+
+	// CanLcvWindowStateSunroof CAN LCV window state Sunroof
+	CanLcvWindowStateSunroof *float32 `json:"can_lcv_window_state_sunroof,omitempty"`
+
+	// CanbusAmbientAirTemperature CAN ambient air temperature (units: °C)
+	CanbusAmbientAirTemperature *float32 `json:"canbus_ambient_air_temperature,omitempty"`
+
+	// CanbusAxleWeight1 CAN axle 1 weight (units: kg)
+	CanbusAxleWeight1 *float32 `json:"canbus_axle_weight_1,omitempty"`
+
+	// CanbusAxleWeight2 CAN axle 2 weight (units: kg)
+	CanbusAxleWeight2 *float32 `json:"canbus_axle_weight_2,omitempty"`
+
+	// CanbusAxleWeight3 CAN axle 3 weight (units: kg)
+	CanbusAxleWeight3 *float32 `json:"canbus_axle_weight_3,omitempty"`
+
+	// CanbusAxleWeight4 CAN axle 4 weight (units: kg)
+	CanbusAxleWeight4 *float32 `json:"canbus_axle_weight_4,omitempty"`
+
+	// CanbusAxleWeight5 CAN axle 5 weight (units: kg)
+	CanbusAxleWeight5 *float32 `json:"canbus_axle_weight_5,omitempty"`
+
+	// CanbusBatteryCharging CAN battery charging Possible values: NO_CHARGING CHARGING
+	CanbusBatteryCharging *DeviceInputsCanbusBatteryCharging `json:"canbus_battery_charging,omitempty"`
+
+	// CanbusBatteryPower CAN battery power (units: %)
+	CanbusBatteryPower *float32 `json:"canbus_battery_power,omitempty"`
+
+	// CanbusBrakeSwitch CAN brake switch Possible values: RELEASED PRESSED
+	CanbusBrakeSwitch *DeviceInputsCanbusBrakeSwitch `json:"canbus_brake_switch,omitempty"`
+
+	// CanbusClutchSwitch CAN clutch switch Possible values: RELEASED PRESSED
+	CanbusClutchSwitch *DeviceInputsCanbusClutchSwitch `json:"canbus_clutch_switch,omitempty"`
+
+	// CanbusCruiseControlState CAN cruise control active Possible values: OFF ON
+	CanbusCruiseControlState *DeviceInputsCanbusCruiseControlState `json:"canbus_cruise_control_state,omitempty"`
+
+	// CanbusDiagnosticsSupported CAN diagnostics supported Possible values: NOT_SUPPORTED SUPPORTED RESERVED DO_NOT_CARE
+	CanbusDiagnosticsSupported *DeviceInputsCanbusDiagnosticsSupported `json:"canbus_diagnostics_supported,omitempty"`
+
+	// CanbusDirectionIndicator CAN tacho direction indicator Possible values: FORWARD REVERSE
+	CanbusDirectionIndicator *DeviceInputsCanbusDirectionIndicator `json:"canbus_direction_indicator,omitempty"`
+
+	// CanbusDistance CAN high resolution total vehicle distance (units: km)
+	CanbusDistance *float32 `json:"canbus_distance,omitempty"`
+
+	// CanbusDistanceUntilRecharge CAN distance until recharge (units: km)
+	CanbusDistanceUntilRecharge *float32 `json:"canbus_distance_until_recharge,omitempty"`
+
+	// CanbusDriver1Card CAN tacho driver 1 card Possible values: CARD_NOT_PRESENT CARD_PRESENT ERROR NOT_AVAILABLE
+	CanbusDriver1Card *DeviceInputsCanbusDriver1Card `json:"canbus_driver_1_card,omitempty"`
+
+	// CanbusDriver1State CAN tacho driver 1 working state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+	CanbusDriver1State *DeviceInputsCanbusDriver1State `json:"canbus_driver_1_state,omitempty"`
+
+	// CanbusDriver1Time CAN tacho driver 1 time related status Possible values: NORMAL 15_MIN_BEFORE_4,5H 4,5H_REACHED 15_MIN_BEFORE_9H 9H_REACHED 15_MIN_BEFORE_16H 16H_REACHED ERROR NOT_AVAILABLE
+	CanbusDriver1Time *DeviceInputsCanbusDriver1Time `json:"canbus_driver_1_time,omitempty"`
+
+	// CanbusDriver2Card CAN tacho driver 2 card Possible values: CARD_NOT_PRESENT CARD_PRESENT ERROR NOT_AVAILABLE
+	CanbusDriver2Card *DeviceInputsCanbusDriver2Card `json:"canbus_driver_2_card,omitempty"`
+
+	// CanbusDriver2State CAN tacho driver 2 working state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+	CanbusDriver2State *DeviceInputsCanbusDriver2State `json:"canbus_driver_2_state,omitempty"`
+
+	// CanbusDriver2Time CAN tacho driver 2 time related status Possible values: NORMAL 15_MIN_BEFORE_4,5H 4,5H_REACHED 15_MIN_BEFORE_9H 9H_REACHED 15_MIN_BEFORE_16H 16H_REACHED ERROR NOT_AVAILABLE
+	CanbusDriver2Time *DeviceInputsCanbusDriver2Time `json:"canbus_driver_2_time,omitempty"`
+
+	// CanbusElectricMotorTemperature CAN electric motor temperature (units: °C)
+	CanbusElectricMotorTemperature *float32 `json:"canbus_electric_motor_temperature,omitempty"`
+
+	// CanbusEngineCoolantTemperature CAN engine coolant temperature (units: °C)
+	CanbusEngineCoolantTemperature *float32 `json:"canbus_engine_coolant_temperature,omitempty"`
+
+	// CanbusEnginePlcs CAN engine percent load at current speed (units: %)
+	CanbusEnginePlcs *float32 `json:"canbus_engine_plcs,omitempty"`
+
+	// CanbusFuelEconomy CAN instantaneous fuel economy (units: km/l)
+	CanbusFuelEconomy *float32 `json:"canbus_fuel_economy,omitempty"`
+
+	// CanbusFuelRate CAN fuel rate (units: l/h)
+	CanbusFuelRate *float32 `json:"canbus_fuel_rate,omitempty"`
+
+	// CanbusHandlingInformation CAN tacho handling information Possible values: NO_HANDLING_INFORMATION HANDLING_INFORMATION
+	CanbusHandlingInformation *DeviceInputsCanbusHandlingInformation `json:"canbus_handling_information,omitempty"`
+
+	// CanbusHoursToService CAN hours to service (units: h)
+	CanbusHoursToService *float32 `json:"canbus_hours_to_service,omitempty"`
+
+	// CanbusHrfc CAN high resolution engine total fuel used (units: l)
+	CanbusHrfc *float32 `json:"canbus_hrfc,omitempty"`
+
+	// CanbusParkingBrakeSwitch CAN parking brake switch Possible values: OFF ON
+	CanbusParkingBrakeSwitch *DeviceInputsCanbusParkingBrakeSwitch `json:"canbus_parking_brake_switch,omitempty"`
+
+	// CanbusPto CAN at least one PTO engaged Possible values: NO_PTO_DRIVER AT_LEAST_ONE_PTO_DRIVER ERROR NOT_AVAILABLE
+	CanbusPto *DeviceInputsCanbusPto `json:"canbus_pto,omitempty"`
+
+	// CanbusPtoState CAN PTO state Possible values: OFF_DISABLED SET NOT_AVAILABLE
+	CanbusPtoState *DeviceInputsCanbusPtoState `json:"canbus_pto_state,omitempty"`
+
+	// CanbusRequestSupported CAN request supported Possible values: NOT_SUPPORTED SUPPORTED RESERVED DO_NOT_CARE
+	CanbusRequestSupported *DeviceInputsCanbusRequestSupported `json:"canbus_request_supported,omitempty"`
+
+	// CanbusSystemEvent CAN system event Possible values: NO_TACHO_EVENT TACHO_EVENT
+	CanbusSystemEvent *DeviceInputsCanbusSystemEvent `json:"canbus_system_event,omitempty"`
+
+	// CanbusTireLocation CAN tire location
+	CanbusTireLocation *float32 `json:"canbus_tire_location,omitempty"`
+
+	// CanbusVehicleMotion CAN tacho vehicle motion Possible values: NOT_DETECTED DETECTED
+	CanbusVehicleMotion *DeviceInputsCanbusVehicleMotion `json:"canbus_vehicle_motion,omitempty"`
+
+	// CurrentProfile Current profile
+	CurrentProfile *float32 `json:"current_profile,omitempty"`
+
+	// CustomIgnition Custom ignition Possible values: OFF ON
+	CustomIgnition *DeviceInputsCustomIgnition `json:"custom_ignition,omitempty"`
+
+	// DigitalFuelSensorA1 Digital fuel sensor A1
+	DigitalFuelSensorA1 *float32 `json:"digital_fuel_sensor_a1,omitempty"`
+
+	// DigitalFuelSensorA10 Digital fuel sensor A10
+	DigitalFuelSensorA10 *float32 `json:"digital_fuel_sensor_a10,omitempty"`
+
+	// DigitalFuelSensorA2 Digital fuel sensor A2
+	DigitalFuelSensorA2 *float32 `json:"digital_fuel_sensor_a2,omitempty"`
+
+	// DigitalFuelSensorA3 Digital fuel sensor A3
+	DigitalFuelSensorA3 *float32 `json:"digital_fuel_sensor_a3,omitempty"`
+
+	// DigitalFuelSensorA4 Digital fuel sensor A4
+	DigitalFuelSensorA4 *float32 `json:"digital_fuel_sensor_a4,omitempty"`
+
+	// DigitalFuelSensorA5 Digital fuel sensor A5
+	DigitalFuelSensorA5 *float32 `json:"digital_fuel_sensor_a5,omitempty"`
+
+	// DigitalFuelSensorA6 Digital fuel sensor A6
+	DigitalFuelSensorA6 *float32 `json:"digital_fuel_sensor_a6,omitempty"`
+
+	// DigitalFuelSensorA7 Digital fuel sensor A7
+	DigitalFuelSensorA7 *float32 `json:"digital_fuel_sensor_a7,omitempty"`
+
+	// DigitalFuelSensorA8 Digital fuel sensor A8
+	DigitalFuelSensorA8 *float32 `json:"digital_fuel_sensor_a8,omitempty"`
+
+	// DigitalFuelSensorA9 Digital fuel sensor A9
+	DigitalFuelSensorA9 *float32 `json:"digital_fuel_sensor_a9,omitempty"`
+
+	// DigitalFuelSensorB1 Digital fuel sensor B1
+	DigitalFuelSensorB1 *float32 `json:"digital_fuel_sensor_b1,omitempty"`
+
+	// DigitalFuelSensora1Temperature Digital fuel sensor A1 temperature (units: °C)
+	DigitalFuelSensora1Temperature *float32 `json:"digital_fuel_sensora1_temperature,omitempty"`
+
+	// DigitalFuelSensorc1 Digital fuel sensor C1
+	DigitalFuelSensorc1 *float32 `json:"digital_fuel_sensorc1,omitempty"`
+
+	// DigitalFuelSensorc10 Digital fuel sensor C10
+	DigitalFuelSensorc10 *float32 `json:"digital_fuel_sensorc10,omitempty"`
+
+	// DigitalFuelSensorc10Temperature Digital fuel sensor C10 temperature (units: °C)
+	DigitalFuelSensorc10Temperature *float32 `json:"digital_fuel_sensorc10_temperature,omitempty"`
+
+	// DigitalFuelSensorc1Temperature Digital fuel sensor C1 temperature (units: °C)
+	DigitalFuelSensorc1Temperature *float32 `json:"digital_fuel_sensorc1_temperature,omitempty"`
+
+	// DigitalFuelSensorc2 Digital fuel sensor C2
+	DigitalFuelSensorc2 *float32 `json:"digital_fuel_sensorc2,omitempty"`
+
+	// DigitalFuelSensorc2Temperature Digital fuel sensor C2 temperature (units: °C)
+	DigitalFuelSensorc2Temperature *float32 `json:"digital_fuel_sensorc2_temperature,omitempty"`
+
+	// DigitalFuelSensorc3 Digital fuel sensor C3
+	DigitalFuelSensorc3 *float32 `json:"digital_fuel_sensorc3,omitempty"`
+
+	// DigitalFuelSensorc3Temperature Digital fuel sensor C3 temperature (units: °C)
+	DigitalFuelSensorc3Temperature *float32 `json:"digital_fuel_sensorc3_temperature,omitempty"`
+
+	// DigitalFuelSensorc4 Digital fuel sensor C4
+	DigitalFuelSensorc4 *float32 `json:"digital_fuel_sensorc4,omitempty"`
+
+	// DigitalFuelSensorc4Temperature Digital fuel sensor C4 temperature (units: °C)
+	DigitalFuelSensorc4Temperature *float32 `json:"digital_fuel_sensorc4_temperature,omitempty"`
+
+	// DigitalFuelSensorc5 Digital fuel sensor C5
+	DigitalFuelSensorc5 *float32 `json:"digital_fuel_sensorc5,omitempty"`
+
+	// DigitalFuelSensorc5Temperature Digital fuel sensor C5 temperature (units: °C)
+	DigitalFuelSensorc5Temperature *float32 `json:"digital_fuel_sensorc5_temperature,omitempty"`
+
+	// DigitalFuelSensorc6 Digital fuel sensor C6
+	DigitalFuelSensorc6 *float32 `json:"digital_fuel_sensorc6,omitempty"`
+
+	// DigitalFuelSensorc6Temperature Digital fuel sensor C6 temperature (units: °C)
+	DigitalFuelSensorc6Temperature *float32 `json:"digital_fuel_sensorc6_temperature,omitempty"`
+
+	// DigitalFuelSensorc7 Digital fuel sensor C7
+	DigitalFuelSensorc7 *float32 `json:"digital_fuel_sensorc7,omitempty"`
+
+	// DigitalFuelSensorc7Temperature Digital fuel sensor C7 temperature (units: °C)
+	DigitalFuelSensorc7Temperature *float32 `json:"digital_fuel_sensorc7_temperature,omitempty"`
+
+	// DigitalFuelSensorc8 Digital fuel sensor C8
+	DigitalFuelSensorc8 *float32 `json:"digital_fuel_sensorc8,omitempty"`
+
+	// DigitalFuelSensorc8Temperature Digital fuel sensor C8 temperature (units: °C)
+	DigitalFuelSensorc8Temperature *float32 `json:"digital_fuel_sensorc8_temperature,omitempty"`
+
+	// DigitalFuelSensorc9 Digital fuel sensor C9
+	DigitalFuelSensorc9 *float32 `json:"digital_fuel_sensorc9,omitempty"`
+
+	// DigitalFuelSensorc9Temperature Digital fuel sensor C9 temperature (units: °C)
+	DigitalFuelSensorc9Temperature *float32 `json:"digital_fuel_sensorc9_temperature,omitempty"`
+
+	// DigitalInput1 DIN1 value
+	DigitalInput1 *bool `json:"digital_input_1,omitempty"`
+
+	// DigitalInput2 DIN2 value
+	DigitalInput2 *bool `json:"digital_input_2,omitempty"`
+
+	// DigitalInput3 DIN3 value
+	DigitalInput3 *bool `json:"digital_input_3,omitempty"`
+
+	// DigitalInput4 DIN4 value
+	DigitalInput4 *bool `json:"digital_input_4,omitempty"`
+
+	// Din1WorkingTimeDiff DIN1 hour counter (units: s)
+	Din1WorkingTimeDiff *float32 `json:"din1_working_time_diff,omitempty"`
+
+	// Din2WorkingTimeDiff DIN2 hour counter (units: s)
+	Din2WorkingTimeDiff *float32 `json:"din2_working_time_diff,omitempty"`
+
+	// Din3WorkingTimeDiff DIN3 hour counter (units: s)
+	Din3WorkingTimeDiff *float32 `json:"din3_working_time_diff,omitempty"`
+
+	// Din4WorkingTimeDiff DIN4 hour counter (units: s)
+	Din4WorkingTimeDiff *float32 `json:"din4_working_time_diff,omitempty"`
+
+	// Dout1Status DOUT1 status Possible values: ACTIVE INACTIVE
+	Dout1Status *DeviceInputsDout1Status `json:"dout1_status,omitempty"`
+
+	// Dout2Status DOUT2 status Possible values: ACTIVE INACTIVE
+	Dout2Status *DeviceInputsDout2Status `json:"dout2_status,omitempty"`
+
+	// Driver1State Driver 1 state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+	Driver1State *DeviceInputsDriver1State `json:"driver_1_state,omitempty"`
+
+	// Driver2State Driver 2 state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+	Driver2State *DeviceInputsDriver2State `json:"driver_2_state,omitempty"`
+
+	// Ds1971IbuttonInternal16BDriverID DS1971 iButton internal 16B driver ID
+	Ds1971IbuttonInternal16BDriverID *string `json:"ds1971_ibutton_internal_16b_driver_id,omitempty"`
+
+	// Ds1971IbuttonInternal16BPassengerID DS1971 iButton internal 16B passenger ID
+	Ds1971IbuttonInternal16BPassengerID *string `json:"ds1971_ibutton_internal_16b_passenger_id,omitempty"`
+
+	// Ds1971IbuttonInternal8BDriverID DS1971 iButton internal 8B driver ID
+	Ds1971IbuttonInternal8BDriverID *string `json:"ds1971_ibutton_internal_8b_driver_id,omitempty"`
+
+	// Ds1971IbuttonInternal8BPassengerID DS1971 iButton internal 8B passenger ID
+	Ds1971IbuttonInternal8BPassengerID *string `json:"ds1971_ibutton_internal_8b_passenger_id,omitempty"`
+
+	// DxpBatteryBatteryCurrent DXP battery current (units: A)
+	DxpBatteryBatteryCurrent *float32 `json:"dxp_battery_battery_current,omitempty"`
+
+	// DxpBatteryBatteryTemp DXP battery temperature (units: °C)
+	DxpBatteryBatteryTemp *float32 `json:"dxp_battery_battery_temp,omitempty"`
+
+	// DxpBatteryBatteryVoltage DXP battery voltage (units: V)
+	DxpBatteryBatteryVoltage *float32 `json:"dxp_battery_battery_voltage,omitempty"`
+
+	// DxpBatteryChargerStopReason DXP battery charge stop reason
+	DxpBatteryChargerStopReason *float32 `json:"dxp_battery_charger_stop_reason,omitempty"`
+
+	// DxpBatteryChargingCounter DXP battery charging counter
+	DxpBatteryChargingCounter *float32 `json:"dxp_battery_charging_counter,omitempty"`
+
+	// DxpBatteryChargingCurrent DXP battery charging current (units: A)
+	DxpBatteryChargingCurrent *float32 `json:"dxp_battery_charging_current,omitempty"`
+
+	// DxpBatteryNominalCapacityUsed DXP battery nominal capacity used (units: A)
+	DxpBatteryNominalCapacityUsed *float32 `json:"dxp_battery_nominal_capacity_used,omitempty"`
+
+	// DxpBatteryStateOfCharge DXP battery charging state (units: %)
+	DxpBatteryStateOfCharge *float32 `json:"dxp_battery_state_of_charge,omitempty"`
+
+	// DxpChargerStatus DXP charger status
+	DxpChargerStatus *float32 `json:"dxp_charger_status,omitempty"`
+
+	// DxpFaults1Status1FaultsErrorCodes DXP status 1 fault error codes
+	DxpFaults1Status1FaultsErrorCodes *float32 `json:"dxp_faults1_status1_faults_error_codes,omitempty"`
+
+	// DxpFaults1Status2FaultsErrorCodes DXP status 2 fault error codes
+	DxpFaults1Status2FaultsErrorCodes *float32 `json:"dxp_faults1_status2_faults_error_codes,omitempty"`
+
+	// DxpFaults1Status3FaultsErrorCodes DXP status 3 fault error codes
+	DxpFaults1Status3FaultsErrorCodes *float32 `json:"dxp_faults1_status3_faults_error_codes,omitempty"`
+
+	// DxpFaults1Status4FaultsErrorCodes DXP status 4 fault error codes
+	DxpFaults1Status4FaultsErrorCodes *float32 `json:"dxp_faults1_status4_faults_error_codes,omitempty"`
+
+	// DxpFaults1Status5FaultsErrorCodes DXP status 5 fault error codes
+	DxpFaults1Status5FaultsErrorCodes *float32 `json:"dxp_faults1_status5_faults_error_codes,omitempty"`
+
+	// DxpFaults1Status6FaultsErrorCodes DXP status 6 fault error codes
+	DxpFaults1Status6FaultsErrorCodes *float32 `json:"dxp_faults1_status6_faults_error_codes,omitempty"`
+
+	// DxpFaults1Status7FaultsErrorCodes DXP status 7 fault error codes
+	DxpFaults1Status7FaultsErrorCodes *float32 `json:"dxp_faults1_status7_faults_error_codes,omitempty"`
+
+	// DxpFaults1Status8FaultsErrorCodes DXP status 8 fault error codes
+	DxpFaults1Status8FaultsErrorCodes *float32 `json:"dxp_faults1_status8_faults_error_codes,omitempty"`
+
+	// DxpFaults2KybHistFaultCodes DXP KYB hist fault codes
+	DxpFaults2KybHistFaultCodes *float32 `json:"dxp_faults2_kyb_hist_fault_codes,omitempty"`
+
+	// DxpFaults2UserFault1ErrorCodes DXP user fault 1 error codes
+	DxpFaults2UserFault1ErrorCodes *float32 `json:"dxp_faults2_user_fault_1_error_codes,omitempty"`
+
+	// DxpFaults2UserFault1HistoryErrorCodes DXP user fault 2 history error codes
+	DxpFaults2UserFault1HistoryErrorCodes *float32 `json:"dxp_faults2_user_fault_1_history_error_codes,omitempty"`
+
+	// DxpFaults2UserFault2ErrorCodes DXP user fault 2 error codes
+	DxpFaults2UserFault2ErrorCodes *float32 `json:"dxp_faults2_user_fault_2_error_codes,omitempty"`
+
+	// DxpFaults2UserFault2HistoryErrorCodes DXP user fault 1 history error codes
+	DxpFaults2UserFault2HistoryErrorCodes *float32 `json:"dxp_faults2_user_fault_2_history_error_codes,omitempty"`
+
+	// DxpOtherParametersChassisNumberNr DXP chassis number
+	DxpOtherParametersChassisNumberNr *float32 `json:"dxp_other_parameters_chassis_number_nr,omitempty"`
+
+	// DxpOtherParametersParameterBlkVersion DXP parameter BLK version
+	DxpOtherParametersParameterBlkVersion *float32 `json:"dxp_other_parameters_parameter_blk_version,omitempty"`
+
+	// DxpOtherParametersServieOdometer DXP service odometer
+	DxpOtherParametersServieOdometer *float32 `json:"dxp_other_parameters_servie_odometer,omitempty"`
+
+	// DxpOtherParametersVclVersion DXP VCL version
+	DxpOtherParametersVclVersion *float32 `json:"dxp_other_parameters_vcl_version,omitempty"`
+
+	// DxpSwitchesParametersSet DXP switch parameters set
+	DxpSwitchesParametersSet *float32 `json:"dxp_switches_parameters_set,omitempty"`
+
+	// DxpSwitchesSwitch1 DXP switch 1 value Possible values: OFF ON
+	DxpSwitchesSwitch1 *DeviceInputsDxpSwitchesSwitch1 `json:"dxp_switches_switch1,omitempty"`
+
+	// DxpSwitchesSwitch2 DXP switch 2 value Possible values: OFF ON
+	DxpSwitchesSwitch2 *DeviceInputsDxpSwitchesSwitch2 `json:"dxp_switches_switch2,omitempty"`
+
+	// DxpSwitchesSwitch3 DXP switch 3 value Possible values: OFF ON
+	DxpSwitchesSwitch3 *DeviceInputsDxpSwitchesSwitch3 `json:"dxp_switches_switch3,omitempty"`
+
+	// DxpSwitchesSwitch4 DXP switch 4 value Possible values: OFF ON
+	DxpSwitchesSwitch4 *DeviceInputsDxpSwitchesSwitch4 `json:"dxp_switches_switch4,omitempty"`
+
+	// DxpSwitchesSwitch5 DXP switch 5 value Possible values: OFF ON
+	DxpSwitchesSwitch5 *DeviceInputsDxpSwitchesSwitch5 `json:"dxp_switches_switch5,omitempty"`
+
+	// DxpSwitchesSwitch6 DXP switch 6 value Possible values: OFF ON
+	DxpSwitchesSwitch6 *DeviceInputsDxpSwitchesSwitch6 `json:"dxp_switches_switch6,omitempty"`
+
+	// DxpSwitchesSwitch7 DXP switch 7 value Possible values: OFF ON
+	DxpSwitchesSwitch7 *DeviceInputsDxpSwitchesSwitch7 `json:"dxp_switches_switch7,omitempty"`
+
+	// DxpSwitchesSwitch8 DXP switch 8 value Possible values: OFF ON
+	DxpSwitchesSwitch8 *DeviceInputsDxpSwitchesSwitch8 `json:"dxp_switches_switch8,omitempty"`
+
+	// EcoBrakingDistance Eco-Drive braking distance (units: m)
+	EcoBrakingDistance *float32 `json:"eco_braking_distance,omitempty"`
+
+	// EcoBrakingDuration Eco-Drive braking duration (units: s)
+	EcoBrakingDuration *float32 `json:"eco_braking_duration,omitempty"`
+
+	// EcoEngineBrakingDistance Eco-Drive engine braking distance (units: m)
+	EcoEngineBrakingDistance *float32 `json:"eco_engine_braking_distance,omitempty"`
+
+	// EcoRetarderDuration Eco-Drive retarder duration (units: s)
+	EcoRetarderDuration *float32 `json:"eco_retarder_duration,omitempty"`
+
+	// EcoRpmInRedBandDistance Eco-Drive RPM in red band distance (units: m)
+	EcoRpmInRedBandDistance *float32 `json:"eco_rpm_in_red_band_distance,omitempty"`
+
+	// EcoStopsCounter Eco-Drive stop counter
+	EcoStopsCounter *float32 `json:"eco_stops_counter,omitempty"`
+
+	// EcodriveAccelerationValue Eco-Drive acceleration value (units: m/s^2)
+	EcodriveAccelerationValue *float32 `json:"ecodrive_acceleration_value,omitempty"`
+
+	// EcodriveBrakingEvents Eco-Drive brake counter
+	EcodriveBrakingEvents *float32 `json:"ecodrive_braking_events,omitempty"`
+
+	// EcodriveBrakingValue Eco-Drive braking value (units: m/s^2)
+	EcodriveBrakingValue *float32 `json:"ecodrive_braking_value,omitempty"`
+
+	// EcodriveCorneringCounter Eco-Drive cornering counter
+	EcodriveCorneringCounter *float32 `json:"ecodrive_cornering_counter,omitempty"`
+
+	// EcodriveCorneringValue Eco-Drive cornering value (units: m/s^2)
+	EcodriveCorneringValue *float32 `json:"ecodrive_cornering_value,omitempty"`
+
+	// EcodriveEngineOn Eco-Drive engine on timer (units: s)
+	EcodriveEngineOn *float32 `json:"ecodrive_engine_on,omitempty"`
+
+	// EcodriveExtremeBrakingCount Eco-Drive extreme braking count
+	EcodriveExtremeBrakingCount *float32 `json:"ecodrive_extreme_braking_count,omitempty"`
+
+	// EcodriveFuelUsedAtStops Eco-Drive fuel used while idling (units: l)
+	EcodriveFuelUsedAtStops *float32 `json:"ecodrive_fuel_used_at_stops,omitempty"`
+
+	// EcodriveFuelUsedInHighestGear Eco-Drive highest gear fuel used (units: l)
+	EcodriveFuelUsedInHighestGear *float32 `json:"ecodrive_fuel_used_in_highest_gear,omitempty"`
+
+	// EcodriveFuelUsedInRange13001500Rpm Eco-Drive RPM range 3 (1300-1500 RPM) fuel used (units: l)
+	EcodriveFuelUsedInRange13001500Rpm *float32 `json:"ecodrive_fuel_used_in_range_1300_1500_rpm,omitempty"`
+
+	// EcodriveFuelUsedInRange15002300Rpm Eco-Drive RPM range 4 (1500-2300 RPM) fuel used (units: l)
+	EcodriveFuelUsedInRange15002300Rpm *float32 `json:"ecodrive_fuel_used_in_range_1500_2300_rpm,omitempty"`
+
+	// EcodriveFuelUsedInRange1900Rpm Eco-Drive RPM range 1 (<900 RPM) fuel used (units: l)
+	EcodriveFuelUsedInRange1900Rpm *float32 `json:"ecodrive_fuel_used_in_range_1_900_rpm,omitempty"`
+
+	// EcodriveFuelUsedInRange9001300Rpm Eco-Drive RPM range 2 (900-1300 RPM) fuel used (units: l)
+	EcodriveFuelUsedInRange9001300Rpm *float32 `json:"ecodrive_fuel_used_in_range_900_1300_rpm,omitempty"`
+
+	// EcodriveFuelUsedWhenWhenCruiseControlWasOn Eco-Drive cruise control on fuel used (units: l)
+	EcodriveFuelUsedWhenWhenCruiseControlWasOn *float32 `json:"ecodrive_fuel_used_when_when_cruise_control_was_on,omitempty"`
+
+	// EcodriveFuelUsedWhileEngineOverloaded Eco-Drive engine overloaded fuel used (units: l)
+	EcodriveFuelUsedWhileEngineOverloaded *float32 `json:"ecodrive_fuel_used_while_engine_overloaded,omitempty"`
+
+	// EcodriveFuelUsedWhileOverspeeding Eco-Drive overspeeding fuel used (units: l)
+	EcodriveFuelUsedWhileOverspeeding *float32 `json:"ecodrive_fuel_used_while_overspeeding,omitempty"`
+
+	// EcodriveHarshAcceleration Eco-Drive harsh acceleration counter
+	EcodriveHarshAcceleration *float32 `json:"ecodrive_harsh_acceleration,omitempty"`
+
+	// EcodriveHarshBrakingCount Eco-Drive harsh braking count
+	EcodriveHarshBrakingCount *float32 `json:"ecodrive_harsh_braking_count,omitempty"`
+
+	// EcodriveIdlingState Eco-Drive idling state Possible values: NO_IDLING IDLING
+	EcodriveIdlingState *DeviceInputsEcodriveIdlingState `json:"ecodrive_idling_state,omitempty"`
+
+	// EcodriveIdlingTime Eco-Drive idling counter (units: s)
+	EcodriveIdlingTime *float32 `json:"ecodrive_idling_time,omitempty"`
+
+	// EcodriveMaximumRpm Eco-Drive maximum RPM (units: RPM)
+	EcodriveMaximumRpm *float32 `json:"ecodrive_maximum_rpm,omitempty"`
+
+	// EcodriveMaximumSpeed Eco-Drive maximum speed (units: km/h)
+	EcodriveMaximumSpeed *float32 `json:"ecodrive_maximum_speed,omitempty"`
+
+	// EcodriveMileageInHighestGear Eco-Drive highest gear distance (units: m)
+	EcodriveMileageInHighestGear *float32 `json:"ecodrive_mileage_in_highest_gear,omitempty"`
+
+	// EcodriveMileageInRange13001500Rpm Eco-Drive RPM range 3 (1300-1500 RPM) distance (units: m)
+	EcodriveMileageInRange13001500Rpm *float32 `json:"ecodrive_mileage_in_range_1300_1500_rpm,omitempty"`
+
+	// EcodriveMileageInRange15002300Rpm Eco-Drive RPM range 4 (1500-2300 RPM) distance (units: m)
+	EcodriveMileageInRange15002300Rpm *float32 `json:"ecodrive_mileage_in_range_1500_2300_rpm,omitempty"`
+
+	// EcodriveMileageInRange1900Rpm Eco-Drive RPM range 1 (<900 RPM) distance (units: m)
+	EcodriveMileageInRange1900Rpm *float32 `json:"ecodrive_mileage_in_range_1_900_rpm,omitempty"`
+
+	// EcodriveMileageInRange9001300Rpm Eco-Drive RPM range 2 (900-1300 RPM) distance (units: m)
+	EcodriveMileageInRange9001300Rpm *float32 `json:"ecodrive_mileage_in_range_900_1300_rpm,omitempty"`
+
+	// EcodriveMileageInRpmGreenZone Eco-Drive mileage in RPM green zone (units: m)
+	EcodriveMileageInRpmGreenZone *float32 `json:"ecodrive_mileage_in_rpm_green_zone,omitempty"`
+
+	// EcodriveMileageWhenCruiseControlCouldBeOn Eco-Drive mileage when cruise control could be on (units: m)
+	EcodriveMileageWhenCruiseControlCouldBeOn *float32 `json:"ecodrive_mileage_when_cruise_control_could_be_on,omitempty"`
+
+	// EcodriveMileageWhenCruiseControlWasOn Eco-Drive cruise control on distance (units: m)
+	EcodriveMileageWhenCruiseControlWasOn *float32 `json:"ecodrive_mileage_when_cruise_control_was_on,omitempty"`
+
+	// EcodriveMileageWhenCruiseControlWasOnWhenItCouldBeOn Eco-Drive mileage when cruise control was on when it could be on (units: m)
+	EcodriveMileageWhenCruiseControlWasOnWhenItCouldBeOn *float32 `json:"ecodrive_mileage_when_cruise_control_was_on_when_it_could_be_on,omitempty"`
+
+	// EcodriveMileageWhenSpeedIsBelowOverspeed Eco-Drive mileage when speed is below overspeed (units: m)
+	EcodriveMileageWhenSpeedIsBelowOverspeed *float32 `json:"ecodrive_mileage_when_speed_is_below_overspeed,omitempty"`
+
+	// EcodriveMileageWhileEngineOverloaded Eco-Drive engine overloaded distance (units: m)
+	EcodriveMileageWhileEngineOverloaded *float32 `json:"ecodrive_mileage_while_engine_overloaded,omitempty"`
+
+	// EcodriveMileageWhileFreeRolling Eco-Drive free rolling distance (units: m)
+	EcodriveMileageWhileFreeRolling *float32 `json:"ecodrive_mileage_while_free_rolling,omitempty"`
+
+	// EcodriveMileageWhileOverspeeding Eco-Drive overspeeding distance (units: m)
+	EcodriveMileageWhileOverspeeding *float32 `json:"ecodrive_mileage_while_overspeeding,omitempty"`
+
+	// EcodriveOverspeed Eco-Drive overspeeding timer (units: s)
+	EcodriveOverspeed *float32 `json:"ecodrive_overspeed,omitempty"`
+
+	// EcodriveRpmOnRed Eco-Drive RPM in red band timer (units: s)
+	EcodriveRpmOnRed *float32 `json:"ecodrive_rpm_on_red,omitempty"`
+
+	// EcodriveStopsCounter Eco-Drive stop counter
+	EcodriveStopsCounter *float32 `json:"ecodrive_stops_counter,omitempty"`
+
+	// EcodriveTimeCruiseControlCouldBeOn Eco-Drive time cruise control could be on (units: s)
+	EcodriveTimeCruiseControlCouldBeOn *float32 `json:"ecodrive_time_cruise_control_could_be_on,omitempty"`
+
+	// EcodriveTimeCruiseControlWasOnWhenItCouldBeOn Eco-Drive time cruise control was on when it could be on (units: s)
+	EcodriveTimeCruiseControlWasOnWhenItCouldBeOn *float32 `json:"ecodrive_time_cruise_control_was_on_when_it_could_be_on,omitempty"`
+
+	// EngineHours CAN engine hours (units: h)
+	EngineHours *float32 `json:"engine_hours,omitempty"`
+
+	// EngineRpm CAN engine speed (units: RPM)
+	EngineRpm *float32 `json:"engine_rpm,omitempty"`
+
+	// FirstDriverID CAN first driver ID
+	FirstDriverID *string `json:"first_driver_id,omitempty"`
+
+	// FrequencyInput1 Frequency input 1 (units: Hz)
+	FrequencyInput1 *float32 `json:"frequency_input_1,omitempty"`
+
+	// FrequencyInput2 Frequency input 2 (units: Hz)
+	FrequencyInput2 *float32 `json:"frequency_input_2,omitempty"`
+
+	// FuelCounter Fuel counter 1
+	FuelCounter *float32 `json:"fuel_counter,omitempty"`
+
+	// FuelCounter2 Fuel counter 2
+	FuelCounter2 *float32 `json:"fuel_counter_2,omitempty"`
+
+	// FuelLevelCan CAN fuel level (units: %)
+	FuelLevelCan *float32 `json:"fuel_level_can,omitempty"`
+
+	// FuelLevelCanL CAN fuel level liters (units: l)
+	FuelLevelCanL *float32 `json:"fuel_level_can_l,omitempty"`
+
+	// FuelLevelSensorb1Temperature Fuel level sensor B1 temperature (units: °C)
+	FuelLevelSensorb1Temperature *float32 `json:"fuel_level_sensorb1_temperature,omitempty"`
+
+	// FuelUsed CAN engine total fuel used (units: l)
+	FuelUsed *float32 `json:"fuel_used,omitempty"`
+
+	// FuelUsedDiff CAN fuel used delta (units: l)
+	FuelUsedDiff *float32 `json:"fuel_used_diff,omitempty"`
+
+	// GPeakX G peak in X axis (units: G)
+	GPeakX *float32 `json:"g_peak_x,omitempty"`
+
+	// GPeakY G peak in Y axis (units: G)
+	GPeakY *float32 `json:"g_peak_y,omitempty"`
+
+	// GPeakZ G peak in Z axis (units: G)
+	GPeakZ *float32 `json:"g_peak_z,omitempty"`
+
+	// GnssAntenna GNSS antenna status Possible values: DISABLED ENABLED UNKNOWN
+	GnssAntenna *DeviceInputsGnssAntenna `json:"gnss_antenna,omitempty"`
+
+	// GprsErrors GPRS errors
+	GprsErrors *float32 `json:"gprs_errors,omitempty"`
+
+	// GprsStatus GPRS status Possible values: DISCONNECTED CONNECTED
+	GprsStatus *DeviceInputsGprsStatus `json:"gprs_status,omitempty"`
+
+	// GpsAltitude GPS altitude (units: m)
+	GpsAltitude *float32 `json:"gps_altitude,omitempty"`
+
+	// GpsSpeed GPS speed (units: km/h)
+	GpsSpeed *float32 `json:"gps_speed,omitempty"`
+
+	// GsmSignalStrength GSM signal strength
+	GsmSignalStrength *float32 `json:"gsm_signal_strength,omitempty"`
+
+	// GsmUmtsJamming GSM/UMTS jamming status Possible status: JAMMING_NOT_DETECTED JAMMING_DETECTED
+	GsmUmtsJamming *string `json:"gsm_umts_jamming,omitempty"`
+
+	// GsmUmtsOperator GSM/UMTS operator
+	GsmUmtsOperator *float32 `json:"gsm_umts_operator,omitempty"`
+
+	// GsmUmtsSignalStrength GSM/UMTS signal strength
+	GsmUmtsSignalStrength *float32 `json:"gsm_umts_signal_strength,omitempty"`
+
+	// Hdop HDOP
+	Hdop *string `json:"hdop,omitempty"`
+
+	// Ibutton iButton driver ID
+	Ibutton *string `json:"ibutton,omitempty"`
+
+	// IgnitionPlugtrack Virtual ignition Possible values: OFF ON
+	IgnitionPlugtrack *DeviceInputsIgnitionPlugtrack `json:"ignition_plugtrack,omitempty"`
+
+	// InputTrigger Input trigger
+	InputTrigger *float32 `json:"input_trigger,omitempty"`
+
+	// KimaxTotalTrailerWeight Kimax total trailer weight (units: kg)
+	KimaxTotalTrailerWeight *float32 `json:"kimax_total_trailer_weight,omitempty"`
+
+	// KimaxTotalTruckWeight Kimax total truck weight (units: kg)
+	KimaxTotalTruckWeight *float32 `json:"kimax_total_truck_weight,omitempty"`
+
+	// LcvDriverDoors LCV driver doors Possible values: CLOSE OPEN
+	LcvDriverDoors *DeviceInputsLcvDriverDoors `json:"lcv_driver_doors,omitempty"`
+
+	// LcvHood LCV hood Possible values: CLOSE OPEN
+	LcvHood *DeviceInputsLcvHood `json:"lcv_hood,omitempty"`
+
+	// LcvLeftBackDoors LCV left back doors Possible values: CLOSE OPEN
+	LcvLeftBackDoors *DeviceInputsLcvLeftBackDoors `json:"lcv_left_back_doors,omitempty"`
+
+	// LcvPassengerDoors LCV passenger doors Possible values: CLOSE OPEN
+	LcvPassengerDoors *DeviceInputsLcvPassengerDoors `json:"lcv_passenger_doors,omitempty"`
+
+	// LcvRightBackDoors LCV right back doors Possible values: CLOSE OPEN
+	LcvRightBackDoors *DeviceInputsLcvRightBackDoors `json:"lcv_right_back_doors,omitempty"`
+
+	// LcvTrunk LCV trunk Possible values: CLOSE OPEN
+	LcvTrunk *DeviceInputsLcvTrunk `json:"lcv_trunk,omitempty"`
+
+	// MagneticCardID Magnetic card ID
+	MagneticCardID *string `json:"magnetic_card_id,omitempty"`
+
+	// MobaNettoWeight MOBA netto weight (units: g)
+	MobaNettoWeight *float32 `json:"moba_netto_weight,omitempty"`
+
+	// MobaRfidID MOBA RFID ID
+	MobaRfidID *string `json:"moba_rfid_id,omitempty"`
+
+	// MobaTimestamp MOBA timestamp
+	MobaTimestamp *time.Time `json:"moba_timestamp,omitempty"`
+
+	// MobileyeBrakeSignal Mobileye brake signal
+	MobileyeBrakeSignal *bool `json:"mobileye_brake_signal,omitempty"`
+
+	// MobileyeDuskTimeIndicator Mobileye dusk time indicator Possible values: DAY DUSK
+	MobileyeDuskTimeIndicator *DeviceInputsMobileyeDuskTimeIndicator `json:"mobileye_dusk_time_indicator,omitempty"`
+
+	// MobileyeErrorCode Mobileye error code
+	MobileyeErrorCode *float32 `json:"mobileye_error_code,omitempty"`
+
+	// MobileyeErrorValid Mobileye error valid
+	MobileyeErrorValid *bool `json:"mobileye_error_valid,omitempty"`
+
+	// MobileyeFailsafe Mobileye failsafe
+	MobileyeFailsafe *bool `json:"mobileye_failsafe,omitempty"`
+
+	// MobileyeFcwOn Mobileye forward collision warning on
+	MobileyeFcwOn *bool `json:"mobileye_fcw_on,omitempty"`
+
+	// MobileyeFilterType Mobileye filter type
+	MobileyeFilterType *float32 `json:"mobileye_filter_type,omitempty"`
+
+	// MobileyeHeadwayMeasurement Mobileye headway measurement
+	MobileyeHeadwayMeasurement *float32 `json:"mobileye_headway_measurement,omitempty"`
+
+	// MobileyeHeadwayValid Mobileye headway valid
+	MobileyeHeadwayValid *bool `json:"mobileye_headway_valid,omitempty"`
+
+	// MobileyeHeadwayWarningLevel Mobileye headway warning level Possible values: NO_COPV CIPV_WITH_HW_MORE_THAN_HW_CONFIG CIPV_WITH_LESS_THAN_HW_CONFIG
+	MobileyeHeadwayWarningLevel *DeviceInputsMobileyeHeadwayWarningLevel `json:"mobileye_headway_warning_level,omitempty"`
+
+	// MobileyeHiBeam Mobileye high beam Possible values: OFF ON
+	MobileyeHiBeam *DeviceInputsMobileyeHiBeam `json:"mobileye_hi_beam,omitempty"`
+
+	// MobileyeHiBeamAvailable Mobileye high beam available
+	MobileyeHiBeamAvailable *bool `json:"mobileye_hi_beam_available,omitempty"`
+
+	// MobileyeHwRepeatEnabled Mobileye headway warning repeat enabled
+	MobileyeHwRepeatEnabled *bool `json:"mobileye_hw_repeat_enabled,omitempty"`
+
+	// MobileyeLdwOff Mobileye LDW off
+	MobileyeLdwOff *bool `json:"mobileye_ldw_off,omitempty"`
+
+	// MobileyeLeftLdwOn Mobileye left LDW on
+	MobileyeLeftLdwOn *bool `json:"mobileye_left_ldw_on,omitempty"`
+
+	// MobileyeLeftSignal Mobileye left signal
+	MobileyeLeftSignal *bool `json:"mobileye_left_signal,omitempty"`
+
+	// MobileyeLowBeam Mobileye low beam Possible values: OFF ON
+	MobileyeLowBeam *DeviceInputsMobileyeLowBeam `json:"mobileye_low_beam,omitempty"`
+
+	// MobileyeLowBeamAvailable Mobileye low beam available
+	MobileyeLowBeamAvailable *bool `json:"mobileye_low_beam_available,omitempty"`
+
+	// MobileyeMaintenance Mobileye maintenance Possible values: NO_ERROR ERROR
+	MobileyeMaintenance *DeviceInputsMobileyeMaintenance `json:"mobileye_maintenance,omitempty"`
+
+	// MobileyeNightTimeIndicator Mobileye night time indicator Possible values: DAY NIGHT
+	MobileyeNightTimeIndicator *DeviceInputsMobileyeNightTimeIndicator `json:"mobileye_night_time_indicator,omitempty"`
+
+	// MobileyePedestriansFcw Mobileye pedestrians forward collision warning
+	MobileyePedestriansFcw *bool `json:"mobileye_pedestrians_fcw,omitempty"`
+
+	// MobileyePedestriansInDz Mobileye pedestrians in danger zone
+	MobileyePedestriansInDz *bool `json:"mobileye_pedestrians_in_dz,omitempty"`
+
+	// MobileyeRightLdwOn Mobileye right LDW on
+	MobileyeRightLdwOn *bool `json:"mobileye_right_ldw_on,omitempty"`
+
+	// MobileyeRightSignal Mobileye right signal
+	MobileyeRightSignal *bool `json:"mobileye_right_signal,omitempty"`
+
+	// MobileyeSignPositionX Mobileye sign position X
+	MobileyeSignPositionX *float32 `json:"mobileye_sign_position_x,omitempty"`
+
+	// MobileyeSignPositionY Mobileye sign position Y
+	MobileyeSignPositionY *float32 `json:"mobileye_sign_position_y,omitempty"`
+
+	// MobileyeSignPositionZ Mobileye sign position Z
+	MobileyeSignPositionZ *float32 `json:"mobileye_sign_position_z,omitempty"`
+
+	// MobileyeSoundType Mobileye sound type Possible values: SILENT LDWL LDWR HW1 TSR UFCW FCW_PCW PEDS_IN_DZ
+	MobileyeSoundType *DeviceInputsMobileyeSoundType `json:"mobileye_sound_type,omitempty"`
+
+	// MobileyeSpeed Mobileye speed (units: km/h)
+	MobileyeSpeed *float32 `json:"mobileye_speed,omitempty"`
+
+	// MobileyeSpeedAvailable Mobileye speed available
+	MobileyeSpeedAvailable *bool `json:"mobileye_speed_available,omitempty"`
+
+	// MobileyeTamperAlert Mobileye tamper alert Possible values: OFF ON
+	MobileyeTamperAlert *DeviceInputsMobileyeTamperAlert `json:"mobileye_tamper_alert,omitempty"`
+
+	// MobileyeTsrEnabled Mobileye TSR enabled
+	MobileyeTsrEnabled *bool `json:"mobileye_tsr_enabled,omitempty"`
+
+	// MobileyeTsrWarningLevel Mobileye TSR warning level
+	MobileyeTsrWarningLevel *float32 `json:"mobileye_tsr_warning_level,omitempty"`
+
+	// MobileyeVisionOnlySign Mobileye vision only sign
+	MobileyeVisionOnlySign *float32 `json:"mobileye_vision_only_sign,omitempty"`
+
+	// MobileyeVisionOnlySuplementarySignTypeDisplay1 Mobileye vision only supplementary sign type display 1
+	MobileyeVisionOnlySuplementarySignTypeDisplay1 *float32 `json:"mobileye_vision_only_suplementary_sign_type_display_1,omitempty"`
+
+	// MobileyeVisionOnlySuplementarySignTypeDisplay2 Mobileye vision only suplementary sign type display 2
+	MobileyeVisionOnlySuplementarySignTypeDisplay2 *float32 `json:"mobileye_vision_only_suplementary_sign_type_display_2,omitempty"`
+
+	// MobileyeVisionOnlySuplementarySignTypeDisplay3 Mobileye vision only suplementary sign type display 3
+	MobileyeVisionOnlySuplementarySignTypeDisplay3 *float32 `json:"mobileye_vision_only_suplementary_sign_type_display_3,omitempty"`
+
+	// MobileyeVisionOnlySuplementarySignTypeDisplay4 Mobileye vision only suplementary sign type display 4
+	MobileyeVisionOnlySuplementarySignTypeDisplay4 *float32 `json:"mobileye_vision_only_suplementary_sign_type_display_4,omitempty"`
+
+	// MobileyeVisionOnlySupplementarySignType Mobileye vision only supplementary sign type
+	MobileyeVisionOnlySupplementarySignType *float32 `json:"mobileye_vision_only_supplementary_sign_type,omitempty"`
+
+	// MobileyeVisionSignTypeDisplay1 Mobileye vision sign type display 1
+	MobileyeVisionSignTypeDisplay1 *float32 `json:"mobileye_vision_sign_type_display_1,omitempty"`
+
+	// MobileyeVisionSignTypeDisplay2 Mobileye vision sign type display 2
+	MobileyeVisionSignTypeDisplay2 *float32 `json:"mobileye_vision_sign_type_display_2,omitempty"`
+
+	// MobileyeVisionSignTypeDisplay3 Mobileye vision sign type display 3
+	MobileyeVisionSignTypeDisplay3 *float32 `json:"mobileye_vision_sign_type_display_3,omitempty"`
+
+	// MobileyeVisionSignTypeDisplay4 Mobileye vision sign type display 4
+	MobileyeVisionSignTypeDisplay4 *float32 `json:"mobileye_vision_sign_type_display_4,omitempty"`
+
+	// MobileyeWipers Mobileye wipers Possible values: OFF ON
+	MobileyeWipers *DeviceInputsMobileyeWipers `json:"mobileye_wipers,omitempty"`
+
+	// MobileyeWipersAvailable Mobileye wipers available
+	MobileyeWipersAvailable *bool `json:"mobileye_wipers_available,omitempty"`
+
+	// MobileyeZeroSpeed Mobileye zero speed
+	MobileyeZeroSpeed *bool `json:"mobileye_zero_speed,omitempty"`
+
+	// ModemTemperature Modem temperature (units: °C)
+	ModemTemperature *float32 `json:"modem_temperature,omitempty"`
+
+	// Movement Movement sensor Possible values: STILL MOVING
+	Movement *DeviceInputsMovement `json:"movement,omitempty"`
+
+	// ObdKlineActualEnginePercentTorque OBD actual engine percent torque (units: %)
+	ObdKlineActualEnginePercentTorque *float32 `json:"obd_kline_actual_engine_percent_torque,omitempty"`
+
+	// ObdKlineAmbientAirTemperature OBD ambient air temperature (units: °C)
+	ObdKlineAmbientAirTemperature *float32 `json:"obd_kline_ambient_air_temperature,omitempty"`
+
+	// ObdKlineDistanceTraveledWhileMilIsActivated OBD distance traveled while MIL is activated (units: km)
+	ObdKlineDistanceTraveledWhileMilIsActivated *float32 `json:"obd_kline_distance_traveled_while_mil_is_activated,omitempty"`
+
+	// ObdKlineDtcAndMil OBD DTC and MIL
+	ObdKlineDtcAndMil *float32 `json:"obd_kline_dtc_and_mil,omitempty"`
+
+	// ObdKlineDtcCounted OBD DTC count
+	ObdKlineDtcCounted *float32 `json:"obd_kline_dtc_counted,omitempty"`
+
+	// ObdKlineEngineCoolantTemperature OBD engine coolant temperature (units: °C)
+	ObdKlineEngineCoolantTemperature *float32 `json:"obd_kline_engine_coolant_temperature,omitempty"`
+
+	// ObdKlineEngineFuelRate OBD engine fuel rate (units: l/h)
+	ObdKlineEngineFuelRate *float32 `json:"obd_kline_engine_fuel_rate,omitempty"`
+
+	// ObdKlineFuelLevelInput OBD fuel level (units: %)
+	ObdKlineFuelLevelInput *float32 `json:"obd_kline_fuel_level_input,omitempty"`
+
+	// ObdKlineRelativeAcceleratorPedalPosition OBD accelerator pedal position (units: %)
+	ObdKlineRelativeAcceleratorPedalPosition *float32 `json:"obd_kline_relative_accelerator_pedal_position,omitempty"`
+
+	// ObdKlineRpm OBD RPM (units: RPM)
+	ObdKlineRpm *float32 `json:"obd_kline_rpm,omitempty"`
+
+	// ObdKlineTimeSinceEngineStart OBD time since engine start (units: s)
+	ObdKlineTimeSinceEngineStart *float32 `json:"obd_kline_time_since_engine_start,omitempty"`
+
+	// ObdKlineTypeOfFuel OBD fuel type Possible values: NOT_AVAILABLE GASOLINE METHANOL ETHANOL DIESEL LPG CNG PROPANE ELECTRIC BIFUEL_RUNNING_GASOLINE BIFUEL_RUNNING_METHANOL BIFUEL_RUNNING_ETHANOL BIFUEL_RUNNING_LPG BIFUEL_RUNNING_CNG BIFUEL_RUNNING_PROPANE BIFUEL_RUNNING_ELECTRICITY BIFUEL_RUNNING_ELECTRIC_AND_COMBUSTION_ENGINE HYBRID_GASOLINE HYBRID_ETHANOL HYBRID_DIESEL HYBRID_ELECTRIC HYBRID_RUNNING_ELECTRIC_AND_COMBUSTION_ENGINE HYBRID_REGENERATIVE BIFUEL_DIESEL
+	ObdKlineTypeOfFuel *DeviceInputsObdKlineTypeOfFuel `json:"obd_kline_type_of_fuel,omitempty"`
+
+	// ObdKlineVehicleSpeedSensor OBD vehicle speed (units: km/h)
+	ObdKlineVehicleSpeedSensor *float32 `json:"obd_kline_vehicle_speed_sensor,omitempty"`
+
+	// ObdKlineVin1 OBD VIN 1
+	ObdKlineVin1 *string `json:"obd_kline_vin_1,omitempty"`
+
+	// ObdKlineVin2 OBD VIN 2
+	ObdKlineVin2 *string `json:"obd_kline_vin_2,omitempty"`
+
+	// ObdKlineVin3 OBD VIN 3
+	ObdKlineVin3 *string `json:"obd_kline_vin_3,omitempty"`
+
+	// Operator GSM operator
+	Operator *float32 `json:"operator,omitempty"`
+
+	// OtDigitalInput1 OT digital input 1
+	OtDigitalInput1 *bool `json:"ot_digital_input_1,omitempty"`
+
+	// OtDigitalInput2 OT digital input 2
+	OtDigitalInput2 *bool `json:"ot_digital_input_2,omitempty"`
+
+	// OtDigitalInput3 OT digital input 3
+	OtDigitalInput3 *bool `json:"ot_digital_input_3,omitempty"`
+
+	// OtDigitalInput4 OT digital input 4
+	OtDigitalInput4 *bool `json:"ot_digital_input_4,omitempty"`
+
+	// OtTemperatureSensor1 OT temperature sensor 1 (units: °C)
+	OtTemperatureSensor1 *float32 `json:"ot_temperature_sensor_1,omitempty"`
+
+	// OtTemperatureSensor2 OT temperature sensor 2 (units: °C)
+	OtTemperatureSensor2 *float32 `json:"ot_temperature_sensor_2,omitempty"`
+
+	// OtTemperatureSensor3 OT temperature sensor 3 (units: °C)
+	OtTemperatureSensor3 *float32 `json:"ot_temperature_sensor_3,omitempty"`
+
+	// OtTemperatureSensor4 OT temperature sensor 4 (units: °C)
+	OtTemperatureSensor4 *float32 `json:"ot_temperature_sensor_4,omitempty"`
+
+	// OtTemperatureSensor5 OT temperature sensor 5 (units: °C)
+	OtTemperatureSensor5 *float32 `json:"ot_temperature_sensor_5,omitempty"`
+
+	// OtTemperatureSensor6 OT temperature sensor 6 (units: °C)
+	OtTemperatureSensor6 *float32 `json:"ot_temperature_sensor_6,omitempty"`
+
+	// OverspeedingEvents CAN tacho vehicle overspeed Possible values: NO_OVERSPEED OVERSPEED
+	OverspeedingEvents *DeviceInputsOverspeedingEvents `json:"overspeeding_events,omitempty"`
+
+	// Panic Panic status
+	Panic *bool `json:"panic,omitempty"`
+
+	// PcbTemperature PCB temperature (units: °C)
+	PcbTemperature *float32 `json:"pcb_temperature,omitempty"`
+
+	// PedalPos CAN accelerator pedal position (units: %)
+	PedalPos *float32 `json:"pedal_pos,omitempty"`
+
+	// PendingSatelliteMessages Pending satellite messages
+	PendingSatelliteMessages *float32 `json:"pending_satellite_messages,omitempty"`
+
+	// PowerSupplyVoltage Power supply voltage (units: V)
+	PowerSupplyVoltage *float32 `json:"power_supply_voltage,omitempty"`
+
+	// Priority Priority Possible values: LOW HIGH
+	Priority *DeviceInputsPriority `json:"priority,omitempty"`
+
+	// RfidA RFID PortA
+	RfidA *string `json:"rfid_a,omitempty"`
+
+	// RfidB RFID PortB
+	RfidB *string `json:"rfid_b,omitempty"`
+
+	// RollOverAlarm Rollover alarm
+	RollOverAlarm *bool `json:"roll_over_alarm,omitempty"`
+
+	// SatelliteMessagesSent Satellite messages sent
+	SatelliteMessagesSent *float32 `json:"satellite_messages_sent,omitempty"`
+
+	// SecondDriverID CAN second driver ID
+	SecondDriverID *string `json:"second_driver_id,omitempty"`
+	SecurityDout   *string `json:"security_dout,omitempty"`
+
+	// ServiceDist CAN service distance (units: km)
+	ServiceDist *float32 `json:"service_dist,omitempty"`
+
+	// ShockDuration Shock duration (units: ms)
+	ShockDuration *float32 `json:"shock_duration,omitempty"`
+
+	// SleepTimer Sleep timer Possible values: NO_EVENT DEVICE_WAKE_UP_BY_TIMER_EVENT
+	SleepTimer *DeviceInputsSleepTimer `json:"sleep_timer,omitempty"`
+
+	// SpeedTacho CAN tachograph vehicle speed (units: km/h)
+	SpeedTacho *float32 `json:"speed_tacho,omitempty"`
+
+	// SpeedWheel CAN wheel based speed (units: km/h)
+	SpeedWheel *float32 `json:"speed_wheel,omitempty"`
+
+	// SprDrivenHoursWhileSpreading Spreader driven hours while spreading (units: h)
+	SprDrivenHoursWhileSpreading *float32 `json:"spr_driven_hours_while_spreading,omitempty"`
+
+	// SprDrivenLengthWhileSpreading Spreader driven length while spreading (units: m)
+	SprDrivenLengthWhileSpreading *float32 `json:"spr_driven_length_while_spreading,omitempty"`
+
+	// SprErrorCode Spreader error code Possible values: RESERVED NO_SALT NO_BRINE MIN_LEVEL_OF_TANK MIN_LEVEL_OF_HOPPER NO_FEEDBACK_FROM_SPINNER NO_FEEDBACK_FROM_CONVEYER NO_FEEDBACK_FROM_CONVEYER_2 NO_FEEDBACK_FROM_PUMP SPINNER_RPM_OUT_OF_RANGE CONVEYER_RPM_OUT_OF_RANGE CONVEYER_2_RPM_OUT_OF_RANGE PUMP_RPM_OUT_OF_RANGE SETTING_OUT_OF_RANGE AUX_ENGINE_CHARGE_CONTROL_FAULT AUX_ENGINE_OIL_PRESSURE_TOO_LOW AUX_ENGINE_WATER_TEMP_TOO_HIGH RESERVED
+	SprErrorCode *string `json:"spr_error_code,omitempty"`
+
+	// SprLiquidMaterial Spreader liquid material
+	SprLiquidMaterial *string `json:"spr_liquid_material,omitempty"`
+
+	// SprSolidMaterial Spreader solid material
+	SprSolidMaterial *string `json:"spr_solid_material,omitempty"`
+
+	// SprSpreadBrineMaterial Spreader spread brine material (units: l)
+	SprSpreadBrineMaterial *float32 `json:"spr_spread_brine_material,omitempty"`
+
+	// SprSpreadSolidMaterialFromReservoir1 Spreader spread solid material from reservoir 1 (units: kg)
+	SprSpreadSolidMaterialFromReservoir1 *float32 `json:"spr_spread_solid_material_from_reservoir_1,omitempty"`
+
+	// SprSpreaderAdjustmentOfSimulationDrivingSpeed Spreader adjustment of simulation driving speed (units: km/h)
+	SprSpreaderAdjustmentOfSimulationDrivingSpeed *float32 `json:"spr_spreader_adjustment_of_simulation_driving_speed,omitempty"`
+
+	// SprSpreaderMode Spreader mode
+	SprSpreaderMode *float32 `json:"spr_spreader_mode,omitempty"`
+
+	// SprSpreaderSpreadingWidth Spreader spreading width (units: m)
+	SprSpreaderSpreadingWidth *float32 `json:"spr_spreader_spreading_width,omitempty"`
+
+	// SprSpreadingBrineDosage Spreader spreading brine dosage (units: g/m^2)
+	SprSpreadingBrineDosage *float32 `json:"spr_spreading_brine_dosage,omitempty"`
+
+	// SprSpreadingSolidMaterialDosageFromReservoir1 Spreader spreading solid material dosage from reservoir 1 (units: g/m^2)
+	SprSpreadingSolidMaterialDosageFromReservoir1 *float32 `json:"spr_spreading_solid_material_dosage_from_reservoir_1,omitempty"`
+
+	// TachoDddAvailable Tacho card reader state NOT_AVAILABLE AVAILABLE
+	TachoDddAvailable *string `json:"tacho_ddd_available,omitempty"`
+
+	// TachoStatus CAN tachograph performance Possible values: NORMAL_PERFORMANCE PERFORMANCE_ANALYSIS
+	TachoStatus *DeviceInputsTachoStatus `json:"tacho_status,omitempty"`
+
+	// TcoCanTachoTime TCO CAN tacho Time
+	TcoCanTachoTime *time.Time `json:"tco_can_tacho_time,omitempty"`
+
+	// TcoDistance TCO distance (units: km)
+	TcoDistance *float32 `json:"tco_distance,omitempty"`
+
+	// TcoFirstDriverCard TCO first driver card Possible values: NOT_INSERTED INSERTED
+	TcoFirstDriverCard *DeviceInputsTcoFirstDriverCard `json:"tco_first_driver_card,omitempty"`
+
+	// TcoFirstDriverContinuousDrivingTime TCO first driver continuous driving time (units: min)
+	TcoFirstDriverContinuousDrivingTime *float32 `json:"tco_first_driver_continuous_driving_time,omitempty"`
+
+	// TcoFirstDriverCumulatedBreakTime TCO first driver accumulated break time (units: min)
+	TcoFirstDriverCumulatedBreakTime *float32 `json:"tco_first_driver_cumulated_break_time,omitempty"`
+
+	// TcoFirstDriverDrivingTimePrevAndCurrWeek TCO first driver driving time (prev. and curr. week) (units: min)
+	TcoFirstDriverDrivingTimePrevAndCurrWeek *float32 `json:"tco_first_driver_driving_time_prev_and_curr_week,omitempty"`
+
+	// TcoFirstDriverDurationOfSelectedActivity TCO first driver duration of selected activity (units: min)
+	TcoFirstDriverDurationOfSelectedActivity *float32 `json:"tco_first_driver_duration_of_selected_activity,omitempty"`
+
+	// TcoFirstDriverState TCO first driver state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+	TcoFirstDriverState *DeviceInputsTcoFirstDriverState `json:"tco_first_driver_state,omitempty"`
+
+	// TcoFirstDriverTimeRelatedStates TCO first driver time related states
+	TcoFirstDriverTimeRelatedStates *float32 `json:"tco_first_driver_time_related_states,omitempty"`
+
+	// TcoRegistrationNumber TCO registration number
+	TcoRegistrationNumber *string `json:"tco_registration_number,omitempty"`
+
+	// TcoRpm TCO engine speed (units: RPM)
+	TcoRpm *float32 `json:"tco_rpm,omitempty"`
+
+	// TcoSecondDriverCard TCO second driver card Possible values: NOT_INSERTED INSERTED
+	TcoSecondDriverCard *DeviceInputsTcoSecondDriverCard `json:"tco_second_driver_card,omitempty"`
+
+	// TcoSecondDriverContinuousDrivingTime TCO second driver continuous driving time (units: min)
+	TcoSecondDriverContinuousDrivingTime *float32 `json:"tco_second_driver_continuous_driving_time,omitempty"`
+
+	// TcoSecondDriverCumulatedBreakTime TCO second driver accumulated break time (units: min)
+	TcoSecondDriverCumulatedBreakTime *float32 `json:"tco_second_driver_cumulated_break_time,omitempty"`
+
+	// TcoSecondDriverDrivingTimePrevAndCurrWeek TCO second driver driving time (prev. and curr. week) (units: min)
+	TcoSecondDriverDrivingTimePrevAndCurrWeek *float32 `json:"tco_second_driver_driving_time_prev_and_curr_week,omitempty"`
+
+	// TcoSecondDriverDurationOfSelectedActivity TCO second driver duration of selected activity (units: min)
+	TcoSecondDriverDurationOfSelectedActivity *float32 `json:"tco_second_driver_duration_of_selected_activity,omitempty"`
+
+	// TcoSecondDriverState TCO second driver state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+	TcoSecondDriverState *DeviceInputsTcoSecondDriverState `json:"tco_second_driver_state,omitempty"`
+
+	// TcoSecondDriverTimeRelatedStates TCO second driver time related states
+	TcoSecondDriverTimeRelatedStates *float32 `json:"tco_second_driver_time_related_states,omitempty"`
+
+	// TcoTime TCO tacho time
+	TcoTime *time.Time `json:"tco_time,omitempty"`
+
+	// TcoTrip TCO trip distance (units: km)
+	TcoTrip *float32 `json:"tco_trip,omitempty"`
+
+	// TcoVehicleSpeed TCO vehicle speed (units: km/h)
+	TcoVehicleSpeed *float32 `json:"tco_vehicle_speed,omitempty"`
+
+	// TemperatureSensor0 Temperature sensor 0 (units: °C)
+	TemperatureSensor0 *float32 `json:"temperature_sensor_0,omitempty"`
+
+	// TemperatureSensor0ID Temperature sensor 0 ID
+	TemperatureSensor0ID *string `json:"temperature_sensor_0_id,omitempty"`
+
+	// TemperatureSensor1 Temperature sensor 1 (units: °C)
+	TemperatureSensor1 *float32 `json:"temperature_sensor_1,omitempty"`
+
+	// TemperatureSensor1ID Temperature sensor 1 ID
+	TemperatureSensor1ID *string `json:"temperature_sensor_1_id,omitempty"`
+
+	// TemperatureSensor2 Temperature sensor 2 (units: °C)
+	TemperatureSensor2 *float32 `json:"temperature_sensor_2,omitempty"`
+
+	// TemperatureSensor2ID Temperature sensor 2 ID
+	TemperatureSensor2ID *string `json:"temperature_sensor_2_id,omitempty"`
+
+	// TemperatureSensor3 Temperature sensor 3 (units: °C)
+	TemperatureSensor3 *float32 `json:"temperature_sensor_3,omitempty"`
+
+	// TemperatureSensor3ID Temperature sensor 3 ID
+	TemperatureSensor3ID *string `json:"temperature_sensor_3_id,omitempty"`
+
+	// ThermokingAirReturnTemp ThermoKing air return temperature (units: °C)
+	ThermokingAirReturnTemp *float32 `json:"thermoking_air_return_temp,omitempty"`
+
+	// ThermokingAlarmType ThermoKing alarm type Possible values: NO_ALARM LOG_STORED_OR_ROUTINE_MAINTENANCE LOW_FUEL MAINTENANCE_PAST_DUE RESERVED IMMEDIATE_ATTENTION_REQUIRED SHUTDOWN_OR_CATASTROPHIC_SYSTEM_FAILURE
+	ThermokingAlarmType *DeviceInputsThermokingAlarmType `json:"thermoking_alarm_type,omitempty"`
+
+	// ThermokingAlarms ThermoKing alarm code
+	ThermokingAlarms *float32 `json:"thermoking_alarms,omitempty"`
+
+	// ThermokingBatteryVoltage ThermoKing battery voltage (units: V)
+	ThermokingBatteryVoltage *float32 `json:"thermoking_battery_voltage,omitempty"`
+
+	// ThermokingCycleMode ThermoKing cycle mode Possible values: CYCLE_SENTRY_MODE CONTINUOUS_MODE START_STOP_MODE
+	ThermokingCycleMode *DeviceInputsThermokingCycleMode `json:"thermoking_cycle_mode,omitempty"`
+
+	// ThermokingDieselElectricStatus ThermoKing diesel/electric status Possible values: DIESEL_MODE ELECTRIC_MODE
+	ThermokingDieselElectricStatus *DeviceInputsThermokingDieselElectricStatus `json:"thermoking_diesel_electric_status,omitempty"`
+
+	// ThermokingDischargeTemperature ThermoKing discharge air temperature (units: °C)
+	ThermokingDischargeTemperature *float32 `json:"thermoking_discharge_temperature,omitempty"`
+
+	// ThermokingDoorStatus ThermoKing door status Possible values: CLOSED OPEN
+	ThermokingDoorStatus *DeviceInputsThermokingDoorStatus `json:"thermoking_door_status,omitempty"`
+
+	// ThermokingEvaporatorCoilTemperature ThermoKing evaporator coil temperature (units: °C)
+	ThermokingEvaporatorCoilTemperature *float32 `json:"thermoking_evaporator_coil_temperature,omitempty"`
+
+	// ThermokingFuelLevel ThermoKing fuel level (units: %)
+	ThermokingFuelLevel *float32 `json:"thermoking_fuel_level,omitempty"`
+
+	// ThermokingHighSpeedStatus ThermoKing high speed status
+	ThermokingHighSpeedStatus *bool `json:"thermoking_high_speed_status,omitempty"`
+
+	// ThermokingOperatingMode ThermoKing operating mode Possible values: POWER_OFF_OR_UNKNOWN COOLING HEATING DEFROST NULL PRETRIP SLEEP RESERVED
+	ThermokingOperatingMode *DeviceInputsThermokingOperatingMode `json:"thermoking_operating_mode,omitempty"`
+
+	// ThermokingSetPoint ThermoKing temperature setpoint (units: °C)
+	ThermokingSetPoint *float32 `json:"thermoking_set_point,omitempty"`
+
+	// ThermokingTotalElectricHours ThermoKing total electric hours (units: h)
+	ThermokingTotalElectricHours *float32 `json:"thermoking_total_electric_hours,omitempty"`
+
+	// ThermokingTotalEngineHours ThermoKing total engine hours (units: h)
+	ThermokingTotalEngineHours *float32 `json:"thermoking_total_engine_hours,omitempty"`
+
+	// ThermokingVehicleHours ThermoKing total vehicle hours (units: h)
+	ThermokingVehicleHours *float32 `json:"thermoking_vehicle_hours,omitempty"`
+
+	// TkTemperatureSensor1 TK temperature sensor 1 (units: °C)
+	TkTemperatureSensor1 *float32 `json:"tk_temperature_sensor1,omitempty"`
+
+	// TkTemperatureSensor2 TK temperature sensor 2 (units: °C)
+	TkTemperatureSensor2 *float32 `json:"tk_temperature_sensor2,omitempty"`
+
+	// TkTemperatureSensor3 TK temperature sensor 3 (units: °C)
+	TkTemperatureSensor3 *float32 `json:"tk_temperature_sensor3,omitempty"`
+
+	// TkTemperatureSensor4 TK temperature sensor 4 (units: °C)
+	TkTemperatureSensor4 *float32 `json:"tk_temperature_sensor4,omitempty"`
+
+	// TkTemperatureSensor5 TK temperature sensor 5 (units: °C)
+	TkTemperatureSensor5 *float32 `json:"tk_temperature_sensor5,omitempty"`
+
+	// TkTemperatureSensor6 TK temperature sensor 6 (units: °C)
+	TkTemperatureSensor6 *float32 `json:"tk_temperature_sensor6,omitempty"`
+
+	// TkTouchprintInput1 TK Touchprint input 1 (units: °C)
+	TkTouchprintInput1 *float32 `json:"tk_touchprint_input_1,omitempty"`
+
+	// TkTouchprintInput2 TK Touchprint input 2 (units: °C)
+	TkTouchprintInput2 *float32 `json:"tk_touchprint_input_2,omitempty"`
+
+	// TkTouchprintInput3 TK Touchprint input 3 (units: °C)
+	TkTouchprintInput3 *float32 `json:"tk_touchprint_input_3,omitempty"`
+
+	// TkTouchprintInput4 TK Touchprint input 4 (units: °C)
+	TkTouchprintInput4 *float32 `json:"tk_touchprint_input_4,omitempty"`
+
+	// TkTouchprintInput5 TK Touchprint input 5 (units: °C)
+	TkTouchprintInput5 *float32 `json:"tk_touchprint_input_5,omitempty"`
+
+	// TkTouchprintInput6 TK Touchprint input 6 (units: °C)
+	TkTouchprintInput6 *float32 `json:"tk_touchprint_input_6,omitempty"`
+
+	// TrailersAmberWarningSignalRequest Trailers amber warning signal request Possible values: OFF ON
+	TrailersAmberWarningSignalRequest *DeviceInputsTrailersAmberWarningSignalRequest `json:"trailers_amber_warning_signal_request,omitempty"`
+
+	// TrailersAxleLoadSum Trailers axle load sum (units: kg)
+	TrailersAxleLoadSum *float32 `json:"trailers_axle_load_sum,omitempty"`
+
+	// TrailersBrakeCylinderPressureFirstAxleLeftWheel Trailers brake cylinder pressure first axle, left wheel (units: kPa)
+	TrailersBrakeCylinderPressureFirstAxleLeftWheel *float32 `json:"trailers_brake_cylinder_pressure_first_axle_left_wheel,omitempty"`
+
+	// TrailersBrakeCylinderPressureFirstAxleRightWheel Trailers brake cylinder pressure first axle, right wheel (units: kPa)
+	TrailersBrakeCylinderPressureFirstAxleRightWheel *float32 `json:"trailers_brake_cylinder_pressure_first_axle_right_wheel,omitempty"`
+
+	// TrailersBrakeCylinderPressureSecondAxleLeftWheel Trailers brake cylinder pressure second axle, left wheel (units: kPa)
+	TrailersBrakeCylinderPressureSecondAxleLeftWheel *float32 `json:"trailers_brake_cylinder_pressure_second_axle_left_wheel,omitempty"`
+
+	// TrailersBrakeCylinderPressureSecondAxleRightWheel Trailers brake cylinder pressure second axle, right wheel (units: kPa)
+	TrailersBrakeCylinderPressureSecondAxleRightWheel *float32 `json:"trailers_brake_cylinder_pressure_second_axle_right_wheel,omitempty"`
+
+	// TrailersBrakeCylinderPressureThirdAxleLeftWheel Trailers brake cylinder pressure third axle, left wheel (units: kPa)
+	TrailersBrakeCylinderPressureThirdAxleLeftWheel *float32 `json:"trailers_brake_cylinder_pressure_third_axle_left_wheel,omitempty"`
+
+	// TrailersBrakeCylinderPressureThirdAxleRightWheel Trailers brake cylinder pressure third axle, right wheel (units: kPa)
+	TrailersBrakeCylinderPressureThirdAxleRightWheel *float32 `json:"trailers_brake_cylinder_pressure_third_axle_right_wheel,omitempty"`
+
+	// TrailersBrakingSystemWheelBasedVehicleSpeed Trailers braking system wheel–based vehicle speed (units: km/h)
+	TrailersBrakingSystemWheelBasedVehicleSpeed *float32 `json:"trailers_braking_system_wheel_based_vehicle_speed,omitempty"`
+
+	// TrailersBrakingViaElectricControlLineSupport Trailers braking via electric control line support Possible values: NOT_SUPPORTED SUPPORTED
+	TrailersBrakingViaElectricControlLineSupport *DeviceInputsTrailersBrakingViaElectricControlLineSupport `json:"trailers_braking_via_electric_control_line_support,omitempty"`
+
+	// TrailersElectricalLoadProportionalFunctionInstallationStatus Trailers electrical load proportional function installation status Possible values: NOT_INSTALLED INSTALLED
+	TrailersElectricalLoadProportionalFunctionInstallationStatus *DeviceInputsTrailersElectricalLoadProportionalFunctionInstallationStatus `json:"trailers_electrical_load_proportional_function_installation_status,omitempty"`
+
+	// TrailersElectricalSupplyOfNonBrakingSystemStatus Trailers electrical supply of non-braking system status Possible values: OFF ON
+	TrailersElectricalSupplyOfNonBrakingSystemStatus *DeviceInputsTrailersElectricalSupplyOfNonBrakingSystemStatus `json:"trailers_electrical_supply_of_non_braking_system_status,omitempty"`
+
+	// TrailersExternalBrakeRequestStatus Trailers external brake request status NO_REQUEST REQUEST_ACTIVE
+	TrailersExternalBrakeRequestStatus *string `json:"trailers_external_brake_request_status,omitempty"`
+
+	// TrailersHighResolutionVehicleDistance Trailers high resolution vehicle distance (units: km)
+	TrailersHighResolutionVehicleDistance *float32 `json:"trailers_high_resolution_vehicle_distance,omitempty"`
+
+	// TrailersLateralAcceleration Trailers lateral acceleration (units: m/s^2)
+	TrailersLateralAcceleration *float32 `json:"trailers_lateral_acceleration,omitempty"`
+
+	// TrailersPneumaticSupplyPressure Trailers pneumatic supply pressure (units: kPa)
+	TrailersPneumaticSupplyPressure *float32 `json:"trailers_pneumatic_supply_pressure,omitempty"`
+
+	// TrailersRedWarningSignalRequest Trailers red warning signal request Possible values: OFF ON
+	TrailersRedWarningSignalRequest *DeviceInputsTrailersRedWarningSignalRequest `json:"trailers_red_warning_signal_request,omitempty"`
+
+	// TrailersServiceDistance Trailers service distance (units: km)
+	TrailersServiceDistance *float32 `json:"trailers_service_distance,omitempty"`
+
+	// TrailersStopLampsRequest Trailers stop lamps request Possible values: NO_REQUEST REQUEST_ACTIVE
+	TrailersStopLampsRequest *DeviceInputsTrailersStopLampsRequest `json:"trailers_stop_lamps_request,omitempty"`
+
+	// TrailersVdcActive Trailers VDC active Possible values: PASSIVE ACTIVE
+	TrailersVdcActive *DeviceInputsTrailersVdcActive `json:"trailers_vdc_active,omitempty"`
+
+	// TrailersVehicleAbsStatus Trailers vehicle ABS status Possible values: PASSIVE ACTIVE
+	TrailersVehicleAbsStatus *DeviceInputsTrailersVehicleAbsStatus `json:"trailers_vehicle_abs_status,omitempty"`
+
+	// TrailersVehicleElectricalSupplyStatus Trailers vehicle electrical supply status Possible values: INSUFFICIENT SUFFICIENT
+	TrailersVehicleElectricalSupplyStatus *DeviceInputsTrailersVehicleElectricalSupplyStatus `json:"trailers_vehicle_electrical_supply_status,omitempty"`
+
+	// TrailersVehiclePneumaticSupplyStatus Trailers vehicle pneumatic supply status Possible values: OFF ON
+	TrailersVehiclePneumaticSupplyStatus *DeviceInputsTrailersVehiclePneumaticSupplyStatus `json:"trailers_vehicle_pneumatic_supply_status,omitempty"`
+
+	// TrailersVehicleServiceBrakeStatus Trailers vehicle service brake status Possible values: PASSIVE ACTIVE
+	TrailersVehicleServiceBrakeStatus *DeviceInputsTrailersVehicleServiceBrakeStatus `json:"trailers_vehicle_service_brake_status,omitempty"`
+
+	// TrailersVehicleType Trailers vehicle type Possible values: TOWED_VEHICLE CONVERTED_DOLLY_AXLE_LSB
+	TrailersVehicleType *DeviceInputsTrailersVehicleType `json:"trailers_vehicle_type,omitempty"`
+
+	// TrailersWheelSpeedDifferenceMainAxle Trailers wheel speed difference main axle (units: km/h)
+	TrailersWheelSpeedDifferenceMainAxle *float32 `json:"trailers_wheel_speed_difference_main_axle,omitempty"`
+
+	// UltraHighFrequencyRfidPortA Ultra High Frequency RFID port A
+	UltraHighFrequencyRfidPortA *string `json:"ultra_high_frequency_rfid_port_a,omitempty"`
+
+	// UltraHighFrequencyRfidPortB Ultra High Frequency RFID port B
+	UltraHighFrequencyRfidPortB *string `json:"ultra_high_frequency_rfid_port_b,omitempty"`
+
+	// UmtsEnabled UMTS enabled status Possible values: DISABLED ENABLED
+	UmtsEnabled *DeviceInputsUmtsEnabled `json:"umts_enabled,omitempty"`
+
+	// VehicleID CAN vehicle ID
+	VehicleID *string `json:"vehicle_id,omitempty"`
+
+	// VirtualOdometer Virtual odometer (units: km)
+	VirtualOdometer *float32 `json:"virtual_odometer,omitempty"`
+
+	// VirtualOdometerDiff Virtual odometer DIFF (units: m)
+	VirtualOdometerDiff *float32 `json:"virtual_odometer_diff,omitempty"`
+
+	// WirelessDriverID Wireless driver ID
+	WirelessDriverID *float32 `json:"wireless_driver_id,omitempty"`
+
+	// WirelessEnabled Wireless enabled Possible values: DISABLED ENABLED
+	WirelessEnabled *DeviceInputsWirelessEnabled `json:"wireless_enabled,omitempty"`
+
+	// WirelessPair Wireless pair
+	WirelessPair      *bool   `json:"wireless_pair,omitempty"`
+	WirelessTrailerID *string `json:"wireless_trailer_id,omitempty"`
+
+	// XAxis Accelerometer X axis (units: G)
+	XAxis *float32 `json:"x_axis,omitempty"`
+
+	// XAxisTiltAngle X axis tilt angle (units: Degrees)
+	XAxisTiltAngle *float32 `json:"x_axis_tilt_angle,omitempty"`
+
+	// YAxis Accelerometer Y axis (units: G)
+	YAxis *float32 `json:"y_axis,omitempty"`
+
+	// YAxisTiltAngle Y axis tilt angle (units: Degrees)
+	YAxisTiltAngle *float32 `json:"y_axis_tilt_angle,omitempty"`
+
+	// ZAxis Accelerometer Z axis (units: G)
+	ZAxis *float32 `json:"z_axis,omitempty"`
+
+	// ZAxisTiltAngle Z axis tilt angle (units: Degrees)
+	ZAxisTiltAngle *float32 `json:"z_axis_tilt_angle,omitempty"`
 }
+
+// DeviceInputsCanDoorLockState CAN door lock state Possible values: UNLOCKED LOCKED NOT_AVAILABLE
+type DeviceInputsCanDoorLockState string
+
+// DeviceInputsCanIgnition CAN ignition Possible values: OFF ON
+type DeviceInputsCanIgnition string
+
+// DeviceInputsCanInterfaceConfigurationCan1AutoBaudRate CAN interface configuration CAN1 auto baud rate Possible values: OFF ON
+type DeviceInputsCanInterfaceConfigurationCan1AutoBaudRate string
+
+// DeviceInputsCanInterfaceConfigurationCan1FfFiltersStatus CAN interface configuration CAN1 filters status Possible values: OFF ON
+type DeviceInputsCanInterfaceConfigurationCan1FfFiltersStatus string
+
+// DeviceInputsCanInterfaceConfigurationCan1Interface CAN interface configuration CAN1 interface Possible values: NONE FMS LCV OBD TACHO MOBILEYE TRAILERS DXP
+type DeviceInputsCanInterfaceConfigurationCan1Interface string
+
+// DeviceInputsCanInterfaceConfigurationCan1Mode CAN interface configuration CAN1 mode Possible values: SILENT ACTIVE
+type DeviceInputsCanInterfaceConfigurationCan1Mode string
+
+// DeviceInputsCanInterfaceConfigurationCan1Status CAN interface configuration CAN1 status Possible values: INACTIVE ACTIVE
+type DeviceInputsCanInterfaceConfigurationCan1Status string
+
+// DeviceInputsCanInterfaceConfigurationCan2AutoBaudRate CAN interface configuration CAN2 auto baud rate Possible values: OFF ON
+type DeviceInputsCanInterfaceConfigurationCan2AutoBaudRate string
+
+// DeviceInputsCanInterfaceConfigurationCan2FfFiltersStatus CAN interface configuration CAN2 filters status Possible values: OFF ON
+type DeviceInputsCanInterfaceConfigurationCan2FfFiltersStatus string
+
+// DeviceInputsCanInterfaceConfigurationCan2Interface CAN interface configuration CAN2 interface Possible values: NONE FMS LCV OBD TACHO MOBILEYE TRAILERS DXP
+type DeviceInputsCanInterfaceConfigurationCan2Interface string
+
+// DeviceInputsCanInterfaceConfigurationCan2Mode CAN interface configuration CAN2 mode Possible values: SILENT ACTIVE
+type DeviceInputsCanInterfaceConfigurationCan2Mode string
+
+// DeviceInputsCanInterfaceConfigurationCan2Status CAN interface configuration CAN2 status Possible values: INACTIVE ACTIVE
+type DeviceInputsCanInterfaceConfigurationCan2Status string
+
+// DeviceInputsCanLcvConfigurationCan1Group CAN LCV configuration CAN1 group Possible values: VAG MERCEDES CITROEN FORD FIAT OPEL RENAULT TOYOTA TRACTOR TRUCK HYUNDAI LEXUS VOLVO BMW NISSAN HONDA MITSUBISHI SUBARU CHRYSLER ISUZU SSANGYONG MAZDA KOMATSU RANGEROVER CLAAS SAAB LANDROVER PORSCHE KIA JAGUAR INFINITI LINDE HITACHI SUZUKI
+type DeviceInputsCanLcvConfigurationCan1Group string
+
+// DeviceInputsCanLcvConfigurationCan2Group CAN LCV configuration CAN2 group Possible values: VAG MERCEDES CITROEN FORD FIAT OPEL RENAULT TOYOTA TRACTOR TRUCK HYUNDAI LEXUS VOLVO BMW NISSAN HONDA MITSUBISHI SUBARU CHRYSLER ISUZU SSANGYONG MAZDA KOMATSU RANGEROVER CLAAS SAAB LANDROVER PORSCHE KIA JAGUAR INFINITI LINDE HITACHI SUZUKI
+type DeviceInputsCanLcvConfigurationCan2Group string
+
+// DeviceInputsCanbusBatteryCharging CAN battery charging Possible values: NO_CHARGING CHARGING
+type DeviceInputsCanbusBatteryCharging string
+
+// DeviceInputsCanbusBrakeSwitch CAN brake switch Possible values: RELEASED PRESSED
+type DeviceInputsCanbusBrakeSwitch string
+
+// DeviceInputsCanbusClutchSwitch CAN clutch switch Possible values: RELEASED PRESSED
+type DeviceInputsCanbusClutchSwitch string
+
+// DeviceInputsCanbusCruiseControlState CAN cruise control active Possible values: OFF ON
+type DeviceInputsCanbusCruiseControlState string
+
+// DeviceInputsCanbusDiagnosticsSupported CAN diagnostics supported Possible values: NOT_SUPPORTED SUPPORTED RESERVED DO_NOT_CARE
+type DeviceInputsCanbusDiagnosticsSupported string
+
+// DeviceInputsCanbusDirectionIndicator CAN tacho direction indicator Possible values: FORWARD REVERSE
+type DeviceInputsCanbusDirectionIndicator string
+
+// DeviceInputsCanbusDriver1Card CAN tacho driver 1 card Possible values: CARD_NOT_PRESENT CARD_PRESENT ERROR NOT_AVAILABLE
+type DeviceInputsCanbusDriver1Card string
+
+// DeviceInputsCanbusDriver1State CAN tacho driver 1 working state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+type DeviceInputsCanbusDriver1State string
+
+// DeviceInputsCanbusDriver1Time CAN tacho driver 1 time related status Possible values: NORMAL 15_MIN_BEFORE_4,5H 4,5H_REACHED 15_MIN_BEFORE_9H 9H_REACHED 15_MIN_BEFORE_16H 16H_REACHED ERROR NOT_AVAILABLE
+type DeviceInputsCanbusDriver1Time string
+
+// DeviceInputsCanbusDriver2Card CAN tacho driver 2 card Possible values: CARD_NOT_PRESENT CARD_PRESENT ERROR NOT_AVAILABLE
+type DeviceInputsCanbusDriver2Card string
+
+// DeviceInputsCanbusDriver2State CAN tacho driver 2 working state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+type DeviceInputsCanbusDriver2State string
+
+// DeviceInputsCanbusDriver2Time CAN tacho driver 2 time related status Possible values: NORMAL 15_MIN_BEFORE_4,5H 4,5H_REACHED 15_MIN_BEFORE_9H 9H_REACHED 15_MIN_BEFORE_16H 16H_REACHED ERROR NOT_AVAILABLE
+type DeviceInputsCanbusDriver2Time string
+
+// DeviceInputsCanbusHandlingInformation CAN tacho handling information Possible values: NO_HANDLING_INFORMATION HANDLING_INFORMATION
+type DeviceInputsCanbusHandlingInformation string
+
+// DeviceInputsCanbusParkingBrakeSwitch CAN parking brake switch Possible values: OFF ON
+type DeviceInputsCanbusParkingBrakeSwitch string
+
+// DeviceInputsCanbusPto CAN at least one PTO engaged Possible values: NO_PTO_DRIVER AT_LEAST_ONE_PTO_DRIVER ERROR NOT_AVAILABLE
+type DeviceInputsCanbusPto string
+
+// DeviceInputsCanbusPtoState CAN PTO state Possible values: OFF_DISABLED SET NOT_AVAILABLE
+type DeviceInputsCanbusPtoState string
+
+// DeviceInputsCanbusRequestSupported CAN request supported Possible values: NOT_SUPPORTED SUPPORTED RESERVED DO_NOT_CARE
+type DeviceInputsCanbusRequestSupported string
+
+// DeviceInputsCanbusSystemEvent CAN system event Possible values: NO_TACHO_EVENT TACHO_EVENT
+type DeviceInputsCanbusSystemEvent string
+
+// DeviceInputsCanbusVehicleMotion CAN tacho vehicle motion Possible values: NOT_DETECTED DETECTED
+type DeviceInputsCanbusVehicleMotion string
+
+// DeviceInputsCustomIgnition Custom ignition Possible values: OFF ON
+type DeviceInputsCustomIgnition string
+
+// DeviceInputsDout1Status DOUT1 status Possible values: ACTIVE INACTIVE
+type DeviceInputsDout1Status string
+
+// DeviceInputsDout2Status DOUT2 status Possible values: ACTIVE INACTIVE
+type DeviceInputsDout2Status string
+
+// DeviceInputsDriver1State Driver 1 state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+type DeviceInputsDriver1State string
+
+// DeviceInputsDriver2State Driver 2 state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+type DeviceInputsDriver2State string
+
+// DeviceInputsDxpSwitchesSwitch1 DXP switch 1 value Possible values: OFF ON
+type DeviceInputsDxpSwitchesSwitch1 string
+
+// DeviceInputsDxpSwitchesSwitch2 DXP switch 2 value Possible values: OFF ON
+type DeviceInputsDxpSwitchesSwitch2 string
+
+// DeviceInputsDxpSwitchesSwitch3 DXP switch 3 value Possible values: OFF ON
+type DeviceInputsDxpSwitchesSwitch3 string
+
+// DeviceInputsDxpSwitchesSwitch4 DXP switch 4 value Possible values: OFF ON
+type DeviceInputsDxpSwitchesSwitch4 string
+
+// DeviceInputsDxpSwitchesSwitch5 DXP switch 5 value Possible values: OFF ON
+type DeviceInputsDxpSwitchesSwitch5 string
+
+// DeviceInputsDxpSwitchesSwitch6 DXP switch 6 value Possible values: OFF ON
+type DeviceInputsDxpSwitchesSwitch6 string
+
+// DeviceInputsDxpSwitchesSwitch7 DXP switch 7 value Possible values: OFF ON
+type DeviceInputsDxpSwitchesSwitch7 string
+
+// DeviceInputsDxpSwitchesSwitch8 DXP switch 8 value Possible values: OFF ON
+type DeviceInputsDxpSwitchesSwitch8 string
+
+// DeviceInputsEcodriveIdlingState Eco-Drive idling state Possible values: NO_IDLING IDLING
+type DeviceInputsEcodriveIdlingState string
+
+// DeviceInputsGnssAntenna GNSS antenna status Possible values: DISABLED ENABLED UNKNOWN
+type DeviceInputsGnssAntenna string
+
+// DeviceInputsGprsStatus GPRS status Possible values: DISCONNECTED CONNECTED
+type DeviceInputsGprsStatus string
+
+// DeviceInputsIgnitionPlugtrack Virtual ignition Possible values: OFF ON
+type DeviceInputsIgnitionPlugtrack string
+
+// DeviceInputsLcvDriverDoors LCV driver doors Possible values: CLOSE OPEN
+type DeviceInputsLcvDriverDoors string
+
+// DeviceInputsLcvHood LCV hood Possible values: CLOSE OPEN
+type DeviceInputsLcvHood string
+
+// DeviceInputsLcvLeftBackDoors LCV left back doors Possible values: CLOSE OPEN
+type DeviceInputsLcvLeftBackDoors string
+
+// DeviceInputsLcvPassengerDoors LCV passenger doors Possible values: CLOSE OPEN
+type DeviceInputsLcvPassengerDoors string
+
+// DeviceInputsLcvRightBackDoors LCV right back doors Possible values: CLOSE OPEN
+type DeviceInputsLcvRightBackDoors string
+
+// DeviceInputsLcvTrunk LCV trunk Possible values: CLOSE OPEN
+type DeviceInputsLcvTrunk string
+
+// DeviceInputsMobileyeDuskTimeIndicator Mobileye dusk time indicator Possible values: DAY DUSK
+type DeviceInputsMobileyeDuskTimeIndicator string
+
+// DeviceInputsMobileyeHeadwayWarningLevel Mobileye headway warning level Possible values: NO_COPV CIPV_WITH_HW_MORE_THAN_HW_CONFIG CIPV_WITH_LESS_THAN_HW_CONFIG
+type DeviceInputsMobileyeHeadwayWarningLevel string
+
+// DeviceInputsMobileyeHiBeam Mobileye high beam Possible values: OFF ON
+type DeviceInputsMobileyeHiBeam string
+
+// DeviceInputsMobileyeLowBeam Mobileye low beam Possible values: OFF ON
+type DeviceInputsMobileyeLowBeam string
+
+// DeviceInputsMobileyeMaintenance Mobileye maintenance Possible values: NO_ERROR ERROR
+type DeviceInputsMobileyeMaintenance string
+
+// DeviceInputsMobileyeNightTimeIndicator Mobileye night time indicator Possible values: DAY NIGHT
+type DeviceInputsMobileyeNightTimeIndicator string
+
+// DeviceInputsMobileyeSoundType Mobileye sound type Possible values: SILENT LDWL LDWR HW1 TSR UFCW FCW_PCW PEDS_IN_DZ
+type DeviceInputsMobileyeSoundType string
+
+// DeviceInputsMobileyeTamperAlert Mobileye tamper alert Possible values: OFF ON
+type DeviceInputsMobileyeTamperAlert string
+
+// DeviceInputsMobileyeWipers Mobileye wipers Possible values: OFF ON
+type DeviceInputsMobileyeWipers string
+
+// DeviceInputsMovement Movement sensor Possible values: STILL MOVING
+type DeviceInputsMovement string
+
+// DeviceInputsObdKlineTypeOfFuel OBD fuel type Possible values: NOT_AVAILABLE GASOLINE METHANOL ETHANOL DIESEL LPG CNG PROPANE ELECTRIC BIFUEL_RUNNING_GASOLINE BIFUEL_RUNNING_METHANOL BIFUEL_RUNNING_ETHANOL BIFUEL_RUNNING_LPG BIFUEL_RUNNING_CNG BIFUEL_RUNNING_PROPANE BIFUEL_RUNNING_ELECTRICITY BIFUEL_RUNNING_ELECTRIC_AND_COMBUSTION_ENGINE HYBRID_GASOLINE HYBRID_ETHANOL HYBRID_DIESEL HYBRID_ELECTRIC HYBRID_RUNNING_ELECTRIC_AND_COMBUSTION_ENGINE HYBRID_REGENERATIVE BIFUEL_DIESEL
+type DeviceInputsObdKlineTypeOfFuel string
+
+// DeviceInputsOverspeedingEvents CAN tacho vehicle overspeed Possible values: NO_OVERSPEED OVERSPEED
+type DeviceInputsOverspeedingEvents string
+
+// DeviceInputsPriority Priority Possible values: LOW HIGH
+type DeviceInputsPriority string
+
+// DeviceInputsSleepTimer Sleep timer Possible values: NO_EVENT DEVICE_WAKE_UP_BY_TIMER_EVENT
+type DeviceInputsSleepTimer string
+
+// DeviceInputsTachoStatus CAN tachograph performance Possible values: NORMAL_PERFORMANCE PERFORMANCE_ANALYSIS
+type DeviceInputsTachoStatus string
+
+// DeviceInputsTcoFirstDriverCard TCO first driver card Possible values: NOT_INSERTED INSERTED
+type DeviceInputsTcoFirstDriverCard string
+
+// DeviceInputsTcoFirstDriverState TCO first driver state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+type DeviceInputsTcoFirstDriverState string
+
+// DeviceInputsTcoSecondDriverCard TCO second driver card Possible values: NOT_INSERTED INSERTED
+type DeviceInputsTcoSecondDriverCard string
+
+// DeviceInputsTcoSecondDriverState TCO second driver state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+type DeviceInputsTcoSecondDriverState string
+
+// DeviceInputsThermokingAlarmType ThermoKing alarm type Possible values: NO_ALARM LOG_STORED_OR_ROUTINE_MAINTENANCE LOW_FUEL MAINTENANCE_PAST_DUE RESERVED IMMEDIATE_ATTENTION_REQUIRED SHUTDOWN_OR_CATASTROPHIC_SYSTEM_FAILURE
+type DeviceInputsThermokingAlarmType string
+
+// DeviceInputsThermokingCycleMode ThermoKing cycle mode Possible values: CYCLE_SENTRY_MODE CONTINUOUS_MODE START_STOP_MODE
+type DeviceInputsThermokingCycleMode string
+
+// DeviceInputsThermokingDieselElectricStatus ThermoKing diesel/electric status Possible values: DIESEL_MODE ELECTRIC_MODE
+type DeviceInputsThermokingDieselElectricStatus string
+
+// DeviceInputsThermokingDoorStatus ThermoKing door status Possible values: CLOSED OPEN
+type DeviceInputsThermokingDoorStatus string
+
+// DeviceInputsThermokingOperatingMode ThermoKing operating mode Possible values: POWER_OFF_OR_UNKNOWN COOLING HEATING DEFROST NULL PRETRIP SLEEP RESERVED
+type DeviceInputsThermokingOperatingMode string
+
+// DeviceInputsTrailersAmberWarningSignalRequest Trailers amber warning signal request Possible values: OFF ON
+type DeviceInputsTrailersAmberWarningSignalRequest string
+
+// DeviceInputsTrailersBrakingViaElectricControlLineSupport Trailers braking via electric control line support Possible values: NOT_SUPPORTED SUPPORTED
+type DeviceInputsTrailersBrakingViaElectricControlLineSupport string
+
+// DeviceInputsTrailersElectricalLoadProportionalFunctionInstallationStatus Trailers electrical load proportional function installation status Possible values: NOT_INSTALLED INSTALLED
+type DeviceInputsTrailersElectricalLoadProportionalFunctionInstallationStatus string
+
+// DeviceInputsTrailersElectricalSupplyOfNonBrakingSystemStatus Trailers electrical supply of non-braking system status Possible values: OFF ON
+type DeviceInputsTrailersElectricalSupplyOfNonBrakingSystemStatus string
+
+// DeviceInputsTrailersRedWarningSignalRequest Trailers red warning signal request Possible values: OFF ON
+type DeviceInputsTrailersRedWarningSignalRequest string
+
+// DeviceInputsTrailersStopLampsRequest Trailers stop lamps request Possible values: NO_REQUEST REQUEST_ACTIVE
+type DeviceInputsTrailersStopLampsRequest string
+
+// DeviceInputsTrailersVdcActive Trailers VDC active Possible values: PASSIVE ACTIVE
+type DeviceInputsTrailersVdcActive string
+
+// DeviceInputsTrailersVehicleAbsStatus Trailers vehicle ABS status Possible values: PASSIVE ACTIVE
+type DeviceInputsTrailersVehicleAbsStatus string
+
+// DeviceInputsTrailersVehicleElectricalSupplyStatus Trailers vehicle electrical supply status Possible values: INSUFFICIENT SUFFICIENT
+type DeviceInputsTrailersVehicleElectricalSupplyStatus string
+
+// DeviceInputsTrailersVehiclePneumaticSupplyStatus Trailers vehicle pneumatic supply status Possible values: OFF ON
+type DeviceInputsTrailersVehiclePneumaticSupplyStatus string
+
+// DeviceInputsTrailersVehicleServiceBrakeStatus Trailers vehicle service brake status Possible values: PASSIVE ACTIVE
+type DeviceInputsTrailersVehicleServiceBrakeStatus string
+
+// DeviceInputsTrailersVehicleType Trailers vehicle type Possible values: TOWED_VEHICLE CONVERTED_DOLLY_AXLE_LSB
+type DeviceInputsTrailersVehicleType string
+
+// DeviceInputsUmtsEnabled UMTS enabled status Possible values: DISABLED ENABLED
+type DeviceInputsUmtsEnabled string
+
+// DeviceInputsWirelessEnabled Wireless enabled Possible values: DISABLED ENABLED
+type DeviceInputsWirelessEnabled string
 
 // Driver defines model for Driver.
 type Driver struct {
@@ -3147,7 +3122,7 @@ type EventStart struct {
 	Datetime *time.Time `json:"datetime,omitempty"`
 	Location *Location  `json:"location,omitempty"`
 	Mileage  *float64   `json:"mileage,omitempty"`
-	Speed    *int32     `json:"speed,omitempty"`
+	Speed    *int       `json:"speed,omitempty"`
 }
 
 // ExternalAccelerationParameters defines model for ExternalAccelerationParameters.
@@ -3233,14 +3208,14 @@ type ExternalCorneringParameters struct {
 
 // ExternalCountryByDriverAPIResponse defines model for ExternalCountryByDriverApiResponse.
 type ExternalCountryByDriverAPIResponse struct {
-	ContinuationToken *int32                       `json:"continuation_token,omitempty"`
+	ContinuationToken *int                         `json:"continuation_token,omitempty"`
 	CountryVisits     []ExternalCountryVisitDriver `json:"country_visits,omitempty"`
 	SubjectID         *string                      `json:"subject_id,omitempty"`
 }
 
 // ExternalCountryByObjectAPIResponse defines model for ExternalCountryByObjectApiResponse.
 type ExternalCountryByObjectAPIResponse struct {
-	ContinuationToken *int32                       `json:"continuation_token,omitempty"`
+	ContinuationToken *int                         `json:"continuation_token,omitempty"`
 	CountryVisits     []ExternalCountryVisitObject `json:"country_visits,omitempty"`
 	SubjectID         *string                      `json:"subject_id,omitempty"`
 }
@@ -3343,8 +3318,8 @@ type ExternalDriver struct {
 
 // ExternalDriverContinuableList defines model for ExternalDriverContinuableList.
 type ExternalDriverContinuableList struct {
-	ContinuationToken *int32     `json:"continuation_token,omitempty"`
-	Count             *int32     `json:"count,omitempty"`
+	ContinuationToken *int       `json:"continuation_token,omitempty"`
+	Count             *int       `json:"count,omitempty"`
 	Items             []V2Driver `json:"items,omitempty"`
 }
 
@@ -3384,7 +3359,7 @@ type ExternalDriverTimeTable struct {
 // ExternalDriverViolationCollection defines model for ExternalDriverViolationCollection.
 type ExternalDriverViolationCollection struct {
 	Items    []ExternalViolation `json:"items,omitempty"`
-	NextPage *int32              `json:"next_page,omitempty"`
+	NextPage *int                `json:"next_page,omitempty"`
 }
 
 // ExternalDriverViolationParams defines model for ExternalDriverViolationParams.
@@ -3492,7 +3467,7 @@ type ExternalFuelEventEventType string
 
 // ExternalFuelEventsCollection defines model for ExternalFuelEventsCollection.
 type ExternalFuelEventsCollection struct {
-	ContinuationToken *int32              `json:"continuation_token,omitempty"`
+	ContinuationToken *int                `json:"continuation_token,omitempty"`
 	Items             []ExternalFuelEvent `json:"items,omitempty"`
 }
 
@@ -3511,7 +3486,7 @@ type ExternalGeozoneType string
 
 // ExternalGeozoneCollection defines model for ExternalGeozoneCollection.
 type ExternalGeozoneCollection struct {
-	ContinuationToken *int32            `json:"continuation_token,omitempty"`
+	ContinuationToken *int              `json:"continuation_token,omitempty"`
 	Items             []ExternalGeozone `json:"items,omitempty"`
 }
 
@@ -3524,7 +3499,7 @@ type ExternalGeozoneVisitByObject struct {
 
 // ExternalGeozoneVisitCollection defines model for ExternalGeozoneVisitCollection.
 type ExternalGeozoneVisitCollection struct {
-	ContinuationToken *int32                         `json:"continuation_token,omitempty"`
+	ContinuationToken *int                           `json:"continuation_token,omitempty"`
 	Items             []ExternalGeozoneVisitByObject `json:"items,omitempty"`
 }
 
@@ -3544,10 +3519,10 @@ type ExternalGeozoneVisitDataItemDirection string
 
 // ExternalGeozoneVisitParameters defines model for ExternalGeozoneVisitParameters.
 type ExternalGeozoneVisitParameters struct {
-	ContinuationToken *int32     `json:"continuation_token,omitempty"`
+	ContinuationToken *int       `json:"continuation_token,omitempty"`
 	FromDatetime      *time.Time `json:"from_datetime,omitempty"`
 	GeozoneIds        []string   `json:"geozone_ids,omitempty"`
-	Limit             *int32     `json:"limit,omitempty"`
+	Limit             *int       `json:"limit,omitempty"`
 	ObjectIds         []string   `json:"object_ids,omitempty"`
 	ToDatetime        *time.Time `json:"to_datetime,omitempty"`
 }
@@ -3572,15 +3547,15 @@ type ExternalIdlingParameters struct {
 
 // ExternalLastCoordinate defines model for ExternalLastCoordinate.
 type ExternalLastCoordinate struct {
-	Altitude             *int32     `json:"altitude,omitempty"`
+	Altitude             *int       `json:"altitude,omitempty"`
 	Datetime             *time.Time `json:"datetime,omitempty"`
-	Direction            *int32     `json:"direction,omitempty"`
+	Direction            *int       `json:"direction,omitempty"`
 	LastValidGpsDatetime *time.Time `json:"last_valid_gps_datetime,omitempty"`
 	Latitude             *float64   `json:"latitude,omitempty"`
 	Longitude            *float64   `json:"longitude,omitempty"`
-	SatellitesCount      *int32     `json:"satellites_count,omitempty"`
+	SatellitesCount      *int       `json:"satellites_count,omitempty"`
 	ServerDatetime       *time.Time `json:"server_datetime,omitempty"`
-	Speed                *int32     `json:"speed,omitempty"`
+	Speed                *int       `json:"speed,omitempty"`
 }
 
 // ExternalLatLon defines model for ExternalLatLon.
@@ -3604,7 +3579,7 @@ type ExternalMainParameters struct {
 
 // ExternalNearestGeozone defines model for ExternalNearestGeozone.
 type ExternalNearestGeozone struct {
-	Distance *int32  `json:"distance,omitempty"`
+	Distance *int    `json:"distance,omitempty"`
 	ID       *string `json:"id,omitempty"`
 }
 
@@ -3628,7 +3603,7 @@ type ExternalObjectGroup struct {
 
 // ExternalObjectGroupCollection defines model for ExternalObjectGroupCollection.
 type ExternalObjectGroupCollection struct {
-	ContinuationToken *int32                `json:"continuation_token,omitempty"`
+	ContinuationToken *int                  `json:"continuation_token,omitempty"`
 	Items             []ExternalObjectGroup `json:"items,omitempty"`
 }
 
@@ -3646,7 +3621,7 @@ type ExternalShareLink struct {
 
 // ExternalShareLinkCollection defines model for ExternalShareLinkCollection.
 type ExternalShareLinkCollection struct {
-	ContinuationToken *int32              `json:"continuation_token,omitempty"`
+	ContinuationToken *int                `json:"continuation_token,omitempty"`
 	Items             []ExternalShareLink `json:"items,omitempty"`
 }
 
@@ -3728,7 +3703,7 @@ type Feature struct {
 
 // FluxCoordinate defines model for Flux_Coordinate_.
 type FluxCoordinate struct {
-	Prefetch *int32 `json:"prefetch,omitempty"`
+	Prefetch *int `json:"prefetch,omitempty"`
 }
 
 // GeoJSONObject defines model for GeoJsonObject.
@@ -3772,20 +3747,40 @@ type Object struct {
 	VehicleParams *ExternalVehicleParams `json:"vehicle_params,omitempty"`
 }
 
-// PageDescriptor defines model for PageDescriptor.
-type PageDescriptor struct {
-	Page *int32 `json:"page,omitempty"`
-	Size *int32 `json:"size,omitempty"`
+// OtherInputs Container for other system parameters
+type OtherInputs struct {
+	// CountryCodeGeonames Country code numeral
+	CountryCodeGeonames *float32 `json:"country_code_geonames,omitempty"`
+
+	// VirtualGpsOdometer Virtual odometer value (units: km)
+	VirtualGpsOdometer *float32 `json:"virtual_gps_odometer,omitempty"`
 }
 
-// Position defines model for Position.
+// PageDescriptor defines model for PageDescriptor.
+type PageDescriptor struct {
+	Page *int `json:"page,omitempty"`
+	Size *int `json:"size,omitempty"`
+}
+
+// Position Container for all record GPS parameters
 type Position struct {
-	Altitude        *int32   `json:"altitude,omitempty"`
-	Direction       *int32   `json:"direction,omitempty"`
-	Latitude        *float64 `json:"latitude,omitempty"`
-	Longitude       *float64 `json:"longitude,omitempty"`
-	SatellitesCount *int32   `json:"satellites_count,omitempty"`
-	Speed           *int32   `json:"speed,omitempty"`
+	// Altitude Altitude (units: m)
+	Altitude *float32 `json:"altitude,omitempty"`
+
+	// Direction Direction (units: Degrees)
+	Direction *float32 `json:"direction,omitempty"`
+
+	// Latitude Latitude (units: Degrees)
+	Latitude *float64 `json:"latitude,omitempty"`
+
+	// Longitude Longitude (units: Degrees)
+	Longitude *float64 `json:"longitude,omitempty"`
+
+	// SatellitesCount Satellites count
+	SatellitesCount *float32 `json:"satellites_count,omitempty"`
+
+	// Speed Speed (units: km/h)
+	Speed *float32 `json:"speed,omitempty"`
 }
 
 // PreviousWeek defines model for PreviousWeek.
@@ -3820,7 +3815,7 @@ type ResponseDriverAssignationEventEventType string
 type ResponseEntity struct {
 	Body            *map[string]interface{}   `json:"body,omitempty"`
 	StatusCode      *ResponseEntityStatusCode `json:"status_code,omitempty"`
-	StatusCodeValue *int32                    `json:"status_code_value,omitempty"`
+	StatusCodeValue *int                      `json:"status_code_value,omitempty"`
 }
 
 // ResponseEntityStatusCode defines model for ResponseEntity.StatusCode.
@@ -3967,7 +3962,7 @@ type TachoRequestScheduleResponse struct {
 
 // TachoRequestsCollectionResponse defines model for TachoRequestsCollectionResponse.
 type TachoRequestsCollectionResponse struct {
-	ContinuationToken *int32                 `json:"continuation_token,omitempty"`
+	ContinuationToken *int                   `json:"continuation_token,omitempty"`
 	Items             []TachoRequestResponse `json:"items,omitempty"`
 }
 
@@ -3979,6 +3974,36 @@ type TachoSchedulerInfo struct {
 
 // TachoSchedulerInfoType defines model for TachoSchedulerInfo.Type.
 type TachoSchedulerInfoType string
+
+// TireData TPMS tire data
+type TireData struct {
+	// TireAirLeakageRate The pressure loss rate of a tire. Resolution: 0.05 kPa/bit Offset: 0 Data Range: 0 to 12.5 kPa (units: kPa)
+	TireAirLeakageRate *float32 `json:"tire_air_leakage_rate,omitempty"`
+
+	// TireExtendedTirePressureSupport Defines the choice of using the tire pressure (PGN 65268) or Extended Tire Pressure (PGN 64578). The state value '01' indicates the extended tire pressure SPN is used for the pressure data. Any other value indicates the extended tire pressure SPN is not being used. 00 - Not Using Extended Tire Pressure 01 - Using Extended Tire Pressure 10 - Error 11 - Not Available/Not Supported
+	TireExtendedTirePressureSupport *float32 `json:"tire_extended_tire_pressure_support,omitempty"`
+
+	// TireLocation Identifies which tire is associated with the parametric data in this PGN. The low order 4 bits represent a position number, counting left to right when facing in the direction of normal vehicle travel (forward). The high order 4 bits represent a position number, counting front to back on the vehicle. The value 0xFF indicates not available. It is recommended that output devices add 1 to the position number (range 1 to 15, not 0 to 14) for use by drivers and service technicians. Examples: Tire pressure for location 0x00 would be left front tire. Tire pressure for location 0x23 would be right outside rear rear on a 3-axle tractor with dual axle per side (3rd axle, 4th tire).
+	TireLocation *float32 `json:"tire_location,omitempty"`
+
+	// TirePressure Pressure at which air is contained in cavity formed by tire and rim. Resolution: 0.05 kPa/bit Offset: 0 Data Range: 0 to 125 kPa (units: kPa)
+	TirePressure *float32 `json:"tire_pressure,omitempty"`
+
+	// TirePressureThresholdDetection Signal indicating the pressure level of the tire. The levels defined represent different pressure conditions of the tire: 000 Extreme over pressure - The tire pressure is at a level where the safety of the vehicle may be jeopardised. 001 Over pressure - The tire pressure is higher than the pressure defined by the vehicle or tire manufacturer. 010 No warning pressure - The tire pressure is within the thresholds defined by the vehicle or tire manufacturer. 011 Under pressure - The tire pressure is lower than the pressure defined by the vehicle or tire manufacturer. 100 Extreme under pressure - The tire pressure is at a level where the safety of the vehicle may be jeopardised. 101 Not defined 110 Error indicator 111 Not available
+	TirePressureThresholdDetection *float32 `json:"tire_pressure_threshold_detection,omitempty"`
+
+	// TireSensorElectricalFault Indicates the status of electrical fault on the tire sensor. 00 Ok (No Fault) 01 Not Defined (Fault) 10 Error 11 Not Supported
+	TireSensorElectricalFault *float32 `json:"tire_sensor_electrical_fault,omitempty"`
+
+	// TireSensorEnableStatus Indicates whether the tire sensor is being monitored by the controller or is Enabled/Disabled. 00 Off / Isolated / Disabled 01 On (tire is polled) / Enabled 10 Not Defined 11 Not Supported
+	TireSensorEnableStatus *float32 `json:"tire_sensor_enable_status,omitempty"`
+
+	// TireStatus Indicates the status of the tire. 00 Ok (no fault) 01 Tire leak detected 10 Error 11 Not Supported
+	TireStatus *float32 `json:"tire_status,omitempty"`
+
+	// TireTemperature Temperature at the surface of the tire sidewall. Resolution: 0.03125 °C/bit Offset: 0 Data Range: -273 to 1734.96875 °C (units: °C)
+	TireTemperature *float32 `json:"tire_temperature,omitempty"`
+}
 
 // Trip defines model for Trip.
 type Trip struct {
@@ -4010,7 +4035,7 @@ type TripMetrics struct {
 
 // UserCollection defines model for UserCollection.
 type UserCollection struct {
-	ContinuationToken *int32         `json:"continuation_token,omitempty"`
+	ContinuationToken *int           `json:"continuation_token,omitempty"`
 	Items             []ExternalUser `json:"items,omitempty"`
 }
 
@@ -4040,117 +4065,4 @@ type V2Driver struct {
 type V2ExternalIdentifier struct {
 	Identifier *string `json:"identifier,omitempty"`
 	Type       *string `json:"type,omitempty"`
-}
-
-// Getter for additional properties for Coordinate_Inputs. Returns the specified
-// element and whether it was found
-func (a Coordinate_Inputs) Get(fieldName string) (value map[string]map[string]interface{}, found bool) {
-	if a.AdditionalProperties != nil {
-		value, found = a.AdditionalProperties[fieldName]
-	}
-	return
-}
-
-// Setter for additional properties for Coordinate_Inputs
-func (a *Coordinate_Inputs) Set(fieldName string, value map[string]map[string]interface{}) {
-	if a.AdditionalProperties == nil {
-		a.AdditionalProperties = make(map[string]map[string]map[string]interface{})
-	}
-	a.AdditionalProperties[fieldName] = value
-}
-
-// Override default JSON handling for Coordinate_Inputs to handle AdditionalProperties
-func (a *Coordinate_Inputs) UnmarshalJSON(b []byte) error {
-	object := make(map[string]json.RawMessage)
-	err := json.Unmarshal(b, &object)
-	if err != nil {
-		return err
-	}
-
-	if raw, found := object["calculated_inputs"]; found {
-		err = json.Unmarshal(raw, &a.CalculatedInputs)
-		if err != nil {
-			return fmt.Errorf("error reading 'calculated_inputs': %w", err)
-		}
-		delete(object, "calculated_inputs")
-	}
-
-	if raw, found := object["device_inputs"]; found {
-		err = json.Unmarshal(raw, &a.DeviceInputs)
-		if err != nil {
-			return fmt.Errorf("error reading 'device_inputs': %w", err)
-		}
-		delete(object, "device_inputs")
-	}
-
-	if raw, found := object["other"]; found {
-		err = json.Unmarshal(raw, &a.Other)
-		if err != nil {
-			return fmt.Errorf("error reading 'other': %w", err)
-		}
-		delete(object, "other")
-	}
-
-	if raw, found := object["tires"]; found {
-		err = json.Unmarshal(raw, &a.Tires)
-		if err != nil {
-			return fmt.Errorf("error reading 'tires': %w", err)
-		}
-		delete(object, "tires")
-	}
-
-	if len(object) != 0 {
-		a.AdditionalProperties = make(map[string]map[string]map[string]interface{})
-		for fieldName, fieldBuf := range object {
-			var fieldVal map[string]map[string]interface{}
-			err := json.Unmarshal(fieldBuf, &fieldVal)
-			if err != nil {
-				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
-			}
-			a.AdditionalProperties[fieldName] = fieldVal
-		}
-	}
-	return nil
-}
-
-// Override default JSON handling for Coordinate_Inputs to handle AdditionalProperties
-func (a Coordinate_Inputs) MarshalJSON() ([]byte, error) {
-	var err error
-	object := make(map[string]json.RawMessage)
-
-	if a.CalculatedInputs != nil {
-		object["calculated_inputs"], err = json.Marshal(a.CalculatedInputs)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'calculated_inputs': %w", err)
-		}
-	}
-
-	if a.DeviceInputs != nil {
-		object["device_inputs"], err = json.Marshal(a.DeviceInputs)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'device_inputs': %w", err)
-		}
-	}
-
-	if a.Other != nil {
-		object["other"], err = json.Marshal(a.Other)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'other': %w", err)
-		}
-	}
-
-	if a.Tires != nil {
-		object["tires"], err = json.Marshal(a.Tires)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling 'tires': %w", err)
-		}
-	}
-
-	for fieldName, field := range a.AdditionalProperties {
-		object[fieldName], err = json.Marshal(field)
-		if err != nil {
-			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
-		}
-	}
-	return json.Marshal(object)
 }

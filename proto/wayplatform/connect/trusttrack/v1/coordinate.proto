@@ -1,0 +1,45 @@
+edition = "2023";
+
+package wayplatform.connect.trusttrack.v1;
+
+import "google/protobuf/timestamp.proto";
+import "wayplatform/connect/trusttrack/v1/calculated_inputs.proto";
+import "wayplatform/connect/trusttrack/v1/device_inputs.proto";
+import "wayplatform/connect/trusttrack/v1/ignition_state.proto";
+import "wayplatform/connect/trusttrack/v1/other_inputs.proto";
+import "wayplatform/connect/trusttrack/v1/position.proto";
+import "wayplatform/connect/trusttrack/v1/tire_data.proto";
+import "wayplatform/connect/trusttrack/v1/trip_type.proto";
+
+// A coordinate with telemetry data from object coordinates history API v2.
+message Coordinate {
+  // Object identifier
+  string object_id = 1;
+
+  // Date and time point of coordinate generated in hardware.
+  google.protobuf.Timestamp vehicle_time = 2;
+
+  // Indicates if the object's ignition is on
+  IgnitionState ignition_state = 3;
+
+  // Trip type
+  TripType trip_type = 4;
+
+  // GPS position data.
+  Position position = 5;
+
+  // Container for all geozones IDs.
+  repeated string geozone_ids = 6;
+
+  // Container for parameters calculated in the system from other parameters according to the configuration.
+  CalculatedInputs calculated_inputs = 7;
+
+  // Container for parameters received from hardware.
+  DeviceInputs device_inputs = 8;
+
+  // Container for TPMS parameters received from device.
+  map<string, TireData> tires = 9;
+
+  // Container for other system parameters.
+  OtherInputs other = 10;
+}

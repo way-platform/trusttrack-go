@@ -12,8 +12,8 @@ import (
 	trusttrackv1 "github.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1"
 )
 
-// ListObjectsLastLocationRequest is the request for the [Client.ListObjectsLastLocation] method.
-type ListObjectsLastLocationRequest struct {
+// ListObjectsLastPositionRequest is the request for the [Client.ListObjectsLastPosition] method.
+type ListObjectsLastPositionRequest struct {
 	// The limit of the number of objects to return.
 	// Default: 100.
 	// Maximum: 1000.
@@ -23,7 +23,7 @@ type ListObjectsLastLocationRequest struct {
 }
 
 // Query returns the query parameters for the request.
-func (r *ListObjectsLastLocationRequest) Query() url.Values {
+func (r *ListObjectsLastPositionRequest) Query() url.Values {
 	q := url.Values{}
 	q.Set("version", "2")
 	if r.Limit > 0 {
@@ -35,19 +35,19 @@ func (r *ListObjectsLastLocationRequest) Query() url.Values {
 	return q
 }
 
-// ListObjectsLastLocationResponse is the response for the [Client.ListObjectsLastLocation] method.
-type ListObjectsLastLocationResponse struct {
-	// The objects with their last location.
+// ListObjectsLastPositionResponse is the response for the [Client.ListObjectsLastPosition] method.
+type ListObjectsLastPositionResponse struct {
+	// The objects with their last position.
 	Objects []*trusttrackv1.Object `json:"objects"`
 	// The continuation token to use to get the next page of results.
 	ContinuationToken string `json:"continuationToken"`
 }
 
-// ListObjectsLastLocation lists all objects with their last location.
-func (c *Client) ListObjectsLastLocation(
+// ListObjectsLastPosition lists all objects with their last position.
+func (c *Client) ListObjectsLastPosition(
 	ctx context.Context,
-	request *ListObjectsLastLocationRequest,
-) (*ListObjectsLastLocationResponse, error) {
+	request *ListObjectsLastPositionRequest,
+) (*ListObjectsLastPositionResponse, error) {
 	httpResponse, err := c.doRequest(
 		ctx,
 		http.MethodGet,
@@ -71,7 +71,7 @@ func (c *Client) ListObjectsLastLocation(
 	if err := json.Unmarshal(responseData, &responseBody); err != nil {
 		return nil, err
 	}
-	response := ListObjectsLastLocationResponse{
+	response := ListObjectsLastPositionResponse{
 		Objects: make([]*trusttrackv1.Object, 0, len(responseBody.Results)),
 	}
 	for _, object := range responseBody.Results {

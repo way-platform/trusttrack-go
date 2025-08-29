@@ -21,68 +21,11 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Represents a trip type.
-type Trip_Type int32
-
-const (
-	Trip_TYPE_UNSPECIFIED   Trip_Type = 0
-	Trip_TYPE_UNKNOWN       Trip_Type = 1
-	Trip_TYPE_NOT_AVAILABLE Trip_Type = 2
-	Trip_NONE               Trip_Type = 3
-	Trip_PRIVATE            Trip_Type = 4
-	Trip_BUSINESS           Trip_Type = 5
-	Trip_WORK               Trip_Type = 6
-)
-
-// Enum value maps for Trip_Type.
-var (
-	Trip_Type_name = map[int32]string{
-		0: "TYPE_UNSPECIFIED",
-		1: "TYPE_UNKNOWN",
-		2: "TYPE_NOT_AVAILABLE",
-		3: "NONE",
-		4: "PRIVATE",
-		5: "BUSINESS",
-		6: "WORK",
-	}
-	Trip_Type_value = map[string]int32{
-		"TYPE_UNSPECIFIED":   0,
-		"TYPE_UNKNOWN":       1,
-		"TYPE_NOT_AVAILABLE": 2,
-		"NONE":               3,
-		"PRIVATE":            4,
-		"BUSINESS":           5,
-		"WORK":               6,
-	}
-)
-
-func (x Trip_Type) Enum() *Trip_Type {
-	p := new(Trip_Type)
-	*p = x
-	return p
-}
-
-func (x Trip_Type) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (Trip_Type) Descriptor() protoreflect.EnumDescriptor {
-	return file_wayplatform_connect_trusttrack_v1_trip_proto_enumTypes[0].Descriptor()
-}
-
-func (Trip_Type) Type() protoreflect.EnumType {
-	return &file_wayplatform_connect_trusttrack_v1_trip_proto_enumTypes[0]
-}
-
-func (x Trip_Type) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
 // A trip made by an object.
 type Trip struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_ObjectId    *string                `protobuf:"bytes,1,opt,name=object_id,json=objectId"`
-	xxx_hidden_Type        Trip_Type              `protobuf:"varint,2,opt,name=type,enum=wayplatform.connect.trusttrack.v1.Trip_Type"`
+	xxx_hidden_Type        TripType               `protobuf:"varint,2,opt,name=type,enum=wayplatform.connect.trusttrack.v1.TripType"`
 	xxx_hidden_UnknownType *string                `protobuf:"bytes,3,opt,name=unknown_type,json=unknownType"`
 	xxx_hidden_DriverIds   []string               `protobuf:"bytes,4,rep,name=driver_ids,json=driverIds"`
 	xxx_hidden_DurationS   float64                `protobuf:"fixed64,5,opt,name=duration_s,json=durationS"`
@@ -130,13 +73,13 @@ func (x *Trip) GetObjectId() string {
 	return ""
 }
 
-func (x *Trip) GetType() Trip_Type {
+func (x *Trip) GetType() TripType {
 	if x != nil {
 		if protoimpl.X.Present(&(x.XXX_presence[0]), 1) {
 			return x.xxx_hidden_Type
 		}
 	}
-	return Trip_TYPE_UNSPECIFIED
+	return TripType_TRIP_TYPE_UNSPECIFIED
 }
 
 func (x *Trip) GetUnknownType() string {
@@ -189,7 +132,7 @@ func (x *Trip) SetObjectId(v string) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 8)
 }
 
-func (x *Trip) SetType(v Trip_Type) {
+func (x *Trip) SetType(v TripType) {
 	x.xxx_hidden_Type = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 8)
 }
@@ -277,7 +220,7 @@ func (x *Trip) ClearObjectId() {
 
 func (x *Trip) ClearType() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_Type = Trip_TYPE_UNSPECIFIED
+	x.xxx_hidden_Type = TripType_TRIP_TYPE_UNSPECIFIED
 }
 
 func (x *Trip) ClearUnknownType() {
@@ -309,7 +252,7 @@ type Trip_builder struct {
 	// The ID of the object that made this trip.
 	ObjectId *string
 	// The type of trip.
-	Type *Trip_Type
+	Type *TripType
 	// The unknown type of trip.
 	// This field is used when the type is TYPE_UNKNOWN.
 	UnknownType *string
@@ -519,10 +462,10 @@ var File_wayplatform_connect_trusttrack_v1_trip_proto protoreflect.FileDescripto
 
 const file_wayplatform_connect_trusttrack_v1_trip_proto_rawDesc = "" +
 	"\n" +
-	",wayplatform/connect/trusttrack/v1/trip.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a/wayplatform/connect/trusttrack/v1/address.proto\"\xa2\x05\n" +
+	",wayplatform/connect/trusttrack/v1/trip.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a/wayplatform/connect/trusttrack/v1/address.proto\x1a1wayplatform/connect/trusttrack/v1/trip_type.proto\"\xaa\x04\n" +
 	"\x04Trip\x12\x1b\n" +
-	"\tobject_id\x18\x01 \x01(\tR\bobjectId\x12@\n" +
-	"\x04type\x18\x02 \x01(\x0e2,.wayplatform.connect.trusttrack.v1.Trip.TypeR\x04type\x12!\n" +
+	"\tobject_id\x18\x01 \x01(\tR\bobjectId\x12?\n" +
+	"\x04type\x18\x02 \x01(\x0e2+.wayplatform.connect.trusttrack.v1.TripTypeR\x04type\x12!\n" +
 	"\funknown_type\x18\x03 \x01(\tR\vunknownType\x12\x1d\n" +
 	"\n" +
 	"driver_ids\x18\x04 \x03(\tR\tdriverIds\x12\x1d\n" +
@@ -536,30 +479,21 @@ const file_wayplatform_connect_trusttrack_v1_trip_proto_rawDesc = "" +
 	"\x04time\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12\x1a\n" +
 	"\blatitude\x18\x02 \x01(\x01R\blatitude\x12\x1c\n" +
 	"\tlongitude\x18\x03 \x01(\x01R\tlongitude\x12D\n" +
-	"\aaddress\x18\x04 \x01(\v2*.wayplatform.connect.trusttrack.v1.AddressR\aaddress\"u\n" +
-	"\x04Type\x12\x14\n" +
-	"\x10TYPE_UNSPECIFIED\x10\x00\x12\x10\n" +
-	"\fTYPE_UNKNOWN\x10\x01\x12\x16\n" +
-	"\x12TYPE_NOT_AVAILABLE\x10\x02\x12\b\n" +
-	"\x04NONE\x10\x03\x12\v\n" +
-	"\aPRIVATE\x10\x04\x12\f\n" +
-	"\bBUSINESS\x10\x05\x12\b\n" +
-	"\x04WORK\x10\x06B\xbc\x02\n" +
+	"\aaddress\x18\x04 \x01(\v2*.wayplatform.connect.trusttrack.v1.AddressR\aaddressB\xbc\x02\n" +
 	"%com.wayplatform.connect.trusttrack.v1B\tTripProtoP\x01Zagithub.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1;trusttrackv1\xa2\x02\x03WCT\xaa\x02!Wayplatform.Connect.Trusttrack.V1\xca\x02!Wayplatform\\Connect\\Trusttrack\\V1\xe2\x02-Wayplatform\\Connect\\Trusttrack\\V1\\GPBMetadata\xea\x02$Wayplatform::Connect::Trusttrack::V1b\beditionsp\xe8\a"
 
-var file_wayplatform_connect_trusttrack_v1_trip_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_wayplatform_connect_trusttrack_v1_trip_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_wayplatform_connect_trusttrack_v1_trip_proto_goTypes = []any{
-	(Trip_Type)(0),                // 0: wayplatform.connect.trusttrack.v1.Trip.Type
-	(*Trip)(nil),                  // 1: wayplatform.connect.trusttrack.v1.Trip
-	(*Trip_Metrics)(nil),          // 2: wayplatform.connect.trusttrack.v1.Trip.Metrics
+	(*Trip)(nil),                  // 0: wayplatform.connect.trusttrack.v1.Trip
+	(*Trip_Metrics)(nil),          // 1: wayplatform.connect.trusttrack.v1.Trip.Metrics
+	(TripType)(0),                 // 2: wayplatform.connect.trusttrack.v1.TripType
 	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
 	(*Address)(nil),               // 4: wayplatform.connect.trusttrack.v1.Address
 }
 var file_wayplatform_connect_trusttrack_v1_trip_proto_depIdxs = []int32{
-	0, // 0: wayplatform.connect.trusttrack.v1.Trip.type:type_name -> wayplatform.connect.trusttrack.v1.Trip.Type
-	2, // 1: wayplatform.connect.trusttrack.v1.Trip.start:type_name -> wayplatform.connect.trusttrack.v1.Trip.Metrics
-	2, // 2: wayplatform.connect.trusttrack.v1.Trip.end:type_name -> wayplatform.connect.trusttrack.v1.Trip.Metrics
+	2, // 0: wayplatform.connect.trusttrack.v1.Trip.type:type_name -> wayplatform.connect.trusttrack.v1.TripType
+	1, // 1: wayplatform.connect.trusttrack.v1.Trip.start:type_name -> wayplatform.connect.trusttrack.v1.Trip.Metrics
+	1, // 2: wayplatform.connect.trusttrack.v1.Trip.end:type_name -> wayplatform.connect.trusttrack.v1.Trip.Metrics
 	3, // 3: wayplatform.connect.trusttrack.v1.Trip.Metrics.time:type_name -> google.protobuf.Timestamp
 	4, // 4: wayplatform.connect.trusttrack.v1.Trip.Metrics.address:type_name -> wayplatform.connect.trusttrack.v1.Address
 	5, // [5:5] is the sub-list for method output_type
@@ -575,19 +509,19 @@ func file_wayplatform_connect_trusttrack_v1_trip_proto_init() {
 		return
 	}
 	file_wayplatform_connect_trusttrack_v1_address_proto_init()
+	file_wayplatform_connect_trusttrack_v1_trip_type_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_wayplatform_connect_trusttrack_v1_trip_proto_rawDesc), len(file_wayplatform_connect_trusttrack_v1_trip_proto_rawDesc)),
-			NumEnums:      1,
+			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_wayplatform_connect_trusttrack_v1_trip_proto_goTypes,
 		DependencyIndexes: file_wayplatform_connect_trusttrack_v1_trip_proto_depIdxs,
-		EnumInfos:         file_wayplatform_connect_trusttrack_v1_trip_proto_enumTypes,
 		MessageInfos:      file_wayplatform_connect_trusttrack_v1_trip_proto_msgTypes,
 	}.Build()
 	File_wayplatform_connect_trusttrack_v1_trip_proto = out.File

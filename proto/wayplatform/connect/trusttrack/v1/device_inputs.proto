@@ -1,0 +1,1352 @@
+edition = "2023";
+
+package wayplatform.connect.trusttrack.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// Container for parameters received from hardware
+message DeviceInputs {
+  // Accelerometer X axis (units: G)
+  double x_axis = 1;
+
+  // Accelerometer Y axis (units: G)
+  double y_axis = 2;
+
+  // Accelerometer Z axis (units: G)
+  double z_axis = 3;
+
+  // G peak in X axis (units: G)
+  double g_peak_x = 4;
+
+  // G peak in Y axis (units: G)
+  double g_peak_y = 5;
+
+  // G peak in Z axis (units: G)
+  double g_peak_z = 6;
+
+  // X axis tilt angle (units: Degrees)
+  double x_axis_tilt_angle = 7;
+
+  // Y axis tilt angle (units: Degrees)
+  double y_axis_tilt_angle = 8;
+
+  // Z axis tilt angle (units: Degrees)
+  double z_axis_tilt_angle = 9;
+
+  // CAN high resolution total vehicle distance (units: km)
+  double canbus_distance = 10;
+
+  // CAN engine coolant temperature (units: °C)
+  double canbus_engine_coolant_temperature = 11;
+
+  // CAN fuel rate (units: l/h)
+  double canbus_fuel_rate = 12;
+
+  // CAN engine speed (units: RPM)
+  double engine_rpm = 13;
+
+  // CAN engine hours (units: h)
+  double engine_hours = 14;
+
+  // CAN service distance (units: km)
+  double service_dist = 15;
+
+  // CAN accelerator pedal position (units: %)
+  double pedal_pos = 16;
+
+  // CAN fuel level (units: %)
+  double fuel_level_can = 17;
+
+  // CAN engine total fuel used (units: l)
+  double fuel_used = 18;
+
+  // CAN wheel based speed (units: km/h)
+  double speed_wheel = 19;
+
+  // CAN tachograph vehicle speed (units: km/h)
+  double speed_tacho = 20;
+
+  // CAN tachograph performance Possible values: NORMAL_PERFORMANCE PERFORMANCE_ANALYSIS
+  string tacho_status = 21;
+
+  // CAN tacho vehicle overspeed Possible values: NO_OVERSPEED OVERSPEED
+  string overspeeding_events = 22;
+
+  // CAN axle location
+  double axle_count = 23;
+
+  // CAN brake switch Possible values: RELEASED PRESSED
+  string canbus_brake_switch = 24;
+
+  // CAN clutch switch Possible values: RELEASED PRESSED
+  string canbus_clutch_switch = 25;
+
+  // CAN PTO state Possible values: OFF_DISABLED SET NOT_AVAILABLE
+  string canbus_pto_state = 26;
+
+  // CAN cruise control active Possible values: OFF ON
+  string canbus_cruise_control_state = 27;
+
+  // CAN request supported Possible values: NOT_SUPPORTED SUPPORTED RESERVED DO_NOT_CARE
+  string canbus_request_supported = 28;
+
+  // CAN diagnostics supported Possible values: NOT_SUPPORTED SUPPORTED RESERVED DO_NOT_CARE
+  string canbus_diagnostics_supported = 29;
+
+  // CAN tacho vehicle motion Possible values: NOT_DETECTED DETECTED
+  string canbus_vehicle_motion = 30;
+
+  // CAN tacho driver 1 time related status Possible values: NORMAL 15_MIN_BEFORE_4,5H 4,5H_REACHED 15_MIN_BEFORE_9H 9H_REACHED 15_MIN_BEFORE_16H 16H_REACHED ERROR NOT_AVAILABLE
+  string canbus_driver_1_time = 31;
+
+  // CAN tacho driver 1 card Possible values: CARD_NOT_PRESENT CARD_PRESENT ERROR NOT_AVAILABLE
+  string canbus_driver_1_card = 32;
+
+  // CAN tacho driver 2 time related status Possible values: NORMAL 15_MIN_BEFORE_4,5H 4,5H_REACHED 15_MIN_BEFORE_9H 9H_REACHED 15_MIN_BEFORE_16H 16H_REACHED ERROR NOT_AVAILABLE
+  string canbus_driver_2_time = 33;
+
+  // CAN tacho driver 2 card Possible values: CARD_NOT_PRESENT CARD_PRESENT ERROR NOT_AVAILABLE
+  string canbus_driver_2_card = 34;
+
+  // CAN engine percent load at current speed (units: %)
+  double canbus_engine_plcs = 35;
+
+  // CAN tire location
+  double canbus_tire_location = 36;
+
+  // CAN system event Possible values: NO_TACHO_EVENT TACHO_EVENT
+  string canbus_system_event = 37;
+
+  // CAN tacho handling information Possible values: NO_HANDLING_INFORMATION HANDLING_INFORMATION
+  string canbus_handling_information = 38;
+
+  // CAN tacho direction indicator Possible values: FORWARD REVERSE
+  string canbus_direction_indicator = 39;
+
+  // CAN ambient air temperature (units: °C)
+  double canbus_ambient_air_temperature = 40;
+
+  // CAN instantaneous fuel economy (units: km/l)
+  double canbus_fuel_economy = 41;
+
+  // CAN at least one PTO engaged Possible values: NO_PTO_DRIVER AT_LEAST_ONE_PTO_DRIVER ERROR NOT_AVAILABLE
+  string canbus_pto = 42;
+
+  // CAN high resolution engine total fuel used (units: l)
+  double canbus_hrfc = 43;
+
+  // CAN vehicle ID
+  string vehicle_id = 44;
+
+  // CAN first driver ID
+  string first_driver_id = 45;
+
+  // CAN second driver ID
+  string second_driver_id = 46;
+
+  // CAN tacho driver 1 working state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+  string canbus_driver_1_state = 47;
+
+  // CAN tacho driver 2 working state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+  string canbus_driver_2_state = 48;
+
+  // CAN axle 1 weight (units: kg)
+  double canbus_axle_weight_1 = 49;
+
+  // CAN axle 2 weight (units: kg)
+  double canbus_axle_weight_2 = 50;
+
+  // CAN axle 3 weight (units: kg)
+  double canbus_axle_weight_3 = 51;
+
+  // CAN axle 4 weight (units: kg)
+  double canbus_axle_weight_4 = 52;
+
+  // CAN axle 5 weight (units: kg)
+  double canbus_axle_weight_5 = 53;
+
+  // CAN fuel level liters (units: l)
+  double fuel_level_can_l = 54;
+
+  // CAN fuel used delta (units: l)
+  double fuel_used_diff = 55;
+
+  // CAN parking brake switch Possible values: OFF ON
+  string canbus_parking_brake_switch = 56;
+
+  // CAN battery power (units: %)
+  double canbus_battery_power = 57;
+
+  // CAN distance until recharge (units: km)
+  double canbus_distance_until_recharge = 58;
+
+  // CAN battery charging Possible values: NO_CHARGING CHARGING
+  string canbus_battery_charging = 59;
+
+  // LCV hood Possible values: CLOSE OPEN
+  string lcv_hood = 60;
+
+  // LCV driver doors Possible values: CLOSE OPEN
+  string lcv_driver_doors = 61;
+
+  // LCV passenger doors Possible values: CLOSE OPEN
+  string lcv_passenger_doors = 62;
+
+  // LCV left back doors Possible values: CLOSE OPEN
+  string lcv_left_back_doors = 63;
+
+  // LCV right back doors Possible values: CLOSE OPEN
+  string lcv_right_back_doors = 64;
+
+  // LCV trunk Possible values: CLOSE OPEN
+  string lcv_trunk = 65;
+
+  // CAN hours to service (units: h)
+  double canbus_hours_to_service = 66;
+
+  // CAN interface configuration CAN1 interface Possible values: NONE FMS LCV OBD TACHO MOBILEYE TRAILERS DXP
+  string can_interface_configuration_can1_interface = 67;
+
+  // CAN interface configuration CAN2 interface Possible values: NONE FMS LCV OBD TACHO MOBILEYE TRAILERS DXP
+  string can_interface_configuration_can2_interface = 68;
+
+  // CAN interface configuration CAN1 status Possible values: INACTIVE ACTIVE
+  string can_interface_configuration_can1_status = 69;
+
+  // CAN interface configuration CAN1 mode Possible values: SILENT ACTIVE
+  string can_interface_configuration_can1_mode = 70;
+
+  // CAN interface configuration CAN1 auto baud rate Possible values: OFF ON
+  string can_interface_configuration_can1_auto_baud_rate = 71;
+
+  // CAN interface configuration CAN1 filters status Possible values: OFF ON
+  string can_interface_configuration_can1_ff_filters_status = 72;
+
+  // CAN interface configuration CAN2 status Possible values: INACTIVE ACTIVE
+  string can_interface_configuration_can2_status = 73;
+
+  // CAN interface configuration CAN2 mode Possible values: SILENT ACTIVE
+  string can_interface_configuration_can2_mode = 74;
+
+  // CAN interface configuration CAN2 auto baud rate Possible values: OFF ON
+  string can_interface_configuration_can2_auto_baud_rate = 75;
+
+  // CAN interface configuration CAN2 filters status Possible values: OFF ON
+  string can_interface_configuration_can2_ff_filters_status = 76;
+
+  // CAN electric motor temperature (units: °C)
+  double canbus_electric_motor_temperature = 77;
+
+  // CAN LCV configuration CAN2 subgroup
+  double can_lcv_configuration_can2_subgroup = 78;
+
+  // CAN LCV configuration CAN1 subgroup
+  double can_lcv_configuration_can1_subgroup = 79;
+
+  // CAN LCV configuration CAN2 group Possible values: VAG MERCEDES CITROEN FORD FIAT OPEL RENAULT TOYOTA TRACTOR TRUCK HYUNDAI LEXUS VOLVO BMW NISSAN HONDA MITSUBISHI SUBARU CHRYSLER ISUZU SSANGYONG MAZDA KOMATSU RANGEROVER CLAAS SAAB LANDROVER PORSCHE KIA JAGUAR INFINITI LINDE HITACHI SUZUKI
+  string can_lcv_configuration_can2_group = 80;
+
+  // CAN LCV configuration CAN1 group Possible values: VAG MERCEDES CITROEN FORD FIAT OPEL RENAULT TOYOTA TRACTOR TRUCK HYUNDAI LEXUS VOLVO BMW NISSAN HONDA MITSUBISHI SUBARU CHRYSLER ISUZU SSANGYONG MAZDA KOMATSU RANGEROVER CLAAS SAAB LANDROVER PORSCHE KIA JAGUAR INFINITI LINDE HITACHI SUZUKI
+  string can_lcv_configuration_can1_group = 81;
+
+  // CAN ignition Possible values: OFF ON
+  string can_ignition = 82;
+
+  // CAN LCV window state Front Left
+  double can_lcv_window_state_front_left = 83;
+
+  // CAN LCV window state Front Right
+  double can_lcv_window_state_front_right = 84;
+
+  // CAN LCV window state Back Left
+  double can_lcv_window_state_back_left = 85;
+
+  // CAN LCV window state Back Right
+  double can_lcv_window_state_back_right = 86;
+
+  // CAN LCV window state Sunroof
+  double can_lcv_window_state_sunroof = 87;
+
+  // CAN fuel level millliliters (units: ml)
+  double can_fuel_level_milliliters = 88;
+
+  // CAN door lock state Possible values: UNLOCKED LOCKED NOT_AVAILABLE
+  string can_door_lock_state = 89;
+
+  // GSM signal strength
+  double gsm_signal_strength = 90;
+
+  // GSM operator
+  double operator = 91;
+
+  // GPS speed (units: km/h)
+  double gps_speed = 92;
+
+  // GSM/UMTS signal strength
+  double gsm_umts_signal_strength = 93;
+
+  // GSM/UMTS operator
+  double gsm_umts_operator = 94;
+
+  // UMTS enabled status Possible values: DISABLED ENABLED
+  string umts_enabled = 95;
+
+  // GNSS antenna status Possible values: DISABLED ENABLED UNKNOWN
+  string gnss_antenna = 96;
+
+  // GSM/UMTS jamming status Possible status: JAMMING_NOT_DETECTED JAMMING_DETECTED
+  string gsm_umts_jamming = 97;
+
+  // GPRS errors
+  double gprs_errors = 98;
+
+  // GPRS status Possible values: DISCONNECTED CONNECTED
+  string gprs_status = 99;
+
+  // GPS altitude (units: m)
+  double gps_altitude = 100;
+
+  // DOUT1 status Possible values: ACTIVE INACTIVE
+  string dout1_status = 101;
+
+  // DOUT2 status Possible values: ACTIVE INACTIVE
+  string dout2_status = 102;
+
+  // DXP battery voltage (units: V)
+  double dxp_battery_battery_voltage = 103;
+
+  // DXP battery nominal capacity used (units: A)
+  double dxp_battery_nominal_capacity_used = 104;
+
+  // DXP battery charging counter
+  double dxp_battery_charging_counter = 105;
+
+  // DXP battery charging state (units: %)
+  double dxp_battery_state_of_charge = 106;
+
+  // DXP battery charging current (units: A)
+  double dxp_battery_charging_current = 107;
+
+  // DXP battery current (units: A)
+  double dxp_battery_battery_current = 108;
+
+  // DXP battery temperature (units: °C)
+  double dxp_battery_battery_temp = 109;
+
+  // DXP battery charge stop reason
+  double dxp_battery_charger_stop_reason = 110;
+
+  // DXP switch 1 value Possible values: OFF ON
+  string dxp_switches_switch1 = 111;
+
+  // DXP switch 2 value Possible values: OFF ON
+  string dxp_switches_switch2 = 112;
+
+  // DXP switch 3 value Possible values: OFF ON
+  string dxp_switches_switch3 = 113;
+
+  // DXP switch 4 value Possible values: OFF ON
+  string dxp_switches_switch4 = 114;
+
+  // DXP switch 5 value Possible values: OFF ON
+  string dxp_switches_switch5 = 115;
+
+  // DXP switch 6 value Possible values: OFF ON
+  string dxp_switches_switch6 = 116;
+
+  // DXP switch 7 value Possible values: OFF ON
+  string dxp_switches_switch7 = 117;
+
+  // DXP switch 8 value Possible values: OFF ON
+  string dxp_switches_switch8 = 118;
+
+  // DXP switch parameters set
+  double dxp_switches_parameters_set = 119;
+
+  // DXP chassis number
+  double dxp_other_parameters_chassis_number_nr = 120;
+
+  // DXP service odometer
+  double dxp_other_parameters_servie_odometer = 121;
+
+  // DXP VCL version
+  double dxp_other_parameters_vcl_version = 122;
+
+  // DXP parameter BLK version
+  double dxp_other_parameters_parameter_blk_version = 123;
+
+  // DXP status 1 fault error codes
+  double dxp_faults1_status1_faults_error_codes = 124;
+
+  // DXP status 2 fault error codes
+  double dxp_faults1_status2_faults_error_codes = 125;
+
+  // DXP status 3 fault error codes
+  double dxp_faults1_status3_faults_error_codes = 126;
+
+  // DXP status 4 fault error codes
+  double dxp_faults1_status4_faults_error_codes = 127;
+
+  // DXP status 5 fault error codes
+  double dxp_faults1_status5_faults_error_codes = 128;
+
+  // DXP status 6 fault error codes
+  double dxp_faults1_status6_faults_error_codes = 129;
+
+  // DXP status 7 fault error codes
+  double dxp_faults1_status7_faults_error_codes = 130;
+
+  // DXP status 8 fault error codes
+  double dxp_faults1_status8_faults_error_codes = 131;
+
+  // DXP user fault 1 error codes
+  double dxp_faults2_user_fault_1_error_codes = 132;
+
+  // DXP user fault 2 error codes
+  double dxp_faults2_user_fault_2_error_codes = 133;
+
+  // DXP user fault 1 history error codes
+  double dxp_faults2_user_fault_2_history_error_codes = 134;
+
+  // DXP user fault 2 history error codes
+  double dxp_faults2_user_fault_1_history_error_codes = 135;
+
+  // DXP KYB hist fault codes
+  double dxp_faults2_kyb_hist_fault_codes = 136;
+
+  // DXP charger status
+  double dxp_charger_status = 137;
+
+  // Eco-Drive maximum speed (units: km/h)
+  double ecodrive_maximum_speed = 138;
+
+  // Eco-Drive overspeeding timer (units: s)
+  double ecodrive_overspeed = 139;
+
+  // Eco-Drive RPM in red band timer (units: s)
+  double ecodrive_rpm_on_red = 140;
+
+  // Eco-Drive maximum RPM (units: RPM)
+  double ecodrive_maximum_rpm = 141;
+
+  // Eco-Drive brake counter
+  double ecodrive_braking_events = 142;
+
+  // Eco-Drive harsh acceleration counter
+  double ecodrive_harsh_acceleration = 143;
+
+  // Eco-Drive idling counter (units: s)
+  double ecodrive_idling_time = 144;
+
+  // Eco-Drive engine on timer (units: s)
+  double ecodrive_engine_on = 145;
+
+  // Eco-Drive time cruise control could be on (units: s)
+  double ecodrive_time_cruise_control_could_be_on = 146;
+
+  // Eco-Drive time cruise control was on when it could be on (units: s)
+  double ecodrive_time_cruise_control_was_on_when_it_could_be_on = 147;
+
+  // Eco-Drive extreme braking count
+  double ecodrive_extreme_braking_count = 148;
+
+  // Eco-Drive harsh braking count
+  double ecodrive_harsh_braking_count = 149;
+
+  // Eco-Drive mileage in RPM green zone (units: m)
+  double ecodrive_mileage_in_rpm_green_zone = 150;
+
+  // Eco-Drive mileage when speed is below overspeed (units: m)
+  double ecodrive_mileage_when_speed_is_below_overspeed = 151;
+
+  // Eco-Drive mileage when cruise control could be on (units: m)
+  double ecodrive_mileage_when_cruise_control_could_be_on = 152;
+
+  // Eco-Drive mileage when cruise control was on when it could be on (units: m)
+  double ecodrive_mileage_when_cruise_control_was_on_when_it_could_be_on = 153;
+
+  // Eco-Drive cornering counter
+  double ecodrive_cornering_counter = 154;
+
+  // Eco-Drive stop counter
+  double ecodrive_stops_counter = 155;
+
+  // Eco-Drive fuel used while idling (units: l)
+  double ecodrive_fuel_used_at_stops = 156;
+
+  // Eco-Drive free rolling distance (units: m)
+  double ecodrive_mileage_while_free_rolling = 157;
+
+  // Eco-Drive engine overloaded distance (units: m)
+  double ecodrive_mileage_while_engine_overloaded = 158;
+
+  // Eco-Drive engine overloaded fuel used (units: l)
+  double ecodrive_fuel_used_while_engine_overloaded = 159;
+
+  // Eco-Drive overspeeding distance (units: m)
+  double ecodrive_mileage_while_overspeeding = 160;
+
+  // Eco-Drive overspeeding fuel used (units: l)
+  double ecodrive_fuel_used_while_overspeeding = 161;
+
+  // Eco-Drive cruise control on distance (units: m)
+  double ecodrive_mileage_when_cruise_control_was_on = 162;
+
+  // Eco-Drive cruise control on fuel used (units: l)
+  double ecodrive_fuel_used_when_when_cruise_control_was_on = 163;
+
+  // Eco-Drive highest gear distance (units: m)
+  double ecodrive_mileage_in_highest_gear = 164;
+
+  // Eco-Drive highest gear fuel used (units: l)
+  double ecodrive_fuel_used_in_highest_gear = 165;
+
+  // Eco-Drive RPM range 1 (<900 RPM) distance (units: m)
+  double ecodrive_mileage_in_range_1_900_rpm = 166;
+
+  // Eco-Drive RPM range 1 (<900 RPM) fuel used (units: l)
+  double ecodrive_fuel_used_in_range_1_900_rpm = 167;
+
+  // Eco-Drive RPM range 2 (900-1300 RPM) distance (units: m)
+  double ecodrive_mileage_in_range_900_1300_rpm = 168;
+
+  // Eco-Drive RPM range 2 (900-1300 RPM) fuel used (units: l)
+  double ecodrive_fuel_used_in_range_900_1300_rpm = 169;
+
+  // Eco-Drive RPM range 3 (1300-1500 RPM) distance (units: m)
+  double ecodrive_mileage_in_range_1300_1500_rpm = 170;
+
+  // Eco-Drive RPM range 3 (1300-1500 RPM) fuel used (units: l)
+  double ecodrive_fuel_used_in_range_1300_1500_rpm = 171;
+
+  // Eco-Drive RPM range 4 (1500-2300 RPM) distance (units: m)
+  double ecodrive_mileage_in_range_1500_2300_rpm = 172;
+
+  // Eco-Drive RPM range 4 (1500-2300 RPM) fuel used (units: l)
+  double ecodrive_fuel_used_in_range_1500_2300_rpm = 173;
+
+  // Eco-Drive idling state Possible values: NO_IDLING IDLING
+  string ecodrive_idling_state = 174;
+
+  // Eco-Drive braking value (units: m/s^2)
+  double ecodrive_braking_value = 175;
+
+  // Eco-Drive acceleration value (units: m/s^2)
+  double ecodrive_acceleration_value = 176;
+
+  // Eco-Drive cornering value (units: m/s^2)
+  double ecodrive_cornering_value = 177;
+
+  // Eco-Drive RPM in red band distance (units: m)
+  double eco_rpm_in_red_band_distance = 178;
+
+  // Eco-Drive engine braking distance (units: m)
+  double eco_engine_braking_distance = 179;
+
+  // Eco-Drive braking distance (units: m)
+  double eco_braking_distance = 180;
+
+  // Eco-Drive braking duration (units: s)
+  double eco_braking_duration = 181;
+
+  // Eco-Drive retarder duration (units: s)
+  double eco_retarder_duration = 182;
+
+  // Eco-Drive stop counter
+  double eco_stops_counter = 183;
+
+  // ThermoKing air return temperature (units: °C)
+  double thermoking_air_return_temp = 184;
+
+  // ThermoKing alarm code
+  double thermoking_alarms = 185;
+
+  // ThermoKing temperature setpoint (units: °C)
+  double thermoking_set_point = 186;
+
+  // ThermoKing fuel level (units: %)
+  double thermoking_fuel_level = 187;
+
+  // ThermoKing battery voltage (units: V)
+  double thermoking_battery_voltage = 188;
+
+  // ThermoKing total electric hours (units: h)
+  double thermoking_total_electric_hours = 189;
+
+  // ThermoKing total vehicle hours (units: h)
+  double thermoking_vehicle_hours = 190;
+
+  // ThermoKing total engine hours (units: h)
+  double thermoking_total_engine_hours = 191;
+
+  // ThermoKing alarm type Possible values: NO_ALARM LOG_STORED_OR_ROUTINE_MAINTENANCE LOW_FUEL MAINTENANCE_PAST_DUE RESERVED IMMEDIATE_ATTENTION_REQUIRED SHUTDOWN_OR_CATASTROPHIC_SYSTEM_FAILURE
+  string thermoking_alarm_type = 192;
+
+  // ThermoKing discharge air temperature (units: °C)
+  double thermoking_discharge_temperature = 193;
+
+  // ThermoKing evaporator coil temperature (units: °C)
+  double thermoking_evaporator_coil_temperature = 194;
+
+  // ThermoKing operating mode Possible values: POWER_OFF_OR_UNKNOWN COOLING HEATING DEFROST NULL PRETRIP SLEEP RESERVED
+  string thermoking_operating_mode = 195;
+
+  // ThermoKing cycle mode Possible values: CYCLE_SENTRY_MODE CONTINUOUS_MODE START_STOP_MODE
+  string thermoking_cycle_mode = 196;
+
+  // ThermoKing high speed status
+  bool thermoking_high_speed_status = 197;
+
+  // ThermoKing door status Possible values: CLOSED OPEN
+  string thermoking_door_status = 198;
+
+  // ThermoKing diesel/electric status Possible values: DIESEL_MODE ELECTRIC_MODE
+  string thermoking_diesel_electric_status = 199;
+
+  // TK Touchprint input 1 (units: °C)
+  double tk_touchprint_input_1 = 200;
+
+  // TK Touchprint input 2 (units: °C)
+  double tk_touchprint_input_2 = 201;
+
+  // TK Touchprint input 3 (units: °C)
+  double tk_touchprint_input_3 = 202;
+
+  // TK Touchprint input 4 (units: °C)
+  double tk_touchprint_input_4 = 203;
+
+  // TK Touchprint input 5 (units: °C)
+  double tk_touchprint_input_5 = 204;
+
+  // TK Touchprint input 6 (units: °C)
+  double tk_touchprint_input_6 = 205;
+
+  // TK temperature sensor 1 (units: °C)
+  double tk_temperature_sensor1 = 206;
+
+  // TK temperature sensor 2 (units: °C)
+  double tk_temperature_sensor2 = 207;
+
+  // TK temperature sensor 3 (units: °C)
+  double tk_temperature_sensor3 = 208;
+
+  // TK temperature sensor 4 (units: °C)
+  double tk_temperature_sensor4 = 209;
+
+  // TK temperature sensor 5 (units: °C)
+  double tk_temperature_sensor5 = 210;
+
+  // TK temperature sensor 6 (units: °C)
+  double tk_temperature_sensor6 = 211;
+
+  // Fuel counter 1
+  double fuel_counter = 212;
+
+  // Digital fuel sensor A1
+  double digital_fuel_sensor_a1 = 213;
+
+  // Fuel counter 2
+  double fuel_counter_2 = 214;
+
+  // Digital fuel sensor B1
+  double digital_fuel_sensor_b1 = 215;
+
+  // Digital fuel sensor A2
+  double digital_fuel_sensor_a2 = 216;
+
+  // Digital fuel sensor A3
+  double digital_fuel_sensor_a3 = 217;
+
+  // Digital fuel sensor A4
+  double digital_fuel_sensor_a4 = 218;
+
+  // Digital fuel sensor A5
+  double digital_fuel_sensor_a5 = 219;
+
+  // Digital fuel sensor A6
+  double digital_fuel_sensor_a6 = 220;
+
+  // Digital fuel sensor A7
+  double digital_fuel_sensor_a7 = 221;
+
+  // Digital fuel sensor A8
+  double digital_fuel_sensor_a8 = 222;
+
+  // Digital fuel sensor A9
+  double digital_fuel_sensor_a9 = 223;
+
+  // Digital fuel sensor A10
+  double digital_fuel_sensor_a10 = 224;
+
+  // Digital fuel sensor C1 temperature (units: °C)
+  double digital_fuel_sensorc1_temperature = 225;
+
+  // Digital fuel sensor C2 temperature (units: °C)
+  double digital_fuel_sensorc2_temperature = 226;
+
+  // Digital fuel sensor C3 temperature (units: °C)
+  double digital_fuel_sensorc3_temperature = 227;
+
+  // Digital fuel sensor C4 temperature (units: °C)
+  double digital_fuel_sensorc4_temperature = 228;
+
+  // Digital fuel sensor C5 temperature (units: °C)
+  double digital_fuel_sensorc5_temperature = 229;
+
+  // Digital fuel sensor C6 temperature (units: °C)
+  double digital_fuel_sensorc6_temperature = 230;
+
+  // Digital fuel sensor C7 temperature (units: °C)
+  double digital_fuel_sensorc7_temperature = 231;
+
+  // Digital fuel sensor C8 temperature (units: °C)
+  double digital_fuel_sensorc8_temperature = 232;
+
+  // Digital fuel sensor C9 temperature (units: °C)
+  double digital_fuel_sensorc9_temperature = 233;
+
+  // Digital fuel sensor C10 temperature (units: °C)
+  double digital_fuel_sensorc10_temperature = 234;
+
+  // Digital fuel sensor C1
+  double digital_fuel_sensorc1 = 235;
+
+  // Digital fuel sensor C2
+  double digital_fuel_sensorc2 = 236;
+
+  // Digital fuel sensor C3
+  double digital_fuel_sensorc3 = 237;
+
+  // Digital fuel sensor C4
+  double digital_fuel_sensorc4 = 238;
+
+  // Digital fuel sensor C5
+  double digital_fuel_sensorc5 = 239;
+
+  // Digital fuel sensor C6
+  double digital_fuel_sensorc6 = 240;
+
+  // Digital fuel sensor C7
+  double digital_fuel_sensorc7 = 241;
+
+  // Digital fuel sensor C8
+  double digital_fuel_sensorc8 = 242;
+
+  // Digital fuel sensor C9
+  double digital_fuel_sensorc9 = 243;
+
+  // Digital fuel sensor C10
+  double digital_fuel_sensorc10 = 244;
+
+  // Digital fuel sensor A1 temperature (units: °C)
+  double digital_fuel_sensora1_temperature = 245;
+
+  // Fuel level sensor B1 temperature (units: °C)
+  double fuel_level_sensorb1_temperature = 246;
+
+  // BT humidity sensor 0 (units: %)
+  double bt_humidity_sensor_0 = 247;
+
+  // BT humidity sensor 1 (units: %)
+  double bt_humidity_sensor_1 = 248;
+
+  // BT humidity sensor 2 (units: %)
+  double bt_humidity_sensor_2 = 249;
+
+  // BT humidity sensor 3 (units: %)
+  double bt_humidity_sensor_3 = 250;
+
+  // BT humidity sensor 4 (units: %)
+  double bt_humidity_sensor_4 = 251;
+
+  // iButton driver ID
+  string ibutton = 252;
+
+  // RFID PortA
+  string rfid_a = 253;
+
+  // RFID PortB
+  string rfid_b = 254;
+
+  // Magnetic card ID
+  string magnetic_card_id = 255;
+
+  // DS1971 iButton internal 8B driver ID
+  string ds1971_ibutton_internal_8b_driver_id = 256;
+
+  // DS1971 iButton internal 16B driver ID
+  string ds1971_ibutton_internal_16b_driver_id = 257;
+
+  // DS1971 iButton internal 8B passenger ID
+  string ds1971_ibutton_internal_8b_passenger_id = 258;
+
+  // DS1971 iButton internal 16B passenger ID
+  string ds1971_ibutton_internal_16b_passenger_id = 259;
+
+  // Ultra High Frequency RFID port B
+  string ultra_high_frequency_rfid_port_b = 260;
+
+  // Ultra High Frequency RFID port A
+  string ultra_high_frequency_rfid_port_a = 261;
+
+  // DIN1 value
+  bool digital_input_1 = 262;
+
+  // DIN2 value
+  bool digital_input_2 = 263;
+
+  // DIN3 value
+  bool digital_input_3 = 264;
+
+  // DIN4 value
+  bool digital_input_4 = 265;
+
+  // AIN1 value (units: V)
+  double analog_input_1 = 266;
+
+  // AIN2 value (units: V)
+  double analog_input_2 = 267;
+
+  // DIN1 hour counter (units: s)
+  double din1_working_time_diff = 268;
+
+  // DIN2 hour counter (units: s)
+  double din2_working_time_diff = 269;
+
+  // DIN3 hour counter (units: s)
+  double din3_working_time_diff = 270;
+
+  // DIN4 hour counter (units: s)
+  double din4_working_time_diff = 271;
+
+  // OT digital input 1
+  bool ot_digital_input_1 = 272;
+
+  // OT digital input 2
+  bool ot_digital_input_2 = 273;
+
+  // OT digital input 3
+  bool ot_digital_input_3 = 274;
+
+  // OT digital input 4
+  bool ot_digital_input_4 = 275;
+
+  // Frequency input 1 (units: Hz)
+  double frequency_input_1 = 276;
+
+  // Frequency input 2 (units: Hz)
+  double frequency_input_2 = 277;
+
+  // Kimax total trailer weight (units: kg)
+  double kimax_total_trailer_weight = 278;
+
+  // Kimax total truck weight (units: kg)
+  double kimax_total_truck_weight = 279;
+
+  // MOBA netto weight (units: g)
+  double moba_netto_weight = 280;
+
+  // MOBA timestamp
+  google.protobuf.Timestamp moba_timestamp = 281;
+
+  // MOBA RFID ID
+  string moba_rfid_id = 282;
+
+  // Mobileye sound type Possible values: SILENT LDWL LDWR HW1 TSR UFCW FCW_PCW PEDS_IN_DZ
+  string mobileye_sound_type = 283;
+
+  // Mobileye pedestrians in danger zone
+  bool mobileye_pedestrians_in_dz = 284;
+
+  // Mobileye pedestrians forward collision warning
+  bool mobileye_pedestrians_fcw = 285;
+
+  // Mobileye night time indicator Possible values: DAY NIGHT
+  string mobileye_night_time_indicator = 286;
+
+  // Mobileye dusk time indicator Possible values: DAY DUSK
+  string mobileye_dusk_time_indicator = 287;
+
+  // Mobileye error code
+  double mobileye_error_code = 288;
+
+  // Mobileye error valid
+  bool mobileye_error_valid = 289;
+
+  // Mobileye zero speed
+  bool mobileye_zero_speed = 290;
+
+  // Mobileye headway valid
+  bool mobileye_headway_valid = 291;
+
+  // Mobileye headway measurement
+  double mobileye_headway_measurement = 292;
+
+  // Mobileye LDW off
+  bool mobileye_ldw_off = 293;
+
+  // Mobileye right LDW on
+  bool mobileye_right_ldw_on = 294;
+
+  // Mobileye left LDW on
+  bool mobileye_left_ldw_on = 295;
+
+  // Mobileye maintenance Possible values: NO_ERROR ERROR
+  string mobileye_maintenance = 296;
+
+  // Mobileye failsafe
+  bool mobileye_failsafe = 297;
+
+  // Mobileye forward collision warning on
+  bool mobileye_fcw_on = 298;
+
+  // Mobileye headway warning level Possible values: NO_COPV CIPV_WITH_HW_MORE_THAN_HW_CONFIG CIPV_WITH_LESS_THAN_HW_CONFIG
+  string mobileye_headway_warning_level = 299;
+
+  // Mobileye high beam Possible values: OFF ON
+  string mobileye_hi_beam = 300;
+
+  // Mobileye low beam Possible values: OFF ON
+  string mobileye_low_beam = 301;
+
+  // Mobileye wipers Possible values: OFF ON
+  string mobileye_wipers = 302;
+
+  // Mobileye right signal
+  bool mobileye_right_signal = 303;
+
+  // Mobileye left signal
+  bool mobileye_left_signal = 304;
+
+  // Mobileye brake signal
+  bool mobileye_brake_signal = 305;
+
+  // Mobileye wipers available
+  bool mobileye_wipers_available = 306;
+
+  // Mobileye low beam available
+  bool mobileye_low_beam_available = 307;
+
+  // Mobileye high beam available
+  bool mobileye_hi_beam_available = 308;
+
+  // Mobileye speed available
+  bool mobileye_speed_available = 309;
+
+  // Mobileye speed (units: km/h)
+  double mobileye_speed = 310;
+
+  // Mobileye tamper alert Possible values: OFF ON
+  string mobileye_tamper_alert = 311;
+
+  // Mobileye TSR enabled
+  bool mobileye_tsr_enabled = 312;
+
+  // Mobileye TSR warning level
+  double mobileye_tsr_warning_level = 313;
+
+  // Mobileye headway warning repeat enabled
+  bool mobileye_hw_repeat_enabled = 314;
+
+  // Mobileye vision only sign
+  double mobileye_vision_only_sign = 315;
+
+  // Mobileye vision only supplementary sign type
+  double mobileye_vision_only_supplementary_sign_type = 316;
+
+  // Mobileye sign position X
+  double mobileye_sign_position_x = 317;
+
+  // Mobileye sign position Y
+  double mobileye_sign_position_y = 318;
+
+  // Mobileye sign position Z
+  double mobileye_sign_position_z = 319;
+
+  // Mobileye filter type
+  double mobileye_filter_type = 320;
+
+  // Mobileye vision sign type display 1
+  double mobileye_vision_sign_type_display_1 = 321;
+
+  // Mobileye vision only supplementary sign type display 1
+  double mobileye_vision_only_suplementary_sign_type_display_1 = 322;
+
+  // Mobileye vision sign type display 2
+  double mobileye_vision_sign_type_display_2 = 323;
+
+  // Mobileye vision only suplementary sign type display 2
+  double mobileye_vision_only_suplementary_sign_type_display_2 = 324;
+
+  // Mobileye vision sign type display 3
+  double mobileye_vision_sign_type_display_3 = 325;
+
+  // Mobileye vision only suplementary sign type display 3
+  double mobileye_vision_only_suplementary_sign_type_display_3 = 326;
+
+  // Mobileye vision sign type display 4
+  double mobileye_vision_sign_type_display_4 = 327;
+
+  // Mobileye vision only suplementary sign type display 4
+  double mobileye_vision_only_suplementary_sign_type_display_4 = 328;
+
+  // OBD DTC and MIL
+  double obd_kline_dtc_and_mil = 329;
+
+  // OBD RPM (units: RPM)
+  double obd_kline_rpm = 330;
+
+  // OBD vehicle speed (units: km/h)
+  double obd_kline_vehicle_speed_sensor = 331;
+
+  // OBD engine coolant temperature (units: °C)
+  double obd_kline_engine_coolant_temperature = 332;
+
+  // OBD ambient air temperature (units: °C)
+  double obd_kline_ambient_air_temperature = 333;
+
+  // OBD fuel level (units: %)
+  double obd_kline_fuel_level_input = 334;
+
+  // OBD fuel type Possible values: NOT_AVAILABLE GASOLINE METHANOL ETHANOL DIESEL LPG CNG PROPANE ELECTRIC BIFUEL_RUNNING_GASOLINE BIFUEL_RUNNING_METHANOL BIFUEL_RUNNING_ETHANOL BIFUEL_RUNNING_LPG BIFUEL_RUNNING_CNG BIFUEL_RUNNING_PROPANE BIFUEL_RUNNING_ELECTRICITY BIFUEL_RUNNING_ELECTRIC_AND_COMBUSTION_ENGINE HYBRID_GASOLINE HYBRID_ETHANOL HYBRID_DIESEL HYBRID_ELECTRIC HYBRID_RUNNING_ELECTRIC_AND_COMBUSTION_ENGINE HYBRID_REGENERATIVE BIFUEL_DIESEL
+  string obd_kline_type_of_fuel = 335;
+
+  // OBD engine fuel rate (units: l/h)
+  double obd_kline_engine_fuel_rate = 336;
+
+  // OBD actual engine percent torque (units: %)
+  double obd_kline_actual_engine_percent_torque = 337;
+
+  // OBD distance traveled while MIL is activated (units: km)
+  double obd_kline_distance_traveled_while_mil_is_activated = 338;
+
+  // OBD accelerator pedal position (units: %)
+  double obd_kline_relative_accelerator_pedal_position = 339;
+
+  // OBD VIN 1
+  string obd_kline_vin_1 = 340;
+
+  // OBD VIN 2
+  string obd_kline_vin_2 = 341;
+
+  // OBD VIN 3
+  string obd_kline_vin_3 = 342;
+
+  // OBD time since engine start (units: s)
+  double obd_kline_time_since_engine_start = 343;
+
+  // OBD DTC count
+  double obd_kline_dtc_counted = 344;
+
+  // Satellite messages sent
+  double satellite_messages_sent = 345;
+
+  // Pending satellite messages
+  double pending_satellite_messages = 346;
+
+  // Spreader mode
+  double spr_spreader_mode = 347;
+
+  // Spreader adjustment of simulation driving speed (units: km/h)
+  double spr_spreader_adjustment_of_simulation_driving_speed = 348;
+
+  // Spreader spreading width (units: m)
+  double spr_spreader_spreading_width = 349;
+
+  // Spreader spreading solid material dosage from reservoir 1 (units: g/m^2)
+  double spr_spreading_solid_material_dosage_from_reservoir_1 = 350;
+
+  // Spreader spreading brine dosage (units: g/m^2)
+  double spr_spreading_brine_dosage = 351;
+
+  // Spreader spread solid material from reservoir 1 (units: kg)
+  double spr_spread_solid_material_from_reservoir_1 = 352;
+
+  // Spreader spread brine material (units: l)
+  double spr_spread_brine_material = 353;
+
+  // Spreader driven length while spreading (units: m)
+  double spr_driven_length_while_spreading = 354;
+
+  // Spreader driven hours while spreading (units: h)
+  double spr_driven_hours_while_spreading = 355;
+
+  // Spreader error code Possible values: RESERVED NO_SALT NO_BRINE MIN_LEVEL_OF_TANK MIN_LEVEL_OF_HOPPER NO_FEEDBACK_FROM_SPINNER NO_FEEDBACK_FROM_CONVEYER NO_FEEDBACK_FROM_CONVEYER_2 NO_FEEDBACK_FROM_PUMP SPINNER_RPM_OUT_OF_RANGE CONVEYER_RPM_OUT_OF_RANGE CONVEYER_2_RPM_OUT_OF_RANGE PUMP_RPM_OUT_OF_RANGE SETTING_OUT_OF_RANGE AUX_ENGINE_CHARGE_CONTROL_FAULT AUX_ENGINE_OIL_PRESSURE_TOO_LOW AUX_ENGINE_WATER_TEMP_TOO_HIGH RESERVED
+  string spr_error_code = 356;
+
+  // Spreader liquid material
+  string spr_liquid_material = 357;
+
+  // Spreader solid material
+  string spr_solid_material = 358;
+
+  // Driver 1 state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+  string driver_1_state = 359;
+
+  // Driver 2 state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+  string driver_2_state = 360;
+
+  // TCO first driver state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+  string tco_first_driver_state = 361;
+
+  // TCO second driver state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+  string tco_second_driver_state = 362;
+
+  // TCO first driver card Possible values: NOT_INSERTED INSERTED
+  string tco_first_driver_card = 363;
+
+  // TCO second driver card Possible values: NOT_INSERTED INSERTED
+  string tco_second_driver_card = 364;
+
+  // TCO distance (units: km)
+  double tco_distance = 365;
+
+  // TCO trip distance (units: km)
+  double tco_trip = 366;
+
+  // TCO vehicle speed (units: km/h)
+  double tco_vehicle_speed = 367;
+
+  // TCO engine speed (units: RPM)
+  double tco_rpm = 368;
+
+  // TCO registration number
+  string tco_registration_number = 369;
+
+  // Tacho card reader state NOT_AVAILABLE AVAILABLE
+  string tacho_ddd_available = 370;
+
+  // TCO first driver driving time (prev. and curr. week) (units: min)
+  double tco_first_driver_driving_time_prev_and_curr_week = 371;
+
+  // TCO second driver driving time (prev. and curr. week) (units: min)
+  double tco_second_driver_driving_time_prev_and_curr_week = 372;
+
+  // TCO first driver duration of selected activity (units: min)
+  double tco_first_driver_duration_of_selected_activity = 373;
+
+  // TCO second driver duration of selected activity (units: min)
+  double tco_second_driver_duration_of_selected_activity = 374;
+
+  // TCO first driver continuous driving time (units: min)
+  double tco_first_driver_continuous_driving_time = 375;
+
+  // TCO second driver continuous driving time (units: min)
+  double tco_second_driver_continuous_driving_time = 376;
+
+  // TCO first driver accumulated break time (units: min)
+  double tco_first_driver_cumulated_break_time = 377;
+
+  // TCO second driver accumulated break time (units: min)
+  double tco_second_driver_cumulated_break_time = 378;
+
+  // TCO first driver time related states
+  double tco_first_driver_time_related_states = 379;
+
+  // TCO second driver time related states
+  double tco_second_driver_time_related_states = 380;
+
+  // TCO tacho time
+  google.protobuf.Timestamp tco_time = 381;
+
+  // TCO CAN tacho Time
+  google.protobuf.Timestamp tco_can_tacho_time = 382;
+
+  // Temperature sensor 0 (units: °C)
+  double temperature_sensor_0 = 383;
+
+  // Temperature sensor 1 (units: °C)
+  double temperature_sensor_1 = 384;
+
+  // Temperature sensor 2 (units: °C)
+  double temperature_sensor_2 = 385;
+
+  // Temperature sensor 3 (units: °C)
+  double temperature_sensor_3 = 386;
+
+  // Temperature sensor 0 ID
+  string temperature_sensor_0_id = 387;
+
+  // Temperature sensor 1 ID
+  string temperature_sensor_1_id = 388;
+
+  // Temperature sensor 2 ID
+  string temperature_sensor_2_id = 389;
+
+  // Temperature sensor 3 ID
+  string temperature_sensor_3_id = 390;
+
+  // OT temperature sensor 1 (units: °C)
+  double ot_temperature_sensor_1 = 391;
+
+  // OT temperature sensor 2 (units: °C)
+  double ot_temperature_sensor_2 = 392;
+
+  // OT temperature sensor 3 (units: °C)
+  double ot_temperature_sensor_3 = 393;
+
+  // OT temperature sensor 4 (units: °C)
+  double ot_temperature_sensor_4 = 394;
+
+  // OT temperature sensor 5 (units: °C)
+  double ot_temperature_sensor_5 = 395;
+
+  // OT temperature sensor 6 (units: °C)
+  double ot_temperature_sensor_6 = 396;
+
+  // BT Temperature sensor 0 (units: °C)
+  double bt_temperature_sensor_1 = 397;
+
+  // BT Temperature sensor 1 (units: °C)
+  double bt_temperature_sensor_2 = 398;
+
+  // BT Temperature sensor 2 (units: °C)
+  double bt_temperature_sensor_3 = 399;
+
+  // BT Temperature sensor 3 (units: °C)
+  double bt_temperature_sensor_4 = 400;
+
+  // BT Temperature sensor 4 (units: °C)
+  double bt_temperature_sensor_5 = 401;
+
+  // Trailers vehicle ABS status Possible values: PASSIVE ACTIVE
+  string trailers_vehicle_abs_status = 402;
+
+  // Trailers vehicle service brake status Possible values: PASSIVE ACTIVE
+  string trailers_vehicle_service_brake_status = 403;
+
+  // Trailers VDC active Possible values: PASSIVE ACTIVE
+  string trailers_vdc_active = 404;
+
+  // Trailers vehicle electrical supply status Possible values: INSUFFICIENT SUFFICIENT
+  string trailers_vehicle_electrical_supply_status = 405;
+
+  // Trailers external brake request status NO_REQUEST REQUEST_ACTIVE
+  string trailers_external_brake_request_status = 406;
+
+  // Trailers braking via electric control line support Possible values: NOT_SUPPORTED SUPPORTED
+  string trailers_braking_via_electric_control_line_support = 407;
+
+  // Trailers electrical supply of non-braking system status Possible values: OFF ON
+  string trailers_electrical_supply_of_non_braking_system_status = 408;
+
+  // Trailers electrical load proportional function installation status Possible values: NOT_INSTALLED INSTALLED
+  string trailers_electrical_load_proportional_function_installation_status = 409;
+
+  // Trailers vehicle type Possible values: TOWED_VEHICLE CONVERTED_DOLLY_AXLE_LSB
+  string trailers_vehicle_type = 410;
+
+  // Trailers stop lamps request Possible values: NO_REQUEST REQUEST_ACTIVE
+  string trailers_stop_lamps_request = 411;
+
+  // Trailers red warning signal request Possible values: OFF ON
+  string trailers_red_warning_signal_request = 412;
+
+  // Trailers amber warning signal request Possible values: OFF ON
+  string trailers_amber_warning_signal_request = 413;
+
+  // Trailers vehicle pneumatic supply status Possible values: OFF ON
+  string trailers_vehicle_pneumatic_supply_status = 414;
+
+  // Trailers braking system wheel–based vehicle speed (units: km/h)
+  double trailers_braking_system_wheel_based_vehicle_speed = 415;
+
+  // Trailers wheel speed difference main axle (units: km/h)
+  double trailers_wheel_speed_difference_main_axle = 416;
+
+  // Trailers lateral acceleration (units: m/s^2)
+  double trailers_lateral_acceleration = 417;
+
+  // Trailers axle load sum (units: kg)
+  double trailers_axle_load_sum = 418;
+
+  // Trailers pneumatic supply pressure (units: kPa)
+  double trailers_pneumatic_supply_pressure = 419;
+
+  // Trailers brake cylinder pressure first axle, left wheel (units: kPa)
+  double trailers_brake_cylinder_pressure_first_axle_left_wheel = 420;
+
+  // Trailers brake cylinder pressure first axle, right wheel (units: kPa)
+  double trailers_brake_cylinder_pressure_first_axle_right_wheel = 421;
+
+  // Trailers brake cylinder pressure second axle, left wheel (units: kPa)
+  double trailers_brake_cylinder_pressure_second_axle_left_wheel = 422;
+
+  // Trailers brake cylinder pressure second axle, right wheel (units: kPa)
+  double trailers_brake_cylinder_pressure_second_axle_right_wheel = 423;
+
+  // Trailers brake cylinder pressure third axle, left wheel (units: kPa)
+  double trailers_brake_cylinder_pressure_third_axle_left_wheel = 424;
+
+  // Trailers brake cylinder pressure third axle, right wheel (units: kPa)
+  double trailers_brake_cylinder_pressure_third_axle_right_wheel = 425;
+
+  // Trailers high resolution vehicle distance (units: km)
+  double trailers_high_resolution_vehicle_distance = 426;
+
+  // Trailers service distance (units: km)
+  double trailers_service_distance = 427;
+
+  // Wireless enabled Possible values: DISABLED ENABLED
+  string wireless_enabled = 428;
+
+  // Wireless pair
+  bool wireless_pair = 429;
+
+  // Wireless driver ID
+  double wireless_driver_id = 430;
+
+  // Current profile
+  double current_profile = 431;
+
+  // Power supply voltage (units: V)
+  double power_supply_voltage = 432;
+
+  // Battery voltage (units: V)
+  double battery_voltage = 433;
+
+  // PCB temperature (units: °C)
+  double pcb_temperature = 434;
+
+  // Virtual odometer (units: km)
+  double virtual_odometer = 435;
+
+  // Input trigger
+  double input_trigger = 436;
+
+  // Priority Possible values: LOW HIGH
+  string priority = 437;
+
+  // Battery charge current (units: mA)
+  double battery_current = 438;
+
+  // Movement sensor Possible values: STILL MOVING
+  string movement = 439;
+
+  // HDOP
+  string hdop = 440;
+
+  // Modem temperature (units: °C)
+  double modem_temperature = 441;
+
+  // Virtual odometer DIFF (units: m)
+  double virtual_odometer_diff = 442;
+
+  // Virtual ignition Possible values: OFF ON
+  string ignition_plugtrack = 443;
+
+  // Sleep timer Possible values: NO_EVENT DEVICE_WAKE_UP_BY_TIMER_EVENT
+  string sleep_timer = 444;
+
+  // Custom ignition Possible values: OFF ON
+  string custom_ignition = 445;
+
+  // Panic status
+  bool panic = 446;
+
+  // Shock duration (units: ms)
+  double shock_duration = 447;
+
+  // Rollover alarm
+  bool roll_over_alarm = 448;
+}

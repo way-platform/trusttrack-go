@@ -1,0 +1,35 @@
+edition = "2023";
+
+package wayplatform.connect.trusttrack.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// A position.
+message Position {
+  // The number of satellites used to calculate the position.
+  int32 satellites_count = 3;
+
+  // The latitude of the position.
+  double latitude = 1;
+
+  // The longitude of the position.
+  double longitude = 2;
+
+  // The altitude of the position in meters.
+  double altitude_m = 4;
+
+  // The speed of the position in kilometers per hour.
+  double speed_kmh = 5;
+
+  // The direction of the position in degrees.
+  double direction_deg = 6;
+
+  // The datetime of the position.
+  google.protobuf.Timestamp time = 7;
+
+  // The last valid GPS datetime of the position.
+  google.protobuf.Timestamp last_valid_gps_time = 8;
+
+  // The server datetime of the position.
+  google.protobuf.Timestamp server_time = 9;
+}
