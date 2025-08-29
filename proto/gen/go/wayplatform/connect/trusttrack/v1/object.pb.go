@@ -22,15 +22,16 @@ const (
 
 // A tracked object.
 type Object struct {
-	state                    protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_Id            *string                `protobuf:"bytes,1,opt,name=id"`
-	xxx_hidden_Name          *string                `protobuf:"bytes,2,opt,name=name"`
-	xxx_hidden_Imei          int64                  `protobuf:"varint,3,opt,name=imei"`
-	xxx_hidden_VehicleParams *VehicleParams         `protobuf:"bytes,4,opt,name=vehicle_params,json=vehicleParams"`
-	XXX_raceDetectHookData   protoimpl.RaceDetectHookData
-	XXX_presence             [1]uint32
-	unknownFields            protoimpl.UnknownFields
-	sizeCache                protoimpl.SizeCache
+	state                     protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id             *string                `protobuf:"bytes,1,opt,name=id"`
+	xxx_hidden_Name           *string                `protobuf:"bytes,2,opt,name=name"`
+	xxx_hidden_Imei           int64                  `protobuf:"varint,3,opt,name=imei"`
+	xxx_hidden_VehicleParams  *VehicleParams         `protobuf:"bytes,4,opt,name=vehicle_params,json=vehicleParams"`
+	xxx_hidden_LastCoordinate *Coordinate            `protobuf:"bytes,5,opt,name=last_coordinate,json=lastCoordinate"`
+	XXX_raceDetectHookData    protoimpl.RaceDetectHookData
+	XXX_presence              [1]uint32
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *Object) Reset() {
@@ -92,23 +93,34 @@ func (x *Object) GetVehicleParams() *VehicleParams {
 	return nil
 }
 
+func (x *Object) GetLastCoordinate() *Coordinate {
+	if x != nil {
+		return x.xxx_hidden_LastCoordinate
+	}
+	return nil
+}
+
 func (x *Object) SetId(v string) {
 	x.xxx_hidden_Id = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 5)
 }
 
 func (x *Object) SetName(v string) {
 	x.xxx_hidden_Name = &v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 5)
 }
 
 func (x *Object) SetImei(v int64) {
 	x.xxx_hidden_Imei = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 4)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 5)
 }
 
 func (x *Object) SetVehicleParams(v *VehicleParams) {
 	x.xxx_hidden_VehicleParams = v
+}
+
+func (x *Object) SetLastCoordinate(v *Coordinate) {
+	x.xxx_hidden_LastCoordinate = v
 }
 
 func (x *Object) HasId() bool {
@@ -139,6 +151,13 @@ func (x *Object) HasVehicleParams() bool {
 	return x.xxx_hidden_VehicleParams != nil
 }
 
+func (x *Object) HasLastCoordinate() bool {
+	if x == nil {
+		return false
+	}
+	return x.xxx_hidden_LastCoordinate != nil
+}
+
 func (x *Object) ClearId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_Id = nil
@@ -158,6 +177,10 @@ func (x *Object) ClearVehicleParams() {
 	x.xxx_hidden_VehicleParams = nil
 }
 
+func (x *Object) ClearLastCoordinate() {
+	x.xxx_hidden_LastCoordinate = nil
+}
+
 type Object_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
@@ -169,6 +192,8 @@ type Object_builder struct {
 	Imei *int64
 	// The vehicle parameters of the object.
 	VehicleParams *VehicleParams
+	// The last coordinate of the object.
+	LastCoordinate *Coordinate
 }
 
 func (b0 Object_builder) Build() *Object {
@@ -176,18 +201,19 @@ func (b0 Object_builder) Build() *Object {
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.Id != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 5)
 		x.xxx_hidden_Id = b.Id
 	}
 	if b.Name != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 5)
 		x.xxx_hidden_Name = b.Name
 	}
 	if b.Imei != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 4)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 5)
 		x.xxx_hidden_Imei = *b.Imei
 	}
 	x.xxx_hidden_VehicleParams = b.VehicleParams
+	x.xxx_hidden_LastCoordinate = b.LastCoordinate
 	return m0
 }
 
@@ -195,26 +221,29 @@ var File_wayplatform_connect_trusttrack_v1_object_proto protoreflect.FileDescrip
 
 const file_wayplatform_connect_trusttrack_v1_object_proto_rawDesc = "" +
 	"\n" +
-	".wayplatform/connect/trusttrack/v1/object.proto\x12!wayplatform.connect.trusttrack.v1\x1a6wayplatform/connect/trusttrack/v1/vehicle_params.proto\"\x99\x01\n" +
+	".wayplatform/connect/trusttrack/v1/object.proto\x12!wayplatform.connect.trusttrack.v1\x1a2wayplatform/connect/trusttrack/v1/coordinate.proto\x1a6wayplatform/connect/trusttrack/v1/vehicle_params.proto\"\xf1\x01\n" +
 	"\x06Object\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04imei\x18\x03 \x01(\x03R\x04imei\x12W\n" +
-	"\x0evehicle_params\x18\x04 \x01(\v20.wayplatform.connect.trusttrack.v1.VehicleParamsR\rvehicleParamsB\xbe\x02\n" +
+	"\x0evehicle_params\x18\x04 \x01(\v20.wayplatform.connect.trusttrack.v1.VehicleParamsR\rvehicleParams\x12V\n" +
+	"\x0flast_coordinate\x18\x05 \x01(\v2-.wayplatform.connect.trusttrack.v1.CoordinateR\x0elastCoordinateB\xbe\x02\n" +
 	"%com.wayplatform.connect.trusttrack.v1B\vObjectProtoP\x01Zagithub.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1;trusttrackv1\xa2\x02\x03WCT\xaa\x02!Wayplatform.Connect.Trusttrack.V1\xca\x02!Wayplatform\\Connect\\Trusttrack\\V1\xe2\x02-Wayplatform\\Connect\\Trusttrack\\V1\\GPBMetadata\xea\x02$Wayplatform::Connect::Trusttrack::V1b\beditionsp\xe8\a"
 
 var file_wayplatform_connect_trusttrack_v1_object_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_wayplatform_connect_trusttrack_v1_object_proto_goTypes = []any{
 	(*Object)(nil),        // 0: wayplatform.connect.trusttrack.v1.Object
 	(*VehicleParams)(nil), // 1: wayplatform.connect.trusttrack.v1.VehicleParams
+	(*Coordinate)(nil),    // 2: wayplatform.connect.trusttrack.v1.Coordinate
 }
 var file_wayplatform_connect_trusttrack_v1_object_proto_depIdxs = []int32{
 	1, // 0: wayplatform.connect.trusttrack.v1.Object.vehicle_params:type_name -> wayplatform.connect.trusttrack.v1.VehicleParams
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	2, // 1: wayplatform.connect.trusttrack.v1.Object.last_coordinate:type_name -> wayplatform.connect.trusttrack.v1.Coordinate
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_wayplatform_connect_trusttrack_v1_object_proto_init() }
@@ -222,6 +251,7 @@ func file_wayplatform_connect_trusttrack_v1_object_proto_init() {
 	if File_wayplatform_connect_trusttrack_v1_object_proto != nil {
 		return
 	}
+	file_wayplatform_connect_trusttrack_v1_coordinate_proto_init()
 	file_wayplatform_connect_trusttrack_v1_vehicle_params_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{

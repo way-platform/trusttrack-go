@@ -52,6 +52,7 @@ func newRootCommand() *cobra.Command {
 		Title: "Objects",
 	})
 	cmd.AddCommand(newListObjectsCommand())
+	cmd.AddCommand(newListObjectsLastCoordinateCommand())
 	cmd.AddGroup(auth.NewGroup())
 	cmd.AddCommand(auth.NewCommand())
 	cmd.AddGroup(&cobra.Group{
@@ -80,6 +81,38 @@ func newListObjectsCommand() *cobra.Command {
 		}
 		for _, object := range response.Objects {
 			fmt.Println(protojson.Format(object))
+		}
+		return nil
+	}
+	return cmd
+}
+
+func newListObjectsLastCoordinateCommand() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:     "objects-last-coordinate",
+		Short:   "List objects with their last coordinate",
+		GroupID: "objects",
+	}
+	cmd.RunE = func(cmd *cobra.Command, args []string) error {
+		client, err := auth.NewClient()
+		if err != nil {
+			return err
+		}
+		request := trusttrack.ListObjectsLastCoordinateRequest{
+			Limit: 1000,
+		}
+		for {
+			response, err := client.ListObjectsLastCoordinate(context.Background(), &request)
+			if err != nil {
+				return err
+			}
+			for _, object := range response.Objects {
+				fmt.Println(protojson.Format(object))
+			}
+			request.ContinuationToken = response.ContinuationToken
+			if request.ContinuationToken == "" {
+				break
+			}
 		}
 		return nil
 	}
