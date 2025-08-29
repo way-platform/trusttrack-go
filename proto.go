@@ -21,7 +21,7 @@ func objectToProto(input *ttoapi.ExternalComposedObject) *trusttrackv1.Object {
 		output.SetVehicleParams(vehicleParamsToProto(input.VehicleParams))
 	}
 	if input.LastCoordinate != nil {
-		output.SetLastCoordinate(coordinateToProto(input.LastCoordinate))
+		output.SetLastLocation(locationToProto(input.LastCoordinate))
 	}
 	return &output
 }
@@ -74,8 +74,8 @@ func fuelTypeToProto(input ttoapi.ExternalVehicleParamsFuelType) trusttrackv1.Ve
 	}
 }
 
-func coordinateToProto(input *ttoapi.ExternalLastCoordinate) *trusttrackv1.Coordinate {
-	var output trusttrackv1.Coordinate
+func locationToProto(input *ttoapi.ExternalLastCoordinate) *trusttrackv1.Location {
+	var output trusttrackv1.Location
 	if input.Latitude != nil {
 		output.SetLatitude(*input.Latitude)
 	}

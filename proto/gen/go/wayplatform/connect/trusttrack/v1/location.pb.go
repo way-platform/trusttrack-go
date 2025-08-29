@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        (unknown)
-// source: wayplatform/connect/trusttrack/v1/coordinate.proto
+// source: wayplatform/connect/trusttrack/v1/location.proto
 
 package trusttrackv1
 
@@ -21,8 +21,8 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// A coordinate.
-type Coordinate struct {
+// A location.
+type Location struct {
 	state                       protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_SatellitesCount  int32                  `protobuf:"varint,3,opt,name=satellites_count,json=satellitesCount"`
 	xxx_hidden_Latitude         float64                `protobuf:"fixed64,1,opt,name=latitude"`
@@ -39,21 +39,21 @@ type Coordinate struct {
 	sizeCache                   protoimpl.SizeCache
 }
 
-func (x *Coordinate) Reset() {
-	*x = Coordinate{}
-	mi := &file_wayplatform_connect_trusttrack_v1_coordinate_proto_msgTypes[0]
+func (x *Location) Reset() {
+	*x = Location{}
+	mi := &file_wayplatform_connect_trusttrack_v1_location_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Coordinate) String() string {
+func (x *Location) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Coordinate) ProtoMessage() {}
+func (*Location) ProtoMessage() {}
 
-func (x *Coordinate) ProtoReflect() protoreflect.Message {
-	mi := &file_wayplatform_connect_trusttrack_v1_coordinate_proto_msgTypes[0]
+func (x *Location) ProtoReflect() protoreflect.Message {
+	mi := &file_wayplatform_connect_trusttrack_v1_location_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -64,217 +64,217 @@ func (x *Coordinate) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *Coordinate) GetSatellitesCount() int32 {
+func (x *Location) GetSatellitesCount() int32 {
 	if x != nil {
 		return x.xxx_hidden_SatellitesCount
 	}
 	return 0
 }
 
-func (x *Coordinate) GetLatitude() float64 {
+func (x *Location) GetLatitude() float64 {
 	if x != nil {
 		return x.xxx_hidden_Latitude
 	}
 	return 0
 }
 
-func (x *Coordinate) GetLongitude() float64 {
+func (x *Location) GetLongitude() float64 {
 	if x != nil {
 		return x.xxx_hidden_Longitude
 	}
 	return 0
 }
 
-func (x *Coordinate) GetAltitudeM() float64 {
+func (x *Location) GetAltitudeM() float64 {
 	if x != nil {
 		return x.xxx_hidden_AltitudeM
 	}
 	return 0
 }
 
-func (x *Coordinate) GetSpeedKmh() float64 {
+func (x *Location) GetSpeedKmh() float64 {
 	if x != nil {
 		return x.xxx_hidden_SpeedKmh
 	}
 	return 0
 }
 
-func (x *Coordinate) GetDirectionDeg() float64 {
+func (x *Location) GetDirectionDeg() float64 {
 	if x != nil {
 		return x.xxx_hidden_DirectionDeg
 	}
 	return 0
 }
 
-func (x *Coordinate) GetTime() *timestamppb.Timestamp {
+func (x *Location) GetTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.xxx_hidden_Time
 	}
 	return nil
 }
 
-func (x *Coordinate) GetLastValidGpsTime() *timestamppb.Timestamp {
+func (x *Location) GetLastValidGpsTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.xxx_hidden_LastValidGpsTime
 	}
 	return nil
 }
 
-func (x *Coordinate) GetServerTime() *timestamppb.Timestamp {
+func (x *Location) GetServerTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.xxx_hidden_ServerTime
 	}
 	return nil
 }
 
-func (x *Coordinate) SetSatellitesCount(v int32) {
+func (x *Location) SetSatellitesCount(v int32) {
 	x.xxx_hidden_SatellitesCount = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 9)
 }
 
-func (x *Coordinate) SetLatitude(v float64) {
+func (x *Location) SetLatitude(v float64) {
 	x.xxx_hidden_Latitude = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 9)
 }
 
-func (x *Coordinate) SetLongitude(v float64) {
+func (x *Location) SetLongitude(v float64) {
 	x.xxx_hidden_Longitude = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 9)
 }
 
-func (x *Coordinate) SetAltitudeM(v float64) {
+func (x *Location) SetAltitudeM(v float64) {
 	x.xxx_hidden_AltitudeM = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 9)
 }
 
-func (x *Coordinate) SetSpeedKmh(v float64) {
+func (x *Location) SetSpeedKmh(v float64) {
 	x.xxx_hidden_SpeedKmh = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 9)
 }
 
-func (x *Coordinate) SetDirectionDeg(v float64) {
+func (x *Location) SetDirectionDeg(v float64) {
 	x.xxx_hidden_DirectionDeg = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 9)
 }
 
-func (x *Coordinate) SetTime(v *timestamppb.Timestamp) {
+func (x *Location) SetTime(v *timestamppb.Timestamp) {
 	x.xxx_hidden_Time = v
 }
 
-func (x *Coordinate) SetLastValidGpsTime(v *timestamppb.Timestamp) {
+func (x *Location) SetLastValidGpsTime(v *timestamppb.Timestamp) {
 	x.xxx_hidden_LastValidGpsTime = v
 }
 
-func (x *Coordinate) SetServerTime(v *timestamppb.Timestamp) {
+func (x *Location) SetServerTime(v *timestamppb.Timestamp) {
 	x.xxx_hidden_ServerTime = v
 }
 
-func (x *Coordinate) HasSatellitesCount() bool {
+func (x *Location) HasSatellitesCount() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *Coordinate) HasLatitude() bool {
+func (x *Location) HasLatitude() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *Coordinate) HasLongitude() bool {
+func (x *Location) HasLongitude() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
 }
 
-func (x *Coordinate) HasAltitudeM() bool {
+func (x *Location) HasAltitudeM() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
 }
 
-func (x *Coordinate) HasSpeedKmh() bool {
+func (x *Location) HasSpeedKmh() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
 }
 
-func (x *Coordinate) HasDirectionDeg() bool {
+func (x *Location) HasDirectionDeg() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
 }
 
-func (x *Coordinate) HasTime() bool {
+func (x *Location) HasTime() bool {
 	if x == nil {
 		return false
 	}
 	return x.xxx_hidden_Time != nil
 }
 
-func (x *Coordinate) HasLastValidGpsTime() bool {
+func (x *Location) HasLastValidGpsTime() bool {
 	if x == nil {
 		return false
 	}
 	return x.xxx_hidden_LastValidGpsTime != nil
 }
 
-func (x *Coordinate) HasServerTime() bool {
+func (x *Location) HasServerTime() bool {
 	if x == nil {
 		return false
 	}
 	return x.xxx_hidden_ServerTime != nil
 }
 
-func (x *Coordinate) ClearSatellitesCount() {
+func (x *Location) ClearSatellitesCount() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_SatellitesCount = 0
 }
 
-func (x *Coordinate) ClearLatitude() {
+func (x *Location) ClearLatitude() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_Latitude = 0
 }
 
-func (x *Coordinate) ClearLongitude() {
+func (x *Location) ClearLongitude() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
 	x.xxx_hidden_Longitude = 0
 }
 
-func (x *Coordinate) ClearAltitudeM() {
+func (x *Location) ClearAltitudeM() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
 	x.xxx_hidden_AltitudeM = 0
 }
 
-func (x *Coordinate) ClearSpeedKmh() {
+func (x *Location) ClearSpeedKmh() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
 	x.xxx_hidden_SpeedKmh = 0
 }
 
-func (x *Coordinate) ClearDirectionDeg() {
+func (x *Location) ClearDirectionDeg() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
 	x.xxx_hidden_DirectionDeg = 0
 }
 
-func (x *Coordinate) ClearTime() {
+func (x *Location) ClearTime() {
 	x.xxx_hidden_Time = nil
 }
 
-func (x *Coordinate) ClearLastValidGpsTime() {
+func (x *Location) ClearLastValidGpsTime() {
 	x.xxx_hidden_LastValidGpsTime = nil
 }
 
-func (x *Coordinate) ClearServerTime() {
+func (x *Location) ClearServerTime() {
 	x.xxx_hidden_ServerTime = nil
 }
 
-type Coordinate_builder struct {
+type Location_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	// The number of satellites used to calculate the coordinate.
@@ -297,8 +297,8 @@ type Coordinate_builder struct {
 	ServerTime *timestamppb.Timestamp
 }
 
-func (b0 Coordinate_builder) Build() *Coordinate {
-	m0 := &Coordinate{}
+func (b0 Location_builder) Build() *Location {
+	m0 := &Location{}
 	b, x := &b0, m0
 	_, _ = b, x
 	if b.SatellitesCount != nil {
@@ -331,13 +331,12 @@ func (b0 Coordinate_builder) Build() *Coordinate {
 	return m0
 }
 
-var File_wayplatform_connect_trusttrack_v1_coordinate_proto protoreflect.FileDescriptor
+var File_wayplatform_connect_trusttrack_v1_location_proto protoreflect.FileDescriptor
 
-const file_wayplatform_connect_trusttrack_v1_coordinate_proto_rawDesc = "" +
+const file_wayplatform_connect_trusttrack_v1_location_proto_rawDesc = "" +
 	"\n" +
-	"2wayplatform/connect/trusttrack/v1/coordinate.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x8a\x03\n" +
-	"\n" +
-	"Coordinate\x12)\n" +
+	"0wayplatform/connect/trusttrack/v1/location.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x88\x03\n" +
+	"\bLocation\x12)\n" +
 	"\x10satellites_count\x18\x03 \x01(\x05R\x0fsatellitesCount\x12\x1a\n" +
 	"\blatitude\x18\x01 \x01(\x01R\blatitude\x12\x1c\n" +
 	"\tlongitude\x18\x02 \x01(\x01R\tlongitude\x12\x1d\n" +
@@ -348,18 +347,18 @@ const file_wayplatform_connect_trusttrack_v1_coordinate_proto_rawDesc = "" +
 	"\x04time\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12I\n" +
 	"\x13last_valid_gps_time\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\x10lastValidGpsTime\x12;\n" +
 	"\vserver_time\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\n" +
-	"serverTimeB\xc2\x02\n" +
-	"%com.wayplatform.connect.trusttrack.v1B\x0fCoordinateProtoP\x01Zagithub.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1;trusttrackv1\xa2\x02\x03WCT\xaa\x02!Wayplatform.Connect.Trusttrack.V1\xca\x02!Wayplatform\\Connect\\Trusttrack\\V1\xe2\x02-Wayplatform\\Connect\\Trusttrack\\V1\\GPBMetadata\xea\x02$Wayplatform::Connect::Trusttrack::V1b\beditionsp\xe8\a"
+	"serverTimeB\xc0\x02\n" +
+	"%com.wayplatform.connect.trusttrack.v1B\rLocationProtoP\x01Zagithub.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1;trusttrackv1\xa2\x02\x03WCT\xaa\x02!Wayplatform.Connect.Trusttrack.V1\xca\x02!Wayplatform\\Connect\\Trusttrack\\V1\xe2\x02-Wayplatform\\Connect\\Trusttrack\\V1\\GPBMetadata\xea\x02$Wayplatform::Connect::Trusttrack::V1b\beditionsp\xe8\a"
 
-var file_wayplatform_connect_trusttrack_v1_coordinate_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_wayplatform_connect_trusttrack_v1_coordinate_proto_goTypes = []any{
-	(*Coordinate)(nil),            // 0: wayplatform.connect.trusttrack.v1.Coordinate
+var file_wayplatform_connect_trusttrack_v1_location_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_wayplatform_connect_trusttrack_v1_location_proto_goTypes = []any{
+	(*Location)(nil),              // 0: wayplatform.connect.trusttrack.v1.Location
 	(*timestamppb.Timestamp)(nil), // 1: google.protobuf.Timestamp
 }
-var file_wayplatform_connect_trusttrack_v1_coordinate_proto_depIdxs = []int32{
-	1, // 0: wayplatform.connect.trusttrack.v1.Coordinate.time:type_name -> google.protobuf.Timestamp
-	1, // 1: wayplatform.connect.trusttrack.v1.Coordinate.last_valid_gps_time:type_name -> google.protobuf.Timestamp
-	1, // 2: wayplatform.connect.trusttrack.v1.Coordinate.server_time:type_name -> google.protobuf.Timestamp
+var file_wayplatform_connect_trusttrack_v1_location_proto_depIdxs = []int32{
+	1, // 0: wayplatform.connect.trusttrack.v1.Location.time:type_name -> google.protobuf.Timestamp
+	1, // 1: wayplatform.connect.trusttrack.v1.Location.last_valid_gps_time:type_name -> google.protobuf.Timestamp
+	1, // 2: wayplatform.connect.trusttrack.v1.Location.server_time:type_name -> google.protobuf.Timestamp
 	3, // [3:3] is the sub-list for method output_type
 	3, // [3:3] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
@@ -367,26 +366,26 @@ var file_wayplatform_connect_trusttrack_v1_coordinate_proto_depIdxs = []int32{
 	0, // [0:3] is the sub-list for field type_name
 }
 
-func init() { file_wayplatform_connect_trusttrack_v1_coordinate_proto_init() }
-func file_wayplatform_connect_trusttrack_v1_coordinate_proto_init() {
-	if File_wayplatform_connect_trusttrack_v1_coordinate_proto != nil {
+func init() { file_wayplatform_connect_trusttrack_v1_location_proto_init() }
+func file_wayplatform_connect_trusttrack_v1_location_proto_init() {
+	if File_wayplatform_connect_trusttrack_v1_location_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_wayplatform_connect_trusttrack_v1_coordinate_proto_rawDesc), len(file_wayplatform_connect_trusttrack_v1_coordinate_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_wayplatform_connect_trusttrack_v1_location_proto_rawDesc), len(file_wayplatform_connect_trusttrack_v1_location_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_wayplatform_connect_trusttrack_v1_coordinate_proto_goTypes,
-		DependencyIndexes: file_wayplatform_connect_trusttrack_v1_coordinate_proto_depIdxs,
-		MessageInfos:      file_wayplatform_connect_trusttrack_v1_coordinate_proto_msgTypes,
+		GoTypes:           file_wayplatform_connect_trusttrack_v1_location_proto_goTypes,
+		DependencyIndexes: file_wayplatform_connect_trusttrack_v1_location_proto_depIdxs,
+		MessageInfos:      file_wayplatform_connect_trusttrack_v1_location_proto_msgTypes,
 	}.Build()
-	File_wayplatform_connect_trusttrack_v1_coordinate_proto = out.File
-	file_wayplatform_connect_trusttrack_v1_coordinate_proto_goTypes = nil
-	file_wayplatform_connect_trusttrack_v1_coordinate_proto_depIdxs = nil
+	File_wayplatform_connect_trusttrack_v1_location_proto = out.File
+	file_wayplatform_connect_trusttrack_v1_location_proto_goTypes = nil
+	file_wayplatform_connect_trusttrack_v1_location_proto_depIdxs = nil
 }

@@ -12,8 +12,8 @@ import (
 	trusttrackv1 "github.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1"
 )
 
-// ListObjectsLastCoordinateRequest is the request for the [Client.ListObjectsLastCoordinate] method.
-type ListObjectsLastCoordinateRequest struct {
+// ListObjectsLastLocationRequest is the request for the [Client.ListObjectsLastLocation] method.
+type ListObjectsLastLocationRequest struct {
 	// The limit of the number of objects to return.
 	// Default: 100.
 	// Maximum: 1000.
@@ -23,7 +23,7 @@ type ListObjectsLastCoordinateRequest struct {
 }
 
 // Query returns the query parameters for the request.
-func (r *ListObjectsLastCoordinateRequest) Query() url.Values {
+func (r *ListObjectsLastLocationRequest) Query() url.Values {
 	q := url.Values{}
 	q.Set("version", "2")
 	if r.Limit > 0 {
@@ -35,19 +35,19 @@ func (r *ListObjectsLastCoordinateRequest) Query() url.Values {
 	return q
 }
 
-// ListObjectsLastCoordinateResponse is the response for the [Client.ListObjectsLastCoordinate] method.
-type ListObjectsLastCoordinateResponse struct {
-	// The objects with their last coordinate.
+// ListObjectsLastLocationResponse is the response for the [Client.ListObjectsLastLocation] method.
+type ListObjectsLastLocationResponse struct {
+	// The objects with their last location.
 	Objects []*trusttrackv1.Object `json:"objects"`
 	// The continuation token to use to get the next page of results.
 	ContinuationToken string `json:"continuationToken"`
 }
 
-// ListObjectsLastCoordinate lists all objects with their last coordinate.
-func (c *Client) ListObjectsLastCoordinate(
+// ListObjectsLastLocation lists all objects with their last location.
+func (c *Client) ListObjectsLastLocation(
 	ctx context.Context,
-	request *ListObjectsLastCoordinateRequest,
-) (*ListObjectsLastCoordinateResponse, error) {
+	request *ListObjectsLastLocationRequest,
+) (*ListObjectsLastLocationResponse, error) {
 	httpResponse, err := c.doRequest(
 		ctx,
 		http.MethodGet,
@@ -71,7 +71,7 @@ func (c *Client) ListObjectsLastCoordinate(
 	if err := json.Unmarshal(responseData, &responseBody); err != nil {
 		return nil, err
 	}
-	response := ListObjectsLastCoordinateResponse{
+	response := ListObjectsLastLocationResponse{
 		Objects: make([]*trusttrackv1.Object, 0, len(responseBody.Results)),
 	}
 	for _, object := range responseBody.Results {
