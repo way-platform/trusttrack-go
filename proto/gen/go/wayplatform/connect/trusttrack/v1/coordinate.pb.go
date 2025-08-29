@@ -27,9 +27,9 @@ type Coordinate struct {
 	xxx_hidden_SatellitesCount  int32                  `protobuf:"varint,3,opt,name=satellites_count,json=satellitesCount"`
 	xxx_hidden_Latitude         float64                `protobuf:"fixed64,1,opt,name=latitude"`
 	xxx_hidden_Longitude        float64                `protobuf:"fixed64,2,opt,name=longitude"`
-	xxx_hidden_Altitude         float64                `protobuf:"fixed64,4,opt,name=altitude"`
-	xxx_hidden_Speed            float64                `protobuf:"fixed64,5,opt,name=speed"`
-	xxx_hidden_Direction        float64                `protobuf:"fixed64,6,opt,name=direction"`
+	xxx_hidden_AltitudeM        float64                `protobuf:"fixed64,4,opt,name=altitude_m,json=altitudeM"`
+	xxx_hidden_SpeedKmh         float64                `protobuf:"fixed64,5,opt,name=speed_kmh,json=speedKmh"`
+	xxx_hidden_DirectionDeg     float64                `protobuf:"fixed64,6,opt,name=direction_deg,json=directionDeg"`
 	xxx_hidden_Time             *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=time"`
 	xxx_hidden_LastValidGpsTime *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=last_valid_gps_time,json=lastValidGpsTime"`
 	xxx_hidden_ServerTime       *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=server_time,json=serverTime"`
@@ -85,23 +85,23 @@ func (x *Coordinate) GetLongitude() float64 {
 	return 0
 }
 
-func (x *Coordinate) GetAltitude() float64 {
+func (x *Coordinate) GetAltitudeM() float64 {
 	if x != nil {
-		return x.xxx_hidden_Altitude
+		return x.xxx_hidden_AltitudeM
 	}
 	return 0
 }
 
-func (x *Coordinate) GetSpeed() float64 {
+func (x *Coordinate) GetSpeedKmh() float64 {
 	if x != nil {
-		return x.xxx_hidden_Speed
+		return x.xxx_hidden_SpeedKmh
 	}
 	return 0
 }
 
-func (x *Coordinate) GetDirection() float64 {
+func (x *Coordinate) GetDirectionDeg() float64 {
 	if x != nil {
-		return x.xxx_hidden_Direction
+		return x.xxx_hidden_DirectionDeg
 	}
 	return 0
 }
@@ -142,18 +142,18 @@ func (x *Coordinate) SetLongitude(v float64) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 9)
 }
 
-func (x *Coordinate) SetAltitude(v float64) {
-	x.xxx_hidden_Altitude = v
+func (x *Coordinate) SetAltitudeM(v float64) {
+	x.xxx_hidden_AltitudeM = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 9)
 }
 
-func (x *Coordinate) SetSpeed(v float64) {
-	x.xxx_hidden_Speed = v
+func (x *Coordinate) SetSpeedKmh(v float64) {
+	x.xxx_hidden_SpeedKmh = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 9)
 }
 
-func (x *Coordinate) SetDirection(v float64) {
-	x.xxx_hidden_Direction = v
+func (x *Coordinate) SetDirectionDeg(v float64) {
+	x.xxx_hidden_DirectionDeg = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 9)
 }
 
@@ -190,21 +190,21 @@ func (x *Coordinate) HasLongitude() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
 }
 
-func (x *Coordinate) HasAltitude() bool {
+func (x *Coordinate) HasAltitudeM() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
 }
 
-func (x *Coordinate) HasSpeed() bool {
+func (x *Coordinate) HasSpeedKmh() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
 }
 
-func (x *Coordinate) HasDirection() bool {
+func (x *Coordinate) HasDirectionDeg() bool {
 	if x == nil {
 		return false
 	}
@@ -247,19 +247,19 @@ func (x *Coordinate) ClearLongitude() {
 	x.xxx_hidden_Longitude = 0
 }
 
-func (x *Coordinate) ClearAltitude() {
+func (x *Coordinate) ClearAltitudeM() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
-	x.xxx_hidden_Altitude = 0
+	x.xxx_hidden_AltitudeM = 0
 }
 
-func (x *Coordinate) ClearSpeed() {
+func (x *Coordinate) ClearSpeedKmh() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
-	x.xxx_hidden_Speed = 0
+	x.xxx_hidden_SpeedKmh = 0
 }
 
-func (x *Coordinate) ClearDirection() {
+func (x *Coordinate) ClearDirectionDeg() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
-	x.xxx_hidden_Direction = 0
+	x.xxx_hidden_DirectionDeg = 0
 }
 
 func (x *Coordinate) ClearTime() {
@@ -283,12 +283,12 @@ type Coordinate_builder struct {
 	Latitude *float64
 	// The longitude of the coordinate.
 	Longitude *float64
-	// The altitude of the coordinate.
-	Altitude *float64
-	// The speed of the coordinate.
-	Speed *float64
-	// The direction of the coordinate.
-	Direction *float64
+	// The altitude of the coordinate in meters.
+	AltitudeM *float64
+	// The speed of the coordinate in kilometers per hour.
+	SpeedKmh *float64
+	// The direction of the coordinate in degrees.
+	DirectionDeg *float64
 	// The datetime of the coordinate.
 	Time *timestamppb.Timestamp
 	// The last valid GPS datetime of the coordinate.
@@ -313,17 +313,17 @@ func (b0 Coordinate_builder) Build() *Coordinate {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 9)
 		x.xxx_hidden_Longitude = *b.Longitude
 	}
-	if b.Altitude != nil {
+	if b.AltitudeM != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 9)
-		x.xxx_hidden_Altitude = *b.Altitude
+		x.xxx_hidden_AltitudeM = *b.AltitudeM
 	}
-	if b.Speed != nil {
+	if b.SpeedKmh != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 9)
-		x.xxx_hidden_Speed = *b.Speed
+		x.xxx_hidden_SpeedKmh = *b.SpeedKmh
 	}
-	if b.Direction != nil {
+	if b.DirectionDeg != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 9)
-		x.xxx_hidden_Direction = *b.Direction
+		x.xxx_hidden_DirectionDeg = *b.DirectionDeg
 	}
 	x.xxx_hidden_Time = b.Time
 	x.xxx_hidden_LastValidGpsTime = b.LastValidGpsTime
@@ -335,15 +335,16 @@ var File_wayplatform_connect_trusttrack_v1_coordinate_proto protoreflect.FileDes
 
 const file_wayplatform_connect_trusttrack_v1_coordinate_proto_rawDesc = "" +
 	"\n" +
-	"2wayplatform/connect/trusttrack/v1/coordinate.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf9\x02\n" +
+	"2wayplatform/connect/trusttrack/v1/coordinate.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x8a\x03\n" +
 	"\n" +
 	"Coordinate\x12)\n" +
 	"\x10satellites_count\x18\x03 \x01(\x05R\x0fsatellitesCount\x12\x1a\n" +
 	"\blatitude\x18\x01 \x01(\x01R\blatitude\x12\x1c\n" +
-	"\tlongitude\x18\x02 \x01(\x01R\tlongitude\x12\x1a\n" +
-	"\baltitude\x18\x04 \x01(\x01R\baltitude\x12\x14\n" +
-	"\x05speed\x18\x05 \x01(\x01R\x05speed\x12\x1c\n" +
-	"\tdirection\x18\x06 \x01(\x01R\tdirection\x12.\n" +
+	"\tlongitude\x18\x02 \x01(\x01R\tlongitude\x12\x1d\n" +
+	"\n" +
+	"altitude_m\x18\x04 \x01(\x01R\taltitudeM\x12\x1b\n" +
+	"\tspeed_kmh\x18\x05 \x01(\x01R\bspeedKmh\x12#\n" +
+	"\rdirection_deg\x18\x06 \x01(\x01R\fdirectionDeg\x12.\n" +
 	"\x04time\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12I\n" +
 	"\x13last_valid_gps_time\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\x10lastValidGpsTime\x12;\n" +
 	"\vserver_time\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\n" +

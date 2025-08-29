@@ -1,0 +1,30 @@
+edition = "2023";
+
+package wayplatform.connect.trusttrack.v1;
+
+// Address information.
+message Address {
+  // The country name.
+  string country = 1;
+
+  // The country code.
+  string country_code = 2;
+
+  // The county name.
+  string county = 3;
+
+  // The house number.
+  string house_number = 4;
+
+  // The locality name.
+  string locality = 5;
+
+  // The region name.
+  string region = 6;
+
+  // The street name.
+  string street = 7;
+
+  // The ZIP/postal code.
+  string zip = 8;
+}

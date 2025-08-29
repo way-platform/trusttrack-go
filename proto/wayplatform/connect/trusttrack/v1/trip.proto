@@ -1,0 +1,60 @@
+edition = "2023";
+
+package wayplatform.connect.trusttrack.v1;
+
+import "google/protobuf/timestamp.proto";
+import "wayplatform/connect/trusttrack/v1/address.proto";
+
+// A trip made by an object.
+message Trip {
+  // The ID of the object that made this trip.
+  string object_id = 1;
+
+  // The type of trip.
+  Type type = 2;
+
+  // The unknown type of trip.
+  // This field is used when the type is TYPE_UNKNOWN.
+  string unknown_type = 3;
+
+  // Represents a trip type.
+  enum Type {
+    TYPE_UNSPECIFIED = 0;
+    TYPE_UNKNOWN = 1;
+    TYPE_NOT_AVAILABLE = 2;
+    NONE = 3;
+    PRIVATE = 4;
+    BUSINESS = 5;
+    WORK = 6;
+  }
+
+  // The IDs of drivers associated with this trip.
+  repeated string driver_ids = 4;
+
+  // The duration of the trip in seconds.
+  double duration_s = 5;
+
+  // The total distance covered in this trip in kilometers.
+  double mileage_km = 6;
+
+  // Trip start metrics.
+  Metrics start = 7;
+
+  // Trip end metrics.
+  Metrics end = 8;
+
+  // Trip metrics for start or end of a trip.
+  message Metrics {
+    // The datetime of the trip metric.
+    google.protobuf.Timestamp time = 1;
+
+    // The latitude coordinate.
+    double latitude = 2;
+
+    // The longitude coordinate.
+    double longitude = 3;
+
+    // The address information.
+    Address address = 4;
+  }
+}

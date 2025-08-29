@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"image/color"
 	"os"
+	"time"
 
 	"github.com/charmbracelet/fang"
 	"github.com/charmbracelet/lipgloss/v2"
@@ -53,6 +54,7 @@ func newRootCommand() *cobra.Command {
 	})
 	cmd.AddCommand(newListObjectsCommand())
 	cmd.AddCommand(newListObjectsLastCoordinateCommand())
+	cmd.AddCommand(newListTripsCommand())
 	cmd.AddGroup(&cobra.Group{
 		ID:    "object-groups",
 		Title: "Object Groups",
@@ -177,6 +179,44 @@ func newGetObjectGroupCommand() *cobra.Command {
 			return err
 		}
 		fmt.Println(protojson.Format(response.ObjectGroup))
+		return nil
+	}
+	return cmd
+}
+
+func newListTripsCommand() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:     "trips [object-id]",
+		Short:   "List trips for an object",
+		GroupID: "objects",
+		Args:    cobra.ExactArgs(1),
+	}
+	fromTime := cmd.Flags().Time("from", time.Now().Add(-24*time.Hour), []string{time.RFC3339}, "From time (RFC3339 format)")
+	toTime := cmd.Flags().Time("to", time.Time{}, []string{time.RFC3339}, "To time (RFC3339 format, optional)")
+	cmd.RunE = func(cmd *cobra.Command, args []string) error {
+		client, err := auth.NewClient()
+		if err != nil {
+			return err
+		}
+		request := trusttrack.ListTripsRequest{
+			ObjectID: args[0],
+			FromTime: *fromTime,
+			ToTime:   *toTime,
+			Limit:    1000,
+		}
+		for {
+			response, err := client.ListTrips(context.Background(), &request)
+			if err != nil {
+				return err
+			}
+			for _, trip := range response.Trips {
+				fmt.Println(protojson.Format(trip))
+			}
+			if response.ContinuationToken == "" {
+				break
+			}
+			request.ContinuationToken = response.ContinuationToken
+		}
 		return nil
 	}
 	return cmd
