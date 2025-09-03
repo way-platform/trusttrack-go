@@ -28,3 +28,8 @@ actions:
   - target: $..[?(@.format == "email")].format
     description: "Skip email format"
     remove: true
+
+  - target: $.components.schemas.DeviceInputs.properties.canbus_hours_to_service
+    description: "Fix canbus_hours_to_service type from number to string (API returns string)"
+    update:
+      type: string

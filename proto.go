@@ -1,6 +1,8 @@
 package trusttrack
 
 import (
+	"strconv"
+
 	"github.com/way-platform/trusttrack-go/internal/oapi/ttoapi"
 	trusttrackv1 "github.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1"
 	"google.golang.org/protobuf/types/known/timestamppb"
@@ -663,6 +665,12 @@ func deviceInputsToProto(input *ttoapi.DeviceInputs) *trusttrackv1.DeviceInputs 
 	}
 	if input.EcodriveFuelUsedInHighestGear != nil {
 		output.SetEcodriveFuelUsedInHighestGear(float64(*input.EcodriveFuelUsedInHighestGear))
+	}
+	if input.CanbusHoursToService != nil {
+		// Parse string to float64 for canbus_hours_to_service
+		if hoursToService, err := strconv.ParseFloat(*input.CanbusHoursToService, 64); err == nil {
+			output.SetCanbusHoursToService(hoursToService)
+		}
 	}
 	// TODO: Split into separate functions and parse all fields.
 	return &output

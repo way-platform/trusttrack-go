@@ -1649,7 +1649,7 @@ type DeviceInputs struct {
 	CanbusHandlingInformation *DeviceInputsCanbusHandlingInformation `json:"canbus_handling_information,omitempty"`
 
 	// CanbusHoursToService CAN hours to service (units: h)
-	CanbusHoursToService *float32 `json:"canbus_hours_to_service,omitempty"`
+	CanbusHoursToService *string `json:"canbus_hours_to_service,omitempty"`
 
 	// CanbusHrfc CAN high resolution engine total fuel used (units: l)
 	CanbusHrfc *float32 `json:"canbus_hrfc,omitempty"`

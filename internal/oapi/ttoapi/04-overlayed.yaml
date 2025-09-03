@@ -717,7 +717,7 @@ components:
                         - OPEN
                     description: 'LCV trunk Possible values: CLOSE OPEN'
                 canbus_hours_to_service:
-                    type: number
+                    type: string
                     description: 'CAN hours to service (units: h)'
                 can_interface_configuration_can1_interface:
                     type: string
