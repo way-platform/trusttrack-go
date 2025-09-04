@@ -34,37 +34,37 @@ message DeviceInputs {
   double z_axis_tilt_angle = 9;
 
   // CAN high resolution total vehicle distance (units: km)
-  double canbus_distance = 10;
+  double canbus_odometer_km = 10;
 
   // CAN engine coolant temperature (units: °C)
-  double canbus_engine_coolant_temperature = 11;
+  double canbus_engine_coolant_temperature_c = 11;
 
   // CAN fuel rate (units: l/h)
-  double canbus_fuel_rate = 12;
+  double canbus_fuel_rate_l_per_h = 12;
 
   // CAN engine speed (units: RPM)
   double engine_rpm = 13;
 
   // CAN engine hours (units: h)
-  double engine_hours = 14;
+  double engine_hours_lifetime_h = 14;
 
   // CAN service distance (units: km)
-  double service_dist = 15;
+  double service_distance_remaining_km = 15;
 
   // CAN accelerator pedal position (units: %)
-  double pedal_pos = 16;
+  double pedal_position_percent = 16;
 
   // CAN fuel level (units: %)
-  double fuel_level_can = 17;
+  double fuel_level_can_percent = 17;
 
   // CAN engine total fuel used (units: l)
-  double fuel_used = 18;
+  double fuel_used_lifetime_l = 18;
 
   // CAN wheel based speed (units: km/h)
-  double speed_wheel = 19;
+  double wheel_speed_kmh = 19;
 
   // CAN tachograph vehicle speed (units: km/h)
-  double speed_tacho = 20;
+  double tacho_speed_kmh = 20;
 
   // CAN tachograph performance Possible values: NORMAL_PERFORMANCE PERFORMANCE_ANALYSIS
   string tacho_status = 21;
@@ -280,7 +280,7 @@ message DeviceInputs {
   double operator = 91;
 
   // GPS speed (units: km/h)
-  double gps_speed = 92;
+  double gps_speed_kmh = 92;
 
   // GSM/UMTS signal strength
   double gsm_umts_signal_strength = 93;
@@ -304,7 +304,7 @@ message DeviceInputs {
   string gprs_status = 99;
 
   // GPS altitude (units: m)
-  double gps_altitude = 100;
+  double gps_altitude_m = 100;
 
   // DOUT1 status Possible values: ACTIVE INACTIVE
   string dout1_status = 101;
@@ -418,7 +418,7 @@ message DeviceInputs {
   double dxp_charger_status = 137;
 
   // Eco-Drive maximum speed (units: km/h)
-  double ecodrive_maximum_speed = 138;
+  double ecodrive_maximum_speed_kmh = 138;
 
   // Eco-Drive overspeeding timer (units: s)
   double ecodrive_overspeed = 139;
@@ -808,16 +808,16 @@ message DeviceInputs {
   double analog_input_2 = 267;
 
   // DIN1 hour counter (units: s)
-  double din1_working_time_diff = 268;
+  double din1_working_time_diff_s = 268;
 
   // DIN2 hour counter (units: s)
-  double din2_working_time_diff = 269;
+  double din2_working_time_diff_s = 269;
 
   // DIN3 hour counter (units: s)
-  double din3_working_time_diff = 270;
+  double din3_working_time_diff_s = 270;
 
   // DIN4 hour counter (units: s)
-  double din4_working_time_diff = 271;
+  double din4_working_time_diff_s = 271;
 
   // OT digital input 1
   bool ot_digital_input_1 = 272;
@@ -931,10 +931,10 @@ message DeviceInputs {
   bool mobileye_hi_beam_available = 308;
 
   // Mobileye speed available
-  bool mobileye_speed_available = 309;
+  bool mobileye_speed_kmh_available = 309;
 
   // Mobileye speed (units: km/h)
-  double mobileye_speed = 310;
+  double mobileye_speed_kmh = 310;
 
   // Mobileye tamper alert Possible values: OFF ON
   string mobileye_tamper_alert = 311;
@@ -997,7 +997,7 @@ message DeviceInputs {
   double obd_kline_rpm = 330;
 
   // OBD vehicle speed (units: km/h)
-  double obd_kline_vehicle_speed_sensor = 331;
+  double obd_kline_vehicle_speed_kmh = 331;
 
   // OBD engine coolant temperature (units: °C)
   double obd_kline_engine_coolant_temperature = 332;
@@ -1048,7 +1048,7 @@ message DeviceInputs {
   double spr_spreader_mode = 347;
 
   // Spreader adjustment of simulation driving speed (units: km/h)
-  double spr_spreader_adjustment_of_simulation_driving_speed = 348;
+  double spr_spreader_adjustment_of_simulation_driving_speed_kmh = 348;
 
   // Spreader spreading width (units: m)
   double spr_spreader_spreading_width = 349;
@@ -1086,71 +1086,71 @@ message DeviceInputs {
   // Driver 2 state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
   string driver_2_state = 360;
 
-  // TCO first driver state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
-  string tco_first_driver_state = 361;
+  // Tachograph first driver state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+  string tacho_first_driver_state = 361;
 
-  // TCO second driver state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
-  string tco_second_driver_state = 362;
+  // Tachograph second driver state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+  string tacho_second_driver_state = 362;
 
-  // TCO first driver card Possible values: NOT_INSERTED INSERTED
-  string tco_first_driver_card = 363;
+  // Tachograph first driver card Possible values: NOT_INSERTED INSERTED
+  string tacho_first_driver_card = 363;
 
-  // TCO second driver card Possible values: NOT_INSERTED INSERTED
-  string tco_second_driver_card = 364;
+  // Tachograph second driver card Possible values: NOT_INSERTED INSERTED
+  string tacho_second_driver_card = 364;
 
-  // TCO distance (units: km)
-  double tco_distance = 365;
+  // Tachograph distance (units: km)
+  double tacho_odometer_km = 365;
 
-  // TCO trip distance (units: km)
-  double tco_trip = 366;
+  // Tachograph trip distance (units: km)
+  double tacho_trip_km = 366;
 
-  // TCO vehicle speed (units: km/h)
-  double tco_vehicle_speed = 367;
+  // Tachograph vehicle speed (units: km/h)
+  double tacho_vehicle_speed_kmh = 367;
 
-  // TCO engine speed (units: RPM)
-  double tco_rpm = 368;
+  // Tachograph engine speed (units: RPM)
+  double tacho_rpm = 368;
 
-  // TCO registration number
-  string tco_registration_number = 369;
+  // Tachograph registration number
+  string tacho_registration_number = 369;
 
   // Tacho card reader state NOT_AVAILABLE AVAILABLE
   string tacho_ddd_available = 370;
 
-  // TCO first driver driving time (prev. and curr. week) (units: min)
-  double tco_first_driver_driving_time_prev_and_curr_week = 371;
+  // Tachograph first driver driving time (prev. and curr. week) (units: min)
+  double tacho_first_driver_driving_time_prev_and_curr_week_minutes = 371;
 
-  // TCO second driver driving time (prev. and curr. week) (units: min)
-  double tco_second_driver_driving_time_prev_and_curr_week = 372;
+  // Tachograph second driver driving time (prev. and curr. week) (units: min)
+  double tacho_second_driver_driving_time_prev_and_curr_week_minutes = 372;
 
-  // TCO first driver duration of selected activity (units: min)
-  double tco_first_driver_duration_of_selected_activity = 373;
+  // Tachograph first driver duration of selected activity (units: min)
+  double tacho_first_driver_duration_of_selected_activity_minutes = 373;
 
-  // TCO second driver duration of selected activity (units: min)
-  double tco_second_driver_duration_of_selected_activity = 374;
+  // Tachograph second driver duration of selected activity (units: min)
+  double tacho_second_driver_duration_of_selected_activity_minutes = 374;
 
-  // TCO first driver continuous driving time (units: min)
-  double tco_first_driver_continuous_driving_time = 375;
+  // Tachograph first driver continuous driving time (units: min)
+  double tacho_first_driver_continuous_driving_time_minutes = 375;
 
-  // TCO second driver continuous driving time (units: min)
-  double tco_second_driver_continuous_driving_time = 376;
+  // Tachograph second driver continuous driving time (units: min)
+  double tacho_second_driver_continuous_driving_time_minutes = 376;
 
-  // TCO first driver accumulated break time (units: min)
-  double tco_first_driver_cumulated_break_time = 377;
+  // Tachograph first driver accumulated break time (units: min)
+  double tacho_first_driver_cumulated_break_time_minutes = 377;
 
-  // TCO second driver accumulated break time (units: min)
-  double tco_second_driver_cumulated_break_time = 378;
+  // Tachograph second driver accumulated break time (units: min)
+  double tacho_second_driver_cumulated_break_time_minutes = 378;
 
-  // TCO first driver time related states
-  double tco_first_driver_time_related_states = 379;
+  // Tachograph first driver time related states
+  double tacho_first_driver_time_related_states = 379;
 
-  // TCO second driver time related states
-  double tco_second_driver_time_related_states = 380;
+  // Tachograph second driver time related states
+  double tacho_second_driver_time_related_states = 380;
 
-  // TCO tacho time
-  google.protobuf.Timestamp tco_time = 381;
+  // Tachograph tacho time
+  google.protobuf.Timestamp tacho_time = 381;
 
-  // TCO CAN tacho Time
-  google.protobuf.Timestamp tco_can_tacho_time = 382;
+  // Tachograph CAN tacho Time
+  google.protobuf.Timestamp tacho_can_tacho_time = 382;
 
   // Temperature sensor 0 (units: °C)
   double temperature_sensor_0 = 383;
@@ -1249,10 +1249,10 @@ message DeviceInputs {
   string trailers_vehicle_pneumatic_supply_status = 414;
 
   // Trailers braking system wheel–based vehicle speed (units: km/h)
-  double trailers_braking_system_wheel_based_vehicle_speed = 415;
+  double trailers_braking_system_wheel_based_vehicle_speed_kmh = 415;
 
   // Trailers wheel speed difference main axle (units: km/h)
-  double trailers_wheel_speed_difference_main_axle = 416;
+  double trailers_wheel_speed_difference_main_axle_kmh = 416;
 
   // Trailers lateral acceleration (units: m/s^2)
   double trailers_lateral_acceleration = 417;
@@ -1300,16 +1300,16 @@ message DeviceInputs {
   double current_profile = 431;
 
   // Power supply voltage (units: V)
-  double power_supply_voltage = 432;
+  double power_supply_voltage_v = 432;
 
   // Battery voltage (units: V)
-  double battery_voltage = 433;
+  double battery_voltage_v = 433;
 
   // PCB temperature (units: °C)
-  double pcb_temperature = 434;
+  double pcb_temperature_c = 434;
 
   // Virtual odometer (units: km)
-  double virtual_odometer = 435;
+  double virtual_odometer_km = 435;
 
   // Input trigger
   double input_trigger = 436;
@@ -1318,7 +1318,7 @@ message DeviceInputs {
   string priority = 437;
 
   // Battery charge current (units: mA)
-  double battery_current = 438;
+  double battery_current_ma = 438;
 
   // Movement sensor Possible values: STILL MOVING
   string movement = 439;

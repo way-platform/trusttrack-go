@@ -2,13 +2,11 @@ edition = "2023";
 
 package wayplatform.connect.trusttrack.v1;
 
-import "google/protobuf/timestamp.proto";
-
 // Container for other system parameters
 message OtherInputs {
   // Country code numeral
   double country_code_geonames = 1;
 
   // Virtual odometer value (units: km)
-  double virtual_gps_odometer = 2;
+  double virtual_gps_odometer_km = 2;
 }

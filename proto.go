@@ -237,13 +237,13 @@ func fuelEventToProto(input *ttoapi.ExternalFuelEvent) *trusttrackv1.FuelEvent {
 		output.SetLongitude(*input.Longitude)
 	}
 	if input.FuelLevelStart != nil {
-		output.SetFuelLevelStart(float64(*input.FuelLevelStart))
+		output.SetFuelLevelStartPercent(float64(*input.FuelLevelStart))
 	}
 	if input.FuelLevelEnd != nil {
-		output.SetFuelLevelEnd(float64(*input.FuelLevelEnd))
+		output.SetFuelLevelEndPercent(float64(*input.FuelLevelEnd))
 	}
 	if input.Difference != nil {
-		output.SetDifference(float64(*input.Difference))
+		output.SetFuelLevelDifferencePercent(float64(*input.Difference))
 	}
 	if input.StartDate != nil {
 		output.SetStartTime(timestamppb.New(*input.StartDate))
@@ -387,19 +387,19 @@ func positionToProto(input *ttoapi.Position) *trusttrackv1.Position {
 func calculatedInputsToProto(input *ttoapi.CalculatedInputs) *trusttrackv1.CalculatedInputs {
 	var output trusttrackv1.CalculatedInputs
 	if input.FuelConsumption != nil {
-		output.SetFuelConsumption(float64(*input.FuelConsumption))
+		output.SetFuelConsumptionLifetimeL(float64(*input.FuelConsumption))
 	}
 	if input.FuelLevel != nil {
-		output.SetFuelLevel(float64(*input.FuelLevel))
+		output.SetFuelLevelPercent(float64(*input.FuelLevel))
 	}
 	if input.Mileage != nil {
-		output.SetMileage(float64(*input.Mileage))
+		output.SetOdometerKm(float64(*input.Mileage))
 	}
 	if input.Rpm != nil {
-		output.SetRpm(float64(*input.Rpm))
+		output.SetEngineRpm(float64(*input.Rpm))
 	}
 	if input.Temperature != nil {
-		output.SetTemperature(float64(*input.Temperature))
+		output.SetTemperatureC(float64(*input.Temperature))
 	}
 	if input.CustomInput1 != nil {
 		output.SetCustomInput_1(float64(*input.CustomInput1))
@@ -438,7 +438,7 @@ func calculatedInputsToProto(input *ttoapi.CalculatedInputs) *trusttrackv1.Calcu
 		output.SetDin4WorkingTime(float64(*input.Din4WorkingTime))
 	}
 	if input.Weight != nil {
-		output.SetWeight(float64(*input.Weight))
+		output.SetWeightKg(float64(*input.Weight))
 	}
 	return &output
 }
@@ -449,7 +449,7 @@ func otherInputsToProto(input *ttoapi.OtherInputs) *trusttrackv1.OtherInputs {
 		output.SetCountryCodeGeonames(float64(*input.CountryCodeGeonames))
 	}
 	if input.VirtualGpsOdometer != nil {
-		output.SetVirtualGpsOdometer(float64(*input.VirtualGpsOdometer))
+		output.SetVirtualGpsOdometerKm(float64(*input.VirtualGpsOdometer))
 	}
 	return &output
 }
@@ -502,10 +502,10 @@ func deviceInputsToProto(input *ttoapi.DeviceInputs) *trusttrackv1.DeviceInputs 
 		output.SetAxleCount(float64(*input.AxleCount))
 	}
 	if input.BatteryCurrent != nil {
-		output.SetBatteryCurrent(float64(*input.BatteryCurrent))
+		output.SetBatteryCurrentMa(float64(*input.BatteryCurrent))
 	}
 	if input.BatteryVoltage != nil {
-		output.SetBatteryVoltage(float64(*input.BatteryVoltage))
+		output.SetBatteryVoltageV(float64(*input.BatteryVoltage))
 	}
 	if input.CanbusBrakeSwitch != nil {
 		output.SetCanbusBrakeSwitch(string(*input.CanbusBrakeSwitch))
@@ -517,13 +517,13 @@ func deviceInputsToProto(input *ttoapi.DeviceInputs) *trusttrackv1.DeviceInputs 
 		output.SetCanbusCruiseControlState(string(*input.CanbusCruiseControlState))
 	}
 	if input.CanbusDistance != nil {
-		output.SetCanbusDistance(float64(*input.CanbusDistance))
+		output.SetCanbusOdometerKm(float64(*input.CanbusDistance))
 	}
 	if input.CanbusEngineCoolantTemperature != nil {
-		output.SetCanbusEngineCoolantTemperature(float64(*input.CanbusEngineCoolantTemperature))
+		output.SetCanbusEngineCoolantTemperatureC(float64(*input.CanbusEngineCoolantTemperature))
 	}
 	if input.CanbusFuelRate != nil {
-		output.SetCanbusFuelRate(float64(*input.CanbusFuelRate))
+		output.SetCanbusFuelRateLPerH(float64(*input.CanbusFuelRate))
 	}
 	if input.CanbusRequestSupported != nil {
 		output.SetCanbusRequestSupported(string(*input.CanbusRequestSupported))
@@ -577,7 +577,7 @@ func deviceInputsToProto(input *ttoapi.DeviceInputs) *trusttrackv1.DeviceInputs 
 		output.SetDigitalInput_4(*input.DigitalInput4)
 	}
 	if input.EngineHours != nil {
-		output.SetEngineHours(float64(*input.EngineHours))
+		output.SetEngineHoursLifetimeH(float64(*input.EngineHours))
 	}
 	if input.EngineRpm != nil {
 		output.SetEngineRpm(float64(*input.EngineRpm))
@@ -586,16 +586,16 @@ func deviceInputsToProto(input *ttoapi.DeviceInputs) *trusttrackv1.DeviceInputs 
 		output.SetFirstDriverId(*input.FirstDriverID)
 	}
 	if input.FuelLevelCan != nil {
-		output.SetFuelLevelCan(float64(*input.FuelLevelCan))
+		output.SetFuelLevelCanPercent(float64(*input.FuelLevelCan))
 	}
 	if input.FuelUsed != nil {
-		output.SetFuelUsed(float64(*input.FuelUsed))
+		output.SetFuelUsedLifetimeL(float64(*input.FuelUsed))
 	}
 	if input.GpsAltitude != nil {
-		output.SetGpsAltitude(float64(*input.GpsAltitude))
+		output.SetGpsAltitudeM(float64(*input.GpsAltitude))
 	}
 	if input.GpsSpeed != nil {
-		output.SetGpsSpeed(float64(*input.GpsSpeed))
+		output.SetGpsSpeedKmh(float64(*input.GpsSpeed))
 	}
 	if input.GsmSignalStrength != nil {
 		output.SetGsmSignalStrength(float64(*input.GsmSignalStrength))
@@ -613,31 +613,31 @@ func deviceInputsToProto(input *ttoapi.DeviceInputs) *trusttrackv1.DeviceInputs 
 		output.SetPanic(*input.Panic)
 	}
 	if input.PedalPos != nil {
-		output.SetPedalPos(float64(*input.PedalPos))
+		output.SetPedalPositionPercent(float64(*input.PedalPos))
 	}
 	if input.PowerSupplyVoltage != nil {
-		output.SetPowerSupplyVoltage(float64(*input.PowerSupplyVoltage))
+		output.SetPowerSupplyVoltageV(float64(*input.PowerSupplyVoltage))
 	}
 	if input.SecondDriverID != nil {
 		output.SetSecondDriverId(*input.SecondDriverID)
 	}
 	if input.ServiceDist != nil {
-		output.SetServiceDist(float64(*input.ServiceDist))
+		output.SetServiceDistanceRemainingKm(float64(*input.ServiceDist))
 	}
 	if input.SpeedTacho != nil {
-		output.SetSpeedTacho(float64(*input.SpeedTacho))
+		output.SetTachoSpeedKmh(float64(*input.SpeedTacho))
 	}
 	if input.SpeedWheel != nil {
-		output.SetSpeedWheel(float64(*input.SpeedWheel))
+		output.SetWheelSpeedKmh(float64(*input.SpeedWheel))
 	}
 	if input.VehicleID != nil {
 		output.SetVehicleId(*input.VehicleID)
 	}
 	if input.PcbTemperature != nil {
-		output.SetPcbTemperature(float64(*input.PcbTemperature))
+		output.SetPcbTemperatureC(float64(*input.PcbTemperature))
 	}
 	if input.VirtualOdometer != nil {
-		output.SetVirtualOdometer(float64(*input.VirtualOdometer))
+		output.SetVirtualOdometerKm(float64(*input.VirtualOdometer))
 	}
 	if input.InputTrigger != nil {
 		output.SetInputTrigger(float64(*input.InputTrigger))
@@ -649,16 +649,16 @@ func deviceInputsToProto(input *ttoapi.DeviceInputs) *trusttrackv1.DeviceInputs 
 		output.SetOperator(float64(*input.Operator))
 	}
 	if input.Din1WorkingTimeDiff != nil {
-		output.SetDin1WorkingTimeDiff(float64(*input.Din1WorkingTimeDiff))
+		output.SetDin1WorkingTimeDiffS(float64(*input.Din1WorkingTimeDiff))
 	}
 	if input.Din2WorkingTimeDiff != nil {
-		output.SetDin2WorkingTimeDiff(float64(*input.Din2WorkingTimeDiff))
+		output.SetDin2WorkingTimeDiffS(float64(*input.Din2WorkingTimeDiff))
 	}
 	if input.Din3WorkingTimeDiff != nil {
-		output.SetDin3WorkingTimeDiff(float64(*input.Din3WorkingTimeDiff))
+		output.SetDin3WorkingTimeDiffS(float64(*input.Din3WorkingTimeDiff))
 	}
 	if input.Din4WorkingTimeDiff != nil {
-		output.SetDin4WorkingTimeDiff(float64(*input.Din4WorkingTimeDiff))
+		output.SetDin4WorkingTimeDiffS(float64(*input.Din4WorkingTimeDiff))
 	}
 	if input.VirtualOdometerDiff != nil {
 		output.SetVirtualOdometerDiff(float64(*input.VirtualOdometerDiff))

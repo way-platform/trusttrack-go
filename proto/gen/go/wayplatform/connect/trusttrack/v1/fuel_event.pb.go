@@ -74,22 +74,22 @@ func (x FuelEvent_EventType) Number() protoreflect.EnumNumber {
 
 // A fuel event for an object.
 type FuelEvent struct {
-	state                       protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_ObjectId         *string                `protobuf:"bytes,1,opt,name=object_id,json=objectId"`
-	xxx_hidden_DriverId         *string                `protobuf:"bytes,2,opt,name=driver_id,json=driverId"`
-	xxx_hidden_EventType        FuelEvent_EventType    `protobuf:"varint,3,opt,name=event_type,json=eventType,enum=wayplatform.connect.trusttrack.v1.FuelEvent_EventType"`
-	xxx_hidden_UnknownEventType *string                `protobuf:"bytes,4,opt,name=unknown_event_type,json=unknownEventType"`
-	xxx_hidden_Latitude         float64                `protobuf:"fixed64,5,opt,name=latitude"`
-	xxx_hidden_Longitude        float64                `protobuf:"fixed64,6,opt,name=longitude"`
-	xxx_hidden_FuelLevelStart   float64                `protobuf:"fixed64,7,opt,name=fuel_level_start,json=fuelLevelStart"`
-	xxx_hidden_FuelLevelEnd     float64                `protobuf:"fixed64,8,opt,name=fuel_level_end,json=fuelLevelEnd"`
-	xxx_hidden_Difference       float64                `protobuf:"fixed64,9,opt,name=difference"`
-	xxx_hidden_StartTime        *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=start_time,json=startTime"`
-	xxx_hidden_EndTime          *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=end_time,json=endTime"`
-	XXX_raceDetectHookData      protoimpl.RaceDetectHookData
-	XXX_presence                [1]uint32
-	unknownFields               protoimpl.UnknownFields
-	sizeCache                   protoimpl.SizeCache
+	state                                 protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ObjectId                   *string                `protobuf:"bytes,1,opt,name=object_id,json=objectId"`
+	xxx_hidden_DriverId                   *string                `protobuf:"bytes,2,opt,name=driver_id,json=driverId"`
+	xxx_hidden_EventType                  FuelEvent_EventType    `protobuf:"varint,3,opt,name=event_type,json=eventType,enum=wayplatform.connect.trusttrack.v1.FuelEvent_EventType"`
+	xxx_hidden_UnknownEventType           *string                `protobuf:"bytes,4,opt,name=unknown_event_type,json=unknownEventType"`
+	xxx_hidden_Latitude                   float64                `protobuf:"fixed64,5,opt,name=latitude"`
+	xxx_hidden_Longitude                  float64                `protobuf:"fixed64,6,opt,name=longitude"`
+	xxx_hidden_FuelLevelStartPercent      float64                `protobuf:"fixed64,7,opt,name=fuel_level_start_percent,json=fuelLevelStartPercent"`
+	xxx_hidden_FuelLevelEndPercent        float64                `protobuf:"fixed64,8,opt,name=fuel_level_end_percent,json=fuelLevelEndPercent"`
+	xxx_hidden_FuelLevelDifferencePercent float64                `protobuf:"fixed64,9,opt,name=fuel_level_difference_percent,json=fuelLevelDifferencePercent"`
+	xxx_hidden_StartTime                  *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=start_time,json=startTime"`
+	xxx_hidden_EndTime                    *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=end_time,json=endTime"`
+	XXX_raceDetectHookData                protoimpl.RaceDetectHookData
+	XXX_presence                          [1]uint32
+	unknownFields                         protoimpl.UnknownFields
+	sizeCache                             protoimpl.SizeCache
 }
 
 func (x *FuelEvent) Reset() {
@@ -170,23 +170,23 @@ func (x *FuelEvent) GetLongitude() float64 {
 	return 0
 }
 
-func (x *FuelEvent) GetFuelLevelStart() float64 {
+func (x *FuelEvent) GetFuelLevelStartPercent() float64 {
 	if x != nil {
-		return x.xxx_hidden_FuelLevelStart
+		return x.xxx_hidden_FuelLevelStartPercent
 	}
 	return 0
 }
 
-func (x *FuelEvent) GetFuelLevelEnd() float64 {
+func (x *FuelEvent) GetFuelLevelEndPercent() float64 {
 	if x != nil {
-		return x.xxx_hidden_FuelLevelEnd
+		return x.xxx_hidden_FuelLevelEndPercent
 	}
 	return 0
 }
 
-func (x *FuelEvent) GetDifference() float64 {
+func (x *FuelEvent) GetFuelLevelDifferencePercent() float64 {
 	if x != nil {
-		return x.xxx_hidden_Difference
+		return x.xxx_hidden_FuelLevelDifferencePercent
 	}
 	return 0
 }
@@ -235,18 +235,18 @@ func (x *FuelEvent) SetLongitude(v float64) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 11)
 }
 
-func (x *FuelEvent) SetFuelLevelStart(v float64) {
-	x.xxx_hidden_FuelLevelStart = v
+func (x *FuelEvent) SetFuelLevelStartPercent(v float64) {
+	x.xxx_hidden_FuelLevelStartPercent = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 6, 11)
 }
 
-func (x *FuelEvent) SetFuelLevelEnd(v float64) {
-	x.xxx_hidden_FuelLevelEnd = v
+func (x *FuelEvent) SetFuelLevelEndPercent(v float64) {
+	x.xxx_hidden_FuelLevelEndPercent = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 7, 11)
 }
 
-func (x *FuelEvent) SetDifference(v float64) {
-	x.xxx_hidden_Difference = v
+func (x *FuelEvent) SetFuelLevelDifferencePercent(v float64) {
+	x.xxx_hidden_FuelLevelDifferencePercent = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 8, 11)
 }
 
@@ -300,21 +300,21 @@ func (x *FuelEvent) HasLongitude() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
 }
 
-func (x *FuelEvent) HasFuelLevelStart() bool {
+func (x *FuelEvent) HasFuelLevelStartPercent() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 6)
 }
 
-func (x *FuelEvent) HasFuelLevelEnd() bool {
+func (x *FuelEvent) HasFuelLevelEndPercent() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 7)
 }
 
-func (x *FuelEvent) HasDifference() bool {
+func (x *FuelEvent) HasFuelLevelDifferencePercent() bool {
 	if x == nil {
 		return false
 	}
@@ -365,19 +365,19 @@ func (x *FuelEvent) ClearLongitude() {
 	x.xxx_hidden_Longitude = 0
 }
 
-func (x *FuelEvent) ClearFuelLevelStart() {
+func (x *FuelEvent) ClearFuelLevelStartPercent() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 6)
-	x.xxx_hidden_FuelLevelStart = 0
+	x.xxx_hidden_FuelLevelStartPercent = 0
 }
 
-func (x *FuelEvent) ClearFuelLevelEnd() {
+func (x *FuelEvent) ClearFuelLevelEndPercent() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 7)
-	x.xxx_hidden_FuelLevelEnd = 0
+	x.xxx_hidden_FuelLevelEndPercent = 0
 }
 
-func (x *FuelEvent) ClearDifference() {
+func (x *FuelEvent) ClearFuelLevelDifferencePercent() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 8)
-	x.xxx_hidden_Difference = 0
+	x.xxx_hidden_FuelLevelDifferencePercent = 0
 }
 
 func (x *FuelEvent) ClearStartTime() {
@@ -404,12 +404,12 @@ type FuelEvent_builder struct {
 	Latitude *float64
 	// The longitude coordinate where the event occurred.
 	Longitude *float64
-	// The fuel level at the start of the event (percentage).
-	FuelLevelStart *float64
-	// The fuel level at the end of the event (percentage).
-	FuelLevelEnd *float64
-	// The difference in fuel level (positive for refuel, negative for drain).
-	Difference *float64
+	// The fuel level at the start of the event (units: %)
+	FuelLevelStartPercent *float64
+	// The fuel level at the end of the event (units: %)
+	FuelLevelEndPercent *float64
+	// The difference in fuel level (positive for refuel, negative for drain) (units: %)
+	FuelLevelDifferencePercent *float64
 	// The start time of the fuel event.
 	StartTime *timestamppb.Timestamp
 	// The end time of the fuel event.
@@ -444,17 +444,17 @@ func (b0 FuelEvent_builder) Build() *FuelEvent {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 11)
 		x.xxx_hidden_Longitude = *b.Longitude
 	}
-	if b.FuelLevelStart != nil {
+	if b.FuelLevelStartPercent != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 6, 11)
-		x.xxx_hidden_FuelLevelStart = *b.FuelLevelStart
+		x.xxx_hidden_FuelLevelStartPercent = *b.FuelLevelStartPercent
 	}
-	if b.FuelLevelEnd != nil {
+	if b.FuelLevelEndPercent != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 7, 11)
-		x.xxx_hidden_FuelLevelEnd = *b.FuelLevelEnd
+		x.xxx_hidden_FuelLevelEndPercent = *b.FuelLevelEndPercent
 	}
-	if b.Difference != nil {
+	if b.FuelLevelDifferencePercent != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 8, 11)
-		x.xxx_hidden_Difference = *b.Difference
+		x.xxx_hidden_FuelLevelDifferencePercent = *b.FuelLevelDifferencePercent
 	}
 	x.xxx_hidden_StartTime = b.StartTime
 	x.xxx_hidden_EndTime = b.EndTime
@@ -465,7 +465,7 @@ var File_wayplatform_connect_trusttrack_v1_fuel_event_proto protoreflect.FileDes
 
 const file_wayplatform_connect_trusttrack_v1_fuel_event_proto_rawDesc = "" +
 	"\n" +
-	"2wayplatform/connect/trusttrack/v1/fuel_event.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xdc\x04\n" +
+	"2wayplatform/connect/trusttrack/v1/fuel_event.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9d\x05\n" +
 	"\tFuelEvent\x12\x1b\n" +
 	"\tobject_id\x18\x01 \x01(\tR\bobjectId\x12\x1b\n" +
 	"\tdriver_id\x18\x02 \x01(\tR\bdriverId\x12U\n" +
@@ -473,12 +473,10 @@ const file_wayplatform_connect_trusttrack_v1_fuel_event_proto_rawDesc = "" +
 	"event_type\x18\x03 \x01(\x0e26.wayplatform.connect.trusttrack.v1.FuelEvent.EventTypeR\teventType\x12,\n" +
 	"\x12unknown_event_type\x18\x04 \x01(\tR\x10unknownEventType\x12\x1a\n" +
 	"\blatitude\x18\x05 \x01(\x01R\blatitude\x12\x1c\n" +
-	"\tlongitude\x18\x06 \x01(\x01R\tlongitude\x12(\n" +
-	"\x10fuel_level_start\x18\a \x01(\x01R\x0efuelLevelStart\x12$\n" +
-	"\x0efuel_level_end\x18\b \x01(\x01R\ffuelLevelEnd\x12\x1e\n" +
-	"\n" +
-	"difference\x18\t \x01(\x01R\n" +
-	"difference\x129\n" +
+	"\tlongitude\x18\x06 \x01(\x01R\tlongitude\x127\n" +
+	"\x18fuel_level_start_percent\x18\a \x01(\x01R\x15fuelLevelStartPercent\x123\n" +
+	"\x16fuel_level_end_percent\x18\b \x01(\x01R\x13fuelLevelEndPercent\x12A\n" +
+	"\x1dfuel_level_difference_percent\x18\t \x01(\x01R\x1afuelLevelDifferencePercent\x129\n" +
 	"\n" +
 	"start_time\x18\n" +
 	" \x01(\v2\x1a.google.protobuf.TimestampR\tstartTime\x125\n" +

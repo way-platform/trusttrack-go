@@ -13,11 +13,11 @@
       "directionDeg": 90
     },
     "calculatedInputs": {
-      "fuelConsumption": 0,
-      "fuelLevel": 75.5,
-      "mileage": 12500.25,
-      "rpm": 0,
-      "temperature": 18.5,
+      "fuelConsumptionLifetimeL": 0,
+      "fuelLevelPercent": 75.5,
+      "odometerKm": 12500.25,
+      "engineRpm": 0,
+      "temperatureC": 18.5,
       "customInput1": 1.2300000190734863,
       "customInput2": 2.3399999141693115,
       "customInput3": 3.450000047683716,
@@ -30,7 +30,7 @@
       "din2WorkingTime": 240,
       "din3WorkingTime": 360,
       "din4WorkingTime": 480,
-      "weight": 1750
+      "weightKg": 1750
     },
     "deviceInputs": {
       "gsmSignalStrength": 85,
@@ -43,14 +43,14 @@
       "digitalInput4": false,
       "analogInput1": 1.25,
       "analogInput2": 2.5,
-      "din1WorkingTimeDiff": 5,
-      "din2WorkingTimeDiff": 10,
-      "din3WorkingTimeDiff": 15,
-      "din4WorkingTimeDiff": 20,
-      "powerSupplyVoltage": 12.800000190734863,
-      "batteryVoltage": 4.199999809265137,
-      "pcbTemperature": 25,
-      "virtualOdometer": 12500.25,
+      "din1WorkingTimeDiffS": 5,
+      "din2WorkingTimeDiffS": 10,
+      "din3WorkingTimeDiffS": 15,
+      "din4WorkingTimeDiffS": 20,
+      "powerSupplyVoltageV": 12.800000190734863,
+      "batteryVoltageV": 4.199999809265137,
+      "pcbTemperatureC": 25,
+      "virtualOdometerKm": 12500.25,
       "inputTrigger": 42,
       "priority": "LOW",
       "movement": "STILL",
@@ -59,7 +59,7 @@
     },
     "other": {
       "countryCodeGeonames": 276,
-      "virtualGpsOdometer": 12501
+      "virtualGpsOdometerKm": 12501
     }
   },
   {
@@ -76,11 +76,11 @@
       "directionDeg": 95
     },
     "calculatedInputs": {
-      "fuelConsumption": 2.0999999046325684,
-      "fuelLevel": 75.44999694824219,
-      "mileage": 12500.2998046875,
-      "rpm": 850,
-      "temperature": 19.200000762939453,
+      "fuelConsumptionLifetimeL": 2.0999999046325684,
+      "fuelLevelPercent": 75.44999694824219,
+      "odometerKm": 12500.2998046875,
+      "engineRpm": 850,
+      "temperatureC": 19.200000762939453,
       "customInput1": 1.2400000095367432,
       "customInput2": 2.3499999046325684,
       "customInput3": 3.4600000381469727,
@@ -93,7 +93,7 @@
       "din2WorkingTime": 245,
       "din3WorkingTime": 365,
       "din4WorkingTime": 485,
-      "weight": 1752
+      "weightKg": 1752
     },
     "deviceInputs": {
       "gsmSignalStrength": 78,
@@ -106,14 +106,14 @@
       "digitalInput4": true,
       "analogInput1": 1.2799999713897705,
       "analogInput2": 2.5299999713897705,
-      "din1WorkingTimeDiff": 5,
-      "din2WorkingTimeDiff": 10,
-      "din3WorkingTimeDiff": 15,
-      "din4WorkingTimeDiff": 25,
-      "powerSupplyVoltage": 13.199999809265137,
-      "batteryVoltage": 4.099999904632568,
-      "pcbTemperature": 28,
-      "virtualOdometer": 12500.2998046875,
+      "din1WorkingTimeDiffS": 5,
+      "din2WorkingTimeDiffS": 10,
+      "din3WorkingTimeDiffS": 15,
+      "din4WorkingTimeDiffS": 25,
+      "powerSupplyVoltageV": 13.199999809265137,
+      "batteryVoltageV": 4.099999904632568,
+      "pcbTemperatureC": 28,
+      "virtualOdometerKm": 12500.2998046875,
       "inputTrigger": 15,
       "priority": "HIGH",
       "movement": "MOVING",
@@ -122,7 +122,7 @@
     },
     "other": {
       "countryCodeGeonames": 276,
-      "virtualGpsOdometer": 12501.0498046875
+      "virtualGpsOdometerKm": 12501.0498046875
     }
   },
   {
@@ -139,11 +139,11 @@
       "directionDeg": 100
     },
     "calculatedInputs": {
-      "fuelConsumption": 3.200000047683716,
-      "fuelLevel": 75.4000015258789,
-      "mileage": 12500.5,
-      "rpm": 1200,
-      "temperature": 20.100000381469727,
+      "fuelConsumptionLifetimeL": 3.200000047683716,
+      "fuelLevelPercent": 75.4000015258789,
+      "odometerKm": 12500.5,
+      "engineRpm": 1200,
+      "temperatureC": 20.100000381469727,
       "customInput1": 1.25,
       "customInput2": 2.359999895095825,
       "customInput3": 3.4700000286102295,
@@ -156,7 +156,7 @@
       "din2WorkingTime": 250,
       "din3WorkingTime": 370,
       "din4WorkingTime": 490,
-      "weight": 1755
+      "weightKg": 1755
     },
     "deviceInputs": {
       "gsmSignalStrength": 92,
@@ -169,14 +169,14 @@
       "digitalInput4": true,
       "analogInput1": 1.2999999523162842,
       "analogInput2": 2.549999952316284,
-      "din1WorkingTimeDiff": 5,
-      "din2WorkingTimeDiff": 10,
-      "din3WorkingTimeDiff": 15,
-      "din4WorkingTimeDiff": 30,
-      "powerSupplyVoltage": 13.5,
-      "batteryVoltage": 4.150000095367432,
-      "pcbTemperature": 30,
-      "virtualOdometer": 12500.5,
+      "din1WorkingTimeDiffS": 5,
+      "din2WorkingTimeDiffS": 10,
+      "din3WorkingTimeDiffS": 15,
+      "din4WorkingTimeDiffS": 30,
+      "powerSupplyVoltageV": 13.5,
+      "batteryVoltageV": 4.150000095367432,
+      "pcbTemperatureC": 30,
+      "virtualOdometerKm": 12500.5,
       "inputTrigger": 88,
       "priority": "HIGH",
       "movement": "MOVING",
@@ -185,7 +185,7 @@
     },
     "other": {
       "countryCodeGeonames": 276,
-      "virtualGpsOdometer": 12501.2001953125
+      "virtualGpsOdometerKm": 12501.2001953125
     }
   },
   {
@@ -202,11 +202,11 @@
       "directionDeg": 105
     },
     "calculatedInputs": {
-      "fuelConsumption": 4.5,
-      "fuelLevel": 75.30000305175781,
-      "mileage": 12501,
-      "rpm": 1650,
-      "temperature": 21.799999237060547,
+      "fuelConsumptionLifetimeL": 4.5,
+      "fuelLevelPercent": 75.30000305175781,
+      "odometerKm": 12501,
+      "engineRpm": 1650,
+      "temperatureC": 21.799999237060547,
       "customInput1": 1.2599999904632568,
       "customInput2": 2.369999885559082,
       "customInput3": 3.4800000190734863,
@@ -219,7 +219,7 @@
       "din2WorkingTime": 255,
       "din3WorkingTime": 375,
       "din4WorkingTime": 495,
-      "weight": 1758
+      "weightKg": 1758
     },
     "deviceInputs": {
       "gsmSignalStrength": 88,
@@ -232,14 +232,14 @@
       "digitalInput4": true,
       "analogInput1": 1.350000023841858,
       "analogInput2": 2.5999999046325684,
-      "din1WorkingTimeDiff": 10,
-      "din2WorkingTimeDiff": 15,
-      "din3WorkingTimeDiff": 20,
-      "din4WorkingTimeDiff": 90,
-      "powerSupplyVoltage": 13.800000190734863,
-      "batteryVoltage": 4.179999828338623,
-      "pcbTemperature": 32,
-      "virtualOdometer": 12501,
+      "din1WorkingTimeDiffS": 10,
+      "din2WorkingTimeDiffS": 15,
+      "din3WorkingTimeDiffS": 20,
+      "din4WorkingTimeDiffS": 90,
+      "powerSupplyVoltageV": 13.800000190734863,
+      "batteryVoltageV": 4.179999828338623,
+      "pcbTemperatureC": 32,
+      "virtualOdometerKm": 12501,
       "inputTrigger": 99,
       "priority": "HIGH",
       "movement": "MOVING",
@@ -248,7 +248,7 @@
     },
     "other": {
       "countryCodeGeonames": 276,
-      "virtualGpsOdometer": 12501.5
+      "virtualGpsOdometerKm": 12501.5
     }
   },
   {
@@ -265,11 +265,11 @@
       "directionDeg": 110
     },
     "calculatedInputs": {
-      "fuelConsumption": 6.800000190734863,
-      "fuelLevel": 75.1500015258789,
-      "mileage": 12502,
-      "rpm": 2100,
-      "temperature": 23.5,
+      "fuelConsumptionLifetimeL": 6.800000190734863,
+      "fuelLevelPercent": 75.1500015258789,
+      "odometerKm": 12502,
+      "engineRpm": 2100,
+      "temperatureC": 23.5,
       "customInput1": 1.2699999809265137,
       "customInput2": 2.380000114440918,
       "customInput3": 3.490000009536743,
@@ -282,7 +282,7 @@
       "din2WorkingTime": 260,
       "din3WorkingTime": 380,
       "din4WorkingTime": 500,
-      "weight": 1760
+      "weightKg": 1760
     },
     "deviceInputs": {
       "gsmSignalStrength": 95,
@@ -295,14 +295,14 @@
       "digitalInput4": true,
       "analogInput1": 1.399999976158142,
       "analogInput2": 2.6500000953674316,
-      "din1WorkingTimeDiff": 15,
-      "din2WorkingTimeDiff": 20,
-      "din3WorkingTimeDiff": 25,
-      "din4WorkingTimeDiff": 150,
-      "powerSupplyVoltage": 14.100000381469727,
-      "batteryVoltage": 4.199999809265137,
-      "pcbTemperature": 35,
-      "virtualOdometer": 12502,
+      "din1WorkingTimeDiffS": 15,
+      "din2WorkingTimeDiffS": 20,
+      "din3WorkingTimeDiffS": 25,
+      "din4WorkingTimeDiffS": 150,
+      "powerSupplyVoltageV": 14.100000381469727,
+      "batteryVoltageV": 4.199999809265137,
+      "pcbTemperatureC": 35,
+      "virtualOdometerKm": 12502,
       "inputTrigger": 75,
       "priority": "MEDIUM",
       "movement": "MOVING",
@@ -311,7 +311,7 @@
     },
     "other": {
       "countryCodeGeonames": 276,
-      "virtualGpsOdometer": 12502
+      "virtualGpsOdometerKm": 12502
     }
   }
 ]

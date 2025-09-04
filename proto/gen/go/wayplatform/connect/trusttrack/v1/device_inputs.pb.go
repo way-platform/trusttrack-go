@@ -33,17 +33,17 @@ type DeviceInputs struct {
 	xxx_hidden_XAxisTiltAngle                                               float64                `protobuf:"fixed64,7,opt,name=x_axis_tilt_angle,json=xAxisTiltAngle"`
 	xxx_hidden_YAxisTiltAngle                                               float64                `protobuf:"fixed64,8,opt,name=y_axis_tilt_angle,json=yAxisTiltAngle"`
 	xxx_hidden_ZAxisTiltAngle                                               float64                `protobuf:"fixed64,9,opt,name=z_axis_tilt_angle,json=zAxisTiltAngle"`
-	xxx_hidden_CanbusDistance                                               float64                `protobuf:"fixed64,10,opt,name=canbus_distance,json=canbusDistance"`
-	xxx_hidden_CanbusEngineCoolantTemperature                               float64                `protobuf:"fixed64,11,opt,name=canbus_engine_coolant_temperature,json=canbusEngineCoolantTemperature"`
-	xxx_hidden_CanbusFuelRate                                               float64                `protobuf:"fixed64,12,opt,name=canbus_fuel_rate,json=canbusFuelRate"`
+	xxx_hidden_CanbusOdometerKm                                             float64                `protobuf:"fixed64,10,opt,name=canbus_odometer_km,json=canbusOdometerKm"`
+	xxx_hidden_CanbusEngineCoolantTemperatureC                              float64                `protobuf:"fixed64,11,opt,name=canbus_engine_coolant_temperature_c,json=canbusEngineCoolantTemperatureC"`
+	xxx_hidden_CanbusFuelRateLPerH                                          float64                `protobuf:"fixed64,12,opt,name=canbus_fuel_rate_l_per_h,json=canbusFuelRateLPerH"`
 	xxx_hidden_EngineRpm                                                    float64                `protobuf:"fixed64,13,opt,name=engine_rpm,json=engineRpm"`
-	xxx_hidden_EngineHours                                                  float64                `protobuf:"fixed64,14,opt,name=engine_hours,json=engineHours"`
-	xxx_hidden_ServiceDist                                                  float64                `protobuf:"fixed64,15,opt,name=service_dist,json=serviceDist"`
-	xxx_hidden_PedalPos                                                     float64                `protobuf:"fixed64,16,opt,name=pedal_pos,json=pedalPos"`
-	xxx_hidden_FuelLevelCan                                                 float64                `protobuf:"fixed64,17,opt,name=fuel_level_can,json=fuelLevelCan"`
-	xxx_hidden_FuelUsed                                                     float64                `protobuf:"fixed64,18,opt,name=fuel_used,json=fuelUsed"`
-	xxx_hidden_SpeedWheel                                                   float64                `protobuf:"fixed64,19,opt,name=speed_wheel,json=speedWheel"`
-	xxx_hidden_SpeedTacho                                                   float64                `protobuf:"fixed64,20,opt,name=speed_tacho,json=speedTacho"`
+	xxx_hidden_EngineHoursLifetimeH                                         float64                `protobuf:"fixed64,14,opt,name=engine_hours_lifetime_h,json=engineHoursLifetimeH"`
+	xxx_hidden_ServiceDistanceRemainingKm                                   float64                `protobuf:"fixed64,15,opt,name=service_distance_remaining_km,json=serviceDistanceRemainingKm"`
+	xxx_hidden_PedalPositionPercent                                         float64                `protobuf:"fixed64,16,opt,name=pedal_position_percent,json=pedalPositionPercent"`
+	xxx_hidden_FuelLevelCanPercent                                          float64                `protobuf:"fixed64,17,opt,name=fuel_level_can_percent,json=fuelLevelCanPercent"`
+	xxx_hidden_FuelUsedLifetimeL                                            float64                `protobuf:"fixed64,18,opt,name=fuel_used_lifetime_l,json=fuelUsedLifetimeL"`
+	xxx_hidden_WheelSpeedKmh                                                float64                `protobuf:"fixed64,19,opt,name=wheel_speed_kmh,json=wheelSpeedKmh"`
+	xxx_hidden_TachoSpeedKmh                                                float64                `protobuf:"fixed64,20,opt,name=tacho_speed_kmh,json=tachoSpeedKmh"`
 	xxx_hidden_TachoStatus                                                  *string                `protobuf:"bytes,21,opt,name=tacho_status,json=tachoStatus"`
 	xxx_hidden_OverspeedingEvents                                           *string                `protobuf:"bytes,22,opt,name=overspeeding_events,json=overspeedingEvents"`
 	xxx_hidden_AxleCount                                                    float64                `protobuf:"fixed64,23,opt,name=axle_count,json=axleCount"`
@@ -115,7 +115,7 @@ type DeviceInputs struct {
 	xxx_hidden_CanDoorLockState                                             *string                `protobuf:"bytes,89,opt,name=can_door_lock_state,json=canDoorLockState"`
 	xxx_hidden_GsmSignalStrength                                            float64                `protobuf:"fixed64,90,opt,name=gsm_signal_strength,json=gsmSignalStrength"`
 	xxx_hidden_Operator                                                     float64                `protobuf:"fixed64,91,opt,name=operator"`
-	xxx_hidden_GpsSpeed                                                     float64                `protobuf:"fixed64,92,opt,name=gps_speed,json=gpsSpeed"`
+	xxx_hidden_GpsSpeedKmh                                                  float64                `protobuf:"fixed64,92,opt,name=gps_speed_kmh,json=gpsSpeedKmh"`
 	xxx_hidden_GsmUmtsSignalStrength                                        float64                `protobuf:"fixed64,93,opt,name=gsm_umts_signal_strength,json=gsmUmtsSignalStrength"`
 	xxx_hidden_GsmUmtsOperator                                              float64                `protobuf:"fixed64,94,opt,name=gsm_umts_operator,json=gsmUmtsOperator"`
 	xxx_hidden_UmtsEnabled                                                  *string                `protobuf:"bytes,95,opt,name=umts_enabled,json=umtsEnabled"`
@@ -123,7 +123,7 @@ type DeviceInputs struct {
 	xxx_hidden_GsmUmtsJamming                                               *string                `protobuf:"bytes,97,opt,name=gsm_umts_jamming,json=gsmUmtsJamming"`
 	xxx_hidden_GprsErrors                                                   float64                `protobuf:"fixed64,98,opt,name=gprs_errors,json=gprsErrors"`
 	xxx_hidden_GprsStatus                                                   *string                `protobuf:"bytes,99,opt,name=gprs_status,json=gprsStatus"`
-	xxx_hidden_GpsAltitude                                                  float64                `protobuf:"fixed64,100,opt,name=gps_altitude,json=gpsAltitude"`
+	xxx_hidden_GpsAltitudeM                                                 float64                `protobuf:"fixed64,100,opt,name=gps_altitude_m,json=gpsAltitudeM"`
 	xxx_hidden_Dout1Status                                                  *string                `protobuf:"bytes,101,opt,name=dout1_status,json=dout1Status"`
 	xxx_hidden_Dout2Status                                                  *string                `protobuf:"bytes,102,opt,name=dout2_status,json=dout2Status"`
 	xxx_hidden_DxpBatteryBatteryVoltage                                     float64                `protobuf:"fixed64,103,opt,name=dxp_battery_battery_voltage,json=dxpBatteryBatteryVoltage"`
@@ -161,7 +161,7 @@ type DeviceInputs struct {
 	xxx_hidden_DxpFaults2UserFault_1HistoryErrorCodes                       float64                `protobuf:"fixed64,135,opt,name=dxp_faults2_user_fault_1_history_error_codes,json=dxpFaults2UserFault1HistoryErrorCodes"`
 	xxx_hidden_DxpFaults2KybHistFaultCodes                                  float64                `protobuf:"fixed64,136,opt,name=dxp_faults2_kyb_hist_fault_codes,json=dxpFaults2KybHistFaultCodes"`
 	xxx_hidden_DxpChargerStatus                                             float64                `protobuf:"fixed64,137,opt,name=dxp_charger_status,json=dxpChargerStatus"`
-	xxx_hidden_EcodriveMaximumSpeed                                         float64                `protobuf:"fixed64,138,opt,name=ecodrive_maximum_speed,json=ecodriveMaximumSpeed"`
+	xxx_hidden_EcodriveMaximumSpeedKmh                                      float64                `protobuf:"fixed64,138,opt,name=ecodrive_maximum_speed_kmh,json=ecodriveMaximumSpeedKmh"`
 	xxx_hidden_EcodriveOverspeed                                            float64                `protobuf:"fixed64,139,opt,name=ecodrive_overspeed,json=ecodriveOverspeed"`
 	xxx_hidden_EcodriveRpmOnRed                                             float64                `protobuf:"fixed64,140,opt,name=ecodrive_rpm_on_red,json=ecodriveRpmOnRed"`
 	xxx_hidden_EcodriveMaximumRpm                                           float64                `protobuf:"fixed64,141,opt,name=ecodrive_maximum_rpm,json=ecodriveMaximumRpm"`
@@ -291,10 +291,10 @@ type DeviceInputs struct {
 	xxx_hidden_DigitalInput_4                                               bool                   `protobuf:"varint,265,opt,name=digital_input_4,json=digitalInput4"`
 	xxx_hidden_AnalogInput_1                                                float64                `protobuf:"fixed64,266,opt,name=analog_input_1,json=analogInput1"`
 	xxx_hidden_AnalogInput_2                                                float64                `protobuf:"fixed64,267,opt,name=analog_input_2,json=analogInput2"`
-	xxx_hidden_Din1WorkingTimeDiff                                          float64                `protobuf:"fixed64,268,opt,name=din1_working_time_diff,json=din1WorkingTimeDiff"`
-	xxx_hidden_Din2WorkingTimeDiff                                          float64                `protobuf:"fixed64,269,opt,name=din2_working_time_diff,json=din2WorkingTimeDiff"`
-	xxx_hidden_Din3WorkingTimeDiff                                          float64                `protobuf:"fixed64,270,opt,name=din3_working_time_diff,json=din3WorkingTimeDiff"`
-	xxx_hidden_Din4WorkingTimeDiff                                          float64                `protobuf:"fixed64,271,opt,name=din4_working_time_diff,json=din4WorkingTimeDiff"`
+	xxx_hidden_Din1WorkingTimeDiffS                                         float64                `protobuf:"fixed64,268,opt,name=din1_working_time_diff_s,json=din1WorkingTimeDiffS"`
+	xxx_hidden_Din2WorkingTimeDiffS                                         float64                `protobuf:"fixed64,269,opt,name=din2_working_time_diff_s,json=din2WorkingTimeDiffS"`
+	xxx_hidden_Din3WorkingTimeDiffS                                         float64                `protobuf:"fixed64,270,opt,name=din3_working_time_diff_s,json=din3WorkingTimeDiffS"`
+	xxx_hidden_Din4WorkingTimeDiffS                                         float64                `protobuf:"fixed64,271,opt,name=din4_working_time_diff_s,json=din4WorkingTimeDiffS"`
 	xxx_hidden_OtDigitalInput_1                                             bool                   `protobuf:"varint,272,opt,name=ot_digital_input_1,json=otDigitalInput1"`
 	xxx_hidden_OtDigitalInput_2                                             bool                   `protobuf:"varint,273,opt,name=ot_digital_input_2,json=otDigitalInput2"`
 	xxx_hidden_OtDigitalInput_3                                             bool                   `protobuf:"varint,274,opt,name=ot_digital_input_3,json=otDigitalInput3"`
@@ -332,8 +332,8 @@ type DeviceInputs struct {
 	xxx_hidden_MobileyeWipersAvailable                                      bool                   `protobuf:"varint,306,opt,name=mobileye_wipers_available,json=mobileyeWipersAvailable"`
 	xxx_hidden_MobileyeLowBeamAvailable                                     bool                   `protobuf:"varint,307,opt,name=mobileye_low_beam_available,json=mobileyeLowBeamAvailable"`
 	xxx_hidden_MobileyeHiBeamAvailable                                      bool                   `protobuf:"varint,308,opt,name=mobileye_hi_beam_available,json=mobileyeHiBeamAvailable"`
-	xxx_hidden_MobileyeSpeedAvailable                                       bool                   `protobuf:"varint,309,opt,name=mobileye_speed_available,json=mobileyeSpeedAvailable"`
-	xxx_hidden_MobileyeSpeed                                                float64                `protobuf:"fixed64,310,opt,name=mobileye_speed,json=mobileyeSpeed"`
+	xxx_hidden_MobileyeSpeedKmhAvailable                                    bool                   `protobuf:"varint,309,opt,name=mobileye_speed_kmh_available,json=mobileyeSpeedKmhAvailable"`
+	xxx_hidden_MobileyeSpeedKmh                                             float64                `protobuf:"fixed64,310,opt,name=mobileye_speed_kmh,json=mobileyeSpeedKmh"`
 	xxx_hidden_MobileyeTamperAlert                                          *string                `protobuf:"bytes,311,opt,name=mobileye_tamper_alert,json=mobileyeTamperAlert"`
 	xxx_hidden_MobileyeTsrEnabled                                           bool                   `protobuf:"varint,312,opt,name=mobileye_tsr_enabled,json=mobileyeTsrEnabled"`
 	xxx_hidden_MobileyeTsrWarningLevel                                      float64                `protobuf:"fixed64,313,opt,name=mobileye_tsr_warning_level,json=mobileyeTsrWarningLevel"`
@@ -354,7 +354,7 @@ type DeviceInputs struct {
 	xxx_hidden_MobileyeVisionOnlySuplementarySignTypeDisplay_4              float64                `protobuf:"fixed64,328,opt,name=mobileye_vision_only_suplementary_sign_type_display_4,json=mobileyeVisionOnlySuplementarySignTypeDisplay4"`
 	xxx_hidden_ObdKlineDtcAndMil                                            float64                `protobuf:"fixed64,329,opt,name=obd_kline_dtc_and_mil,json=obdKlineDtcAndMil"`
 	xxx_hidden_ObdKlineRpm                                                  float64                `protobuf:"fixed64,330,opt,name=obd_kline_rpm,json=obdKlineRpm"`
-	xxx_hidden_ObdKlineVehicleSpeedSensor                                   float64                `protobuf:"fixed64,331,opt,name=obd_kline_vehicle_speed_sensor,json=obdKlineVehicleSpeedSensor"`
+	xxx_hidden_ObdKlineVehicleSpeedKmh                                      float64                `protobuf:"fixed64,331,opt,name=obd_kline_vehicle_speed_kmh,json=obdKlineVehicleSpeedKmh"`
 	xxx_hidden_ObdKlineEngineCoolantTemperature                             float64                `protobuf:"fixed64,332,opt,name=obd_kline_engine_coolant_temperature,json=obdKlineEngineCoolantTemperature"`
 	xxx_hidden_ObdKlineAmbientAirTemperature                                float64                `protobuf:"fixed64,333,opt,name=obd_kline_ambient_air_temperature,json=obdKlineAmbientAirTemperature"`
 	xxx_hidden_ObdKlineFuelLevelInput                                       float64                `protobuf:"fixed64,334,opt,name=obd_kline_fuel_level_input,json=obdKlineFuelLevelInput"`
@@ -371,7 +371,7 @@ type DeviceInputs struct {
 	xxx_hidden_SatelliteMessagesSent                                        float64                `protobuf:"fixed64,345,opt,name=satellite_messages_sent,json=satelliteMessagesSent"`
 	xxx_hidden_PendingSatelliteMessages                                     float64                `protobuf:"fixed64,346,opt,name=pending_satellite_messages,json=pendingSatelliteMessages"`
 	xxx_hidden_SprSpreaderMode                                              float64                `protobuf:"fixed64,347,opt,name=spr_spreader_mode,json=sprSpreaderMode"`
-	xxx_hidden_SprSpreaderAdjustmentOfSimulationDrivingSpeed                float64                `protobuf:"fixed64,348,opt,name=spr_spreader_adjustment_of_simulation_driving_speed,json=sprSpreaderAdjustmentOfSimulationDrivingSpeed"`
+	xxx_hidden_SprSpreaderAdjustmentOfSimulationDrivingSpeedKmh             float64                `protobuf:"fixed64,348,opt,name=spr_spreader_adjustment_of_simulation_driving_speed_kmh,json=sprSpreaderAdjustmentOfSimulationDrivingSpeedKmh"`
 	xxx_hidden_SprSpreaderSpreadingWidth                                    float64                `protobuf:"fixed64,349,opt,name=spr_spreader_spreading_width,json=sprSpreaderSpreadingWidth"`
 	xxx_hidden_SprSpreadingSolidMaterialDosageFromReservoir_1               float64                `protobuf:"fixed64,350,opt,name=spr_spreading_solid_material_dosage_from_reservoir_1,json=sprSpreadingSolidMaterialDosageFromReservoir1"`
 	xxx_hidden_SprSpreadingBrineDosage                                      float64                `protobuf:"fixed64,351,opt,name=spr_spreading_brine_dosage,json=sprSpreadingBrineDosage"`
@@ -384,28 +384,28 @@ type DeviceInputs struct {
 	xxx_hidden_SprSolidMaterial                                             *string                `protobuf:"bytes,358,opt,name=spr_solid_material,json=sprSolidMaterial"`
 	xxx_hidden_Driver_1State                                                *string                `protobuf:"bytes,359,opt,name=driver_1_state,json=driver1State"`
 	xxx_hidden_Driver_2State                                                *string                `protobuf:"bytes,360,opt,name=driver_2_state,json=driver2State"`
-	xxx_hidden_TcoFirstDriverState                                          *string                `protobuf:"bytes,361,opt,name=tco_first_driver_state,json=tcoFirstDriverState"`
-	xxx_hidden_TcoSecondDriverState                                         *string                `protobuf:"bytes,362,opt,name=tco_second_driver_state,json=tcoSecondDriverState"`
-	xxx_hidden_TcoFirstDriverCard                                           *string                `protobuf:"bytes,363,opt,name=tco_first_driver_card,json=tcoFirstDriverCard"`
-	xxx_hidden_TcoSecondDriverCard                                          *string                `protobuf:"bytes,364,opt,name=tco_second_driver_card,json=tcoSecondDriverCard"`
-	xxx_hidden_TcoDistance                                                  float64                `protobuf:"fixed64,365,opt,name=tco_distance,json=tcoDistance"`
-	xxx_hidden_TcoTrip                                                      float64                `protobuf:"fixed64,366,opt,name=tco_trip,json=tcoTrip"`
-	xxx_hidden_TcoVehicleSpeed                                              float64                `protobuf:"fixed64,367,opt,name=tco_vehicle_speed,json=tcoVehicleSpeed"`
-	xxx_hidden_TcoRpm                                                       float64                `protobuf:"fixed64,368,opt,name=tco_rpm,json=tcoRpm"`
-	xxx_hidden_TcoRegistrationNumber                                        *string                `protobuf:"bytes,369,opt,name=tco_registration_number,json=tcoRegistrationNumber"`
+	xxx_hidden_TachoFirstDriverState                                        *string                `protobuf:"bytes,361,opt,name=tacho_first_driver_state,json=tachoFirstDriverState"`
+	xxx_hidden_TachoSecondDriverState                                       *string                `protobuf:"bytes,362,opt,name=tacho_second_driver_state,json=tachoSecondDriverState"`
+	xxx_hidden_TachoFirstDriverCard                                         *string                `protobuf:"bytes,363,opt,name=tacho_first_driver_card,json=tachoFirstDriverCard"`
+	xxx_hidden_TachoSecondDriverCard                                        *string                `protobuf:"bytes,364,opt,name=tacho_second_driver_card,json=tachoSecondDriverCard"`
+	xxx_hidden_TachoOdometerKm                                              float64                `protobuf:"fixed64,365,opt,name=tacho_odometer_km,json=tachoOdometerKm"`
+	xxx_hidden_TachoTripKm                                                  float64                `protobuf:"fixed64,366,opt,name=tacho_trip_km,json=tachoTripKm"`
+	xxx_hidden_TachoVehicleSpeedKmh                                         float64                `protobuf:"fixed64,367,opt,name=tacho_vehicle_speed_kmh,json=tachoVehicleSpeedKmh"`
+	xxx_hidden_TachoRpm                                                     float64                `protobuf:"fixed64,368,opt,name=tacho_rpm,json=tachoRpm"`
+	xxx_hidden_TachoRegistrationNumber                                      *string                `protobuf:"bytes,369,opt,name=tacho_registration_number,json=tachoRegistrationNumber"`
 	xxx_hidden_TachoDddAvailable                                            *string                `protobuf:"bytes,370,opt,name=tacho_ddd_available,json=tachoDddAvailable"`
-	xxx_hidden_TcoFirstDriverDrivingTimePrevAndCurrWeek                     float64                `protobuf:"fixed64,371,opt,name=tco_first_driver_driving_time_prev_and_curr_week,json=tcoFirstDriverDrivingTimePrevAndCurrWeek"`
-	xxx_hidden_TcoSecondDriverDrivingTimePrevAndCurrWeek                    float64                `protobuf:"fixed64,372,opt,name=tco_second_driver_driving_time_prev_and_curr_week,json=tcoSecondDriverDrivingTimePrevAndCurrWeek"`
-	xxx_hidden_TcoFirstDriverDurationOfSelectedActivity                     float64                `protobuf:"fixed64,373,opt,name=tco_first_driver_duration_of_selected_activity,json=tcoFirstDriverDurationOfSelectedActivity"`
-	xxx_hidden_TcoSecondDriverDurationOfSelectedActivity                    float64                `protobuf:"fixed64,374,opt,name=tco_second_driver_duration_of_selected_activity,json=tcoSecondDriverDurationOfSelectedActivity"`
-	xxx_hidden_TcoFirstDriverContinuousDrivingTime                          float64                `protobuf:"fixed64,375,opt,name=tco_first_driver_continuous_driving_time,json=tcoFirstDriverContinuousDrivingTime"`
-	xxx_hidden_TcoSecondDriverContinuousDrivingTime                         float64                `protobuf:"fixed64,376,opt,name=tco_second_driver_continuous_driving_time,json=tcoSecondDriverContinuousDrivingTime"`
-	xxx_hidden_TcoFirstDriverCumulatedBreakTime                             float64                `protobuf:"fixed64,377,opt,name=tco_first_driver_cumulated_break_time,json=tcoFirstDriverCumulatedBreakTime"`
-	xxx_hidden_TcoSecondDriverCumulatedBreakTime                            float64                `protobuf:"fixed64,378,opt,name=tco_second_driver_cumulated_break_time,json=tcoSecondDriverCumulatedBreakTime"`
-	xxx_hidden_TcoFirstDriverTimeRelatedStates                              float64                `protobuf:"fixed64,379,opt,name=tco_first_driver_time_related_states,json=tcoFirstDriverTimeRelatedStates"`
-	xxx_hidden_TcoSecondDriverTimeRelatedStates                             float64                `protobuf:"fixed64,380,opt,name=tco_second_driver_time_related_states,json=tcoSecondDriverTimeRelatedStates"`
-	xxx_hidden_TcoTime                                                      *timestamppb.Timestamp `protobuf:"bytes,381,opt,name=tco_time,json=tcoTime"`
-	xxx_hidden_TcoCanTachoTime                                              *timestamppb.Timestamp `protobuf:"bytes,382,opt,name=tco_can_tacho_time,json=tcoCanTachoTime"`
+	xxx_hidden_TachoFirstDriverDrivingTimePrevAndCurrWeekMinutes            float64                `protobuf:"fixed64,371,opt,name=tacho_first_driver_driving_time_prev_and_curr_week_minutes,json=tachoFirstDriverDrivingTimePrevAndCurrWeekMinutes"`
+	xxx_hidden_TachoSecondDriverDrivingTimePrevAndCurrWeekMinutes           float64                `protobuf:"fixed64,372,opt,name=tacho_second_driver_driving_time_prev_and_curr_week_minutes,json=tachoSecondDriverDrivingTimePrevAndCurrWeekMinutes"`
+	xxx_hidden_TachoFirstDriverDurationOfSelectedActivityMinutes            float64                `protobuf:"fixed64,373,opt,name=tacho_first_driver_duration_of_selected_activity_minutes,json=tachoFirstDriverDurationOfSelectedActivityMinutes"`
+	xxx_hidden_TachoSecondDriverDurationOfSelectedActivityMinutes           float64                `protobuf:"fixed64,374,opt,name=tacho_second_driver_duration_of_selected_activity_minutes,json=tachoSecondDriverDurationOfSelectedActivityMinutes"`
+	xxx_hidden_TachoFirstDriverContinuousDrivingTimeMinutes                 float64                `protobuf:"fixed64,375,opt,name=tacho_first_driver_continuous_driving_time_minutes,json=tachoFirstDriverContinuousDrivingTimeMinutes"`
+	xxx_hidden_TachoSecondDriverContinuousDrivingTimeMinutes                float64                `protobuf:"fixed64,376,opt,name=tacho_second_driver_continuous_driving_time_minutes,json=tachoSecondDriverContinuousDrivingTimeMinutes"`
+	xxx_hidden_TachoFirstDriverCumulatedBreakTimeMinutes                    float64                `protobuf:"fixed64,377,opt,name=tacho_first_driver_cumulated_break_time_minutes,json=tachoFirstDriverCumulatedBreakTimeMinutes"`
+	xxx_hidden_TachoSecondDriverCumulatedBreakTimeMinutes                   float64                `protobuf:"fixed64,378,opt,name=tacho_second_driver_cumulated_break_time_minutes,json=tachoSecondDriverCumulatedBreakTimeMinutes"`
+	xxx_hidden_TachoFirstDriverTimeRelatedStates                            float64                `protobuf:"fixed64,379,opt,name=tacho_first_driver_time_related_states,json=tachoFirstDriverTimeRelatedStates"`
+	xxx_hidden_TachoSecondDriverTimeRelatedStates                           float64                `protobuf:"fixed64,380,opt,name=tacho_second_driver_time_related_states,json=tachoSecondDriverTimeRelatedStates"`
+	xxx_hidden_TachoTime                                                    *timestamppb.Timestamp `protobuf:"bytes,381,opt,name=tacho_time,json=tachoTime"`
+	xxx_hidden_TachoCanTachoTime                                            *timestamppb.Timestamp `protobuf:"bytes,382,opt,name=tacho_can_tacho_time,json=tachoCanTachoTime"`
 	xxx_hidden_TemperatureSensor_0                                          float64                `protobuf:"fixed64,383,opt,name=temperature_sensor_0,json=temperatureSensor0"`
 	xxx_hidden_TemperatureSensor_1                                          float64                `protobuf:"fixed64,384,opt,name=temperature_sensor_1,json=temperatureSensor1"`
 	xxx_hidden_TemperatureSensor_2                                          float64                `protobuf:"fixed64,385,opt,name=temperature_sensor_2,json=temperatureSensor2"`
@@ -438,8 +438,8 @@ type DeviceInputs struct {
 	xxx_hidden_TrailersRedWarningSignalRequest                              *string                `protobuf:"bytes,412,opt,name=trailers_red_warning_signal_request,json=trailersRedWarningSignalRequest"`
 	xxx_hidden_TrailersAmberWarningSignalRequest                            *string                `protobuf:"bytes,413,opt,name=trailers_amber_warning_signal_request,json=trailersAmberWarningSignalRequest"`
 	xxx_hidden_TrailersVehiclePneumaticSupplyStatus                         *string                `protobuf:"bytes,414,opt,name=trailers_vehicle_pneumatic_supply_status,json=trailersVehiclePneumaticSupplyStatus"`
-	xxx_hidden_TrailersBrakingSystemWheelBasedVehicleSpeed                  float64                `protobuf:"fixed64,415,opt,name=trailers_braking_system_wheel_based_vehicle_speed,json=trailersBrakingSystemWheelBasedVehicleSpeed"`
-	xxx_hidden_TrailersWheelSpeedDifferenceMainAxle                         float64                `protobuf:"fixed64,416,opt,name=trailers_wheel_speed_difference_main_axle,json=trailersWheelSpeedDifferenceMainAxle"`
+	xxx_hidden_TrailersBrakingSystemWheelBasedVehicleSpeedKmh               float64                `protobuf:"fixed64,415,opt,name=trailers_braking_system_wheel_based_vehicle_speed_kmh,json=trailersBrakingSystemWheelBasedVehicleSpeedKmh"`
+	xxx_hidden_TrailersWheelSpeedDifferenceMainAxleKmh                      float64                `protobuf:"fixed64,416,opt,name=trailers_wheel_speed_difference_main_axle_kmh,json=trailersWheelSpeedDifferenceMainAxleKmh"`
 	xxx_hidden_TrailersLateralAcceleration                                  float64                `protobuf:"fixed64,417,opt,name=trailers_lateral_acceleration,json=trailersLateralAcceleration"`
 	xxx_hidden_TrailersAxleLoadSum                                          float64                `protobuf:"fixed64,418,opt,name=trailers_axle_load_sum,json=trailersAxleLoadSum"`
 	xxx_hidden_TrailersPneumaticSupplyPressure                              float64                `protobuf:"fixed64,419,opt,name=trailers_pneumatic_supply_pressure,json=trailersPneumaticSupplyPressure"`
@@ -455,13 +455,13 @@ type DeviceInputs struct {
 	xxx_hidden_WirelessPair                                                 bool                   `protobuf:"varint,429,opt,name=wireless_pair,json=wirelessPair"`
 	xxx_hidden_WirelessDriverId                                             float64                `protobuf:"fixed64,430,opt,name=wireless_driver_id,json=wirelessDriverId"`
 	xxx_hidden_CurrentProfile                                               float64                `protobuf:"fixed64,431,opt,name=current_profile,json=currentProfile"`
-	xxx_hidden_PowerSupplyVoltage                                           float64                `protobuf:"fixed64,432,opt,name=power_supply_voltage,json=powerSupplyVoltage"`
-	xxx_hidden_BatteryVoltage                                               float64                `protobuf:"fixed64,433,opt,name=battery_voltage,json=batteryVoltage"`
-	xxx_hidden_PcbTemperature                                               float64                `protobuf:"fixed64,434,opt,name=pcb_temperature,json=pcbTemperature"`
-	xxx_hidden_VirtualOdometer                                              float64                `protobuf:"fixed64,435,opt,name=virtual_odometer,json=virtualOdometer"`
+	xxx_hidden_PowerSupplyVoltageV                                          float64                `protobuf:"fixed64,432,opt,name=power_supply_voltage_v,json=powerSupplyVoltageV"`
+	xxx_hidden_BatteryVoltageV                                              float64                `protobuf:"fixed64,433,opt,name=battery_voltage_v,json=batteryVoltageV"`
+	xxx_hidden_PcbTemperatureC                                              float64                `protobuf:"fixed64,434,opt,name=pcb_temperature_c,json=pcbTemperatureC"`
+	xxx_hidden_VirtualOdometerKm                                            float64                `protobuf:"fixed64,435,opt,name=virtual_odometer_km,json=virtualOdometerKm"`
 	xxx_hidden_InputTrigger                                                 float64                `protobuf:"fixed64,436,opt,name=input_trigger,json=inputTrigger"`
 	xxx_hidden_Priority                                                     *string                `protobuf:"bytes,437,opt,name=priority"`
-	xxx_hidden_BatteryCurrent                                               float64                `protobuf:"fixed64,438,opt,name=battery_current,json=batteryCurrent"`
+	xxx_hidden_BatteryCurrentMa                                             float64                `protobuf:"fixed64,438,opt,name=battery_current_ma,json=batteryCurrentMa"`
 	xxx_hidden_Movement                                                     *string                `protobuf:"bytes,439,opt,name=movement"`
 	xxx_hidden_Hdop                                                         *string                `protobuf:"bytes,440,opt,name=hdop"`
 	xxx_hidden_ModemTemperature                                             float64                `protobuf:"fixed64,441,opt,name=modem_temperature,json=modemTemperature"`
@@ -566,23 +566,23 @@ func (x *DeviceInputs) GetZAxisTiltAngle() float64 {
 	return 0
 }
 
-func (x *DeviceInputs) GetCanbusDistance() float64 {
+func (x *DeviceInputs) GetCanbusOdometerKm() float64 {
 	if x != nil {
-		return x.xxx_hidden_CanbusDistance
+		return x.xxx_hidden_CanbusOdometerKm
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetCanbusEngineCoolantTemperature() float64 {
+func (x *DeviceInputs) GetCanbusEngineCoolantTemperatureC() float64 {
 	if x != nil {
-		return x.xxx_hidden_CanbusEngineCoolantTemperature
+		return x.xxx_hidden_CanbusEngineCoolantTemperatureC
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetCanbusFuelRate() float64 {
+func (x *DeviceInputs) GetCanbusFuelRateLPerH() float64 {
 	if x != nil {
-		return x.xxx_hidden_CanbusFuelRate
+		return x.xxx_hidden_CanbusFuelRateLPerH
 	}
 	return 0
 }
@@ -594,51 +594,51 @@ func (x *DeviceInputs) GetEngineRpm() float64 {
 	return 0
 }
 
-func (x *DeviceInputs) GetEngineHours() float64 {
+func (x *DeviceInputs) GetEngineHoursLifetimeH() float64 {
 	if x != nil {
-		return x.xxx_hidden_EngineHours
+		return x.xxx_hidden_EngineHoursLifetimeH
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetServiceDist() float64 {
+func (x *DeviceInputs) GetServiceDistanceRemainingKm() float64 {
 	if x != nil {
-		return x.xxx_hidden_ServiceDist
+		return x.xxx_hidden_ServiceDistanceRemainingKm
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetPedalPos() float64 {
+func (x *DeviceInputs) GetPedalPositionPercent() float64 {
 	if x != nil {
-		return x.xxx_hidden_PedalPos
+		return x.xxx_hidden_PedalPositionPercent
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetFuelLevelCan() float64 {
+func (x *DeviceInputs) GetFuelLevelCanPercent() float64 {
 	if x != nil {
-		return x.xxx_hidden_FuelLevelCan
+		return x.xxx_hidden_FuelLevelCanPercent
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetFuelUsed() float64 {
+func (x *DeviceInputs) GetFuelUsedLifetimeL() float64 {
 	if x != nil {
-		return x.xxx_hidden_FuelUsed
+		return x.xxx_hidden_FuelUsedLifetimeL
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetSpeedWheel() float64 {
+func (x *DeviceInputs) GetWheelSpeedKmh() float64 {
 	if x != nil {
-		return x.xxx_hidden_SpeedWheel
+		return x.xxx_hidden_WheelSpeedKmh
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetSpeedTacho() float64 {
+func (x *DeviceInputs) GetTachoSpeedKmh() float64 {
 	if x != nil {
-		return x.xxx_hidden_SpeedTacho
+		return x.xxx_hidden_TachoSpeedKmh
 	}
 	return 0
 }
@@ -1272,9 +1272,9 @@ func (x *DeviceInputs) GetOperator() float64 {
 	return 0
 }
 
-func (x *DeviceInputs) GetGpsSpeed() float64 {
+func (x *DeviceInputs) GetGpsSpeedKmh() float64 {
 	if x != nil {
-		return x.xxx_hidden_GpsSpeed
+		return x.xxx_hidden_GpsSpeedKmh
 	}
 	return 0
 }
@@ -1340,9 +1340,9 @@ func (x *DeviceInputs) GetGprsStatus() string {
 	return ""
 }
 
-func (x *DeviceInputs) GetGpsAltitude() float64 {
+func (x *DeviceInputs) GetGpsAltitudeM() float64 {
 	if x != nil {
-		return x.xxx_hidden_GpsAltitude
+		return x.xxx_hidden_GpsAltitudeM
 	}
 	return 0
 }
@@ -1636,9 +1636,9 @@ func (x *DeviceInputs) GetDxpChargerStatus() float64 {
 	return 0
 }
 
-func (x *DeviceInputs) GetEcodriveMaximumSpeed() float64 {
+func (x *DeviceInputs) GetEcodriveMaximumSpeedKmh() float64 {
 	if x != nil {
-		return x.xxx_hidden_EcodriveMaximumSpeed
+		return x.xxx_hidden_EcodriveMaximumSpeedKmh
 	}
 	return 0
 }
@@ -2594,30 +2594,30 @@ func (x *DeviceInputs) GetAnalogInput_2() float64 {
 	return 0
 }
 
-func (x *DeviceInputs) GetDin1WorkingTimeDiff() float64 {
+func (x *DeviceInputs) GetDin1WorkingTimeDiffS() float64 {
 	if x != nil {
-		return x.xxx_hidden_Din1WorkingTimeDiff
+		return x.xxx_hidden_Din1WorkingTimeDiffS
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetDin2WorkingTimeDiff() float64 {
+func (x *DeviceInputs) GetDin2WorkingTimeDiffS() float64 {
 	if x != nil {
-		return x.xxx_hidden_Din2WorkingTimeDiff
+		return x.xxx_hidden_Din2WorkingTimeDiffS
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetDin3WorkingTimeDiff() float64 {
+func (x *DeviceInputs) GetDin3WorkingTimeDiffS() float64 {
 	if x != nil {
-		return x.xxx_hidden_Din3WorkingTimeDiff
+		return x.xxx_hidden_Din3WorkingTimeDiffS
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetDin4WorkingTimeDiff() float64 {
+func (x *DeviceInputs) GetDin4WorkingTimeDiffS() float64 {
 	if x != nil {
-		return x.xxx_hidden_Din4WorkingTimeDiff
+		return x.xxx_hidden_Din4WorkingTimeDiffS
 	}
 	return 0
 }
@@ -2908,16 +2908,16 @@ func (x *DeviceInputs) GetMobileyeHiBeamAvailable() bool {
 	return false
 }
 
-func (x *DeviceInputs) GetMobileyeSpeedAvailable() bool {
+func (x *DeviceInputs) GetMobileyeSpeedKmhAvailable() bool {
 	if x != nil {
-		return x.xxx_hidden_MobileyeSpeedAvailable
+		return x.xxx_hidden_MobileyeSpeedKmhAvailable
 	}
 	return false
 }
 
-func (x *DeviceInputs) GetMobileyeSpeed() float64 {
+func (x *DeviceInputs) GetMobileyeSpeedKmh() float64 {
 	if x != nil {
-		return x.xxx_hidden_MobileyeSpeed
+		return x.xxx_hidden_MobileyeSpeedKmh
 	}
 	return 0
 }
@@ -3065,9 +3065,9 @@ func (x *DeviceInputs) GetObdKlineRpm() float64 {
 	return 0
 }
 
-func (x *DeviceInputs) GetObdKlineVehicleSpeedSensor() float64 {
+func (x *DeviceInputs) GetObdKlineVehicleSpeedKmh() float64 {
 	if x != nil {
-		return x.xxx_hidden_ObdKlineVehicleSpeedSensor
+		return x.xxx_hidden_ObdKlineVehicleSpeedKmh
 	}
 	return 0
 }
@@ -3196,9 +3196,9 @@ func (x *DeviceInputs) GetSprSpreaderMode() float64 {
 	return 0
 }
 
-func (x *DeviceInputs) GetSprSpreaderAdjustmentOfSimulationDrivingSpeed() float64 {
+func (x *DeviceInputs) GetSprSpreaderAdjustmentOfSimulationDrivingSpeedKmh() float64 {
 	if x != nil {
-		return x.xxx_hidden_SprSpreaderAdjustmentOfSimulationDrivingSpeed
+		return x.xxx_hidden_SprSpreaderAdjustmentOfSimulationDrivingSpeedKmh
 	}
 	return 0
 }
@@ -3302,78 +3302,78 @@ func (x *DeviceInputs) GetDriver_2State() string {
 	return ""
 }
 
-func (x *DeviceInputs) GetTcoFirstDriverState() string {
+func (x *DeviceInputs) GetTachoFirstDriverState() string {
 	if x != nil {
-		if x.xxx_hidden_TcoFirstDriverState != nil {
-			return *x.xxx_hidden_TcoFirstDriverState
+		if x.xxx_hidden_TachoFirstDriverState != nil {
+			return *x.xxx_hidden_TachoFirstDriverState
 		}
 		return ""
 	}
 	return ""
 }
 
-func (x *DeviceInputs) GetTcoSecondDriverState() string {
+func (x *DeviceInputs) GetTachoSecondDriverState() string {
 	if x != nil {
-		if x.xxx_hidden_TcoSecondDriverState != nil {
-			return *x.xxx_hidden_TcoSecondDriverState
+		if x.xxx_hidden_TachoSecondDriverState != nil {
+			return *x.xxx_hidden_TachoSecondDriverState
 		}
 		return ""
 	}
 	return ""
 }
 
-func (x *DeviceInputs) GetTcoFirstDriverCard() string {
+func (x *DeviceInputs) GetTachoFirstDriverCard() string {
 	if x != nil {
-		if x.xxx_hidden_TcoFirstDriverCard != nil {
-			return *x.xxx_hidden_TcoFirstDriverCard
+		if x.xxx_hidden_TachoFirstDriverCard != nil {
+			return *x.xxx_hidden_TachoFirstDriverCard
 		}
 		return ""
 	}
 	return ""
 }
 
-func (x *DeviceInputs) GetTcoSecondDriverCard() string {
+func (x *DeviceInputs) GetTachoSecondDriverCard() string {
 	if x != nil {
-		if x.xxx_hidden_TcoSecondDriverCard != nil {
-			return *x.xxx_hidden_TcoSecondDriverCard
+		if x.xxx_hidden_TachoSecondDriverCard != nil {
+			return *x.xxx_hidden_TachoSecondDriverCard
 		}
 		return ""
 	}
 	return ""
 }
 
-func (x *DeviceInputs) GetTcoDistance() float64 {
+func (x *DeviceInputs) GetTachoOdometerKm() float64 {
 	if x != nil {
-		return x.xxx_hidden_TcoDistance
+		return x.xxx_hidden_TachoOdometerKm
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetTcoTrip() float64 {
+func (x *DeviceInputs) GetTachoTripKm() float64 {
 	if x != nil {
-		return x.xxx_hidden_TcoTrip
+		return x.xxx_hidden_TachoTripKm
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetTcoVehicleSpeed() float64 {
+func (x *DeviceInputs) GetTachoVehicleSpeedKmh() float64 {
 	if x != nil {
-		return x.xxx_hidden_TcoVehicleSpeed
+		return x.xxx_hidden_TachoVehicleSpeedKmh
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetTcoRpm() float64 {
+func (x *DeviceInputs) GetTachoRpm() float64 {
 	if x != nil {
-		return x.xxx_hidden_TcoRpm
+		return x.xxx_hidden_TachoRpm
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetTcoRegistrationNumber() string {
+func (x *DeviceInputs) GetTachoRegistrationNumber() string {
 	if x != nil {
-		if x.xxx_hidden_TcoRegistrationNumber != nil {
-			return *x.xxx_hidden_TcoRegistrationNumber
+		if x.xxx_hidden_TachoRegistrationNumber != nil {
+			return *x.xxx_hidden_TachoRegistrationNumber
 		}
 		return ""
 	}
@@ -3390,86 +3390,86 @@ func (x *DeviceInputs) GetTachoDddAvailable() string {
 	return ""
 }
 
-func (x *DeviceInputs) GetTcoFirstDriverDrivingTimePrevAndCurrWeek() float64 {
+func (x *DeviceInputs) GetTachoFirstDriverDrivingTimePrevAndCurrWeekMinutes() float64 {
 	if x != nil {
-		return x.xxx_hidden_TcoFirstDriverDrivingTimePrevAndCurrWeek
+		return x.xxx_hidden_TachoFirstDriverDrivingTimePrevAndCurrWeekMinutes
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetTcoSecondDriverDrivingTimePrevAndCurrWeek() float64 {
+func (x *DeviceInputs) GetTachoSecondDriverDrivingTimePrevAndCurrWeekMinutes() float64 {
 	if x != nil {
-		return x.xxx_hidden_TcoSecondDriverDrivingTimePrevAndCurrWeek
+		return x.xxx_hidden_TachoSecondDriverDrivingTimePrevAndCurrWeekMinutes
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetTcoFirstDriverDurationOfSelectedActivity() float64 {
+func (x *DeviceInputs) GetTachoFirstDriverDurationOfSelectedActivityMinutes() float64 {
 	if x != nil {
-		return x.xxx_hidden_TcoFirstDriverDurationOfSelectedActivity
+		return x.xxx_hidden_TachoFirstDriverDurationOfSelectedActivityMinutes
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetTcoSecondDriverDurationOfSelectedActivity() float64 {
+func (x *DeviceInputs) GetTachoSecondDriverDurationOfSelectedActivityMinutes() float64 {
 	if x != nil {
-		return x.xxx_hidden_TcoSecondDriverDurationOfSelectedActivity
+		return x.xxx_hidden_TachoSecondDriverDurationOfSelectedActivityMinutes
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetTcoFirstDriverContinuousDrivingTime() float64 {
+func (x *DeviceInputs) GetTachoFirstDriverContinuousDrivingTimeMinutes() float64 {
 	if x != nil {
-		return x.xxx_hidden_TcoFirstDriverContinuousDrivingTime
+		return x.xxx_hidden_TachoFirstDriverContinuousDrivingTimeMinutes
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetTcoSecondDriverContinuousDrivingTime() float64 {
+func (x *DeviceInputs) GetTachoSecondDriverContinuousDrivingTimeMinutes() float64 {
 	if x != nil {
-		return x.xxx_hidden_TcoSecondDriverContinuousDrivingTime
+		return x.xxx_hidden_TachoSecondDriverContinuousDrivingTimeMinutes
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetTcoFirstDriverCumulatedBreakTime() float64 {
+func (x *DeviceInputs) GetTachoFirstDriverCumulatedBreakTimeMinutes() float64 {
 	if x != nil {
-		return x.xxx_hidden_TcoFirstDriverCumulatedBreakTime
+		return x.xxx_hidden_TachoFirstDriverCumulatedBreakTimeMinutes
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetTcoSecondDriverCumulatedBreakTime() float64 {
+func (x *DeviceInputs) GetTachoSecondDriverCumulatedBreakTimeMinutes() float64 {
 	if x != nil {
-		return x.xxx_hidden_TcoSecondDriverCumulatedBreakTime
+		return x.xxx_hidden_TachoSecondDriverCumulatedBreakTimeMinutes
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetTcoFirstDriverTimeRelatedStates() float64 {
+func (x *DeviceInputs) GetTachoFirstDriverTimeRelatedStates() float64 {
 	if x != nil {
-		return x.xxx_hidden_TcoFirstDriverTimeRelatedStates
+		return x.xxx_hidden_TachoFirstDriverTimeRelatedStates
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetTcoSecondDriverTimeRelatedStates() float64 {
+func (x *DeviceInputs) GetTachoSecondDriverTimeRelatedStates() float64 {
 	if x != nil {
-		return x.xxx_hidden_TcoSecondDriverTimeRelatedStates
+		return x.xxx_hidden_TachoSecondDriverTimeRelatedStates
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetTcoTime() *timestamppb.Timestamp {
+func (x *DeviceInputs) GetTachoTime() *timestamppb.Timestamp {
 	if x != nil {
-		return x.xxx_hidden_TcoTime
+		return x.xxx_hidden_TachoTime
 	}
 	return nil
 }
 
-func (x *DeviceInputs) GetTcoCanTachoTime() *timestamppb.Timestamp {
+func (x *DeviceInputs) GetTachoCanTachoTime() *timestamppb.Timestamp {
 	if x != nil {
-		return x.xxx_hidden_TcoCanTachoTime
+		return x.xxx_hidden_TachoCanTachoTime
 	}
 	return nil
 }
@@ -3749,16 +3749,16 @@ func (x *DeviceInputs) GetTrailersVehiclePneumaticSupplyStatus() string {
 	return ""
 }
 
-func (x *DeviceInputs) GetTrailersBrakingSystemWheelBasedVehicleSpeed() float64 {
+func (x *DeviceInputs) GetTrailersBrakingSystemWheelBasedVehicleSpeedKmh() float64 {
 	if x != nil {
-		return x.xxx_hidden_TrailersBrakingSystemWheelBasedVehicleSpeed
+		return x.xxx_hidden_TrailersBrakingSystemWheelBasedVehicleSpeedKmh
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetTrailersWheelSpeedDifferenceMainAxle() float64 {
+func (x *DeviceInputs) GetTrailersWheelSpeedDifferenceMainAxleKmh() float64 {
 	if x != nil {
-		return x.xxx_hidden_TrailersWheelSpeedDifferenceMainAxle
+		return x.xxx_hidden_TrailersWheelSpeedDifferenceMainAxleKmh
 	}
 	return 0
 }
@@ -3871,30 +3871,30 @@ func (x *DeviceInputs) GetCurrentProfile() float64 {
 	return 0
 }
 
-func (x *DeviceInputs) GetPowerSupplyVoltage() float64 {
+func (x *DeviceInputs) GetPowerSupplyVoltageV() float64 {
 	if x != nil {
-		return x.xxx_hidden_PowerSupplyVoltage
+		return x.xxx_hidden_PowerSupplyVoltageV
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetBatteryVoltage() float64 {
+func (x *DeviceInputs) GetBatteryVoltageV() float64 {
 	if x != nil {
-		return x.xxx_hidden_BatteryVoltage
+		return x.xxx_hidden_BatteryVoltageV
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetPcbTemperature() float64 {
+func (x *DeviceInputs) GetPcbTemperatureC() float64 {
 	if x != nil {
-		return x.xxx_hidden_PcbTemperature
+		return x.xxx_hidden_PcbTemperatureC
 	}
 	return 0
 }
 
-func (x *DeviceInputs) GetVirtualOdometer() float64 {
+func (x *DeviceInputs) GetVirtualOdometerKm() float64 {
 	if x != nil {
-		return x.xxx_hidden_VirtualOdometer
+		return x.xxx_hidden_VirtualOdometerKm
 	}
 	return 0
 }
@@ -3916,9 +3916,9 @@ func (x *DeviceInputs) GetPriority() string {
 	return ""
 }
 
-func (x *DeviceInputs) GetBatteryCurrent() float64 {
+func (x *DeviceInputs) GetBatteryCurrentMa() float64 {
 	if x != nil {
-		return x.xxx_hidden_BatteryCurrent
+		return x.xxx_hidden_BatteryCurrentMa
 	}
 	return 0
 }
@@ -4053,18 +4053,18 @@ func (x *DeviceInputs) SetZAxisTiltAngle(v float64) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 8, 448)
 }
 
-func (x *DeviceInputs) SetCanbusDistance(v float64) {
-	x.xxx_hidden_CanbusDistance = v
+func (x *DeviceInputs) SetCanbusOdometerKm(v float64) {
+	x.xxx_hidden_CanbusOdometerKm = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 9, 448)
 }
 
-func (x *DeviceInputs) SetCanbusEngineCoolantTemperature(v float64) {
-	x.xxx_hidden_CanbusEngineCoolantTemperature = v
+func (x *DeviceInputs) SetCanbusEngineCoolantTemperatureC(v float64) {
+	x.xxx_hidden_CanbusEngineCoolantTemperatureC = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 10, 448)
 }
 
-func (x *DeviceInputs) SetCanbusFuelRate(v float64) {
-	x.xxx_hidden_CanbusFuelRate = v
+func (x *DeviceInputs) SetCanbusFuelRateLPerH(v float64) {
+	x.xxx_hidden_CanbusFuelRateLPerH = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 11, 448)
 }
 
@@ -4073,38 +4073,38 @@ func (x *DeviceInputs) SetEngineRpm(v float64) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 12, 448)
 }
 
-func (x *DeviceInputs) SetEngineHours(v float64) {
-	x.xxx_hidden_EngineHours = v
+func (x *DeviceInputs) SetEngineHoursLifetimeH(v float64) {
+	x.xxx_hidden_EngineHoursLifetimeH = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 13, 448)
 }
 
-func (x *DeviceInputs) SetServiceDist(v float64) {
-	x.xxx_hidden_ServiceDist = v
+func (x *DeviceInputs) SetServiceDistanceRemainingKm(v float64) {
+	x.xxx_hidden_ServiceDistanceRemainingKm = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 14, 448)
 }
 
-func (x *DeviceInputs) SetPedalPos(v float64) {
-	x.xxx_hidden_PedalPos = v
+func (x *DeviceInputs) SetPedalPositionPercent(v float64) {
+	x.xxx_hidden_PedalPositionPercent = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 15, 448)
 }
 
-func (x *DeviceInputs) SetFuelLevelCan(v float64) {
-	x.xxx_hidden_FuelLevelCan = v
+func (x *DeviceInputs) SetFuelLevelCanPercent(v float64) {
+	x.xxx_hidden_FuelLevelCanPercent = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 16, 448)
 }
 
-func (x *DeviceInputs) SetFuelUsed(v float64) {
-	x.xxx_hidden_FuelUsed = v
+func (x *DeviceInputs) SetFuelUsedLifetimeL(v float64) {
+	x.xxx_hidden_FuelUsedLifetimeL = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 17, 448)
 }
 
-func (x *DeviceInputs) SetSpeedWheel(v float64) {
-	x.xxx_hidden_SpeedWheel = v
+func (x *DeviceInputs) SetWheelSpeedKmh(v float64) {
+	x.xxx_hidden_WheelSpeedKmh = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 18, 448)
 }
 
-func (x *DeviceInputs) SetSpeedTacho(v float64) {
-	x.xxx_hidden_SpeedTacho = v
+func (x *DeviceInputs) SetTachoSpeedKmh(v float64) {
+	x.xxx_hidden_TachoSpeedKmh = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 19, 448)
 }
 
@@ -4463,8 +4463,8 @@ func (x *DeviceInputs) SetOperator(v float64) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[2]), 90, 448)
 }
 
-func (x *DeviceInputs) SetGpsSpeed(v float64) {
-	x.xxx_hidden_GpsSpeed = v
+func (x *DeviceInputs) SetGpsSpeedKmh(v float64) {
+	x.xxx_hidden_GpsSpeedKmh = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[2]), 91, 448)
 }
 
@@ -4503,8 +4503,8 @@ func (x *DeviceInputs) SetGprsStatus(v string) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[3]), 98, 448)
 }
 
-func (x *DeviceInputs) SetGpsAltitude(v float64) {
-	x.xxx_hidden_GpsAltitude = v
+func (x *DeviceInputs) SetGpsAltitudeM(v float64) {
+	x.xxx_hidden_GpsAltitudeM = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[3]), 99, 448)
 }
 
@@ -4693,8 +4693,8 @@ func (x *DeviceInputs) SetDxpChargerStatus(v float64) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[4]), 136, 448)
 }
 
-func (x *DeviceInputs) SetEcodriveMaximumSpeed(v float64) {
-	x.xxx_hidden_EcodriveMaximumSpeed = v
+func (x *DeviceInputs) SetEcodriveMaximumSpeedKmh(v float64) {
+	x.xxx_hidden_EcodriveMaximumSpeedKmh = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[4]), 137, 448)
 }
 
@@ -5343,23 +5343,23 @@ func (x *DeviceInputs) SetAnalogInput_2(v float64) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[8]), 266, 448)
 }
 
-func (x *DeviceInputs) SetDin1WorkingTimeDiff(v float64) {
-	x.xxx_hidden_Din1WorkingTimeDiff = v
+func (x *DeviceInputs) SetDin1WorkingTimeDiffS(v float64) {
+	x.xxx_hidden_Din1WorkingTimeDiffS = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[8]), 267, 448)
 }
 
-func (x *DeviceInputs) SetDin2WorkingTimeDiff(v float64) {
-	x.xxx_hidden_Din2WorkingTimeDiff = v
+func (x *DeviceInputs) SetDin2WorkingTimeDiffS(v float64) {
+	x.xxx_hidden_Din2WorkingTimeDiffS = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[8]), 268, 448)
 }
 
-func (x *DeviceInputs) SetDin3WorkingTimeDiff(v float64) {
-	x.xxx_hidden_Din3WorkingTimeDiff = v
+func (x *DeviceInputs) SetDin3WorkingTimeDiffS(v float64) {
+	x.xxx_hidden_Din3WorkingTimeDiffS = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[8]), 269, 448)
 }
 
-func (x *DeviceInputs) SetDin4WorkingTimeDiff(v float64) {
-	x.xxx_hidden_Din4WorkingTimeDiff = v
+func (x *DeviceInputs) SetDin4WorkingTimeDiffS(v float64) {
+	x.xxx_hidden_Din4WorkingTimeDiffS = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[8]), 270, 448)
 }
 
@@ -5547,13 +5547,13 @@ func (x *DeviceInputs) SetMobileyeHiBeamAvailable(v bool) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[9]), 307, 448)
 }
 
-func (x *DeviceInputs) SetMobileyeSpeedAvailable(v bool) {
-	x.xxx_hidden_MobileyeSpeedAvailable = v
+func (x *DeviceInputs) SetMobileyeSpeedKmhAvailable(v bool) {
+	x.xxx_hidden_MobileyeSpeedKmhAvailable = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[9]), 308, 448)
 }
 
-func (x *DeviceInputs) SetMobileyeSpeed(v float64) {
-	x.xxx_hidden_MobileyeSpeed = v
+func (x *DeviceInputs) SetMobileyeSpeedKmh(v float64) {
+	x.xxx_hidden_MobileyeSpeedKmh = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[9]), 309, 448)
 }
 
@@ -5657,8 +5657,8 @@ func (x *DeviceInputs) SetObdKlineRpm(v float64) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[10]), 329, 448)
 }
 
-func (x *DeviceInputs) SetObdKlineVehicleSpeedSensor(v float64) {
-	x.xxx_hidden_ObdKlineVehicleSpeedSensor = v
+func (x *DeviceInputs) SetObdKlineVehicleSpeedKmh(v float64) {
+	x.xxx_hidden_ObdKlineVehicleSpeedKmh = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[10]), 330, 448)
 }
 
@@ -5742,8 +5742,8 @@ func (x *DeviceInputs) SetSprSpreaderMode(v float64) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[10]), 346, 448)
 }
 
-func (x *DeviceInputs) SetSprSpreaderAdjustmentOfSimulationDrivingSpeed(v float64) {
-	x.xxx_hidden_SprSpreaderAdjustmentOfSimulationDrivingSpeed = v
+func (x *DeviceInputs) SetSprSpreaderAdjustmentOfSimulationDrivingSpeedKmh(v float64) {
+	x.xxx_hidden_SprSpreaderAdjustmentOfSimulationDrivingSpeedKmh = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[10]), 347, 448)
 }
 
@@ -5807,48 +5807,48 @@ func (x *DeviceInputs) SetDriver_2State(v string) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 359, 448)
 }
 
-func (x *DeviceInputs) SetTcoFirstDriverState(v string) {
-	x.xxx_hidden_TcoFirstDriverState = &v
+func (x *DeviceInputs) SetTachoFirstDriverState(v string) {
+	x.xxx_hidden_TachoFirstDriverState = &v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 360, 448)
 }
 
-func (x *DeviceInputs) SetTcoSecondDriverState(v string) {
-	x.xxx_hidden_TcoSecondDriverState = &v
+func (x *DeviceInputs) SetTachoSecondDriverState(v string) {
+	x.xxx_hidden_TachoSecondDriverState = &v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 361, 448)
 }
 
-func (x *DeviceInputs) SetTcoFirstDriverCard(v string) {
-	x.xxx_hidden_TcoFirstDriverCard = &v
+func (x *DeviceInputs) SetTachoFirstDriverCard(v string) {
+	x.xxx_hidden_TachoFirstDriverCard = &v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 362, 448)
 }
 
-func (x *DeviceInputs) SetTcoSecondDriverCard(v string) {
-	x.xxx_hidden_TcoSecondDriverCard = &v
+func (x *DeviceInputs) SetTachoSecondDriverCard(v string) {
+	x.xxx_hidden_TachoSecondDriverCard = &v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 363, 448)
 }
 
-func (x *DeviceInputs) SetTcoDistance(v float64) {
-	x.xxx_hidden_TcoDistance = v
+func (x *DeviceInputs) SetTachoOdometerKm(v float64) {
+	x.xxx_hidden_TachoOdometerKm = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 364, 448)
 }
 
-func (x *DeviceInputs) SetTcoTrip(v float64) {
-	x.xxx_hidden_TcoTrip = v
+func (x *DeviceInputs) SetTachoTripKm(v float64) {
+	x.xxx_hidden_TachoTripKm = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 365, 448)
 }
 
-func (x *DeviceInputs) SetTcoVehicleSpeed(v float64) {
-	x.xxx_hidden_TcoVehicleSpeed = v
+func (x *DeviceInputs) SetTachoVehicleSpeedKmh(v float64) {
+	x.xxx_hidden_TachoVehicleSpeedKmh = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 366, 448)
 }
 
-func (x *DeviceInputs) SetTcoRpm(v float64) {
-	x.xxx_hidden_TcoRpm = v
+func (x *DeviceInputs) SetTachoRpm(v float64) {
+	x.xxx_hidden_TachoRpm = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 367, 448)
 }
 
-func (x *DeviceInputs) SetTcoRegistrationNumber(v string) {
-	x.xxx_hidden_TcoRegistrationNumber = &v
+func (x *DeviceInputs) SetTachoRegistrationNumber(v string) {
+	x.xxx_hidden_TachoRegistrationNumber = &v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 368, 448)
 }
 
@@ -5857,62 +5857,62 @@ func (x *DeviceInputs) SetTachoDddAvailable(v string) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 369, 448)
 }
 
-func (x *DeviceInputs) SetTcoFirstDriverDrivingTimePrevAndCurrWeek(v float64) {
-	x.xxx_hidden_TcoFirstDriverDrivingTimePrevAndCurrWeek = v
+func (x *DeviceInputs) SetTachoFirstDriverDrivingTimePrevAndCurrWeekMinutes(v float64) {
+	x.xxx_hidden_TachoFirstDriverDrivingTimePrevAndCurrWeekMinutes = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 370, 448)
 }
 
-func (x *DeviceInputs) SetTcoSecondDriverDrivingTimePrevAndCurrWeek(v float64) {
-	x.xxx_hidden_TcoSecondDriverDrivingTimePrevAndCurrWeek = v
+func (x *DeviceInputs) SetTachoSecondDriverDrivingTimePrevAndCurrWeekMinutes(v float64) {
+	x.xxx_hidden_TachoSecondDriverDrivingTimePrevAndCurrWeekMinutes = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 371, 448)
 }
 
-func (x *DeviceInputs) SetTcoFirstDriverDurationOfSelectedActivity(v float64) {
-	x.xxx_hidden_TcoFirstDriverDurationOfSelectedActivity = v
+func (x *DeviceInputs) SetTachoFirstDriverDurationOfSelectedActivityMinutes(v float64) {
+	x.xxx_hidden_TachoFirstDriverDurationOfSelectedActivityMinutes = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 372, 448)
 }
 
-func (x *DeviceInputs) SetTcoSecondDriverDurationOfSelectedActivity(v float64) {
-	x.xxx_hidden_TcoSecondDriverDurationOfSelectedActivity = v
+func (x *DeviceInputs) SetTachoSecondDriverDurationOfSelectedActivityMinutes(v float64) {
+	x.xxx_hidden_TachoSecondDriverDurationOfSelectedActivityMinutes = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 373, 448)
 }
 
-func (x *DeviceInputs) SetTcoFirstDriverContinuousDrivingTime(v float64) {
-	x.xxx_hidden_TcoFirstDriverContinuousDrivingTime = v
+func (x *DeviceInputs) SetTachoFirstDriverContinuousDrivingTimeMinutes(v float64) {
+	x.xxx_hidden_TachoFirstDriverContinuousDrivingTimeMinutes = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 374, 448)
 }
 
-func (x *DeviceInputs) SetTcoSecondDriverContinuousDrivingTime(v float64) {
-	x.xxx_hidden_TcoSecondDriverContinuousDrivingTime = v
+func (x *DeviceInputs) SetTachoSecondDriverContinuousDrivingTimeMinutes(v float64) {
+	x.xxx_hidden_TachoSecondDriverContinuousDrivingTimeMinutes = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 375, 448)
 }
 
-func (x *DeviceInputs) SetTcoFirstDriverCumulatedBreakTime(v float64) {
-	x.xxx_hidden_TcoFirstDriverCumulatedBreakTime = v
+func (x *DeviceInputs) SetTachoFirstDriverCumulatedBreakTimeMinutes(v float64) {
+	x.xxx_hidden_TachoFirstDriverCumulatedBreakTimeMinutes = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 376, 448)
 }
 
-func (x *DeviceInputs) SetTcoSecondDriverCumulatedBreakTime(v float64) {
-	x.xxx_hidden_TcoSecondDriverCumulatedBreakTime = v
+func (x *DeviceInputs) SetTachoSecondDriverCumulatedBreakTimeMinutes(v float64) {
+	x.xxx_hidden_TachoSecondDriverCumulatedBreakTimeMinutes = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 377, 448)
 }
 
-func (x *DeviceInputs) SetTcoFirstDriverTimeRelatedStates(v float64) {
-	x.xxx_hidden_TcoFirstDriverTimeRelatedStates = v
+func (x *DeviceInputs) SetTachoFirstDriverTimeRelatedStates(v float64) {
+	x.xxx_hidden_TachoFirstDriverTimeRelatedStates = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 378, 448)
 }
 
-func (x *DeviceInputs) SetTcoSecondDriverTimeRelatedStates(v float64) {
-	x.xxx_hidden_TcoSecondDriverTimeRelatedStates = v
+func (x *DeviceInputs) SetTachoSecondDriverTimeRelatedStates(v float64) {
+	x.xxx_hidden_TachoSecondDriverTimeRelatedStates = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[11]), 379, 448)
 }
 
-func (x *DeviceInputs) SetTcoTime(v *timestamppb.Timestamp) {
-	x.xxx_hidden_TcoTime = v
+func (x *DeviceInputs) SetTachoTime(v *timestamppb.Timestamp) {
+	x.xxx_hidden_TachoTime = v
 }
 
-func (x *DeviceInputs) SetTcoCanTachoTime(v *timestamppb.Timestamp) {
-	x.xxx_hidden_TcoCanTachoTime = v
+func (x *DeviceInputs) SetTachoCanTachoTime(v *timestamppb.Timestamp) {
+	x.xxx_hidden_TachoCanTachoTime = v
 }
 
 func (x *DeviceInputs) SetTemperatureSensor_0(v float64) {
@@ -6075,13 +6075,13 @@ func (x *DeviceInputs) SetTrailersVehiclePneumaticSupplyStatus(v string) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[12]), 413, 448)
 }
 
-func (x *DeviceInputs) SetTrailersBrakingSystemWheelBasedVehicleSpeed(v float64) {
-	x.xxx_hidden_TrailersBrakingSystemWheelBasedVehicleSpeed = v
+func (x *DeviceInputs) SetTrailersBrakingSystemWheelBasedVehicleSpeedKmh(v float64) {
+	x.xxx_hidden_TrailersBrakingSystemWheelBasedVehicleSpeedKmh = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[12]), 414, 448)
 }
 
-func (x *DeviceInputs) SetTrailersWheelSpeedDifferenceMainAxle(v float64) {
-	x.xxx_hidden_TrailersWheelSpeedDifferenceMainAxle = v
+func (x *DeviceInputs) SetTrailersWheelSpeedDifferenceMainAxleKmh(v float64) {
+	x.xxx_hidden_TrailersWheelSpeedDifferenceMainAxleKmh = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[12]), 415, 448)
 }
 
@@ -6160,23 +6160,23 @@ func (x *DeviceInputs) SetCurrentProfile(v float64) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[13]), 430, 448)
 }
 
-func (x *DeviceInputs) SetPowerSupplyVoltage(v float64) {
-	x.xxx_hidden_PowerSupplyVoltage = v
+func (x *DeviceInputs) SetPowerSupplyVoltageV(v float64) {
+	x.xxx_hidden_PowerSupplyVoltageV = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[13]), 431, 448)
 }
 
-func (x *DeviceInputs) SetBatteryVoltage(v float64) {
-	x.xxx_hidden_BatteryVoltage = v
+func (x *DeviceInputs) SetBatteryVoltageV(v float64) {
+	x.xxx_hidden_BatteryVoltageV = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[13]), 432, 448)
 }
 
-func (x *DeviceInputs) SetPcbTemperature(v float64) {
-	x.xxx_hidden_PcbTemperature = v
+func (x *DeviceInputs) SetPcbTemperatureC(v float64) {
+	x.xxx_hidden_PcbTemperatureC = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[13]), 433, 448)
 }
 
-func (x *DeviceInputs) SetVirtualOdometer(v float64) {
-	x.xxx_hidden_VirtualOdometer = v
+func (x *DeviceInputs) SetVirtualOdometerKm(v float64) {
+	x.xxx_hidden_VirtualOdometerKm = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[13]), 434, 448)
 }
 
@@ -6190,8 +6190,8 @@ func (x *DeviceInputs) SetPriority(v string) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[13]), 436, 448)
 }
 
-func (x *DeviceInputs) SetBatteryCurrent(v float64) {
-	x.xxx_hidden_BatteryCurrent = v
+func (x *DeviceInputs) SetBatteryCurrentMa(v float64) {
+	x.xxx_hidden_BatteryCurrentMa = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[13]), 437, 448)
 }
 
@@ -6308,21 +6308,21 @@ func (x *DeviceInputs) HasZAxisTiltAngle() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 8)
 }
 
-func (x *DeviceInputs) HasCanbusDistance() bool {
+func (x *DeviceInputs) HasCanbusOdometerKm() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 9)
 }
 
-func (x *DeviceInputs) HasCanbusEngineCoolantTemperature() bool {
+func (x *DeviceInputs) HasCanbusEngineCoolantTemperatureC() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 10)
 }
 
-func (x *DeviceInputs) HasCanbusFuelRate() bool {
+func (x *DeviceInputs) HasCanbusFuelRateLPerH() bool {
 	if x == nil {
 		return false
 	}
@@ -6336,49 +6336,49 @@ func (x *DeviceInputs) HasEngineRpm() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 12)
 }
 
-func (x *DeviceInputs) HasEngineHours() bool {
+func (x *DeviceInputs) HasEngineHoursLifetimeH() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 13)
 }
 
-func (x *DeviceInputs) HasServiceDist() bool {
+func (x *DeviceInputs) HasServiceDistanceRemainingKm() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 14)
 }
 
-func (x *DeviceInputs) HasPedalPos() bool {
+func (x *DeviceInputs) HasPedalPositionPercent() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 15)
 }
 
-func (x *DeviceInputs) HasFuelLevelCan() bool {
+func (x *DeviceInputs) HasFuelLevelCanPercent() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 16)
 }
 
-func (x *DeviceInputs) HasFuelUsed() bool {
+func (x *DeviceInputs) HasFuelUsedLifetimeL() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 17)
 }
 
-func (x *DeviceInputs) HasSpeedWheel() bool {
+func (x *DeviceInputs) HasWheelSpeedKmh() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 18)
 }
 
-func (x *DeviceInputs) HasSpeedTacho() bool {
+func (x *DeviceInputs) HasTachoSpeedKmh() bool {
 	if x == nil {
 		return false
 	}
@@ -6882,7 +6882,7 @@ func (x *DeviceInputs) HasOperator() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[2]), 90)
 }
 
-func (x *DeviceInputs) HasGpsSpeed() bool {
+func (x *DeviceInputs) HasGpsSpeedKmh() bool {
 	if x == nil {
 		return false
 	}
@@ -6938,7 +6938,7 @@ func (x *DeviceInputs) HasGprsStatus() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[3]), 98)
 }
 
-func (x *DeviceInputs) HasGpsAltitude() bool {
+func (x *DeviceInputs) HasGpsAltitudeM() bool {
 	if x == nil {
 		return false
 	}
@@ -7204,7 +7204,7 @@ func (x *DeviceInputs) HasDxpChargerStatus() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[4]), 136)
 }
 
-func (x *DeviceInputs) HasEcodriveMaximumSpeed() bool {
+func (x *DeviceInputs) HasEcodriveMaximumSpeedKmh() bool {
 	if x == nil {
 		return false
 	}
@@ -8114,28 +8114,28 @@ func (x *DeviceInputs) HasAnalogInput_2() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[8]), 266)
 }
 
-func (x *DeviceInputs) HasDin1WorkingTimeDiff() bool {
+func (x *DeviceInputs) HasDin1WorkingTimeDiffS() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[8]), 267)
 }
 
-func (x *DeviceInputs) HasDin2WorkingTimeDiff() bool {
+func (x *DeviceInputs) HasDin2WorkingTimeDiffS() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[8]), 268)
 }
 
-func (x *DeviceInputs) HasDin3WorkingTimeDiff() bool {
+func (x *DeviceInputs) HasDin3WorkingTimeDiffS() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[8]), 269)
 }
 
-func (x *DeviceInputs) HasDin4WorkingTimeDiff() bool {
+func (x *DeviceInputs) HasDin4WorkingTimeDiffS() bool {
 	if x == nil {
 		return false
 	}
@@ -8401,14 +8401,14 @@ func (x *DeviceInputs) HasMobileyeHiBeamAvailable() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[9]), 307)
 }
 
-func (x *DeviceInputs) HasMobileyeSpeedAvailable() bool {
+func (x *DeviceInputs) HasMobileyeSpeedKmhAvailable() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[9]), 308)
 }
 
-func (x *DeviceInputs) HasMobileyeSpeed() bool {
+func (x *DeviceInputs) HasMobileyeSpeedKmh() bool {
 	if x == nil {
 		return false
 	}
@@ -8555,7 +8555,7 @@ func (x *DeviceInputs) HasObdKlineRpm() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[10]), 329)
 }
 
-func (x *DeviceInputs) HasObdKlineVehicleSpeedSensor() bool {
+func (x *DeviceInputs) HasObdKlineVehicleSpeedKmh() bool {
 	if x == nil {
 		return false
 	}
@@ -8674,7 +8674,7 @@ func (x *DeviceInputs) HasSprSpreaderMode() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[10]), 346)
 }
 
-func (x *DeviceInputs) HasSprSpreaderAdjustmentOfSimulationDrivingSpeed() bool {
+func (x *DeviceInputs) HasSprSpreaderAdjustmentOfSimulationDrivingSpeedKmh() bool {
 	if x == nil {
 		return false
 	}
@@ -8765,63 +8765,63 @@ func (x *DeviceInputs) HasDriver_2State() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 359)
 }
 
-func (x *DeviceInputs) HasTcoFirstDriverState() bool {
+func (x *DeviceInputs) HasTachoFirstDriverState() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 360)
 }
 
-func (x *DeviceInputs) HasTcoSecondDriverState() bool {
+func (x *DeviceInputs) HasTachoSecondDriverState() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 361)
 }
 
-func (x *DeviceInputs) HasTcoFirstDriverCard() bool {
+func (x *DeviceInputs) HasTachoFirstDriverCard() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 362)
 }
 
-func (x *DeviceInputs) HasTcoSecondDriverCard() bool {
+func (x *DeviceInputs) HasTachoSecondDriverCard() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 363)
 }
 
-func (x *DeviceInputs) HasTcoDistance() bool {
+func (x *DeviceInputs) HasTachoOdometerKm() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 364)
 }
 
-func (x *DeviceInputs) HasTcoTrip() bool {
+func (x *DeviceInputs) HasTachoTripKm() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 365)
 }
 
-func (x *DeviceInputs) HasTcoVehicleSpeed() bool {
+func (x *DeviceInputs) HasTachoVehicleSpeedKmh() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 366)
 }
 
-func (x *DeviceInputs) HasTcoRpm() bool {
+func (x *DeviceInputs) HasTachoRpm() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 367)
 }
 
-func (x *DeviceInputs) HasTcoRegistrationNumber() bool {
+func (x *DeviceInputs) HasTachoRegistrationNumber() bool {
 	if x == nil {
 		return false
 	}
@@ -8835,88 +8835,88 @@ func (x *DeviceInputs) HasTachoDddAvailable() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 369)
 }
 
-func (x *DeviceInputs) HasTcoFirstDriverDrivingTimePrevAndCurrWeek() bool {
+func (x *DeviceInputs) HasTachoFirstDriverDrivingTimePrevAndCurrWeekMinutes() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 370)
 }
 
-func (x *DeviceInputs) HasTcoSecondDriverDrivingTimePrevAndCurrWeek() bool {
+func (x *DeviceInputs) HasTachoSecondDriverDrivingTimePrevAndCurrWeekMinutes() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 371)
 }
 
-func (x *DeviceInputs) HasTcoFirstDriverDurationOfSelectedActivity() bool {
+func (x *DeviceInputs) HasTachoFirstDriverDurationOfSelectedActivityMinutes() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 372)
 }
 
-func (x *DeviceInputs) HasTcoSecondDriverDurationOfSelectedActivity() bool {
+func (x *DeviceInputs) HasTachoSecondDriverDurationOfSelectedActivityMinutes() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 373)
 }
 
-func (x *DeviceInputs) HasTcoFirstDriverContinuousDrivingTime() bool {
+func (x *DeviceInputs) HasTachoFirstDriverContinuousDrivingTimeMinutes() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 374)
 }
 
-func (x *DeviceInputs) HasTcoSecondDriverContinuousDrivingTime() bool {
+func (x *DeviceInputs) HasTachoSecondDriverContinuousDrivingTimeMinutes() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 375)
 }
 
-func (x *DeviceInputs) HasTcoFirstDriverCumulatedBreakTime() bool {
+func (x *DeviceInputs) HasTachoFirstDriverCumulatedBreakTimeMinutes() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 376)
 }
 
-func (x *DeviceInputs) HasTcoSecondDriverCumulatedBreakTime() bool {
+func (x *DeviceInputs) HasTachoSecondDriverCumulatedBreakTimeMinutes() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 377)
 }
 
-func (x *DeviceInputs) HasTcoFirstDriverTimeRelatedStates() bool {
+func (x *DeviceInputs) HasTachoFirstDriverTimeRelatedStates() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 378)
 }
 
-func (x *DeviceInputs) HasTcoSecondDriverTimeRelatedStates() bool {
+func (x *DeviceInputs) HasTachoSecondDriverTimeRelatedStates() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[11]), 379)
 }
 
-func (x *DeviceInputs) HasTcoTime() bool {
+func (x *DeviceInputs) HasTachoTime() bool {
 	if x == nil {
 		return false
 	}
-	return x.xxx_hidden_TcoTime != nil
+	return x.xxx_hidden_TachoTime != nil
 }
 
-func (x *DeviceInputs) HasTcoCanTachoTime() bool {
+func (x *DeviceInputs) HasTachoCanTachoTime() bool {
 	if x == nil {
 		return false
 	}
-	return x.xxx_hidden_TcoCanTachoTime != nil
+	return x.xxx_hidden_TachoCanTachoTime != nil
 }
 
 func (x *DeviceInputs) HasTemperatureSensor_0() bool {
@@ -9143,14 +9143,14 @@ func (x *DeviceInputs) HasTrailersVehiclePneumaticSupplyStatus() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[12]), 413)
 }
 
-func (x *DeviceInputs) HasTrailersBrakingSystemWheelBasedVehicleSpeed() bool {
+func (x *DeviceInputs) HasTrailersBrakingSystemWheelBasedVehicleSpeedKmh() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[12]), 414)
 }
 
-func (x *DeviceInputs) HasTrailersWheelSpeedDifferenceMainAxle() bool {
+func (x *DeviceInputs) HasTrailersWheelSpeedDifferenceMainAxleKmh() bool {
 	if x == nil {
 		return false
 	}
@@ -9262,28 +9262,28 @@ func (x *DeviceInputs) HasCurrentProfile() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[13]), 430)
 }
 
-func (x *DeviceInputs) HasPowerSupplyVoltage() bool {
+func (x *DeviceInputs) HasPowerSupplyVoltageV() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[13]), 431)
 }
 
-func (x *DeviceInputs) HasBatteryVoltage() bool {
+func (x *DeviceInputs) HasBatteryVoltageV() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[13]), 432)
 }
 
-func (x *DeviceInputs) HasPcbTemperature() bool {
+func (x *DeviceInputs) HasPcbTemperatureC() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[13]), 433)
 }
 
-func (x *DeviceInputs) HasVirtualOdometer() bool {
+func (x *DeviceInputs) HasVirtualOdometerKm() bool {
 	if x == nil {
 		return false
 	}
@@ -9304,7 +9304,7 @@ func (x *DeviceInputs) HasPriority() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[13]), 436)
 }
 
-func (x *DeviceInputs) HasBatteryCurrent() bool {
+func (x *DeviceInputs) HasBatteryCurrentMa() bool {
 	if x == nil {
 		return false
 	}
@@ -9426,19 +9426,19 @@ func (x *DeviceInputs) ClearZAxisTiltAngle() {
 	x.xxx_hidden_ZAxisTiltAngle = 0
 }
 
-func (x *DeviceInputs) ClearCanbusDistance() {
+func (x *DeviceInputs) ClearCanbusOdometerKm() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 9)
-	x.xxx_hidden_CanbusDistance = 0
+	x.xxx_hidden_CanbusOdometerKm = 0
 }
 
-func (x *DeviceInputs) ClearCanbusEngineCoolantTemperature() {
+func (x *DeviceInputs) ClearCanbusEngineCoolantTemperatureC() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 10)
-	x.xxx_hidden_CanbusEngineCoolantTemperature = 0
+	x.xxx_hidden_CanbusEngineCoolantTemperatureC = 0
 }
 
-func (x *DeviceInputs) ClearCanbusFuelRate() {
+func (x *DeviceInputs) ClearCanbusFuelRateLPerH() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 11)
-	x.xxx_hidden_CanbusFuelRate = 0
+	x.xxx_hidden_CanbusFuelRateLPerH = 0
 }
 
 func (x *DeviceInputs) ClearEngineRpm() {
@@ -9446,39 +9446,39 @@ func (x *DeviceInputs) ClearEngineRpm() {
 	x.xxx_hidden_EngineRpm = 0
 }
 
-func (x *DeviceInputs) ClearEngineHours() {
+func (x *DeviceInputs) ClearEngineHoursLifetimeH() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 13)
-	x.xxx_hidden_EngineHours = 0
+	x.xxx_hidden_EngineHoursLifetimeH = 0
 }
 
-func (x *DeviceInputs) ClearServiceDist() {
+func (x *DeviceInputs) ClearServiceDistanceRemainingKm() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 14)
-	x.xxx_hidden_ServiceDist = 0
+	x.xxx_hidden_ServiceDistanceRemainingKm = 0
 }
 
-func (x *DeviceInputs) ClearPedalPos() {
+func (x *DeviceInputs) ClearPedalPositionPercent() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 15)
-	x.xxx_hidden_PedalPos = 0
+	x.xxx_hidden_PedalPositionPercent = 0
 }
 
-func (x *DeviceInputs) ClearFuelLevelCan() {
+func (x *DeviceInputs) ClearFuelLevelCanPercent() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 16)
-	x.xxx_hidden_FuelLevelCan = 0
+	x.xxx_hidden_FuelLevelCanPercent = 0
 }
 
-func (x *DeviceInputs) ClearFuelUsed() {
+func (x *DeviceInputs) ClearFuelUsedLifetimeL() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 17)
-	x.xxx_hidden_FuelUsed = 0
+	x.xxx_hidden_FuelUsedLifetimeL = 0
 }
 
-func (x *DeviceInputs) ClearSpeedWheel() {
+func (x *DeviceInputs) ClearWheelSpeedKmh() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 18)
-	x.xxx_hidden_SpeedWheel = 0
+	x.xxx_hidden_WheelSpeedKmh = 0
 }
 
-func (x *DeviceInputs) ClearSpeedTacho() {
+func (x *DeviceInputs) ClearTachoSpeedKmh() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 19)
-	x.xxx_hidden_SpeedTacho = 0
+	x.xxx_hidden_TachoSpeedKmh = 0
 }
 
 func (x *DeviceInputs) ClearTachoStatus() {
@@ -9836,9 +9836,9 @@ func (x *DeviceInputs) ClearOperator() {
 	x.xxx_hidden_Operator = 0
 }
 
-func (x *DeviceInputs) ClearGpsSpeed() {
+func (x *DeviceInputs) ClearGpsSpeedKmh() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[2]), 91)
-	x.xxx_hidden_GpsSpeed = 0
+	x.xxx_hidden_GpsSpeedKmh = 0
 }
 
 func (x *DeviceInputs) ClearGsmUmtsSignalStrength() {
@@ -9876,9 +9876,9 @@ func (x *DeviceInputs) ClearGprsStatus() {
 	x.xxx_hidden_GprsStatus = nil
 }
 
-func (x *DeviceInputs) ClearGpsAltitude() {
+func (x *DeviceInputs) ClearGpsAltitudeM() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[3]), 99)
-	x.xxx_hidden_GpsAltitude = 0
+	x.xxx_hidden_GpsAltitudeM = 0
 }
 
 func (x *DeviceInputs) ClearDout1Status() {
@@ -10066,9 +10066,9 @@ func (x *DeviceInputs) ClearDxpChargerStatus() {
 	x.xxx_hidden_DxpChargerStatus = 0
 }
 
-func (x *DeviceInputs) ClearEcodriveMaximumSpeed() {
+func (x *DeviceInputs) ClearEcodriveMaximumSpeedKmh() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[4]), 137)
-	x.xxx_hidden_EcodriveMaximumSpeed = 0
+	x.xxx_hidden_EcodriveMaximumSpeedKmh = 0
 }
 
 func (x *DeviceInputs) ClearEcodriveOverspeed() {
@@ -10716,24 +10716,24 @@ func (x *DeviceInputs) ClearAnalogInput_2() {
 	x.xxx_hidden_AnalogInput_2 = 0
 }
 
-func (x *DeviceInputs) ClearDin1WorkingTimeDiff() {
+func (x *DeviceInputs) ClearDin1WorkingTimeDiffS() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[8]), 267)
-	x.xxx_hidden_Din1WorkingTimeDiff = 0
+	x.xxx_hidden_Din1WorkingTimeDiffS = 0
 }
 
-func (x *DeviceInputs) ClearDin2WorkingTimeDiff() {
+func (x *DeviceInputs) ClearDin2WorkingTimeDiffS() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[8]), 268)
-	x.xxx_hidden_Din2WorkingTimeDiff = 0
+	x.xxx_hidden_Din2WorkingTimeDiffS = 0
 }
 
-func (x *DeviceInputs) ClearDin3WorkingTimeDiff() {
+func (x *DeviceInputs) ClearDin3WorkingTimeDiffS() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[8]), 269)
-	x.xxx_hidden_Din3WorkingTimeDiff = 0
+	x.xxx_hidden_Din3WorkingTimeDiffS = 0
 }
 
-func (x *DeviceInputs) ClearDin4WorkingTimeDiff() {
+func (x *DeviceInputs) ClearDin4WorkingTimeDiffS() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[8]), 270)
-	x.xxx_hidden_Din4WorkingTimeDiff = 0
+	x.xxx_hidden_Din4WorkingTimeDiffS = 0
 }
 
 func (x *DeviceInputs) ClearOtDigitalInput_1() {
@@ -10920,14 +10920,14 @@ func (x *DeviceInputs) ClearMobileyeHiBeamAvailable() {
 	x.xxx_hidden_MobileyeHiBeamAvailable = false
 }
 
-func (x *DeviceInputs) ClearMobileyeSpeedAvailable() {
+func (x *DeviceInputs) ClearMobileyeSpeedKmhAvailable() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[9]), 308)
-	x.xxx_hidden_MobileyeSpeedAvailable = false
+	x.xxx_hidden_MobileyeSpeedKmhAvailable = false
 }
 
-func (x *DeviceInputs) ClearMobileyeSpeed() {
+func (x *DeviceInputs) ClearMobileyeSpeedKmh() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[9]), 309)
-	x.xxx_hidden_MobileyeSpeed = 0
+	x.xxx_hidden_MobileyeSpeedKmh = 0
 }
 
 func (x *DeviceInputs) ClearMobileyeTamperAlert() {
@@ -11030,9 +11030,9 @@ func (x *DeviceInputs) ClearObdKlineRpm() {
 	x.xxx_hidden_ObdKlineRpm = 0
 }
 
-func (x *DeviceInputs) ClearObdKlineVehicleSpeedSensor() {
+func (x *DeviceInputs) ClearObdKlineVehicleSpeedKmh() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[10]), 330)
-	x.xxx_hidden_ObdKlineVehicleSpeedSensor = 0
+	x.xxx_hidden_ObdKlineVehicleSpeedKmh = 0
 }
 
 func (x *DeviceInputs) ClearObdKlineEngineCoolantTemperature() {
@@ -11115,9 +11115,9 @@ func (x *DeviceInputs) ClearSprSpreaderMode() {
 	x.xxx_hidden_SprSpreaderMode = 0
 }
 
-func (x *DeviceInputs) ClearSprSpreaderAdjustmentOfSimulationDrivingSpeed() {
+func (x *DeviceInputs) ClearSprSpreaderAdjustmentOfSimulationDrivingSpeedKmh() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[10]), 347)
-	x.xxx_hidden_SprSpreaderAdjustmentOfSimulationDrivingSpeed = 0
+	x.xxx_hidden_SprSpreaderAdjustmentOfSimulationDrivingSpeedKmh = 0
 }
 
 func (x *DeviceInputs) ClearSprSpreaderSpreadingWidth() {
@@ -11180,49 +11180,49 @@ func (x *DeviceInputs) ClearDriver_2State() {
 	x.xxx_hidden_Driver_2State = nil
 }
 
-func (x *DeviceInputs) ClearTcoFirstDriverState() {
+func (x *DeviceInputs) ClearTachoFirstDriverState() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 360)
-	x.xxx_hidden_TcoFirstDriverState = nil
+	x.xxx_hidden_TachoFirstDriverState = nil
 }
 
-func (x *DeviceInputs) ClearTcoSecondDriverState() {
+func (x *DeviceInputs) ClearTachoSecondDriverState() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 361)
-	x.xxx_hidden_TcoSecondDriverState = nil
+	x.xxx_hidden_TachoSecondDriverState = nil
 }
 
-func (x *DeviceInputs) ClearTcoFirstDriverCard() {
+func (x *DeviceInputs) ClearTachoFirstDriverCard() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 362)
-	x.xxx_hidden_TcoFirstDriverCard = nil
+	x.xxx_hidden_TachoFirstDriverCard = nil
 }
 
-func (x *DeviceInputs) ClearTcoSecondDriverCard() {
+func (x *DeviceInputs) ClearTachoSecondDriverCard() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 363)
-	x.xxx_hidden_TcoSecondDriverCard = nil
+	x.xxx_hidden_TachoSecondDriverCard = nil
 }
 
-func (x *DeviceInputs) ClearTcoDistance() {
+func (x *DeviceInputs) ClearTachoOdometerKm() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 364)
-	x.xxx_hidden_TcoDistance = 0
+	x.xxx_hidden_TachoOdometerKm = 0
 }
 
-func (x *DeviceInputs) ClearTcoTrip() {
+func (x *DeviceInputs) ClearTachoTripKm() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 365)
-	x.xxx_hidden_TcoTrip = 0
+	x.xxx_hidden_TachoTripKm = 0
 }
 
-func (x *DeviceInputs) ClearTcoVehicleSpeed() {
+func (x *DeviceInputs) ClearTachoVehicleSpeedKmh() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 366)
-	x.xxx_hidden_TcoVehicleSpeed = 0
+	x.xxx_hidden_TachoVehicleSpeedKmh = 0
 }
 
-func (x *DeviceInputs) ClearTcoRpm() {
+func (x *DeviceInputs) ClearTachoRpm() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 367)
-	x.xxx_hidden_TcoRpm = 0
+	x.xxx_hidden_TachoRpm = 0
 }
 
-func (x *DeviceInputs) ClearTcoRegistrationNumber() {
+func (x *DeviceInputs) ClearTachoRegistrationNumber() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 368)
-	x.xxx_hidden_TcoRegistrationNumber = nil
+	x.xxx_hidden_TachoRegistrationNumber = nil
 }
 
 func (x *DeviceInputs) ClearTachoDddAvailable() {
@@ -11230,62 +11230,62 @@ func (x *DeviceInputs) ClearTachoDddAvailable() {
 	x.xxx_hidden_TachoDddAvailable = nil
 }
 
-func (x *DeviceInputs) ClearTcoFirstDriverDrivingTimePrevAndCurrWeek() {
+func (x *DeviceInputs) ClearTachoFirstDriverDrivingTimePrevAndCurrWeekMinutes() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 370)
-	x.xxx_hidden_TcoFirstDriverDrivingTimePrevAndCurrWeek = 0
+	x.xxx_hidden_TachoFirstDriverDrivingTimePrevAndCurrWeekMinutes = 0
 }
 
-func (x *DeviceInputs) ClearTcoSecondDriverDrivingTimePrevAndCurrWeek() {
+func (x *DeviceInputs) ClearTachoSecondDriverDrivingTimePrevAndCurrWeekMinutes() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 371)
-	x.xxx_hidden_TcoSecondDriverDrivingTimePrevAndCurrWeek = 0
+	x.xxx_hidden_TachoSecondDriverDrivingTimePrevAndCurrWeekMinutes = 0
 }
 
-func (x *DeviceInputs) ClearTcoFirstDriverDurationOfSelectedActivity() {
+func (x *DeviceInputs) ClearTachoFirstDriverDurationOfSelectedActivityMinutes() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 372)
-	x.xxx_hidden_TcoFirstDriverDurationOfSelectedActivity = 0
+	x.xxx_hidden_TachoFirstDriverDurationOfSelectedActivityMinutes = 0
 }
 
-func (x *DeviceInputs) ClearTcoSecondDriverDurationOfSelectedActivity() {
+func (x *DeviceInputs) ClearTachoSecondDriverDurationOfSelectedActivityMinutes() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 373)
-	x.xxx_hidden_TcoSecondDriverDurationOfSelectedActivity = 0
+	x.xxx_hidden_TachoSecondDriverDurationOfSelectedActivityMinutes = 0
 }
 
-func (x *DeviceInputs) ClearTcoFirstDriverContinuousDrivingTime() {
+func (x *DeviceInputs) ClearTachoFirstDriverContinuousDrivingTimeMinutes() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 374)
-	x.xxx_hidden_TcoFirstDriverContinuousDrivingTime = 0
+	x.xxx_hidden_TachoFirstDriverContinuousDrivingTimeMinutes = 0
 }
 
-func (x *DeviceInputs) ClearTcoSecondDriverContinuousDrivingTime() {
+func (x *DeviceInputs) ClearTachoSecondDriverContinuousDrivingTimeMinutes() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 375)
-	x.xxx_hidden_TcoSecondDriverContinuousDrivingTime = 0
+	x.xxx_hidden_TachoSecondDriverContinuousDrivingTimeMinutes = 0
 }
 
-func (x *DeviceInputs) ClearTcoFirstDriverCumulatedBreakTime() {
+func (x *DeviceInputs) ClearTachoFirstDriverCumulatedBreakTimeMinutes() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 376)
-	x.xxx_hidden_TcoFirstDriverCumulatedBreakTime = 0
+	x.xxx_hidden_TachoFirstDriverCumulatedBreakTimeMinutes = 0
 }
 
-func (x *DeviceInputs) ClearTcoSecondDriverCumulatedBreakTime() {
+func (x *DeviceInputs) ClearTachoSecondDriverCumulatedBreakTimeMinutes() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 377)
-	x.xxx_hidden_TcoSecondDriverCumulatedBreakTime = 0
+	x.xxx_hidden_TachoSecondDriverCumulatedBreakTimeMinutes = 0
 }
 
-func (x *DeviceInputs) ClearTcoFirstDriverTimeRelatedStates() {
+func (x *DeviceInputs) ClearTachoFirstDriverTimeRelatedStates() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 378)
-	x.xxx_hidden_TcoFirstDriverTimeRelatedStates = 0
+	x.xxx_hidden_TachoFirstDriverTimeRelatedStates = 0
 }
 
-func (x *DeviceInputs) ClearTcoSecondDriverTimeRelatedStates() {
+func (x *DeviceInputs) ClearTachoSecondDriverTimeRelatedStates() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[11]), 379)
-	x.xxx_hidden_TcoSecondDriverTimeRelatedStates = 0
+	x.xxx_hidden_TachoSecondDriverTimeRelatedStates = 0
 }
 
-func (x *DeviceInputs) ClearTcoTime() {
-	x.xxx_hidden_TcoTime = nil
+func (x *DeviceInputs) ClearTachoTime() {
+	x.xxx_hidden_TachoTime = nil
 }
 
-func (x *DeviceInputs) ClearTcoCanTachoTime() {
-	x.xxx_hidden_TcoCanTachoTime = nil
+func (x *DeviceInputs) ClearTachoCanTachoTime() {
+	x.xxx_hidden_TachoCanTachoTime = nil
 }
 
 func (x *DeviceInputs) ClearTemperatureSensor_0() {
@@ -11448,14 +11448,14 @@ func (x *DeviceInputs) ClearTrailersVehiclePneumaticSupplyStatus() {
 	x.xxx_hidden_TrailersVehiclePneumaticSupplyStatus = nil
 }
 
-func (x *DeviceInputs) ClearTrailersBrakingSystemWheelBasedVehicleSpeed() {
+func (x *DeviceInputs) ClearTrailersBrakingSystemWheelBasedVehicleSpeedKmh() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[12]), 414)
-	x.xxx_hidden_TrailersBrakingSystemWheelBasedVehicleSpeed = 0
+	x.xxx_hidden_TrailersBrakingSystemWheelBasedVehicleSpeedKmh = 0
 }
 
-func (x *DeviceInputs) ClearTrailersWheelSpeedDifferenceMainAxle() {
+func (x *DeviceInputs) ClearTrailersWheelSpeedDifferenceMainAxleKmh() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[12]), 415)
-	x.xxx_hidden_TrailersWheelSpeedDifferenceMainAxle = 0
+	x.xxx_hidden_TrailersWheelSpeedDifferenceMainAxleKmh = 0
 }
 
 func (x *DeviceInputs) ClearTrailersLateralAcceleration() {
@@ -11533,24 +11533,24 @@ func (x *DeviceInputs) ClearCurrentProfile() {
 	x.xxx_hidden_CurrentProfile = 0
 }
 
-func (x *DeviceInputs) ClearPowerSupplyVoltage() {
+func (x *DeviceInputs) ClearPowerSupplyVoltageV() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[13]), 431)
-	x.xxx_hidden_PowerSupplyVoltage = 0
+	x.xxx_hidden_PowerSupplyVoltageV = 0
 }
 
-func (x *DeviceInputs) ClearBatteryVoltage() {
+func (x *DeviceInputs) ClearBatteryVoltageV() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[13]), 432)
-	x.xxx_hidden_BatteryVoltage = 0
+	x.xxx_hidden_BatteryVoltageV = 0
 }
 
-func (x *DeviceInputs) ClearPcbTemperature() {
+func (x *DeviceInputs) ClearPcbTemperatureC() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[13]), 433)
-	x.xxx_hidden_PcbTemperature = 0
+	x.xxx_hidden_PcbTemperatureC = 0
 }
 
-func (x *DeviceInputs) ClearVirtualOdometer() {
+func (x *DeviceInputs) ClearVirtualOdometerKm() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[13]), 434)
-	x.xxx_hidden_VirtualOdometer = 0
+	x.xxx_hidden_VirtualOdometerKm = 0
 }
 
 func (x *DeviceInputs) ClearInputTrigger() {
@@ -11563,9 +11563,9 @@ func (x *DeviceInputs) ClearPriority() {
 	x.xxx_hidden_Priority = nil
 }
 
-func (x *DeviceInputs) ClearBatteryCurrent() {
+func (x *DeviceInputs) ClearBatteryCurrentMa() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[13]), 437)
-	x.xxx_hidden_BatteryCurrent = 0
+	x.xxx_hidden_BatteryCurrentMa = 0
 }
 
 func (x *DeviceInputs) ClearMovement() {
@@ -11640,27 +11640,27 @@ type DeviceInputs_builder struct {
 	// Z axis tilt angle (units: Degrees)
 	ZAxisTiltAngle *float64
 	// CAN high resolution total vehicle distance (units: km)
-	CanbusDistance *float64
+	CanbusOdometerKm *float64
 	// CAN engine coolant temperature (units: °C)
-	CanbusEngineCoolantTemperature *float64
+	CanbusEngineCoolantTemperatureC *float64
 	// CAN fuel rate (units: l/h)
-	CanbusFuelRate *float64
+	CanbusFuelRateLPerH *float64
 	// CAN engine speed (units: RPM)
 	EngineRpm *float64
 	// CAN engine hours (units: h)
-	EngineHours *float64
+	EngineHoursLifetimeH *float64
 	// CAN service distance (units: km)
-	ServiceDist *float64
+	ServiceDistanceRemainingKm *float64
 	// CAN accelerator pedal position (units: %)
-	PedalPos *float64
+	PedalPositionPercent *float64
 	// CAN fuel level (units: %)
-	FuelLevelCan *float64
+	FuelLevelCanPercent *float64
 	// CAN engine total fuel used (units: l)
-	FuelUsed *float64
+	FuelUsedLifetimeL *float64
 	// CAN wheel based speed (units: km/h)
-	SpeedWheel *float64
+	WheelSpeedKmh *float64
 	// CAN tachograph vehicle speed (units: km/h)
-	SpeedTacho *float64
+	TachoSpeedKmh *float64
 	// CAN tachograph performance Possible values: NORMAL_PERFORMANCE PERFORMANCE_ANALYSIS
 	TachoStatus *string
 	// CAN tacho vehicle overspeed Possible values: NO_OVERSPEED OVERSPEED
@@ -11804,7 +11804,7 @@ type DeviceInputs_builder struct {
 	// GSM operator
 	Operator *float64
 	// GPS speed (units: km/h)
-	GpsSpeed *float64
+	GpsSpeedKmh *float64
 	// GSM/UMTS signal strength
 	GsmUmtsSignalStrength *float64
 	// GSM/UMTS operator
@@ -11820,7 +11820,7 @@ type DeviceInputs_builder struct {
 	// GPRS status Possible values: DISCONNECTED CONNECTED
 	GprsStatus *string
 	// GPS altitude (units: m)
-	GpsAltitude *float64
+	GpsAltitudeM *float64
 	// DOUT1 status Possible values: ACTIVE INACTIVE
 	Dout1Status *string
 	// DOUT2 status Possible values: ACTIVE INACTIVE
@@ -11896,7 +11896,7 @@ type DeviceInputs_builder struct {
 	// DXP charger status
 	DxpChargerStatus *float64
 	// Eco-Drive maximum speed (units: km/h)
-	EcodriveMaximumSpeed *float64
+	EcodriveMaximumSpeedKmh *float64
 	// Eco-Drive overspeeding timer (units: s)
 	EcodriveOverspeed *float64
 	// Eco-Drive RPM in red band timer (units: s)
@@ -12156,13 +12156,13 @@ type DeviceInputs_builder struct {
 	// AIN2 value (units: V)
 	AnalogInput_2 *float64
 	// DIN1 hour counter (units: s)
-	Din1WorkingTimeDiff *float64
+	Din1WorkingTimeDiffS *float64
 	// DIN2 hour counter (units: s)
-	Din2WorkingTimeDiff *float64
+	Din2WorkingTimeDiffS *float64
 	// DIN3 hour counter (units: s)
-	Din3WorkingTimeDiff *float64
+	Din3WorkingTimeDiffS *float64
 	// DIN4 hour counter (units: s)
-	Din4WorkingTimeDiff *float64
+	Din4WorkingTimeDiffS *float64
 	// OT digital input 1
 	OtDigitalInput_1 *bool
 	// OT digital input 2
@@ -12238,9 +12238,9 @@ type DeviceInputs_builder struct {
 	// Mobileye high beam available
 	MobileyeHiBeamAvailable *bool
 	// Mobileye speed available
-	MobileyeSpeedAvailable *bool
+	MobileyeSpeedKmhAvailable *bool
 	// Mobileye speed (units: km/h)
-	MobileyeSpeed *float64
+	MobileyeSpeedKmh *float64
 	// Mobileye tamper alert Possible values: OFF ON
 	MobileyeTamperAlert *string
 	// Mobileye TSR enabled
@@ -12282,7 +12282,7 @@ type DeviceInputs_builder struct {
 	// OBD RPM (units: RPM)
 	ObdKlineRpm *float64
 	// OBD vehicle speed (units: km/h)
-	ObdKlineVehicleSpeedSensor *float64
+	ObdKlineVehicleSpeedKmh *float64
 	// OBD engine coolant temperature (units: °C)
 	ObdKlineEngineCoolantTemperature *float64
 	// OBD ambient air temperature (units: °C)
@@ -12316,7 +12316,7 @@ type DeviceInputs_builder struct {
 	// Spreader mode
 	SprSpreaderMode *float64
 	// Spreader adjustment of simulation driving speed (units: km/h)
-	SprSpreaderAdjustmentOfSimulationDrivingSpeed *float64
+	SprSpreaderAdjustmentOfSimulationDrivingSpeedKmh *float64
 	// Spreader spreading width (units: m)
 	SprSpreaderSpreadingWidth *float64
 	// Spreader spreading solid material dosage from reservoir 1 (units: g/m^2)
@@ -12341,50 +12341,50 @@ type DeviceInputs_builder struct {
 	Driver_1State *string
 	// Driver 2 state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
 	Driver_2State *string
-	// TCO first driver state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
-	TcoFirstDriverState *string
-	// TCO second driver state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
-	TcoSecondDriverState *string
-	// TCO first driver card Possible values: NOT_INSERTED INSERTED
-	TcoFirstDriverCard *string
-	// TCO second driver card Possible values: NOT_INSERTED INSERTED
-	TcoSecondDriverCard *string
-	// TCO distance (units: km)
-	TcoDistance *float64
-	// TCO trip distance (units: km)
-	TcoTrip *float64
-	// TCO vehicle speed (units: km/h)
-	TcoVehicleSpeed *float64
-	// TCO engine speed (units: RPM)
-	TcoRpm *float64
-	// TCO registration number
-	TcoRegistrationNumber *string
+	// Tachograph first driver state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+	TachoFirstDriverState *string
+	// Tachograph second driver state Possible values: REST DRIVER_AVAILABLE WORK DRIVE ERROR NOT_AVAILABLE
+	TachoSecondDriverState *string
+	// Tachograph first driver card Possible values: NOT_INSERTED INSERTED
+	TachoFirstDriverCard *string
+	// Tachograph second driver card Possible values: NOT_INSERTED INSERTED
+	TachoSecondDriverCard *string
+	// Tachograph distance (units: km)
+	TachoOdometerKm *float64
+	// Tachograph trip distance (units: km)
+	TachoTripKm *float64
+	// Tachograph vehicle speed (units: km/h)
+	TachoVehicleSpeedKmh *float64
+	// Tachograph engine speed (units: RPM)
+	TachoRpm *float64
+	// Tachograph registration number
+	TachoRegistrationNumber *string
 	// Tacho card reader state NOT_AVAILABLE AVAILABLE
 	TachoDddAvailable *string
-	// TCO first driver driving time (prev. and curr. week) (units: min)
-	TcoFirstDriverDrivingTimePrevAndCurrWeek *float64
-	// TCO second driver driving time (prev. and curr. week) (units: min)
-	TcoSecondDriverDrivingTimePrevAndCurrWeek *float64
-	// TCO first driver duration of selected activity (units: min)
-	TcoFirstDriverDurationOfSelectedActivity *float64
-	// TCO second driver duration of selected activity (units: min)
-	TcoSecondDriverDurationOfSelectedActivity *float64
-	// TCO first driver continuous driving time (units: min)
-	TcoFirstDriverContinuousDrivingTime *float64
-	// TCO second driver continuous driving time (units: min)
-	TcoSecondDriverContinuousDrivingTime *float64
-	// TCO first driver accumulated break time (units: min)
-	TcoFirstDriverCumulatedBreakTime *float64
-	// TCO second driver accumulated break time (units: min)
-	TcoSecondDriverCumulatedBreakTime *float64
-	// TCO first driver time related states
-	TcoFirstDriverTimeRelatedStates *float64
-	// TCO second driver time related states
-	TcoSecondDriverTimeRelatedStates *float64
-	// TCO tacho time
-	TcoTime *timestamppb.Timestamp
-	// TCO CAN tacho Time
-	TcoCanTachoTime *timestamppb.Timestamp
+	// Tachograph first driver driving time (prev. and curr. week) (units: min)
+	TachoFirstDriverDrivingTimePrevAndCurrWeekMinutes *float64
+	// Tachograph second driver driving time (prev. and curr. week) (units: min)
+	TachoSecondDriverDrivingTimePrevAndCurrWeekMinutes *float64
+	// Tachograph first driver duration of selected activity (units: min)
+	TachoFirstDriverDurationOfSelectedActivityMinutes *float64
+	// Tachograph second driver duration of selected activity (units: min)
+	TachoSecondDriverDurationOfSelectedActivityMinutes *float64
+	// Tachograph first driver continuous driving time (units: min)
+	TachoFirstDriverContinuousDrivingTimeMinutes *float64
+	// Tachograph second driver continuous driving time (units: min)
+	TachoSecondDriverContinuousDrivingTimeMinutes *float64
+	// Tachograph first driver accumulated break time (units: min)
+	TachoFirstDriverCumulatedBreakTimeMinutes *float64
+	// Tachograph second driver accumulated break time (units: min)
+	TachoSecondDriverCumulatedBreakTimeMinutes *float64
+	// Tachograph first driver time related states
+	TachoFirstDriverTimeRelatedStates *float64
+	// Tachograph second driver time related states
+	TachoSecondDriverTimeRelatedStates *float64
+	// Tachograph tacho time
+	TachoTime *timestamppb.Timestamp
+	// Tachograph CAN tacho Time
+	TachoCanTachoTime *timestamppb.Timestamp
 	// Temperature sensor 0 (units: °C)
 	TemperatureSensor_0 *float64
 	// Temperature sensor 1 (units: °C)
@@ -12450,9 +12450,9 @@ type DeviceInputs_builder struct {
 	// Trailers vehicle pneumatic supply status Possible values: OFF ON
 	TrailersVehiclePneumaticSupplyStatus *string
 	// Trailers braking system wheel–based vehicle speed (units: km/h)
-	TrailersBrakingSystemWheelBasedVehicleSpeed *float64
+	TrailersBrakingSystemWheelBasedVehicleSpeedKmh *float64
 	// Trailers wheel speed difference main axle (units: km/h)
-	TrailersWheelSpeedDifferenceMainAxle *float64
+	TrailersWheelSpeedDifferenceMainAxleKmh *float64
 	// Trailers lateral acceleration (units: m/s^2)
 	TrailersLateralAcceleration *float64
 	// Trailers axle load sum (units: kg)
@@ -12484,19 +12484,19 @@ type DeviceInputs_builder struct {
 	// Current profile
 	CurrentProfile *float64
 	// Power supply voltage (units: V)
-	PowerSupplyVoltage *float64
+	PowerSupplyVoltageV *float64
 	// Battery voltage (units: V)
-	BatteryVoltage *float64
+	BatteryVoltageV *float64
 	// PCB temperature (units: °C)
-	PcbTemperature *float64
+	PcbTemperatureC *float64
 	// Virtual odometer (units: km)
-	VirtualOdometer *float64
+	VirtualOdometerKm *float64
 	// Input trigger
 	InputTrigger *float64
 	// Priority Possible values: LOW HIGH
 	Priority *string
 	// Battery charge current (units: mA)
-	BatteryCurrent *float64
+	BatteryCurrentMa *float64
 	// Movement sensor Possible values: STILL MOVING
 	Movement *string
 	// HDOP
@@ -12559,49 +12559,49 @@ func (b0 DeviceInputs_builder) Build() *DeviceInputs {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 8, 448)
 		x.xxx_hidden_ZAxisTiltAngle = *b.ZAxisTiltAngle
 	}
-	if b.CanbusDistance != nil {
+	if b.CanbusOdometerKm != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 9, 448)
-		x.xxx_hidden_CanbusDistance = *b.CanbusDistance
+		x.xxx_hidden_CanbusOdometerKm = *b.CanbusOdometerKm
 	}
-	if b.CanbusEngineCoolantTemperature != nil {
+	if b.CanbusEngineCoolantTemperatureC != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 10, 448)
-		x.xxx_hidden_CanbusEngineCoolantTemperature = *b.CanbusEngineCoolantTemperature
+		x.xxx_hidden_CanbusEngineCoolantTemperatureC = *b.CanbusEngineCoolantTemperatureC
 	}
-	if b.CanbusFuelRate != nil {
+	if b.CanbusFuelRateLPerH != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 11, 448)
-		x.xxx_hidden_CanbusFuelRate = *b.CanbusFuelRate
+		x.xxx_hidden_CanbusFuelRateLPerH = *b.CanbusFuelRateLPerH
 	}
 	if b.EngineRpm != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 12, 448)
 		x.xxx_hidden_EngineRpm = *b.EngineRpm
 	}
-	if b.EngineHours != nil {
+	if b.EngineHoursLifetimeH != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 13, 448)
-		x.xxx_hidden_EngineHours = *b.EngineHours
+		x.xxx_hidden_EngineHoursLifetimeH = *b.EngineHoursLifetimeH
 	}
-	if b.ServiceDist != nil {
+	if b.ServiceDistanceRemainingKm != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 14, 448)
-		x.xxx_hidden_ServiceDist = *b.ServiceDist
+		x.xxx_hidden_ServiceDistanceRemainingKm = *b.ServiceDistanceRemainingKm
 	}
-	if b.PedalPos != nil {
+	if b.PedalPositionPercent != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 15, 448)
-		x.xxx_hidden_PedalPos = *b.PedalPos
+		x.xxx_hidden_PedalPositionPercent = *b.PedalPositionPercent
 	}
-	if b.FuelLevelCan != nil {
+	if b.FuelLevelCanPercent != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 16, 448)
-		x.xxx_hidden_FuelLevelCan = *b.FuelLevelCan
+		x.xxx_hidden_FuelLevelCanPercent = *b.FuelLevelCanPercent
 	}
-	if b.FuelUsed != nil {
+	if b.FuelUsedLifetimeL != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 17, 448)
-		x.xxx_hidden_FuelUsed = *b.FuelUsed
+		x.xxx_hidden_FuelUsedLifetimeL = *b.FuelUsedLifetimeL
 	}
-	if b.SpeedWheel != nil {
+	if b.WheelSpeedKmh != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 18, 448)
-		x.xxx_hidden_SpeedWheel = *b.SpeedWheel
+		x.xxx_hidden_WheelSpeedKmh = *b.WheelSpeedKmh
 	}
-	if b.SpeedTacho != nil {
+	if b.TachoSpeedKmh != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 19, 448)
-		x.xxx_hidden_SpeedTacho = *b.SpeedTacho
+		x.xxx_hidden_TachoSpeedKmh = *b.TachoSpeedKmh
 	}
 	if b.TachoStatus != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 20, 448)
@@ -12887,9 +12887,9 @@ func (b0 DeviceInputs_builder) Build() *DeviceInputs {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[2]), 90, 448)
 		x.xxx_hidden_Operator = *b.Operator
 	}
-	if b.GpsSpeed != nil {
+	if b.GpsSpeedKmh != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[2]), 91, 448)
-		x.xxx_hidden_GpsSpeed = *b.GpsSpeed
+		x.xxx_hidden_GpsSpeedKmh = *b.GpsSpeedKmh
 	}
 	if b.GsmUmtsSignalStrength != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[2]), 92, 448)
@@ -12919,9 +12919,9 @@ func (b0 DeviceInputs_builder) Build() *DeviceInputs {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[3]), 98, 448)
 		x.xxx_hidden_GprsStatus = b.GprsStatus
 	}
-	if b.GpsAltitude != nil {
+	if b.GpsAltitudeM != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[3]), 99, 448)
-		x.xxx_hidden_GpsAltitude = *b.GpsAltitude
+		x.xxx_hidden_GpsAltitudeM = *b.GpsAltitudeM
 	}
 	if b.Dout1Status != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[3]), 100, 448)
@@ -13071,9 +13071,9 @@ func (b0 DeviceInputs_builder) Build() *DeviceInputs {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[4]), 136, 448)
 		x.xxx_hidden_DxpChargerStatus = *b.DxpChargerStatus
 	}
-	if b.EcodriveMaximumSpeed != nil {
+	if b.EcodriveMaximumSpeedKmh != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[4]), 137, 448)
-		x.xxx_hidden_EcodriveMaximumSpeed = *b.EcodriveMaximumSpeed
+		x.xxx_hidden_EcodriveMaximumSpeedKmh = *b.EcodriveMaximumSpeedKmh
 	}
 	if b.EcodriveOverspeed != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[4]), 138, 448)
@@ -13591,21 +13591,21 @@ func (b0 DeviceInputs_builder) Build() *DeviceInputs {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[8]), 266, 448)
 		x.xxx_hidden_AnalogInput_2 = *b.AnalogInput_2
 	}
-	if b.Din1WorkingTimeDiff != nil {
+	if b.Din1WorkingTimeDiffS != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[8]), 267, 448)
-		x.xxx_hidden_Din1WorkingTimeDiff = *b.Din1WorkingTimeDiff
+		x.xxx_hidden_Din1WorkingTimeDiffS = *b.Din1WorkingTimeDiffS
 	}
-	if b.Din2WorkingTimeDiff != nil {
+	if b.Din2WorkingTimeDiffS != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[8]), 268, 448)
-		x.xxx_hidden_Din2WorkingTimeDiff = *b.Din2WorkingTimeDiff
+		x.xxx_hidden_Din2WorkingTimeDiffS = *b.Din2WorkingTimeDiffS
 	}
-	if b.Din3WorkingTimeDiff != nil {
+	if b.Din3WorkingTimeDiffS != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[8]), 269, 448)
-		x.xxx_hidden_Din3WorkingTimeDiff = *b.Din3WorkingTimeDiff
+		x.xxx_hidden_Din3WorkingTimeDiffS = *b.Din3WorkingTimeDiffS
 	}
-	if b.Din4WorkingTimeDiff != nil {
+	if b.Din4WorkingTimeDiffS != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[8]), 270, 448)
-		x.xxx_hidden_Din4WorkingTimeDiff = *b.Din4WorkingTimeDiff
+		x.xxx_hidden_Din4WorkingTimeDiffS = *b.Din4WorkingTimeDiffS
 	}
 	if b.OtDigitalInput_1 != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[8]), 271, 448)
@@ -13752,13 +13752,13 @@ func (b0 DeviceInputs_builder) Build() *DeviceInputs {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[9]), 307, 448)
 		x.xxx_hidden_MobileyeHiBeamAvailable = *b.MobileyeHiBeamAvailable
 	}
-	if b.MobileyeSpeedAvailable != nil {
+	if b.MobileyeSpeedKmhAvailable != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[9]), 308, 448)
-		x.xxx_hidden_MobileyeSpeedAvailable = *b.MobileyeSpeedAvailable
+		x.xxx_hidden_MobileyeSpeedKmhAvailable = *b.MobileyeSpeedKmhAvailable
 	}
-	if b.MobileyeSpeed != nil {
+	if b.MobileyeSpeedKmh != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[9]), 309, 448)
-		x.xxx_hidden_MobileyeSpeed = *b.MobileyeSpeed
+		x.xxx_hidden_MobileyeSpeedKmh = *b.MobileyeSpeedKmh
 	}
 	if b.MobileyeTamperAlert != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[9]), 310, 448)
@@ -13840,9 +13840,9 @@ func (b0 DeviceInputs_builder) Build() *DeviceInputs {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[10]), 329, 448)
 		x.xxx_hidden_ObdKlineRpm = *b.ObdKlineRpm
 	}
-	if b.ObdKlineVehicleSpeedSensor != nil {
+	if b.ObdKlineVehicleSpeedKmh != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[10]), 330, 448)
-		x.xxx_hidden_ObdKlineVehicleSpeedSensor = *b.ObdKlineVehicleSpeedSensor
+		x.xxx_hidden_ObdKlineVehicleSpeedKmh = *b.ObdKlineVehicleSpeedKmh
 	}
 	if b.ObdKlineEngineCoolantTemperature != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[10]), 331, 448)
@@ -13908,9 +13908,9 @@ func (b0 DeviceInputs_builder) Build() *DeviceInputs {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[10]), 346, 448)
 		x.xxx_hidden_SprSpreaderMode = *b.SprSpreaderMode
 	}
-	if b.SprSpreaderAdjustmentOfSimulationDrivingSpeed != nil {
+	if b.SprSpreaderAdjustmentOfSimulationDrivingSpeedKmh != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[10]), 347, 448)
-		x.xxx_hidden_SprSpreaderAdjustmentOfSimulationDrivingSpeed = *b.SprSpreaderAdjustmentOfSimulationDrivingSpeed
+		x.xxx_hidden_SprSpreaderAdjustmentOfSimulationDrivingSpeedKmh = *b.SprSpreaderAdjustmentOfSimulationDrivingSpeedKmh
 	}
 	if b.SprSpreaderSpreadingWidth != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[10]), 348, 448)
@@ -13960,88 +13960,88 @@ func (b0 DeviceInputs_builder) Build() *DeviceInputs {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 359, 448)
 		x.xxx_hidden_Driver_2State = b.Driver_2State
 	}
-	if b.TcoFirstDriverState != nil {
+	if b.TachoFirstDriverState != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 360, 448)
-		x.xxx_hidden_TcoFirstDriverState = b.TcoFirstDriverState
+		x.xxx_hidden_TachoFirstDriverState = b.TachoFirstDriverState
 	}
-	if b.TcoSecondDriverState != nil {
+	if b.TachoSecondDriverState != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 361, 448)
-		x.xxx_hidden_TcoSecondDriverState = b.TcoSecondDriverState
+		x.xxx_hidden_TachoSecondDriverState = b.TachoSecondDriverState
 	}
-	if b.TcoFirstDriverCard != nil {
+	if b.TachoFirstDriverCard != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 362, 448)
-		x.xxx_hidden_TcoFirstDriverCard = b.TcoFirstDriverCard
+		x.xxx_hidden_TachoFirstDriverCard = b.TachoFirstDriverCard
 	}
-	if b.TcoSecondDriverCard != nil {
+	if b.TachoSecondDriverCard != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 363, 448)
-		x.xxx_hidden_TcoSecondDriverCard = b.TcoSecondDriverCard
+		x.xxx_hidden_TachoSecondDriverCard = b.TachoSecondDriverCard
 	}
-	if b.TcoDistance != nil {
+	if b.TachoOdometerKm != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 364, 448)
-		x.xxx_hidden_TcoDistance = *b.TcoDistance
+		x.xxx_hidden_TachoOdometerKm = *b.TachoOdometerKm
 	}
-	if b.TcoTrip != nil {
+	if b.TachoTripKm != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 365, 448)
-		x.xxx_hidden_TcoTrip = *b.TcoTrip
+		x.xxx_hidden_TachoTripKm = *b.TachoTripKm
 	}
-	if b.TcoVehicleSpeed != nil {
+	if b.TachoVehicleSpeedKmh != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 366, 448)
-		x.xxx_hidden_TcoVehicleSpeed = *b.TcoVehicleSpeed
+		x.xxx_hidden_TachoVehicleSpeedKmh = *b.TachoVehicleSpeedKmh
 	}
-	if b.TcoRpm != nil {
+	if b.TachoRpm != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 367, 448)
-		x.xxx_hidden_TcoRpm = *b.TcoRpm
+		x.xxx_hidden_TachoRpm = *b.TachoRpm
 	}
-	if b.TcoRegistrationNumber != nil {
+	if b.TachoRegistrationNumber != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 368, 448)
-		x.xxx_hidden_TcoRegistrationNumber = b.TcoRegistrationNumber
+		x.xxx_hidden_TachoRegistrationNumber = b.TachoRegistrationNumber
 	}
 	if b.TachoDddAvailable != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 369, 448)
 		x.xxx_hidden_TachoDddAvailable = b.TachoDddAvailable
 	}
-	if b.TcoFirstDriverDrivingTimePrevAndCurrWeek != nil {
+	if b.TachoFirstDriverDrivingTimePrevAndCurrWeekMinutes != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 370, 448)
-		x.xxx_hidden_TcoFirstDriverDrivingTimePrevAndCurrWeek = *b.TcoFirstDriverDrivingTimePrevAndCurrWeek
+		x.xxx_hidden_TachoFirstDriverDrivingTimePrevAndCurrWeekMinutes = *b.TachoFirstDriverDrivingTimePrevAndCurrWeekMinutes
 	}
-	if b.TcoSecondDriverDrivingTimePrevAndCurrWeek != nil {
+	if b.TachoSecondDriverDrivingTimePrevAndCurrWeekMinutes != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 371, 448)
-		x.xxx_hidden_TcoSecondDriverDrivingTimePrevAndCurrWeek = *b.TcoSecondDriverDrivingTimePrevAndCurrWeek
+		x.xxx_hidden_TachoSecondDriverDrivingTimePrevAndCurrWeekMinutes = *b.TachoSecondDriverDrivingTimePrevAndCurrWeekMinutes
 	}
-	if b.TcoFirstDriverDurationOfSelectedActivity != nil {
+	if b.TachoFirstDriverDurationOfSelectedActivityMinutes != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 372, 448)
-		x.xxx_hidden_TcoFirstDriverDurationOfSelectedActivity = *b.TcoFirstDriverDurationOfSelectedActivity
+		x.xxx_hidden_TachoFirstDriverDurationOfSelectedActivityMinutes = *b.TachoFirstDriverDurationOfSelectedActivityMinutes
 	}
-	if b.TcoSecondDriverDurationOfSelectedActivity != nil {
+	if b.TachoSecondDriverDurationOfSelectedActivityMinutes != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 373, 448)
-		x.xxx_hidden_TcoSecondDriverDurationOfSelectedActivity = *b.TcoSecondDriverDurationOfSelectedActivity
+		x.xxx_hidden_TachoSecondDriverDurationOfSelectedActivityMinutes = *b.TachoSecondDriverDurationOfSelectedActivityMinutes
 	}
-	if b.TcoFirstDriverContinuousDrivingTime != nil {
+	if b.TachoFirstDriverContinuousDrivingTimeMinutes != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 374, 448)
-		x.xxx_hidden_TcoFirstDriverContinuousDrivingTime = *b.TcoFirstDriverContinuousDrivingTime
+		x.xxx_hidden_TachoFirstDriverContinuousDrivingTimeMinutes = *b.TachoFirstDriverContinuousDrivingTimeMinutes
 	}
-	if b.TcoSecondDriverContinuousDrivingTime != nil {
+	if b.TachoSecondDriverContinuousDrivingTimeMinutes != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 375, 448)
-		x.xxx_hidden_TcoSecondDriverContinuousDrivingTime = *b.TcoSecondDriverContinuousDrivingTime
+		x.xxx_hidden_TachoSecondDriverContinuousDrivingTimeMinutes = *b.TachoSecondDriverContinuousDrivingTimeMinutes
 	}
-	if b.TcoFirstDriverCumulatedBreakTime != nil {
+	if b.TachoFirstDriverCumulatedBreakTimeMinutes != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 376, 448)
-		x.xxx_hidden_TcoFirstDriverCumulatedBreakTime = *b.TcoFirstDriverCumulatedBreakTime
+		x.xxx_hidden_TachoFirstDriverCumulatedBreakTimeMinutes = *b.TachoFirstDriverCumulatedBreakTimeMinutes
 	}
-	if b.TcoSecondDriverCumulatedBreakTime != nil {
+	if b.TachoSecondDriverCumulatedBreakTimeMinutes != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 377, 448)
-		x.xxx_hidden_TcoSecondDriverCumulatedBreakTime = *b.TcoSecondDriverCumulatedBreakTime
+		x.xxx_hidden_TachoSecondDriverCumulatedBreakTimeMinutes = *b.TachoSecondDriverCumulatedBreakTimeMinutes
 	}
-	if b.TcoFirstDriverTimeRelatedStates != nil {
+	if b.TachoFirstDriverTimeRelatedStates != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 378, 448)
-		x.xxx_hidden_TcoFirstDriverTimeRelatedStates = *b.TcoFirstDriverTimeRelatedStates
+		x.xxx_hidden_TachoFirstDriverTimeRelatedStates = *b.TachoFirstDriverTimeRelatedStates
 	}
-	if b.TcoSecondDriverTimeRelatedStates != nil {
+	if b.TachoSecondDriverTimeRelatedStates != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 379, 448)
-		x.xxx_hidden_TcoSecondDriverTimeRelatedStates = *b.TcoSecondDriverTimeRelatedStates
+		x.xxx_hidden_TachoSecondDriverTimeRelatedStates = *b.TachoSecondDriverTimeRelatedStates
 	}
-	x.xxx_hidden_TcoTime = b.TcoTime
-	x.xxx_hidden_TcoCanTachoTime = b.TcoCanTachoTime
+	x.xxx_hidden_TachoTime = b.TachoTime
+	x.xxx_hidden_TachoCanTachoTime = b.TachoCanTachoTime
 	if b.TemperatureSensor_0 != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[11]), 382, 448)
 		x.xxx_hidden_TemperatureSensor_0 = *b.TemperatureSensor_0
@@ -14170,13 +14170,13 @@ func (b0 DeviceInputs_builder) Build() *DeviceInputs {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[12]), 413, 448)
 		x.xxx_hidden_TrailersVehiclePneumaticSupplyStatus = b.TrailersVehiclePneumaticSupplyStatus
 	}
-	if b.TrailersBrakingSystemWheelBasedVehicleSpeed != nil {
+	if b.TrailersBrakingSystemWheelBasedVehicleSpeedKmh != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[12]), 414, 448)
-		x.xxx_hidden_TrailersBrakingSystemWheelBasedVehicleSpeed = *b.TrailersBrakingSystemWheelBasedVehicleSpeed
+		x.xxx_hidden_TrailersBrakingSystemWheelBasedVehicleSpeedKmh = *b.TrailersBrakingSystemWheelBasedVehicleSpeedKmh
 	}
-	if b.TrailersWheelSpeedDifferenceMainAxle != nil {
+	if b.TrailersWheelSpeedDifferenceMainAxleKmh != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[12]), 415, 448)
-		x.xxx_hidden_TrailersWheelSpeedDifferenceMainAxle = *b.TrailersWheelSpeedDifferenceMainAxle
+		x.xxx_hidden_TrailersWheelSpeedDifferenceMainAxleKmh = *b.TrailersWheelSpeedDifferenceMainAxleKmh
 	}
 	if b.TrailersLateralAcceleration != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[13]), 416, 448)
@@ -14238,21 +14238,21 @@ func (b0 DeviceInputs_builder) Build() *DeviceInputs {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[13]), 430, 448)
 		x.xxx_hidden_CurrentProfile = *b.CurrentProfile
 	}
-	if b.PowerSupplyVoltage != nil {
+	if b.PowerSupplyVoltageV != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[13]), 431, 448)
-		x.xxx_hidden_PowerSupplyVoltage = *b.PowerSupplyVoltage
+		x.xxx_hidden_PowerSupplyVoltageV = *b.PowerSupplyVoltageV
 	}
-	if b.BatteryVoltage != nil {
+	if b.BatteryVoltageV != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[13]), 432, 448)
-		x.xxx_hidden_BatteryVoltage = *b.BatteryVoltage
+		x.xxx_hidden_BatteryVoltageV = *b.BatteryVoltageV
 	}
-	if b.PcbTemperature != nil {
+	if b.PcbTemperatureC != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[13]), 433, 448)
-		x.xxx_hidden_PcbTemperature = *b.PcbTemperature
+		x.xxx_hidden_PcbTemperatureC = *b.PcbTemperatureC
 	}
-	if b.VirtualOdometer != nil {
+	if b.VirtualOdometerKm != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[13]), 434, 448)
-		x.xxx_hidden_VirtualOdometer = *b.VirtualOdometer
+		x.xxx_hidden_VirtualOdometerKm = *b.VirtualOdometerKm
 	}
 	if b.InputTrigger != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[13]), 435, 448)
@@ -14262,9 +14262,9 @@ func (b0 DeviceInputs_builder) Build() *DeviceInputs {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[13]), 436, 448)
 		x.xxx_hidden_Priority = b.Priority
 	}
-	if b.BatteryCurrent != nil {
+	if b.BatteryCurrentMa != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[13]), 437, 448)
-		x.xxx_hidden_BatteryCurrent = *b.BatteryCurrent
+		x.xxx_hidden_BatteryCurrentMa = *b.BatteryCurrentMa
 	}
 	if b.Movement != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[13]), 438, 448)
@@ -14313,7 +14313,7 @@ var File_wayplatform_connect_trusttrack_v1_device_inputs_proto protoreflect.File
 
 const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	"\n" +
-	"5wayplatform/connect/trusttrack/v1/device_inputs.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe1\xd4\x01\n" +
+	"5wayplatform/connect/trusttrack/v1/device_inputs.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9e\xd8\x01\n" +
 	"\fDeviceInputs\x12\x15\n" +
 	"\x06x_axis\x18\x01 \x01(\x01R\x05xAxis\x12\x15\n" +
 	"\x06y_axis\x18\x02 \x01(\x01R\x05yAxis\x12\x15\n" +
@@ -14323,22 +14323,20 @@ const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	"\bg_peak_z\x18\x06 \x01(\x01R\x06gPeakZ\x12)\n" +
 	"\x11x_axis_tilt_angle\x18\a \x01(\x01R\x0exAxisTiltAngle\x12)\n" +
 	"\x11y_axis_tilt_angle\x18\b \x01(\x01R\x0eyAxisTiltAngle\x12)\n" +
-	"\x11z_axis_tilt_angle\x18\t \x01(\x01R\x0ezAxisTiltAngle\x12'\n" +
-	"\x0fcanbus_distance\x18\n" +
-	" \x01(\x01R\x0ecanbusDistance\x12I\n" +
-	"!canbus_engine_coolant_temperature\x18\v \x01(\x01R\x1ecanbusEngineCoolantTemperature\x12(\n" +
-	"\x10canbus_fuel_rate\x18\f \x01(\x01R\x0ecanbusFuelRate\x12\x1d\n" +
+	"\x11z_axis_tilt_angle\x18\t \x01(\x01R\x0ezAxisTiltAngle\x12,\n" +
+	"\x12canbus_odometer_km\x18\n" +
+	" \x01(\x01R\x10canbusOdometerKm\x12L\n" +
+	"#canbus_engine_coolant_temperature_c\x18\v \x01(\x01R\x1fcanbusEngineCoolantTemperatureC\x125\n" +
+	"\x18canbus_fuel_rate_l_per_h\x18\f \x01(\x01R\x13canbusFuelRateLPerH\x12\x1d\n" +
 	"\n" +
-	"engine_rpm\x18\r \x01(\x01R\tengineRpm\x12!\n" +
-	"\fengine_hours\x18\x0e \x01(\x01R\vengineHours\x12!\n" +
-	"\fservice_dist\x18\x0f \x01(\x01R\vserviceDist\x12\x1b\n" +
-	"\tpedal_pos\x18\x10 \x01(\x01R\bpedalPos\x12$\n" +
-	"\x0efuel_level_can\x18\x11 \x01(\x01R\ffuelLevelCan\x12\x1b\n" +
-	"\tfuel_used\x18\x12 \x01(\x01R\bfuelUsed\x12\x1f\n" +
-	"\vspeed_wheel\x18\x13 \x01(\x01R\n" +
-	"speedWheel\x12\x1f\n" +
-	"\vspeed_tacho\x18\x14 \x01(\x01R\n" +
-	"speedTacho\x12!\n" +
+	"engine_rpm\x18\r \x01(\x01R\tengineRpm\x125\n" +
+	"\x17engine_hours_lifetime_h\x18\x0e \x01(\x01R\x14engineHoursLifetimeH\x12A\n" +
+	"\x1dservice_distance_remaining_km\x18\x0f \x01(\x01R\x1aserviceDistanceRemainingKm\x124\n" +
+	"\x16pedal_position_percent\x18\x10 \x01(\x01R\x14pedalPositionPercent\x123\n" +
+	"\x16fuel_level_can_percent\x18\x11 \x01(\x01R\x13fuelLevelCanPercent\x12/\n" +
+	"\x14fuel_used_lifetime_l\x18\x12 \x01(\x01R\x11fuelUsedLifetimeL\x12&\n" +
+	"\x0fwheel_speed_kmh\x18\x13 \x01(\x01R\rwheelSpeedKmh\x12&\n" +
+	"\x0ftacho_speed_kmh\x18\x14 \x01(\x01R\rtachoSpeedKmh\x12!\n" +
 	"\ftacho_status\x18\x15 \x01(\tR\vtachoStatus\x12/\n" +
 	"\x13overspeeding_events\x18\x16 \x01(\tR\x12overspeedingEvents\x12\x1d\n" +
 	"\n" +
@@ -14413,8 +14411,8 @@ const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	"\x1acan_fuel_level_milliliters\x18X \x01(\x01R\x17canFuelLevelMilliliters\x12-\n" +
 	"\x13can_door_lock_state\x18Y \x01(\tR\x10canDoorLockState\x12.\n" +
 	"\x13gsm_signal_strength\x18Z \x01(\x01R\x11gsmSignalStrength\x12\x1a\n" +
-	"\boperator\x18[ \x01(\x01R\boperator\x12\x1b\n" +
-	"\tgps_speed\x18\\ \x01(\x01R\bgpsSpeed\x127\n" +
+	"\boperator\x18[ \x01(\x01R\boperator\x12\"\n" +
+	"\rgps_speed_kmh\x18\\ \x01(\x01R\vgpsSpeedKmh\x127\n" +
 	"\x18gsm_umts_signal_strength\x18] \x01(\x01R\x15gsmUmtsSignalStrength\x12*\n" +
 	"\x11gsm_umts_operator\x18^ \x01(\x01R\x0fgsmUmtsOperator\x12!\n" +
 	"\fumts_enabled\x18_ \x01(\tR\vumtsEnabled\x12!\n" +
@@ -14423,8 +14421,8 @@ const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	"\vgprs_errors\x18b \x01(\x01R\n" +
 	"gprsErrors\x12\x1f\n" +
 	"\vgprs_status\x18c \x01(\tR\n" +
-	"gprsStatus\x12!\n" +
-	"\fgps_altitude\x18d \x01(\x01R\vgpsAltitude\x12!\n" +
+	"gprsStatus\x12$\n" +
+	"\x0egps_altitude_m\x18d \x01(\x01R\fgpsAltitudeM\x12!\n" +
 	"\fdout1_status\x18e \x01(\tR\vdout1Status\x12!\n" +
 	"\fdout2_status\x18f \x01(\tR\vdout2Status\x12=\n" +
 	"\x1bdxp_battery_battery_voltage\x18g \x01(\x01R\x18dxpBatteryBatteryVoltage\x12H\n" +
@@ -14461,8 +14459,8 @@ const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	",dxp_faults2_user_fault_2_history_error_codes\x18\x86\x01 \x01(\x01R%dxpFaults2UserFault2HistoryErrorCodes\x12\\\n" +
 	",dxp_faults2_user_fault_1_history_error_codes\x18\x87\x01 \x01(\x01R%dxpFaults2UserFault1HistoryErrorCodes\x12F\n" +
 	" dxp_faults2_kyb_hist_fault_codes\x18\x88\x01 \x01(\x01R\x1bdxpFaults2KybHistFaultCodes\x12-\n" +
-	"\x12dxp_charger_status\x18\x89\x01 \x01(\x01R\x10dxpChargerStatus\x125\n" +
-	"\x16ecodrive_maximum_speed\x18\x8a\x01 \x01(\x01R\x14ecodriveMaximumSpeed\x12.\n" +
+	"\x12dxp_charger_status\x18\x89\x01 \x01(\x01R\x10dxpChargerStatus\x12<\n" +
+	"\x1aecodrive_maximum_speed_kmh\x18\x8a\x01 \x01(\x01R\x17ecodriveMaximumSpeedKmh\x12.\n" +
 	"\x12ecodrive_overspeed\x18\x8b\x01 \x01(\x01R\x11ecodriveOverspeed\x12.\n" +
 	"\x13ecodrive_rpm_on_red\x18\x8c\x01 \x01(\x01R\x10ecodriveRpmOnRed\x121\n" +
 	"\x14ecodrive_maximum_rpm\x18\x8d\x01 \x01(\x01R\x12ecodriveMaximumRpm\x127\n" +
@@ -14591,11 +14589,11 @@ const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	"\x0fdigital_input_3\x18\x88\x02 \x01(\bR\rdigitalInput3\x12'\n" +
 	"\x0fdigital_input_4\x18\x89\x02 \x01(\bR\rdigitalInput4\x12%\n" +
 	"\x0eanalog_input_1\x18\x8a\x02 \x01(\x01R\fanalogInput1\x12%\n" +
-	"\x0eanalog_input_2\x18\x8b\x02 \x01(\x01R\fanalogInput2\x124\n" +
-	"\x16din1_working_time_diff\x18\x8c\x02 \x01(\x01R\x13din1WorkingTimeDiff\x124\n" +
-	"\x16din2_working_time_diff\x18\x8d\x02 \x01(\x01R\x13din2WorkingTimeDiff\x124\n" +
-	"\x16din3_working_time_diff\x18\x8e\x02 \x01(\x01R\x13din3WorkingTimeDiff\x124\n" +
-	"\x16din4_working_time_diff\x18\x8f\x02 \x01(\x01R\x13din4WorkingTimeDiff\x12,\n" +
+	"\x0eanalog_input_2\x18\x8b\x02 \x01(\x01R\fanalogInput2\x127\n" +
+	"\x18din1_working_time_diff_s\x18\x8c\x02 \x01(\x01R\x14din1WorkingTimeDiffS\x127\n" +
+	"\x18din2_working_time_diff_s\x18\x8d\x02 \x01(\x01R\x14din2WorkingTimeDiffS\x127\n" +
+	"\x18din3_working_time_diff_s\x18\x8e\x02 \x01(\x01R\x14din3WorkingTimeDiffS\x127\n" +
+	"\x18din4_working_time_diff_s\x18\x8f\x02 \x01(\x01R\x14din4WorkingTimeDiffS\x12,\n" +
 	"\x12ot_digital_input_1\x18\x90\x02 \x01(\bR\x0fotDigitalInput1\x12,\n" +
 	"\x12ot_digital_input_2\x18\x91\x02 \x01(\bR\x0fotDigitalInput2\x12,\n" +
 	"\x12ot_digital_input_3\x18\x92\x02 \x01(\bR\x0fotDigitalInput3\x12,\n" +
@@ -14633,9 +14631,9 @@ const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	"\x15mobileye_brake_signal\x18\xb1\x02 \x01(\bR\x13mobileyeBrakeSignal\x12;\n" +
 	"\x19mobileye_wipers_available\x18\xb2\x02 \x01(\bR\x17mobileyeWipersAvailable\x12>\n" +
 	"\x1bmobileye_low_beam_available\x18\xb3\x02 \x01(\bR\x18mobileyeLowBeamAvailable\x12<\n" +
-	"\x1amobileye_hi_beam_available\x18\xb4\x02 \x01(\bR\x17mobileyeHiBeamAvailable\x129\n" +
-	"\x18mobileye_speed_available\x18\xb5\x02 \x01(\bR\x16mobileyeSpeedAvailable\x12&\n" +
-	"\x0emobileye_speed\x18\xb6\x02 \x01(\x01R\rmobileyeSpeed\x123\n" +
+	"\x1amobileye_hi_beam_available\x18\xb4\x02 \x01(\bR\x17mobileyeHiBeamAvailable\x12@\n" +
+	"\x1cmobileye_speed_kmh_available\x18\xb5\x02 \x01(\bR\x19mobileyeSpeedKmhAvailable\x12-\n" +
+	"\x12mobileye_speed_kmh\x18\xb6\x02 \x01(\x01R\x10mobileyeSpeedKmh\x123\n" +
 	"\x15mobileye_tamper_alert\x18\xb7\x02 \x01(\tR\x13mobileyeTamperAlert\x121\n" +
 	"\x14mobileye_tsr_enabled\x18\xb8\x02 \x01(\bR\x12mobileyeTsrEnabled\x12<\n" +
 	"\x1amobileye_tsr_warning_level\x18\xb9\x02 \x01(\x01R\x17mobileyeTsrWarningLevel\x12<\n" +
@@ -14655,8 +14653,8 @@ const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	"#mobileye_vision_sign_type_display_4\x18\xc7\x02 \x01(\x01R\x1emobileyeVisionSignTypeDisplay4\x12n\n" +
 	"5mobileye_vision_only_suplementary_sign_type_display_4\x18\xc8\x02 \x01(\x01R.mobileyeVisionOnlySuplementarySignTypeDisplay4\x121\n" +
 	"\x15obd_kline_dtc_and_mil\x18\xc9\x02 \x01(\x01R\x11obdKlineDtcAndMil\x12#\n" +
-	"\robd_kline_rpm\x18\xca\x02 \x01(\x01R\vobdKlineRpm\x12C\n" +
-	"\x1eobd_kline_vehicle_speed_sensor\x18\xcb\x02 \x01(\x01R\x1aobdKlineVehicleSpeedSensor\x12O\n" +
+	"\robd_kline_rpm\x18\xca\x02 \x01(\x01R\vobdKlineRpm\x12=\n" +
+	"\x1bobd_kline_vehicle_speed_kmh\x18\xcb\x02 \x01(\x01R\x17obdKlineVehicleSpeedKmh\x12O\n" +
 	"$obd_kline_engine_coolant_temperature\x18\xcc\x02 \x01(\x01R obdKlineEngineCoolantTemperature\x12I\n" +
 	"!obd_kline_ambient_air_temperature\x18\xcd\x02 \x01(\x01R\x1dobdKlineAmbientAirTemperature\x12;\n" +
 	"\x1aobd_kline_fuel_level_input\x18\xce\x02 \x01(\x01R\x16obdKlineFuelLevelInput\x123\n" +
@@ -14672,8 +14670,8 @@ const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	"\x15obd_kline_dtc_counted\x18\xd8\x02 \x01(\x01R\x12obdKlineDtcCounted\x127\n" +
 	"\x17satellite_messages_sent\x18\xd9\x02 \x01(\x01R\x15satelliteMessagesSent\x12=\n" +
 	"\x1apending_satellite_messages\x18\xda\x02 \x01(\x01R\x18pendingSatelliteMessages\x12+\n" +
-	"\x11spr_spreader_mode\x18\xdb\x02 \x01(\x01R\x0fsprSpreaderMode\x12k\n" +
-	"3spr_spreader_adjustment_of_simulation_driving_speed\x18\xdc\x02 \x01(\x01R-sprSpreaderAdjustmentOfSimulationDrivingSpeed\x12@\n" +
+	"\x11spr_spreader_mode\x18\xdb\x02 \x01(\x01R\x0fsprSpreaderMode\x12r\n" +
+	"7spr_spreader_adjustment_of_simulation_driving_speed_kmh\x18\xdc\x02 \x01(\x01R0sprSpreaderAdjustmentOfSimulationDrivingSpeedKmh\x12@\n" +
 	"\x1cspr_spreader_spreading_width\x18\xdd\x02 \x01(\x01R\x19sprSpreaderSpreadingWidth\x12l\n" +
 	"4spr_spreading_solid_material_dosage_from_reservoir_1\x18\xde\x02 \x01(\x01R-sprSpreadingSolidMaterialDosageFromReservoir1\x12<\n" +
 	"\x1aspr_spreading_brine_dosage\x18\xdf\x02 \x01(\x01R\x17sprSpreadingBrineDosage\x12Y\n" +
@@ -14685,29 +14683,30 @@ const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	"\x13spr_liquid_material\x18\xe5\x02 \x01(\tR\x11sprLiquidMaterial\x12-\n" +
 	"\x12spr_solid_material\x18\xe6\x02 \x01(\tR\x10sprSolidMaterial\x12%\n" +
 	"\x0edriver_1_state\x18\xe7\x02 \x01(\tR\fdriver1State\x12%\n" +
-	"\x0edriver_2_state\x18\xe8\x02 \x01(\tR\fdriver2State\x124\n" +
-	"\x16tco_first_driver_state\x18\xe9\x02 \x01(\tR\x13tcoFirstDriverState\x126\n" +
-	"\x17tco_second_driver_state\x18\xea\x02 \x01(\tR\x14tcoSecondDriverState\x122\n" +
-	"\x15tco_first_driver_card\x18\xeb\x02 \x01(\tR\x12tcoFirstDriverCard\x124\n" +
-	"\x16tco_second_driver_card\x18\xec\x02 \x01(\tR\x13tcoSecondDriverCard\x12\"\n" +
-	"\ftco_distance\x18\xed\x02 \x01(\x01R\vtcoDistance\x12\x1a\n" +
-	"\btco_trip\x18\xee\x02 \x01(\x01R\atcoTrip\x12+\n" +
-	"\x11tco_vehicle_speed\x18\xef\x02 \x01(\x01R\x0ftcoVehicleSpeed\x12\x18\n" +
-	"\atco_rpm\x18\xf0\x02 \x01(\x01R\x06tcoRpm\x127\n" +
-	"\x17tco_registration_number\x18\xf1\x02 \x01(\tR\x15tcoRegistrationNumber\x12/\n" +
-	"\x13tacho_ddd_available\x18\xf2\x02 \x01(\tR\x11tachoDddAvailable\x12c\n" +
-	"0tco_first_driver_driving_time_prev_and_curr_week\x18\xf3\x02 \x01(\x01R(tcoFirstDriverDrivingTimePrevAndCurrWeek\x12e\n" +
-	"1tco_second_driver_driving_time_prev_and_curr_week\x18\xf4\x02 \x01(\x01R)tcoSecondDriverDrivingTimePrevAndCurrWeek\x12a\n" +
-	".tco_first_driver_duration_of_selected_activity\x18\xf5\x02 \x01(\x01R(tcoFirstDriverDurationOfSelectedActivity\x12c\n" +
-	"/tco_second_driver_duration_of_selected_activity\x18\xf6\x02 \x01(\x01R)tcoSecondDriverDurationOfSelectedActivity\x12V\n" +
-	"(tco_first_driver_continuous_driving_time\x18\xf7\x02 \x01(\x01R#tcoFirstDriverContinuousDrivingTime\x12X\n" +
-	")tco_second_driver_continuous_driving_time\x18\xf8\x02 \x01(\x01R$tcoSecondDriverContinuousDrivingTime\x12P\n" +
-	"%tco_first_driver_cumulated_break_time\x18\xf9\x02 \x01(\x01R tcoFirstDriverCumulatedBreakTime\x12R\n" +
-	"&tco_second_driver_cumulated_break_time\x18\xfa\x02 \x01(\x01R!tcoSecondDriverCumulatedBreakTime\x12N\n" +
-	"$tco_first_driver_time_related_states\x18\xfb\x02 \x01(\x01R\x1ftcoFirstDriverTimeRelatedStates\x12P\n" +
-	"%tco_second_driver_time_related_states\x18\xfc\x02 \x01(\x01R tcoSecondDriverTimeRelatedStates\x126\n" +
-	"\btco_time\x18\xfd\x02 \x01(\v2\x1a.google.protobuf.TimestampR\atcoTime\x12H\n" +
-	"\x12tco_can_tacho_time\x18\xfe\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x0ftcoCanTachoTime\x121\n" +
+	"\x0edriver_2_state\x18\xe8\x02 \x01(\tR\fdriver2State\x128\n" +
+	"\x18tacho_first_driver_state\x18\xe9\x02 \x01(\tR\x15tachoFirstDriverState\x12:\n" +
+	"\x19tacho_second_driver_state\x18\xea\x02 \x01(\tR\x16tachoSecondDriverState\x126\n" +
+	"\x17tacho_first_driver_card\x18\xeb\x02 \x01(\tR\x14tachoFirstDriverCard\x128\n" +
+	"\x18tacho_second_driver_card\x18\xec\x02 \x01(\tR\x15tachoSecondDriverCard\x12+\n" +
+	"\x11tacho_odometer_km\x18\xed\x02 \x01(\x01R\x0ftachoOdometerKm\x12#\n" +
+	"\rtacho_trip_km\x18\xee\x02 \x01(\x01R\vtachoTripKm\x126\n" +
+	"\x17tacho_vehicle_speed_kmh\x18\xef\x02 \x01(\x01R\x14tachoVehicleSpeedKmh\x12\x1c\n" +
+	"\ttacho_rpm\x18\xf0\x02 \x01(\x01R\btachoRpm\x12;\n" +
+	"\x19tacho_registration_number\x18\xf1\x02 \x01(\tR\x17tachoRegistrationNumber\x12/\n" +
+	"\x13tacho_ddd_available\x18\xf2\x02 \x01(\tR\x11tachoDddAvailable\x12v\n" +
+	":tacho_first_driver_driving_time_prev_and_curr_week_minutes\x18\xf3\x02 \x01(\x01R1tachoFirstDriverDrivingTimePrevAndCurrWeekMinutes\x12x\n" +
+	";tacho_second_driver_driving_time_prev_and_curr_week_minutes\x18\xf4\x02 \x01(\x01R2tachoSecondDriverDrivingTimePrevAndCurrWeekMinutes\x12t\n" +
+	"8tacho_first_driver_duration_of_selected_activity_minutes\x18\xf5\x02 \x01(\x01R1tachoFirstDriverDurationOfSelectedActivityMinutes\x12v\n" +
+	"9tacho_second_driver_duration_of_selected_activity_minutes\x18\xf6\x02 \x01(\x01R2tachoSecondDriverDurationOfSelectedActivityMinutes\x12i\n" +
+	"2tacho_first_driver_continuous_driving_time_minutes\x18\xf7\x02 \x01(\x01R,tachoFirstDriverContinuousDrivingTimeMinutes\x12k\n" +
+	"3tacho_second_driver_continuous_driving_time_minutes\x18\xf8\x02 \x01(\x01R-tachoSecondDriverContinuousDrivingTimeMinutes\x12c\n" +
+	"/tacho_first_driver_cumulated_break_time_minutes\x18\xf9\x02 \x01(\x01R)tachoFirstDriverCumulatedBreakTimeMinutes\x12e\n" +
+	"0tacho_second_driver_cumulated_break_time_minutes\x18\xfa\x02 \x01(\x01R*tachoSecondDriverCumulatedBreakTimeMinutes\x12R\n" +
+	"&tacho_first_driver_time_related_states\x18\xfb\x02 \x01(\x01R!tachoFirstDriverTimeRelatedStates\x12T\n" +
+	"'tacho_second_driver_time_related_states\x18\xfc\x02 \x01(\x01R\"tachoSecondDriverTimeRelatedStates\x12:\n" +
+	"\n" +
+	"tacho_time\x18\xfd\x02 \x01(\v2\x1a.google.protobuf.TimestampR\ttachoTime\x12L\n" +
+	"\x14tacho_can_tacho_time\x18\xfe\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x11tachoCanTachoTime\x121\n" +
 	"\x14temperature_sensor_0\x18\xff\x02 \x01(\x01R\x12temperatureSensor0\x121\n" +
 	"\x14temperature_sensor_1\x18\x80\x03 \x01(\x01R\x12temperatureSensor1\x121\n" +
 	"\x14temperature_sensor_2\x18\x81\x03 \x01(\x01R\x12temperatureSensor2\x121\n" +
@@ -14739,9 +14738,9 @@ const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	"\x1btrailers_stop_lamps_request\x18\x9b\x03 \x01(\tR\x18trailersStopLampsRequest\x12M\n" +
 	"#trailers_red_warning_signal_request\x18\x9c\x03 \x01(\tR\x1ftrailersRedWarningSignalRequest\x12Q\n" +
 	"%trailers_amber_warning_signal_request\x18\x9d\x03 \x01(\tR!trailersAmberWarningSignalRequest\x12W\n" +
-	"(trailers_vehicle_pneumatic_supply_status\x18\x9e\x03 \x01(\tR$trailersVehiclePneumaticSupplyStatus\x12g\n" +
-	"1trailers_braking_system_wheel_based_vehicle_speed\x18\x9f\x03 \x01(\x01R+trailersBrakingSystemWheelBasedVehicleSpeed\x12X\n" +
-	")trailers_wheel_speed_difference_main_axle\x18\xa0\x03 \x01(\x01R$trailersWheelSpeedDifferenceMainAxle\x12C\n" +
+	"(trailers_vehicle_pneumatic_supply_status\x18\x9e\x03 \x01(\tR$trailersVehiclePneumaticSupplyStatus\x12n\n" +
+	"5trailers_braking_system_wheel_based_vehicle_speed_kmh\x18\x9f\x03 \x01(\x01R.trailersBrakingSystemWheelBasedVehicleSpeedKmh\x12_\n" +
+	"-trailers_wheel_speed_difference_main_axle_kmh\x18\xa0\x03 \x01(\x01R'trailersWheelSpeedDifferenceMainAxleKmh\x12C\n" +
 	"\x1dtrailers_lateral_acceleration\x18\xa1\x03 \x01(\x01R\x1btrailersLateralAcceleration\x124\n" +
 	"\x16trailers_axle_load_sum\x18\xa2\x03 \x01(\x01R\x13trailersAxleLoadSum\x12L\n" +
 	"\"trailers_pneumatic_supply_pressure\x18\xa3\x03 \x01(\x01R\x1ftrailersPneumaticSupplyPressure\x12p\n" +
@@ -14756,14 +14755,14 @@ const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	"\x10wireless_enabled\x18\xac\x03 \x01(\tR\x0fwirelessEnabled\x12$\n" +
 	"\rwireless_pair\x18\xad\x03 \x01(\bR\fwirelessPair\x12-\n" +
 	"\x12wireless_driver_id\x18\xae\x03 \x01(\x01R\x10wirelessDriverId\x12(\n" +
-	"\x0fcurrent_profile\x18\xaf\x03 \x01(\x01R\x0ecurrentProfile\x121\n" +
-	"\x14power_supply_voltage\x18\xb0\x03 \x01(\x01R\x12powerSupplyVoltage\x12(\n" +
-	"\x0fbattery_voltage\x18\xb1\x03 \x01(\x01R\x0ebatteryVoltage\x12(\n" +
-	"\x0fpcb_temperature\x18\xb2\x03 \x01(\x01R\x0epcbTemperature\x12*\n" +
-	"\x10virtual_odometer\x18\xb3\x03 \x01(\x01R\x0fvirtualOdometer\x12$\n" +
+	"\x0fcurrent_profile\x18\xaf\x03 \x01(\x01R\x0ecurrentProfile\x124\n" +
+	"\x16power_supply_voltage_v\x18\xb0\x03 \x01(\x01R\x13powerSupplyVoltageV\x12+\n" +
+	"\x11battery_voltage_v\x18\xb1\x03 \x01(\x01R\x0fbatteryVoltageV\x12+\n" +
+	"\x11pcb_temperature_c\x18\xb2\x03 \x01(\x01R\x0fpcbTemperatureC\x12/\n" +
+	"\x13virtual_odometer_km\x18\xb3\x03 \x01(\x01R\x11virtualOdometerKm\x12$\n" +
 	"\rinput_trigger\x18\xb4\x03 \x01(\x01R\finputTrigger\x12\x1b\n" +
-	"\bpriority\x18\xb5\x03 \x01(\tR\bpriority\x12(\n" +
-	"\x0fbattery_current\x18\xb6\x03 \x01(\x01R\x0ebatteryCurrent\x12\x1b\n" +
+	"\bpriority\x18\xb5\x03 \x01(\tR\bpriority\x12-\n" +
+	"\x12battery_current_ma\x18\xb6\x03 \x01(\x01R\x10batteryCurrentMa\x12\x1b\n" +
 	"\bmovement\x18\xb7\x03 \x01(\tR\bmovement\x12\x13\n" +
 	"\x04hdop\x18\xb8\x03 \x01(\tR\x04hdop\x12,\n" +
 	"\x11modem_temperature\x18\xb9\x03 \x01(\x01R\x10modemTemperature\x123\n" +
@@ -14784,8 +14783,8 @@ var file_wayplatform_connect_trusttrack_v1_device_inputs_proto_goTypes = []any{
 }
 var file_wayplatform_connect_trusttrack_v1_device_inputs_proto_depIdxs = []int32{
 	1, // 0: wayplatform.connect.trusttrack.v1.DeviceInputs.moba_timestamp:type_name -> google.protobuf.Timestamp
-	1, // 1: wayplatform.connect.trusttrack.v1.DeviceInputs.tco_time:type_name -> google.protobuf.Timestamp
-	1, // 2: wayplatform.connect.trusttrack.v1.DeviceInputs.tco_can_tacho_time:type_name -> google.protobuf.Timestamp
+	1, // 1: wayplatform.connect.trusttrack.v1.DeviceInputs.tacho_time:type_name -> google.protobuf.Timestamp
+	1, // 2: wayplatform.connect.trusttrack.v1.DeviceInputs.tacho_can_tacho_time:type_name -> google.protobuf.Timestamp
 	3, // [3:3] is the sub-list for method output_type
 	3, // [3:3] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name

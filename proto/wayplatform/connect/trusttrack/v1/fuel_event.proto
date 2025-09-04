@@ -34,14 +34,14 @@ message FuelEvent {
   // The longitude coordinate where the event occurred.
   double longitude = 6;
 
-  // The fuel level at the start of the event (percentage).
-  double fuel_level_start = 7;
+  // The fuel level at the start of the event (units: %)
+  double fuel_level_start_percent = 7;
 
-  // The fuel level at the end of the event (percentage).
-  double fuel_level_end = 8;
+  // The fuel level at the end of the event (units: %)
+  double fuel_level_end_percent = 8;
 
-  // The difference in fuel level (positive for refuel, negative for drain).
-  double difference = 9;
+  // The difference in fuel level (positive for refuel, negative for drain) (units: %)
+  double fuel_level_difference_percent = 9;
 
   // The start time of the fuel event.
   google.protobuf.Timestamp start_time = 10;
