@@ -2,24 +2,23 @@ edition = "2023";
 
 package wayplatform.connect.trusttrack.v1;
 
-import "google/protobuf/timestamp.proto";
-
 // Container for parameters calculated in the system from other parameters according to the configuration
 message CalculatedInputs {
   // Fuel consumption (units: l)
-  double fuel_consumption = 1;
+  double fuel_consumption_lifetime_l = 1;
 
-  // Fuel level (units: l)
-  double fuel_level = 2;
+  // Fuel level (units: %)
+  double fuel_level_percent = 2;
 
   // Mileage (units: km)
-  double mileage = 3;
+  double odometer_km = 3;
 
   // Engine RPM (units: RPM)
-  double rpm = 4;
+  double engine_rpm = 4;
 
   // Temperature (units: °C)
-  double temperature = 5;
+  // TODO: What temperature is this? (Oil/engine/coolant?)
+  double temperature_c = 5;
 
   // Custom input 1
   double custom_input_1 = 6;
@@ -58,5 +57,5 @@ message CalculatedInputs {
   double din4_working_time = 17;
 
   // Weight (units: kg)
-  double weight = 18;
+  double weight_kg = 18;
 }

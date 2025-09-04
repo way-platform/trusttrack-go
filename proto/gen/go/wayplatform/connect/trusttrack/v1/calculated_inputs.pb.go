@@ -9,7 +9,6 @@ package trusttrackv1
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	_ "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -23,29 +22,29 @@ const (
 
 // Container for parameters calculated in the system from other parameters according to the configuration
 type CalculatedInputs struct {
-	state                      protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_FuelConsumption float64                `protobuf:"fixed64,1,opt,name=fuel_consumption,json=fuelConsumption"`
-	xxx_hidden_FuelLevel       float64                `protobuf:"fixed64,2,opt,name=fuel_level,json=fuelLevel"`
-	xxx_hidden_Mileage         float64                `protobuf:"fixed64,3,opt,name=mileage"`
-	xxx_hidden_Rpm             float64                `protobuf:"fixed64,4,opt,name=rpm"`
-	xxx_hidden_Temperature     float64                `protobuf:"fixed64,5,opt,name=temperature"`
-	xxx_hidden_CustomInput_1   float64                `protobuf:"fixed64,6,opt,name=custom_input_1,json=customInput1"`
-	xxx_hidden_CustomInput_2   float64                `protobuf:"fixed64,7,opt,name=custom_input_2,json=customInput2"`
-	xxx_hidden_CustomInput_3   float64                `protobuf:"fixed64,8,opt,name=custom_input_3,json=customInput3"`
-	xxx_hidden_CustomInput_4   float64                `protobuf:"fixed64,9,opt,name=custom_input_4,json=customInput4"`
-	xxx_hidden_CustomInput_5   float64                `protobuf:"fixed64,10,opt,name=custom_input_5,json=customInput5"`
-	xxx_hidden_CustomInput_6   float64                `protobuf:"fixed64,11,opt,name=custom_input_6,json=customInput6"`
-	xxx_hidden_CustomInput_7   float64                `protobuf:"fixed64,12,opt,name=custom_input_7,json=customInput7"`
-	xxx_hidden_CustomInput_8   float64                `protobuf:"fixed64,13,opt,name=custom_input_8,json=customInput8"`
-	xxx_hidden_Din1WorkingTime float64                `protobuf:"fixed64,14,opt,name=din1_working_time,json=din1WorkingTime"`
-	xxx_hidden_Din2WorkingTime float64                `protobuf:"fixed64,15,opt,name=din2_working_time,json=din2WorkingTime"`
-	xxx_hidden_Din3WorkingTime float64                `protobuf:"fixed64,16,opt,name=din3_working_time,json=din3WorkingTime"`
-	xxx_hidden_Din4WorkingTime float64                `protobuf:"fixed64,17,opt,name=din4_working_time,json=din4WorkingTime"`
-	xxx_hidden_Weight          float64                `protobuf:"fixed64,18,opt,name=weight"`
-	XXX_raceDetectHookData     protoimpl.RaceDetectHookData
-	XXX_presence               [1]uint32
-	unknownFields              protoimpl.UnknownFields
-	sizeCache                  protoimpl.SizeCache
+	state                               protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_FuelConsumptionLifetimeL float64                `protobuf:"fixed64,1,opt,name=fuel_consumption_lifetime_l,json=fuelConsumptionLifetimeL"`
+	xxx_hidden_FuelLevelPercent         float64                `protobuf:"fixed64,2,opt,name=fuel_level_percent,json=fuelLevelPercent"`
+	xxx_hidden_OdometerKm               float64                `protobuf:"fixed64,3,opt,name=odometer_km,json=odometerKm"`
+	xxx_hidden_EngineRpm                float64                `protobuf:"fixed64,4,opt,name=engine_rpm,json=engineRpm"`
+	xxx_hidden_TemperatureC             float64                `protobuf:"fixed64,5,opt,name=temperature_c,json=temperatureC"`
+	xxx_hidden_CustomInput_1            float64                `protobuf:"fixed64,6,opt,name=custom_input_1,json=customInput1"`
+	xxx_hidden_CustomInput_2            float64                `protobuf:"fixed64,7,opt,name=custom_input_2,json=customInput2"`
+	xxx_hidden_CustomInput_3            float64                `protobuf:"fixed64,8,opt,name=custom_input_3,json=customInput3"`
+	xxx_hidden_CustomInput_4            float64                `protobuf:"fixed64,9,opt,name=custom_input_4,json=customInput4"`
+	xxx_hidden_CustomInput_5            float64                `protobuf:"fixed64,10,opt,name=custom_input_5,json=customInput5"`
+	xxx_hidden_CustomInput_6            float64                `protobuf:"fixed64,11,opt,name=custom_input_6,json=customInput6"`
+	xxx_hidden_CustomInput_7            float64                `protobuf:"fixed64,12,opt,name=custom_input_7,json=customInput7"`
+	xxx_hidden_CustomInput_8            float64                `protobuf:"fixed64,13,opt,name=custom_input_8,json=customInput8"`
+	xxx_hidden_Din1WorkingTime          float64                `protobuf:"fixed64,14,opt,name=din1_working_time,json=din1WorkingTime"`
+	xxx_hidden_Din2WorkingTime          float64                `protobuf:"fixed64,15,opt,name=din2_working_time,json=din2WorkingTime"`
+	xxx_hidden_Din3WorkingTime          float64                `protobuf:"fixed64,16,opt,name=din3_working_time,json=din3WorkingTime"`
+	xxx_hidden_Din4WorkingTime          float64                `protobuf:"fixed64,17,opt,name=din4_working_time,json=din4WorkingTime"`
+	xxx_hidden_WeightKg                 float64                `protobuf:"fixed64,18,opt,name=weight_kg,json=weightKg"`
+	XXX_raceDetectHookData              protoimpl.RaceDetectHookData
+	XXX_presence                        [1]uint32
+	unknownFields                       protoimpl.UnknownFields
+	sizeCache                           protoimpl.SizeCache
 }
 
 func (x *CalculatedInputs) Reset() {
@@ -73,37 +72,37 @@ func (x *CalculatedInputs) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *CalculatedInputs) GetFuelConsumption() float64 {
+func (x *CalculatedInputs) GetFuelConsumptionLifetimeL() float64 {
 	if x != nil {
-		return x.xxx_hidden_FuelConsumption
+		return x.xxx_hidden_FuelConsumptionLifetimeL
 	}
 	return 0
 }
 
-func (x *CalculatedInputs) GetFuelLevel() float64 {
+func (x *CalculatedInputs) GetFuelLevelPercent() float64 {
 	if x != nil {
-		return x.xxx_hidden_FuelLevel
+		return x.xxx_hidden_FuelLevelPercent
 	}
 	return 0
 }
 
-func (x *CalculatedInputs) GetMileage() float64 {
+func (x *CalculatedInputs) GetOdometerKm() float64 {
 	if x != nil {
-		return x.xxx_hidden_Mileage
+		return x.xxx_hidden_OdometerKm
 	}
 	return 0
 }
 
-func (x *CalculatedInputs) GetRpm() float64 {
+func (x *CalculatedInputs) GetEngineRpm() float64 {
 	if x != nil {
-		return x.xxx_hidden_Rpm
+		return x.xxx_hidden_EngineRpm
 	}
 	return 0
 }
 
-func (x *CalculatedInputs) GetTemperature() float64 {
+func (x *CalculatedInputs) GetTemperatureC() float64 {
 	if x != nil {
-		return x.xxx_hidden_Temperature
+		return x.xxx_hidden_TemperatureC
 	}
 	return 0
 }
@@ -192,35 +191,35 @@ func (x *CalculatedInputs) GetDin4WorkingTime() float64 {
 	return 0
 }
 
-func (x *CalculatedInputs) GetWeight() float64 {
+func (x *CalculatedInputs) GetWeightKg() float64 {
 	if x != nil {
-		return x.xxx_hidden_Weight
+		return x.xxx_hidden_WeightKg
 	}
 	return 0
 }
 
-func (x *CalculatedInputs) SetFuelConsumption(v float64) {
-	x.xxx_hidden_FuelConsumption = v
+func (x *CalculatedInputs) SetFuelConsumptionLifetimeL(v float64) {
+	x.xxx_hidden_FuelConsumptionLifetimeL = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 18)
 }
 
-func (x *CalculatedInputs) SetFuelLevel(v float64) {
-	x.xxx_hidden_FuelLevel = v
+func (x *CalculatedInputs) SetFuelLevelPercent(v float64) {
+	x.xxx_hidden_FuelLevelPercent = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 18)
 }
 
-func (x *CalculatedInputs) SetMileage(v float64) {
-	x.xxx_hidden_Mileage = v
+func (x *CalculatedInputs) SetOdometerKm(v float64) {
+	x.xxx_hidden_OdometerKm = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 18)
 }
 
-func (x *CalculatedInputs) SetRpm(v float64) {
-	x.xxx_hidden_Rpm = v
+func (x *CalculatedInputs) SetEngineRpm(v float64) {
+	x.xxx_hidden_EngineRpm = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 3, 18)
 }
 
-func (x *CalculatedInputs) SetTemperature(v float64) {
-	x.xxx_hidden_Temperature = v
+func (x *CalculatedInputs) SetTemperatureC(v float64) {
+	x.xxx_hidden_TemperatureC = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 18)
 }
 
@@ -284,40 +283,40 @@ func (x *CalculatedInputs) SetDin4WorkingTime(v float64) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 16, 18)
 }
 
-func (x *CalculatedInputs) SetWeight(v float64) {
-	x.xxx_hidden_Weight = v
+func (x *CalculatedInputs) SetWeightKg(v float64) {
+	x.xxx_hidden_WeightKg = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 17, 18)
 }
 
-func (x *CalculatedInputs) HasFuelConsumption() bool {
+func (x *CalculatedInputs) HasFuelConsumptionLifetimeL() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *CalculatedInputs) HasFuelLevel() bool {
+func (x *CalculatedInputs) HasFuelLevelPercent() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *CalculatedInputs) HasMileage() bool {
+func (x *CalculatedInputs) HasOdometerKm() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 2)
 }
 
-func (x *CalculatedInputs) HasRpm() bool {
+func (x *CalculatedInputs) HasEngineRpm() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 3)
 }
 
-func (x *CalculatedInputs) HasTemperature() bool {
+func (x *CalculatedInputs) HasTemperatureC() bool {
 	if x == nil {
 		return false
 	}
@@ -408,36 +407,36 @@ func (x *CalculatedInputs) HasDin4WorkingTime() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 16)
 }
 
-func (x *CalculatedInputs) HasWeight() bool {
+func (x *CalculatedInputs) HasWeightKg() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 17)
 }
 
-func (x *CalculatedInputs) ClearFuelConsumption() {
+func (x *CalculatedInputs) ClearFuelConsumptionLifetimeL() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_FuelConsumption = 0
+	x.xxx_hidden_FuelConsumptionLifetimeL = 0
 }
 
-func (x *CalculatedInputs) ClearFuelLevel() {
+func (x *CalculatedInputs) ClearFuelLevelPercent() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_FuelLevel = 0
+	x.xxx_hidden_FuelLevelPercent = 0
 }
 
-func (x *CalculatedInputs) ClearMileage() {
+func (x *CalculatedInputs) ClearOdometerKm() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
-	x.xxx_hidden_Mileage = 0
+	x.xxx_hidden_OdometerKm = 0
 }
 
-func (x *CalculatedInputs) ClearRpm() {
+func (x *CalculatedInputs) ClearEngineRpm() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 3)
-	x.xxx_hidden_Rpm = 0
+	x.xxx_hidden_EngineRpm = 0
 }
 
-func (x *CalculatedInputs) ClearTemperature() {
+func (x *CalculatedInputs) ClearTemperatureC() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
-	x.xxx_hidden_Temperature = 0
+	x.xxx_hidden_TemperatureC = 0
 }
 
 func (x *CalculatedInputs) ClearCustomInput_1() {
@@ -500,24 +499,25 @@ func (x *CalculatedInputs) ClearDin4WorkingTime() {
 	x.xxx_hidden_Din4WorkingTime = 0
 }
 
-func (x *CalculatedInputs) ClearWeight() {
+func (x *CalculatedInputs) ClearWeightKg() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 17)
-	x.xxx_hidden_Weight = 0
+	x.xxx_hidden_WeightKg = 0
 }
 
 type CalculatedInputs_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	// Fuel consumption (units: l)
-	FuelConsumption *float64
-	// Fuel level (units: l)
-	FuelLevel *float64
+	FuelConsumptionLifetimeL *float64
+	// Fuel level (units: %)
+	FuelLevelPercent *float64
 	// Mileage (units: km)
-	Mileage *float64
+	OdometerKm *float64
 	// Engine RPM (units: RPM)
-	Rpm *float64
+	EngineRpm *float64
 	// Temperature (units: °C)
-	Temperature *float64
+	// TODO: What temperature is this? (Oil/engine/coolant?)
+	TemperatureC *float64
 	// Custom input 1
 	CustomInput_1 *float64
 	// Custom input 2
@@ -543,32 +543,32 @@ type CalculatedInputs_builder struct {
 	// DIN4 working time
 	Din4WorkingTime *float64
 	// Weight (units: kg)
-	Weight *float64
+	WeightKg *float64
 }
 
 func (b0 CalculatedInputs_builder) Build() *CalculatedInputs {
 	m0 := &CalculatedInputs{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.FuelConsumption != nil {
+	if b.FuelConsumptionLifetimeL != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 18)
-		x.xxx_hidden_FuelConsumption = *b.FuelConsumption
+		x.xxx_hidden_FuelConsumptionLifetimeL = *b.FuelConsumptionLifetimeL
 	}
-	if b.FuelLevel != nil {
+	if b.FuelLevelPercent != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 18)
-		x.xxx_hidden_FuelLevel = *b.FuelLevel
+		x.xxx_hidden_FuelLevelPercent = *b.FuelLevelPercent
 	}
-	if b.Mileage != nil {
+	if b.OdometerKm != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 18)
-		x.xxx_hidden_Mileage = *b.Mileage
+		x.xxx_hidden_OdometerKm = *b.OdometerKm
 	}
-	if b.Rpm != nil {
+	if b.EngineRpm != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 18)
-		x.xxx_hidden_Rpm = *b.Rpm
+		x.xxx_hidden_EngineRpm = *b.EngineRpm
 	}
-	if b.Temperature != nil {
+	if b.TemperatureC != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 18)
-		x.xxx_hidden_Temperature = *b.Temperature
+		x.xxx_hidden_TemperatureC = *b.TemperatureC
 	}
 	if b.CustomInput_1 != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 18)
@@ -618,9 +618,9 @@ func (b0 CalculatedInputs_builder) Build() *CalculatedInputs {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 16, 18)
 		x.xxx_hidden_Din4WorkingTime = *b.Din4WorkingTime
 	}
-	if b.Weight != nil {
+	if b.WeightKg != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 17, 18)
-		x.xxx_hidden_Weight = *b.Weight
+		x.xxx_hidden_WeightKg = *b.WeightKg
 	}
 	return m0
 }
@@ -629,14 +629,15 @@ var File_wayplatform_connect_trusttrack_v1_calculated_inputs_proto protoreflect.
 
 const file_wayplatform_connect_trusttrack_v1_calculated_inputs_proto_rawDesc = "" +
 	"\n" +
-	"9wayplatform/connect/trusttrack/v1/calculated_inputs.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa2\x05\n" +
-	"\x10CalculatedInputs\x12)\n" +
-	"\x10fuel_consumption\x18\x01 \x01(\x01R\x0ffuelConsumption\x12\x1d\n" +
+	"9wayplatform/connect/trusttrack/v1/calculated_inputs.proto\x12!wayplatform.connect.trusttrack.v1\"\xe1\x05\n" +
+	"\x10CalculatedInputs\x12=\n" +
+	"\x1bfuel_consumption_lifetime_l\x18\x01 \x01(\x01R\x18fuelConsumptionLifetimeL\x12,\n" +
+	"\x12fuel_level_percent\x18\x02 \x01(\x01R\x10fuelLevelPercent\x12\x1f\n" +
+	"\vodometer_km\x18\x03 \x01(\x01R\n" +
+	"odometerKm\x12\x1d\n" +
 	"\n" +
-	"fuel_level\x18\x02 \x01(\x01R\tfuelLevel\x12\x18\n" +
-	"\amileage\x18\x03 \x01(\x01R\amileage\x12\x10\n" +
-	"\x03rpm\x18\x04 \x01(\x01R\x03rpm\x12 \n" +
-	"\vtemperature\x18\x05 \x01(\x01R\vtemperature\x12$\n" +
+	"engine_rpm\x18\x04 \x01(\x01R\tengineRpm\x12#\n" +
+	"\rtemperature_c\x18\x05 \x01(\x01R\ftemperatureC\x12$\n" +
 	"\x0ecustom_input_1\x18\x06 \x01(\x01R\fcustomInput1\x12$\n" +
 	"\x0ecustom_input_2\x18\a \x01(\x01R\fcustomInput2\x12$\n" +
 	"\x0ecustom_input_3\x18\b \x01(\x01R\fcustomInput3\x12$\n" +
@@ -649,8 +650,8 @@ const file_wayplatform_connect_trusttrack_v1_calculated_inputs_proto_rawDesc = "
 	"\x11din1_working_time\x18\x0e \x01(\x01R\x0fdin1WorkingTime\x12*\n" +
 	"\x11din2_working_time\x18\x0f \x01(\x01R\x0fdin2WorkingTime\x12*\n" +
 	"\x11din3_working_time\x18\x10 \x01(\x01R\x0fdin3WorkingTime\x12*\n" +
-	"\x11din4_working_time\x18\x11 \x01(\x01R\x0fdin4WorkingTime\x12\x16\n" +
-	"\x06weight\x18\x12 \x01(\x01R\x06weightB\xc8\x02\n" +
+	"\x11din4_working_time\x18\x11 \x01(\x01R\x0fdin4WorkingTime\x12\x1b\n" +
+	"\tweight_kg\x18\x12 \x01(\x01R\bweightKgB\xc8\x02\n" +
 	"%com.wayplatform.connect.trusttrack.v1B\x15CalculatedInputsProtoP\x01Zagithub.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1;trusttrackv1\xa2\x02\x03WCT\xaa\x02!Wayplatform.Connect.Trusttrack.V1\xca\x02!Wayplatform\\Connect\\Trusttrack\\V1\xe2\x02-Wayplatform\\Connect\\Trusttrack\\V1\\GPBMetadata\xea\x02$Wayplatform::Connect::Trusttrack::V1b\beditionsp\xe8\a"
 
 var file_wayplatform_connect_trusttrack_v1_calculated_inputs_proto_msgTypes = make([]protoimpl.MessageInfo, 1)

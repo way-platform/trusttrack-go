@@ -9,7 +9,6 @@ package trusttrackv1
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	_ "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -23,13 +22,13 @@ const (
 
 // Container for other system parameters
 type OtherInputs struct {
-	state                          protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_CountryCodeGeonames float64                `protobuf:"fixed64,1,opt,name=country_code_geonames,json=countryCodeGeonames"`
-	xxx_hidden_VirtualGpsOdometer  float64                `protobuf:"fixed64,2,opt,name=virtual_gps_odometer,json=virtualGpsOdometer"`
-	XXX_raceDetectHookData         protoimpl.RaceDetectHookData
-	XXX_presence                   [1]uint32
-	unknownFields                  protoimpl.UnknownFields
-	sizeCache                      protoimpl.SizeCache
+	state                           protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_CountryCodeGeonames  float64                `protobuf:"fixed64,1,opt,name=country_code_geonames,json=countryCodeGeonames"`
+	xxx_hidden_VirtualGpsOdometerKm float64                `protobuf:"fixed64,2,opt,name=virtual_gps_odometer_km,json=virtualGpsOdometerKm"`
+	XXX_raceDetectHookData          protoimpl.RaceDetectHookData
+	XXX_presence                    [1]uint32
+	unknownFields                   protoimpl.UnknownFields
+	sizeCache                       protoimpl.SizeCache
 }
 
 func (x *OtherInputs) Reset() {
@@ -64,9 +63,9 @@ func (x *OtherInputs) GetCountryCodeGeonames() float64 {
 	return 0
 }
 
-func (x *OtherInputs) GetVirtualGpsOdometer() float64 {
+func (x *OtherInputs) GetVirtualGpsOdometerKm() float64 {
 	if x != nil {
-		return x.xxx_hidden_VirtualGpsOdometer
+		return x.xxx_hidden_VirtualGpsOdometerKm
 	}
 	return 0
 }
@@ -76,8 +75,8 @@ func (x *OtherInputs) SetCountryCodeGeonames(v float64) {
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 2)
 }
 
-func (x *OtherInputs) SetVirtualGpsOdometer(v float64) {
-	x.xxx_hidden_VirtualGpsOdometer = v
+func (x *OtherInputs) SetVirtualGpsOdometerKm(v float64) {
+	x.xxx_hidden_VirtualGpsOdometerKm = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 2)
 }
 
@@ -88,7 +87,7 @@ func (x *OtherInputs) HasCountryCodeGeonames() bool {
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *OtherInputs) HasVirtualGpsOdometer() bool {
+func (x *OtherInputs) HasVirtualGpsOdometerKm() bool {
 	if x == nil {
 		return false
 	}
@@ -100,9 +99,9 @@ func (x *OtherInputs) ClearCountryCodeGeonames() {
 	x.xxx_hidden_CountryCodeGeonames = 0
 }
 
-func (x *OtherInputs) ClearVirtualGpsOdometer() {
+func (x *OtherInputs) ClearVirtualGpsOdometerKm() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
-	x.xxx_hidden_VirtualGpsOdometer = 0
+	x.xxx_hidden_VirtualGpsOdometerKm = 0
 }
 
 type OtherInputs_builder struct {
@@ -111,7 +110,7 @@ type OtherInputs_builder struct {
 	// Country code numeral
 	CountryCodeGeonames *float64
 	// Virtual odometer value (units: km)
-	VirtualGpsOdometer *float64
+	VirtualGpsOdometerKm *float64
 }
 
 func (b0 OtherInputs_builder) Build() *OtherInputs {
@@ -122,9 +121,9 @@ func (b0 OtherInputs_builder) Build() *OtherInputs {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 2)
 		x.xxx_hidden_CountryCodeGeonames = *b.CountryCodeGeonames
 	}
-	if b.VirtualGpsOdometer != nil {
+	if b.VirtualGpsOdometerKm != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 2)
-		x.xxx_hidden_VirtualGpsOdometer = *b.VirtualGpsOdometer
+		x.xxx_hidden_VirtualGpsOdometerKm = *b.VirtualGpsOdometerKm
 	}
 	return m0
 }
@@ -133,10 +132,10 @@ var File_wayplatform_connect_trusttrack_v1_other_inputs_proto protoreflect.FileD
 
 const file_wayplatform_connect_trusttrack_v1_other_inputs_proto_rawDesc = "" +
 	"\n" +
-	"4wayplatform/connect/trusttrack/v1/other_inputs.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"s\n" +
+	"4wayplatform/connect/trusttrack/v1/other_inputs.proto\x12!wayplatform.connect.trusttrack.v1\"x\n" +
 	"\vOtherInputs\x122\n" +
-	"\x15country_code_geonames\x18\x01 \x01(\x01R\x13countryCodeGeonames\x120\n" +
-	"\x14virtual_gps_odometer\x18\x02 \x01(\x01R\x12virtualGpsOdometerB\xc3\x02\n" +
+	"\x15country_code_geonames\x18\x01 \x01(\x01R\x13countryCodeGeonames\x125\n" +
+	"\x17virtual_gps_odometer_km\x18\x02 \x01(\x01R\x14virtualGpsOdometerKmB\xc3\x02\n" +
 	"%com.wayplatform.connect.trusttrack.v1B\x10OtherInputsProtoP\x01Zagithub.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1;trusttrackv1\xa2\x02\x03WCT\xaa\x02!Wayplatform.Connect.Trusttrack.V1\xca\x02!Wayplatform\\Connect\\Trusttrack\\V1\xe2\x02-Wayplatform\\Connect\\Trusttrack\\V1\\GPBMetadata\xea\x02$Wayplatform::Connect::Trusttrack::V1b\beditionsp\xe8\a"
 
 var file_wayplatform_connect_trusttrack_v1_other_inputs_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
