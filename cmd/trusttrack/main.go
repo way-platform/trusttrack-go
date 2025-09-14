@@ -160,8 +160,18 @@ func newListObjectCoordinatesCommand() *cobra.Command {
 		GroupID: "coordinates",
 		Args:    cobra.ExactArgs(1),
 	}
-	fromTime := cmd.Flags().Time("from", time.Now().Add(-24*time.Hour), []string{time.RFC3339}, "From time (RFC3339 format)")
-	toTime := cmd.Flags().Time("to", time.Now(), []string{time.RFC3339}, "To time (RFC3339 format, optional)")
+	fromTime := cmd.Flags().Time(
+		"from",
+		time.Now().Add(-24*time.Hour),
+		[]string{time.DateOnly, time.RFC3339},
+		"From time",
+	)
+	toTime := cmd.Flags().Time(
+		"to",
+		time.Now(),
+		[]string{time.DateOnly, time.RFC3339},
+		"To time",
+	)
 	includeGeozones := cmd.Flags().Bool("include-geozones", false, "Include geozone information")
 	includeTireParameters := cmd.Flags().Bool("include-tire-parameters", false, "Include tire pressure information")
 	cmd.RunE = func(cmd *cobra.Command, args []string) error {

@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strconv"
 
 	"github.com/way-platform/trusttrack-go/internal/oapi/ttoapi"
 	trusttrackv1 "github.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1"
@@ -27,7 +28,7 @@ func (r *ListObjectGroupsRequest) Query() url.Values {
 	q := url.Values{}
 	q.Set("version", "1")
 	if r.Limit > 0 {
-		q.Set("limit", fmt.Sprintf("%d", r.Limit))
+		q.Set("limit", strconv.Itoa(r.Limit))
 	}
 	if r.ContinuationToken != "" {
 		q.Set("continuation_token", r.ContinuationToken)
@@ -47,12 +48,19 @@ type ListObjectGroupsResponse struct {
 func (c *Client) ListObjectGroups(
 	ctx context.Context,
 	request *ListObjectGroupsRequest,
-) (*ListObjectGroupsResponse, error) {
+	opts ...ClientOption,
+) (_ *ListObjectGroupsResponse, err error) {
+	defer func() {
+		if err != nil {
+			err = fmt.Errorf("trusttrack: list object groups: %w", err)
+		}
+	}()
 	httpResponse, err := c.doRequest(
 		ctx,
 		http.MethodGet,
 		"/object-groups",
 		request.Query(),
+		opts...,
 	)
 	if err != nil {
 		return nil, err

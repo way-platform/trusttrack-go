@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strconv"
 
 	"github.com/way-platform/trusttrack-go/internal/oapi/ttoapi"
 	trusttrackv1 "github.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1"
@@ -27,7 +28,9 @@ func (r *ListObjectsLastPositionRequest) Query() url.Values {
 	q := url.Values{}
 	q.Set("version", "2")
 	if r.Limit > 0 {
-		q.Set("limit", fmt.Sprintf("%d", r.Limit))
+		q.Set("limit", strconv.Itoa(r.Limit))
+	} else {
+		q.Set("limit", "1000")
 	}
 	if r.ContinuationToken != "" {
 		q.Set("continuation_token", r.ContinuationToken)
@@ -47,12 +50,19 @@ type ListObjectsLastPositionResponse struct {
 func (c *Client) ListObjectsLastPosition(
 	ctx context.Context,
 	request *ListObjectsLastPositionRequest,
-) (*ListObjectsLastPositionResponse, error) {
+	opts ...ClientOption,
+) (_ *ListObjectsLastPositionResponse, err error) {
+	defer func() {
+		if err != nil {
+			err = fmt.Errorf("trusttrack: list objects last position: %w", err)
+		}
+	}()
 	httpResponse, err := c.doRequest(
 		ctx,
 		http.MethodGet,
 		"/objects-last-coordinate",
 		request.Query(),
+		opts...,
 	)
 	if err != nil {
 		return nil, err

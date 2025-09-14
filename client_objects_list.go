@@ -3,6 +3,7 @@ package trusttrack
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -27,12 +28,22 @@ type ListObjectsResponse struct {
 }
 
 // ListObjects lists all objects.
-func (c *Client) ListObjects(ctx context.Context, request *ListObjectsRequest) (*ListObjectsResponse, error) {
+func (c *Client) ListObjects(
+	ctx context.Context,
+	request *ListObjectsRequest,
+	opts ...ClientOption,
+) (_ *ListObjectsResponse, err error) {
+	defer func() {
+		if err != nil {
+			err = fmt.Errorf("trusttrack: list objects: %w", err)
+		}
+	}()
 	httpResponse, err := c.doRequest(
 		ctx,
 		http.MethodGet,
 		"/objects",
 		request.Query(),
+		opts...,
 	)
 	if err != nil {
 		return nil, err

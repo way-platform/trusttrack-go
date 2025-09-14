@@ -37,13 +37,13 @@ func (r *ListFuelEventsRequest) Query() url.Values {
 		q.Set("object_id", r.ObjectID)
 	}
 	if !r.FromTime.IsZero() {
-		q.Set("from_datetime", r.FromTime.Format(time.RFC3339))
+		q.Set("from_datetime", r.FromTime.UTC().Format(time.RFC3339))
 	}
 	if !r.ToTime.IsZero() {
-		q.Set("to_datetime", r.ToTime.Format(time.RFC3339))
+		q.Set("to_datetime", r.ToTime.UTC().Format(time.RFC3339))
 	}
 	if r.Limit > 0 {
-		q.Set("limit", fmt.Sprintf("%d", r.Limit))
+		q.Set("limit", strconv.Itoa(r.Limit))
 	}
 	if r.ContinuationToken != "" {
 		q.Set("continuation_token", r.ContinuationToken)
@@ -63,12 +63,19 @@ type ListFuelEventsResponse struct {
 func (c *Client) ListFuelEvents(
 	ctx context.Context,
 	request *ListFuelEventsRequest,
-) (*ListFuelEventsResponse, error) {
+	opts ...ClientOption,
+) (_ *ListFuelEventsResponse, err error) {
+	defer func() {
+		if err != nil {
+			err = fmt.Errorf("trusttrack: list fuel events: %w", err)
+		}
+	}()
 	httpResponse, err := c.doRequest(
 		ctx,
 		http.MethodGet,
 		"/fuel-events",
 		request.Query(),
+		opts...,
 	)
 	if err != nil {
 		return nil, err

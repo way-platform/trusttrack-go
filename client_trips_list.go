@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strconv"
 	"time"
 
 	"github.com/way-platform/trusttrack-go/internal/oapi/ttoapi"
@@ -20,7 +21,7 @@ type ListTripsRequest struct {
 	// The start time for the trip search.
 	FromTime time.Time `json:"fromDatetime"`
 	// The end time for the trip search (optional).
-	ToTime time.Time `json:"toDatetime,omitempty"`
+	ToTime time.Time `json:"toDatetime,omitzero"`
 	// The limit of the number of trips to return.
 	// Default: 100.
 	Limit int `json:"limit"`
@@ -33,13 +34,13 @@ func (r *ListTripsRequest) Query() url.Values {
 	q := url.Values{}
 	q.Set("version", "1")
 	if !r.FromTime.IsZero() {
-		q.Set("from_datetime", r.FromTime.Format(time.RFC3339))
+		q.Set("from_datetime", r.FromTime.UTC().Format(time.RFC3339))
 	}
 	if !r.ToTime.IsZero() {
-		q.Set("to_datetime", r.ToTime.Format(time.RFC3339))
+		q.Set("to_datetime", r.ToTime.UTC().Format(time.RFC3339))
 	}
 	if r.Limit > 0 {
-		q.Set("limit", fmt.Sprintf("%d", r.Limit))
+		q.Set("limit", strconv.Itoa(r.Limit))
 	}
 	if r.ContinuationToken != "" {
 		q.Set("continuation_token", r.ContinuationToken)
@@ -59,12 +60,19 @@ type ListTripsResponse struct {
 func (c *Client) ListTrips(
 	ctx context.Context,
 	request *ListTripsRequest,
-) (*ListTripsResponse, error) {
+	opts ...ClientOption,
+) (_ *ListTripsResponse, err error) {
+	defer func() {
+		if err != nil {
+			err = fmt.Errorf("trusttrack: list trips: %w", err)
+		}
+	}()
 	httpResponse, err := c.doRequest(
 		ctx,
 		http.MethodGet,
 		fmt.Sprintf("/objects/%s/trips", request.ObjectID),
 		request.Query(),
+		opts...,
 	)
 	if err != nil {
 		return nil, err
