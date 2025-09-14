@@ -3,6 +3,7 @@ package trusttrack
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -16,25 +17,25 @@ import (
 // ListObjectCoordinatesRequest is the request for the [Client.ListObjectCoordinates] method.
 type ListObjectCoordinatesRequest struct {
 	// ObjectID is the external object ID.
-	ObjectID string
+	ObjectID string `json:"objectId"`
 
 	// FromTime finds records starting from the specified date and time.
-	FromTime time.Time
+	FromTime time.Time `json:"fromTime"`
 
 	// ToTime finds records ending at the specified date and time. Optional.
-	ToTime time.Time
+	ToTime time.Time `json:"toTime,omitzero"`
 
 	// ContinuationToken displays from what date and time the data is shown if the record limit was reached.
-	ContinuationToken string
+	ContinuationToken string `json:"continuationToken"`
 
 	// Limit specifies how many records will be included in the response (default 100, max 1000).
-	Limit int
+	Limit int `json:"limit"`
 
 	// IncludeGeozones indicates whether to include geozone information in the response.
-	IncludeGeozones bool
+	IncludeGeozones bool `json:"includeGeozones"`
 
 	// IncludeTireParameters indicates whether to include tire pressure information in the response.
-	IncludeTireParameters bool
+	IncludeTireParameters bool `json:"includeTireParameters"`
 }
 
 // Query returns the query parameters for the request.
@@ -45,17 +46,19 @@ func (r *ListObjectCoordinatesRequest) Query() url.Values {
 		q.Set("objectId", r.ObjectID)
 	}
 	if !r.FromTime.IsZero() {
-		q.Set("from_datetime", r.FromTime.Format("2006-01-02T15:04:05.000Z"))
+		q.Set("from_datetime", r.FromTime.UTC().Format(time.RFC3339))
 	}
 
 	if !r.ToTime.IsZero() {
-		q.Set("to_datetime", r.ToTime.Format("2006-01-02T15:04:05.000Z"))
+		q.Set("to_datetime", r.ToTime.UTC().Format(time.RFC3339))
 	}
 	if r.ContinuationToken != "" {
 		q.Set("continuation_token", r.ContinuationToken)
 	}
 	if r.Limit > 0 {
 		q.Set("limit", strconv.Itoa(r.Limit))
+	} else {
+		q.Set("limit", "1000")
 	}
 	if r.IncludeGeozones {
 		q.Set("include_geozones", "true")
@@ -73,13 +76,23 @@ type ListObjectCoordinatesResponse struct {
 }
 
 // ListObjectCoordinates lists object coordinates for a specified time period.
-func (c *Client) ListObjectCoordinates(ctx context.Context, request *ListObjectCoordinatesRequest) (*ListObjectCoordinatesResponse, error) {
+func (c *Client) ListObjectCoordinates(
+	ctx context.Context,
+	request *ListObjectCoordinatesRequest,
+	opts ...ClientOption,
+) (_ *ListObjectCoordinatesResponse, err error) {
+	defer func() {
+		if err != nil {
+			err = fmt.Errorf("trusttrack: list object coordinates: %w", err)
+		}
+	}()
 	requestPath := "/objects/" + request.ObjectID + "/coordinates"
 	httpResponse, err := c.doRequest(
 		ctx,
 		http.MethodGet,
 		requestPath,
 		request.Query(),
+		opts...,
 	)
 	if err != nil {
 		return nil, err

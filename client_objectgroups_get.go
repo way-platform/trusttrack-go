@@ -35,12 +35,19 @@ type GetObjectGroupResponse struct {
 func (c *Client) GetObjectGroup(
 	ctx context.Context,
 	request *GetObjectGroupRequest,
-) (*GetObjectGroupResponse, error) {
+	opts ...ClientOption,
+) (_ *GetObjectGroupResponse, err error) {
+	defer func() {
+		if err != nil {
+			err = fmt.Errorf("trusttrack: get object group: %w", err)
+		}
+	}()
 	httpResponse, err := c.doRequest(
 		ctx,
 		http.MethodGet,
 		fmt.Sprintf("/object-groups/%s", url.PathEscape(request.ExternalID)),
 		request.Query(),
+		opts...,
 	)
 	if err != nil {
 		return nil, err
