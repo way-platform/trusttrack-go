@@ -4,3 +4,4 @@ build/
 dist/
 cmd/trusttrack/trusttrack
 __pycache__
+testdata/*/proprietary*
