@@ -4,6 +4,9 @@ clean: true
 
 managed:
   enabled: true
+  disable:
+    - module: buf.build/bufbuild/protovalidate
+      file_option: go_package
   override:
     - file_option: go_package_prefix
       value: github.com/way-platform/trusttrack-go/proto/gen/go

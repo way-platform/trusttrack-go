@@ -2,19 +2,28 @@ edition = "2023";
 
 package wayplatform.connect.trusttrack.v1;
 
+import "buf/validate/validate.proto";
+
 // Container for parameters calculated in the system from other parameters according to the configuration
 message CalculatedInputs {
   // Fuel consumption (units: l)
-  double fuel_consumption_lifetime_l = 1;
+  double fuel_consumption_lifetime_l = 1 [(buf.validate.field).double.gt = 0];
 
   // Fuel level (units: %)
-  double fuel_level_percent = 2;
+  double fuel_level_percent = 2 [
+    // Treat 0% as invalid since 0 is often reported instead of missing data.
+    (buf.validate.field).double.gt = 0,
+    (buf.validate.field).double.lte = 100
+  ];
 
   // Mileage (units: km)
-  double odometer_km = 3;
+  double odometer_km = 3 [
+    // Treat 0km as invalid since 0 is often reported instead of missing data.
+    (buf.validate.field).double.gt = 0
+  ];
 
   // Engine RPM (units: RPM)
-  double engine_rpm = 4;
+  double engine_rpm = 4 [(buf.validate.field).double.gte = 0];
 
   // Temperature (units: °C)
   // TODO: What temperature is this? (Oil/engine/coolant?)

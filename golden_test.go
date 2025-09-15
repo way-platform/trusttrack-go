@@ -8,6 +8,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/google/go-cmp/cmp"
 	"google.golang.org/protobuf/encoding/protojson"
 
 	"github.com/way-platform/trusttrack-go/internal/oapi/ttoapi"
@@ -109,13 +110,8 @@ func TestCoordinateToProtoGolden(t *testing.T) {
 				t.Fatalf("Failed to read golden file: %v", err)
 			}
 			// Compare with golden file
-			if string(expected) != string(result) {
-				t.Errorf("Output differs from golden file. Run with -update flag to update the golden file if the change is expected.")
-				t.Logf("Expected length: %d, Got length: %d", len(expected), len(result))
-				// Save actual result for debugging
-				actualPath := strings.TrimSuffix(testFilePath, ".json") + ".actual.json"
-				_ = os.WriteFile(actualPath, result, 0o644)
-				t.Logf("Actual result saved to: %s", actualPath)
+			if diff := cmp.Diff(string(expected), string(result)); diff != "" {
+				t.Errorf("Output differs from golden file. Run with -update flag to update the golden file if the change is expected.\n%s", diff)
 			}
 		})
 	}

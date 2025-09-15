@@ -2,6 +2,7 @@ edition = "2023";
 
 package wayplatform.connect.trusttrack.v1;
 
+import "buf/validate/validate.proto";
 import "google/protobuf/timestamp.proto";
 import "wayplatform/connect/trusttrack/v1/address.proto";
 import "wayplatform/connect/trusttrack/v1/trip_type.proto";
@@ -9,23 +10,38 @@ import "wayplatform/connect/trusttrack/v1/trip_type.proto";
 // A trip made by an object.
 message Trip {
   // The ID of the object that made this trip.
-  string object_id = 1;
+  string object_id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
 
   // The type of trip.
-  TripType type = 2;
+  TripType type = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).enum = {
+      defined_only: true
+      not_in: [0]
+    }
+  ];
 
   // The unknown type of trip.
   // This field is used when the type is TYPE_UNKNOWN.
   string unknown_type = 3;
 
+  option (buf.validate.message).cel = {
+    id: "unknown_type.warning"
+    message: "unknown_type indicates an unhandled trip type"
+    expression: "!has(this.unknown_type)"
+  };
+
   // The IDs of drivers associated with this trip.
   repeated string driver_ids = 4;
 
   // The duration of the trip in seconds.
-  double duration_s = 5;
+  double duration_s = 5 [(buf.validate.field).double.gte = 0];
 
   // The total distance covered in this trip in kilometers.
-  double mileage_km = 6;
+  double mileage_km = 6 [(buf.validate.field).double.gte = 0];
 
   // Trip start metrics.
   Metrics start = 7;
@@ -36,13 +52,30 @@ message Trip {
   // Trip metrics for start or end of a trip.
   message Metrics {
     // The datetime of the trip metric.
-    google.protobuf.Timestamp time = 1;
+    google.protobuf.Timestamp time = 1 [
+      (buf.validate.field).required = true,
+      (buf.validate.field).timestamp.gt = {seconds: 0}
+    ];
 
     // The latitude coordinate.
-    double latitude = 2;
+    double latitude = 2 [
+      (buf.validate.field).required = true,
+      (buf.validate.field).double.gte = -90,
+      (buf.validate.field).double.lte = 90
+    ];
 
     // The longitude coordinate.
-    double longitude = 3;
+    double longitude = 3 [
+      (buf.validate.field).required = true,
+      (buf.validate.field).double.gte = -180,
+      (buf.validate.field).double.lte = 180
+    ];
+
+    option (buf.validate.message).cel = {
+      id: "latitude.longitude.null_island"
+      message: "latitude and longitude must not be null island (0, 0)"
+      expression: "!(this.latitude == 0.0 && this.longitude == 0.0)"
+    };
 
     // The address information.
     Address address = 4;

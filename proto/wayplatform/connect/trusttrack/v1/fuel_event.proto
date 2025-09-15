@@ -2,18 +2,25 @@ edition = "2023";
 
 package wayplatform.connect.trusttrack.v1;
 
+import "buf/validate/validate.proto";
 import "google/protobuf/timestamp.proto";
 
 // A fuel event for an object.
 message FuelEvent {
   // The ID of the object that experienced this fuel event.
-  string object_id = 1;
+  string object_id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
 
   // The ID of the driver associated with this fuel event.
   string driver_id = 2;
 
   // The type of fuel event.
-  EventType event_type = 3;
+  EventType event_type = 3 [(buf.validate.field).enum = {
+    defined_only: true
+    not_in: [0]
+  }];
 
   // The unknown event type.
   // This field is used when the event_type is EVENT_TYPE_UNKNOWN.
@@ -29,23 +36,48 @@ message FuelEvent {
   }
 
   // The latitude coordinate where the event occurred.
-  double latitude = 5;
+  double latitude = 5 [
+    (buf.validate.field).double.gte = -90,
+    (buf.validate.field).double.lte = 90
+  ];
 
   // The longitude coordinate where the event occurred.
-  double longitude = 6;
+  double longitude = 6 [
+    (buf.validate.field).double.gte = -180,
+    (buf.validate.field).double.lte = 180
+  ];
+
+  option (buf.validate.message).cel = {
+    id: "null_island"
+    message: "position must not be null island (0, 0)"
+    expression:
+      "!has(this.latitude) || !has(this.longitude) ? true "
+      ": !(this.latitude == 0.0 && this.longitude == 0.0)"
+  };
 
   // The fuel level at the start of the event (units: %)
-  double fuel_level_start_percent = 7;
+  double fuel_level_start_percent = 7 [
+    // Treat 0% as invalid since 0 is often reported instead of missing data.
+    (buf.validate.field).double.gt = 0,
+    (buf.validate.field).double.lte = 100
+  ];
 
   // The fuel level at the end of the event (units: %)
-  double fuel_level_end_percent = 8;
+  double fuel_level_end_percent = 8 [
+    // Treat 0% as invalid since 0 is often reported instead of missing data.
+    (buf.validate.field).double.gt = 0,
+    (buf.validate.field).double.lte = 100
+  ];
 
   // The difference in fuel level (positive for refuel, negative for drain) (units: %)
-  double fuel_level_difference_percent = 9;
+  double fuel_level_difference_percent = 9 [
+    (buf.validate.field).double.gte = 0,
+    (buf.validate.field).double.lte = 100
+  ];
 
   // The start time of the fuel event.
-  google.protobuf.Timestamp start_time = 10;
+  google.protobuf.Timestamp start_time = 10 [(buf.validate.field).timestamp.gt = {seconds: 0}];
 
   // The end time of the fuel event.
-  google.protobuf.Timestamp end_time = 11;
+  google.protobuf.Timestamp end_time = 11 [(buf.validate.field).timestamp.gt = {seconds: 0}];
 }

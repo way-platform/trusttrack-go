@@ -7,6 +7,7 @@
 package trusttrackv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -221,9 +222,9 @@ var File_wayplatform_connect_trusttrack_v1_object_proto protoreflect.FileDescrip
 
 const file_wayplatform_connect_trusttrack_v1_object_proto_rawDesc = "" +
 	"\n" +
-	".wayplatform/connect/trusttrack/v1/object.proto\x12!wayplatform.connect.trusttrack.v1\x1a0wayplatform/connect/trusttrack/v1/position.proto\x1a6wayplatform/connect/trusttrack/v1/vehicle_params.proto\"\xeb\x01\n" +
-	"\x06Object\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	".wayplatform/connect/trusttrack/v1/object.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1bbuf/validate/validate.proto\x1a0wayplatform/connect/trusttrack/v1/position.proto\x1a6wayplatform/connect/trusttrack/v1/vehicle_params.proto\"\xf8\x01\n" +
+	"\x06Object\x12\x1b\n" +
+	"\x02id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04imei\x18\x03 \x01(\x03R\x04imei\x12W\n" +
 	"\x0evehicle_params\x18\x04 \x01(\v20.wayplatform.connect.trusttrack.v1.VehicleParamsR\rvehicleParams\x12P\n" +

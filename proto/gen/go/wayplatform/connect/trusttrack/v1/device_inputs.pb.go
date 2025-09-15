@@ -7,6 +7,7 @@
 package trusttrackv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -14313,7 +14314,7 @@ var File_wayplatform_connect_trusttrack_v1_device_inputs_proto protoreflect.File
 
 const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	"\n" +
-	"5wayplatform/connect/trusttrack/v1/device_inputs.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9e\xd8\x01\n" +
+	"5wayplatform/connect/trusttrack/v1/device_inputs.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd6\xe2\x01\n" +
 	"\fDeviceInputs\x12\x15\n" +
 	"\x06x_axis\x18\x01 \x01(\x01R\x05xAxis\x12\x15\n" +
 	"\x06y_axis\x18\x02 \x01(\x01R\x05yAxis\x12\x15\n" +
@@ -14323,24 +14324,24 @@ const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	"\bg_peak_z\x18\x06 \x01(\x01R\x06gPeakZ\x12)\n" +
 	"\x11x_axis_tilt_angle\x18\a \x01(\x01R\x0exAxisTiltAngle\x12)\n" +
 	"\x11y_axis_tilt_angle\x18\b \x01(\x01R\x0eyAxisTiltAngle\x12)\n" +
-	"\x11z_axis_tilt_angle\x18\t \x01(\x01R\x0ezAxisTiltAngle\x12,\n" +
+	"\x11z_axis_tilt_angle\x18\t \x01(\x01R\x0ezAxisTiltAngle\x12<\n" +
 	"\x12canbus_odometer_km\x18\n" +
-	" \x01(\x01R\x10canbusOdometerKm\x12L\n" +
-	"#canbus_engine_coolant_temperature_c\x18\v \x01(\x01R\x1fcanbusEngineCoolantTemperatureC\x125\n" +
-	"\x18canbus_fuel_rate_l_per_h\x18\f \x01(\x01R\x13canbusFuelRateLPerH\x12\x1d\n" +
+	" \x01(\x01B\x0e\xbaH\v\x12\t!\x00\x00\x00\x00\x00\x00\x00\x00R\x10canbusOdometerKm\x12e\n" +
+	"#canbus_engine_coolant_temperature_c\x18\v \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x00i@)\x00\x00\x00\x00\x00\x00Y\xc0R\x1fcanbusEngineCoolantTemperatureC\x12E\n" +
+	"\x18canbus_fuel_rate_l_per_h\x18\f \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x13canbusFuelRateLPerH\x12-\n" +
 	"\n" +
-	"engine_rpm\x18\r \x01(\x01R\tengineRpm\x125\n" +
-	"\x17engine_hours_lifetime_h\x18\x0e \x01(\x01R\x14engineHoursLifetimeH\x12A\n" +
-	"\x1dservice_distance_remaining_km\x18\x0f \x01(\x01R\x1aserviceDistanceRemainingKm\x124\n" +
-	"\x16pedal_position_percent\x18\x10 \x01(\x01R\x14pedalPositionPercent\x123\n" +
-	"\x16fuel_level_can_percent\x18\x11 \x01(\x01R\x13fuelLevelCanPercent\x12/\n" +
-	"\x14fuel_used_lifetime_l\x18\x12 \x01(\x01R\x11fuelUsedLifetimeL\x12&\n" +
-	"\x0fwheel_speed_kmh\x18\x13 \x01(\x01R\rwheelSpeedKmh\x12&\n" +
-	"\x0ftacho_speed_kmh\x18\x14 \x01(\x01R\rtachoSpeedKmh\x12!\n" +
+	"engine_rpm\x18\r \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\tengineRpm\x12E\n" +
+	"\x17engine_hours_lifetime_h\x18\x0e \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x14engineHoursLifetimeH\x12A\n" +
+	"\x1dservice_distance_remaining_km\x18\x0f \x01(\x01R\x1aserviceDistanceRemainingKm\x12M\n" +
+	"\x16pedal_position_percent\x18\x10 \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x00Y@)\x00\x00\x00\x00\x00\x00\x00\x00R\x14pedalPositionPercent\x12L\n" +
+	"\x16fuel_level_can_percent\x18\x11 \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x00Y@!\x00\x00\x00\x00\x00\x00\x00\x00R\x13fuelLevelCanPercent\x12?\n" +
+	"\x14fuel_used_lifetime_l\x18\x12 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x11fuelUsedLifetimeL\x12?\n" +
+	"\x0fwheel_speed_kmh\x18\x13 \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x00y@)\x00\x00\x00\x00\x00\x00y\xc0R\rwheelSpeedKmh\x12?\n" +
+	"\x0ftacho_speed_kmh\x18\x14 \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x00y@)\x00\x00\x00\x00\x00\x00\x00\x00R\rtachoSpeedKmh\x12!\n" +
 	"\ftacho_status\x18\x15 \x01(\tR\vtachoStatus\x12/\n" +
-	"\x13overspeeding_events\x18\x16 \x01(\tR\x12overspeedingEvents\x12\x1d\n" +
+	"\x13overspeeding_events\x18\x16 \x01(\tR\x12overspeedingEvents\x12-\n" +
 	"\n" +
-	"axle_count\x18\x17 \x01(\x01R\taxleCount\x12.\n" +
+	"axle_count\x18\x17 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\taxleCount\x12.\n" +
 	"\x13canbus_brake_switch\x18\x18 \x01(\tR\x11canbusBrakeSwitch\x120\n" +
 	"\x14canbus_clutch_switch\x18\x19 \x01(\tR\x12canbusClutchSwitch\x12(\n" +
 	"\x10canbus_pto_state\x18\x1a \x01(\tR\x0ecanbusPtoState\x12=\n" +
@@ -14351,8 +14352,8 @@ const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	"\x14canbus_driver_1_time\x18\x1f \x01(\tR\x11canbusDriver1Time\x12/\n" +
 	"\x14canbus_driver_1_card\x18  \x01(\tR\x11canbusDriver1Card\x12/\n" +
 	"\x14canbus_driver_2_time\x18! \x01(\tR\x11canbusDriver2Time\x12/\n" +
-	"\x14canbus_driver_2_card\x18\" \x01(\tR\x11canbusDriver2Card\x12,\n" +
-	"\x12canbus_engine_plcs\x18# \x01(\x01R\x10canbusEnginePlcs\x120\n" +
+	"\x14canbus_driver_2_card\x18\" \x01(\tR\x11canbusDriver2Card\x12E\n" +
+	"\x12canbus_engine_plcs\x18# \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x00Y@)\x00\x00\x00\x00\x00\x00\x00\x00R\x10canbusEnginePlcs\x120\n" +
 	"\x14canbus_tire_location\x18$ \x01(\x01R\x12canbusTireLocation\x12.\n" +
 	"\x13canbus_system_event\x18% \x01(\tR\x11canbusSystemEvent\x12>\n" +
 	"\x1bcanbus_handling_information\x18& \x01(\tR\x19canbusHandlingInformation\x12<\n" +
@@ -14411,8 +14412,8 @@ const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	"\x1acan_fuel_level_milliliters\x18X \x01(\x01R\x17canFuelLevelMilliliters\x12-\n" +
 	"\x13can_door_lock_state\x18Y \x01(\tR\x10canDoorLockState\x12.\n" +
 	"\x13gsm_signal_strength\x18Z \x01(\x01R\x11gsmSignalStrength\x12\x1a\n" +
-	"\boperator\x18[ \x01(\x01R\boperator\x12\"\n" +
-	"\rgps_speed_kmh\x18\\ \x01(\x01R\vgpsSpeedKmh\x127\n" +
+	"\boperator\x18[ \x01(\x01R\boperator\x12;\n" +
+	"\rgps_speed_kmh\x18\\ \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x00y@)\x00\x00\x00\x00\x00\x00\x00\x00R\vgpsSpeedKmh\x127\n" +
 	"\x18gsm_umts_signal_strength\x18] \x01(\x01R\x15gsmUmtsSignalStrength\x12*\n" +
 	"\x11gsm_umts_operator\x18^ \x01(\x01R\x0fgsmUmtsOperator\x12!\n" +
 	"\fumts_enabled\x18_ \x01(\tR\vumtsEnabled\x12!\n" +
@@ -14421,8 +14422,8 @@ const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	"\vgprs_errors\x18b \x01(\x01R\n" +
 	"gprsErrors\x12\x1f\n" +
 	"\vgprs_status\x18c \x01(\tR\n" +
-	"gprsStatus\x12$\n" +
-	"\x0egps_altitude_m\x18d \x01(\x01R\fgpsAltitudeM\x12!\n" +
+	"gprsStatus\x12=\n" +
+	"\x0egps_altitude_m\x18d \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x88\xc3@)\x00\x00\x00\x00\x00@\x8f\xc0R\fgpsAltitudeM\x12!\n" +
 	"\fdout1_status\x18e \x01(\tR\vdout1Status\x12!\n" +
 	"\fdout2_status\x18f \x01(\tR\vdout2Status\x12=\n" +
 	"\x1bdxp_battery_battery_voltage\x18g \x01(\x01R\x18dxpBatteryBatteryVoltage\x12H\n" +
@@ -14459,61 +14460,61 @@ const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	",dxp_faults2_user_fault_2_history_error_codes\x18\x86\x01 \x01(\x01R%dxpFaults2UserFault2HistoryErrorCodes\x12\\\n" +
 	",dxp_faults2_user_fault_1_history_error_codes\x18\x87\x01 \x01(\x01R%dxpFaults2UserFault1HistoryErrorCodes\x12F\n" +
 	" dxp_faults2_kyb_hist_fault_codes\x18\x88\x01 \x01(\x01R\x1bdxpFaults2KybHistFaultCodes\x12-\n" +
-	"\x12dxp_charger_status\x18\x89\x01 \x01(\x01R\x10dxpChargerStatus\x12<\n" +
-	"\x1aecodrive_maximum_speed_kmh\x18\x8a\x01 \x01(\x01R\x17ecodriveMaximumSpeedKmh\x12.\n" +
-	"\x12ecodrive_overspeed\x18\x8b\x01 \x01(\x01R\x11ecodriveOverspeed\x12.\n" +
-	"\x13ecodrive_rpm_on_red\x18\x8c\x01 \x01(\x01R\x10ecodriveRpmOnRed\x121\n" +
-	"\x14ecodrive_maximum_rpm\x18\x8d\x01 \x01(\x01R\x12ecodriveMaximumRpm\x127\n" +
-	"\x17ecodrive_braking_events\x18\x8e\x01 \x01(\x01R\x15ecodriveBrakingEvents\x12?\n" +
-	"\x1becodrive_harsh_acceleration\x18\x8f\x01 \x01(\x01R\x19ecodriveHarshAcceleration\x121\n" +
-	"\x14ecodrive_idling_time\x18\x90\x01 \x01(\x01R\x12ecodriveIdlingTime\x12-\n" +
-	"\x12ecodrive_engine_on\x18\x91\x01 \x01(\x01R\x10ecodriveEngineOn\x12U\n" +
-	"(ecodrive_time_cruise_control_could_be_on\x18\x92\x01 \x01(\x01R\"ecodriveTimeCruiseControlCouldBeOn\x12o\n" +
-	"7ecodrive_time_cruise_control_was_on_when_it_could_be_on\x18\x93\x01 \x01(\x01R-ecodriveTimeCruiseControlWasOnWhenItCouldBeOn\x12D\n" +
-	"\x1eecodrive_extreme_braking_count\x18\x94\x01 \x01(\x01R\x1becodriveExtremeBrakingCount\x12@\n" +
-	"\x1cecodrive_harsh_braking_count\x18\x95\x01 \x01(\x01R\x19ecodriveHarshBrakingCount\x12J\n" +
-	"\"ecodrive_mileage_in_rpm_green_zone\x18\x96\x01 \x01(\x01R\x1decodriveMileageInRpmGreenZone\x12a\n" +
-	".ecodrive_mileage_when_speed_is_below_overspeed\x18\x97\x01 \x01(\x01R(ecodriveMileageWhenSpeedIsBelowOverspeed\x12d\n" +
-	"0ecodrive_mileage_when_cruise_control_could_be_on\x18\x98\x01 \x01(\x01R)ecodriveMileageWhenCruiseControlCouldBeOn\x12~\n" +
-	"?ecodrive_mileage_when_cruise_control_was_on_when_it_could_be_on\x18\x99\x01 \x01(\x01R4ecodriveMileageWhenCruiseControlWasOnWhenItCouldBeOn\x12=\n" +
-	"\x1aecodrive_cornering_counter\x18\x9a\x01 \x01(\x01R\x18ecodriveCorneringCounter\x125\n" +
-	"\x16ecodrive_stops_counter\x18\x9b\x01 \x01(\x01R\x14ecodriveStopsCounter\x12=\n" +
-	"\x1becodrive_fuel_used_at_stops\x18\x9c\x01 \x01(\x01R\x17ecodriveFuelUsedAtStops\x12M\n" +
-	"#ecodrive_mileage_while_free_rolling\x18\x9d\x01 \x01(\x01R\x1fecodriveMileageWhileFreeRolling\x12W\n" +
-	"(ecodrive_mileage_while_engine_overloaded\x18\x9e\x01 \x01(\x01R$ecodriveMileageWhileEngineOverloaded\x12Z\n" +
-	"*ecodrive_fuel_used_while_engine_overloaded\x18\x9f\x01 \x01(\x01R%ecodriveFuelUsedWhileEngineOverloaded\x12N\n" +
-	"#ecodrive_mileage_while_overspeeding\x18\xa0\x01 \x01(\x01R ecodriveMileageWhileOverspeeding\x12Q\n" +
-	"%ecodrive_fuel_used_while_overspeeding\x18\xa1\x01 \x01(\x01R!ecodriveFuelUsedWhileOverspeeding\x12[\n" +
-	"+ecodrive_mileage_when_cruise_control_was_on\x18\xa2\x01 \x01(\x01R%ecodriveMileageWhenCruiseControlWasOn\x12g\n" +
-	"2ecodrive_fuel_used_when_when_cruise_control_was_on\x18\xa3\x01 \x01(\x01R*ecodriveFuelUsedWhenWhenCruiseControlWasOn\x12G\n" +
-	" ecodrive_mileage_in_highest_gear\x18\xa4\x01 \x01(\x01R\x1cecodriveMileageInHighestGear\x12J\n" +
-	"\"ecodrive_fuel_used_in_highest_gear\x18\xa5\x01 \x01(\x01R\x1decodriveFuelUsedInHighestGear\x12K\n" +
-	"#ecodrive_mileage_in_range_1_900_rpm\x18\xa6\x01 \x01(\x01R\x1decodriveMileageInRange1900Rpm\x12N\n" +
-	"%ecodrive_fuel_used_in_range_1_900_rpm\x18\xa7\x01 \x01(\x01R\x1eecodriveFuelUsedInRange1900Rpm\x12Q\n" +
-	"&ecodrive_mileage_in_range_900_1300_rpm\x18\xa8\x01 \x01(\x01R ecodriveMileageInRange9001300Rpm\x12T\n" +
-	"(ecodrive_fuel_used_in_range_900_1300_rpm\x18\xa9\x01 \x01(\x01R!ecodriveFuelUsedInRange9001300Rpm\x12S\n" +
-	"'ecodrive_mileage_in_range_1300_1500_rpm\x18\xaa\x01 \x01(\x01R!ecodriveMileageInRange13001500Rpm\x12V\n" +
-	")ecodrive_fuel_used_in_range_1300_1500_rpm\x18\xab\x01 \x01(\x01R\"ecodriveFuelUsedInRange13001500Rpm\x12S\n" +
-	"'ecodrive_mileage_in_range_1500_2300_rpm\x18\xac\x01 \x01(\x01R!ecodriveMileageInRange15002300Rpm\x12V\n" +
-	")ecodrive_fuel_used_in_range_1500_2300_rpm\x18\xad\x01 \x01(\x01R\"ecodriveFuelUsedInRange15002300Rpm\x123\n" +
-	"\x15ecodrive_idling_state\x18\xae\x01 \x01(\tR\x13ecodriveIdlingState\x125\n" +
-	"\x16ecodrive_braking_value\x18\xaf\x01 \x01(\x01R\x14ecodriveBrakingValue\x12?\n" +
-	"\x1becodrive_acceleration_value\x18\xb0\x01 \x01(\x01R\x19ecodriveAccelerationValue\x129\n" +
-	"\x18ecodrive_cornering_value\x18\xb1\x01 \x01(\x01R\x16ecodriveCorneringValue\x12>\n" +
-	"\x1ceco_rpm_in_red_band_distance\x18\xb2\x01 \x01(\x01R\x17ecoRpmInRedBandDistance\x12>\n" +
-	"\x1beco_engine_braking_distance\x18\xb3\x01 \x01(\x01R\x18ecoEngineBrakingDistance\x121\n" +
-	"\x14eco_braking_distance\x18\xb4\x01 \x01(\x01R\x12ecoBrakingDistance\x121\n" +
-	"\x14eco_braking_duration\x18\xb5\x01 \x01(\x01R\x12ecoBrakingDuration\x123\n" +
-	"\x15eco_retarder_duration\x18\xb6\x01 \x01(\x01R\x13ecoRetarderDuration\x12+\n" +
-	"\x11eco_stops_counter\x18\xb7\x01 \x01(\x01R\x0fecoStopsCounter\x12<\n" +
-	"\x1athermoking_air_return_temp\x18\xb8\x01 \x01(\x01R\x17thermokingAirReturnTemp\x12,\n" +
+	"\x12dxp_charger_status\x18\x89\x01 \x01(\x01R\x10dxpChargerStatus\x12U\n" +
+	"\x1aecodrive_maximum_speed_kmh\x18\x8a\x01 \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x00y@)\x00\x00\x00\x00\x00\x00\x00\x00R\x17ecodriveMaximumSpeedKmh\x12>\n" +
+	"\x12ecodrive_overspeed\x18\x8b\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x11ecodriveOverspeed\x12>\n" +
+	"\x13ecodrive_rpm_on_red\x18\x8c\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x10ecodriveRpmOnRed\x12A\n" +
+	"\x14ecodrive_maximum_rpm\x18\x8d\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x12ecodriveMaximumRpm\x12G\n" +
+	"\x17ecodrive_braking_events\x18\x8e\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x15ecodriveBrakingEvents\x12O\n" +
+	"\x1becodrive_harsh_acceleration\x18\x8f\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x19ecodriveHarshAcceleration\x12A\n" +
+	"\x14ecodrive_idling_time\x18\x90\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x12ecodriveIdlingTime\x12=\n" +
+	"\x12ecodrive_engine_on\x18\x91\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x10ecodriveEngineOn\x12e\n" +
+	"(ecodrive_time_cruise_control_could_be_on\x18\x92\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\"ecodriveTimeCruiseControlCouldBeOn\x12\x7f\n" +
+	"7ecodrive_time_cruise_control_was_on_when_it_could_be_on\x18\x93\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R-ecodriveTimeCruiseControlWasOnWhenItCouldBeOn\x12T\n" +
+	"\x1eecodrive_extreme_braking_count\x18\x94\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x1becodriveExtremeBrakingCount\x12P\n" +
+	"\x1cecodrive_harsh_braking_count\x18\x95\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x19ecodriveHarshBrakingCount\x12Z\n" +
+	"\"ecodrive_mileage_in_rpm_green_zone\x18\x96\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x1decodriveMileageInRpmGreenZone\x12q\n" +
+	".ecodrive_mileage_when_speed_is_below_overspeed\x18\x97\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R(ecodriveMileageWhenSpeedIsBelowOverspeed\x12t\n" +
+	"0ecodrive_mileage_when_cruise_control_could_be_on\x18\x98\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R)ecodriveMileageWhenCruiseControlCouldBeOn\x12\x8e\x01\n" +
+	"?ecodrive_mileage_when_cruise_control_was_on_when_it_could_be_on\x18\x99\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R4ecodriveMileageWhenCruiseControlWasOnWhenItCouldBeOn\x12M\n" +
+	"\x1aecodrive_cornering_counter\x18\x9a\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x18ecodriveCorneringCounter\x12E\n" +
+	"\x16ecodrive_stops_counter\x18\x9b\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x14ecodriveStopsCounter\x12M\n" +
+	"\x1becodrive_fuel_used_at_stops\x18\x9c\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x17ecodriveFuelUsedAtStops\x12]\n" +
+	"#ecodrive_mileage_while_free_rolling\x18\x9d\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x1fecodriveMileageWhileFreeRolling\x12g\n" +
+	"(ecodrive_mileage_while_engine_overloaded\x18\x9e\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R$ecodriveMileageWhileEngineOverloaded\x12j\n" +
+	"*ecodrive_fuel_used_while_engine_overloaded\x18\x9f\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R%ecodriveFuelUsedWhileEngineOverloaded\x12^\n" +
+	"#ecodrive_mileage_while_overspeeding\x18\xa0\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R ecodriveMileageWhileOverspeeding\x12a\n" +
+	"%ecodrive_fuel_used_while_overspeeding\x18\xa1\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R!ecodriveFuelUsedWhileOverspeeding\x12k\n" +
+	"+ecodrive_mileage_when_cruise_control_was_on\x18\xa2\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R%ecodriveMileageWhenCruiseControlWasOn\x12w\n" +
+	"2ecodrive_fuel_used_when_when_cruise_control_was_on\x18\xa3\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R*ecodriveFuelUsedWhenWhenCruiseControlWasOn\x12W\n" +
+	" ecodrive_mileage_in_highest_gear\x18\xa4\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x1cecodriveMileageInHighestGear\x12Z\n" +
+	"\"ecodrive_fuel_used_in_highest_gear\x18\xa5\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x1decodriveFuelUsedInHighestGear\x12[\n" +
+	"#ecodrive_mileage_in_range_1_900_rpm\x18\xa6\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x1decodriveMileageInRange1900Rpm\x12^\n" +
+	"%ecodrive_fuel_used_in_range_1_900_rpm\x18\xa7\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x1eecodriveFuelUsedInRange1900Rpm\x12a\n" +
+	"&ecodrive_mileage_in_range_900_1300_rpm\x18\xa8\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R ecodriveMileageInRange9001300Rpm\x12d\n" +
+	"(ecodrive_fuel_used_in_range_900_1300_rpm\x18\xa9\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R!ecodriveFuelUsedInRange9001300Rpm\x12c\n" +
+	"'ecodrive_mileage_in_range_1300_1500_rpm\x18\xaa\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R!ecodriveMileageInRange13001500Rpm\x12f\n" +
+	")ecodrive_fuel_used_in_range_1300_1500_rpm\x18\xab\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\"ecodriveFuelUsedInRange13001500Rpm\x12c\n" +
+	"'ecodrive_mileage_in_range_1500_2300_rpm\x18\xac\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R!ecodriveMileageInRange15002300Rpm\x12f\n" +
+	")ecodrive_fuel_used_in_range_1500_2300_rpm\x18\xad\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\"ecodriveFuelUsedInRange15002300Rpm\x123\n" +
+	"\x15ecodrive_idling_state\x18\xae\x01 \x01(\tR\x13ecodriveIdlingState\x12E\n" +
+	"\x16ecodrive_braking_value\x18\xaf\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x14ecodriveBrakingValue\x12O\n" +
+	"\x1becodrive_acceleration_value\x18\xb0\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x19ecodriveAccelerationValue\x12I\n" +
+	"\x18ecodrive_cornering_value\x18\xb1\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x16ecodriveCorneringValue\x12N\n" +
+	"\x1ceco_rpm_in_red_band_distance\x18\xb2\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x17ecoRpmInRedBandDistance\x12N\n" +
+	"\x1beco_engine_braking_distance\x18\xb3\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x18ecoEngineBrakingDistance\x12A\n" +
+	"\x14eco_braking_distance\x18\xb4\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x12ecoBrakingDistance\x12A\n" +
+	"\x14eco_braking_duration\x18\xb5\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x12ecoBrakingDuration\x12C\n" +
+	"\x15eco_retarder_duration\x18\xb6\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x13ecoRetarderDuration\x12;\n" +
+	"\x11eco_stops_counter\x18\xb7\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x0fecoStopsCounter\x12L\n" +
+	"\x1athermoking_air_return_temp\x18\xb8\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x17thermokingAirReturnTemp\x12,\n" +
 	"\x11thermoking_alarms\x18\xb9\x01 \x01(\x01R\x10thermokingAlarms\x121\n" +
-	"\x14thermoking_set_point\x18\xba\x01 \x01(\x01R\x12thermokingSetPoint\x123\n" +
-	"\x15thermoking_fuel_level\x18\xbb\x01 \x01(\x01R\x13thermokingFuelLevel\x12=\n" +
-	"\x1athermoking_battery_voltage\x18\xbc\x01 \x01(\x01R\x18thermokingBatteryVoltage\x12F\n" +
-	"\x1fthermoking_total_electric_hours\x18\xbd\x01 \x01(\x01R\x1cthermokingTotalElectricHours\x129\n" +
-	"\x18thermoking_vehicle_hours\x18\xbe\x01 \x01(\x01R\x16thermokingVehicleHours\x12B\n" +
-	"\x1dthermoking_total_engine_hours\x18\xbf\x01 \x01(\x01R\x1athermokingTotalEngineHours\x123\n" +
+	"\x14thermoking_set_point\x18\xba\x01 \x01(\x01R\x12thermokingSetPoint\x12L\n" +
+	"\x15thermoking_fuel_level\x18\xbb\x01 \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x00Y@)\x00\x00\x00\x00\x00\x00\x00\x00R\x13thermokingFuelLevel\x12=\n" +
+	"\x1athermoking_battery_voltage\x18\xbc\x01 \x01(\x01R\x18thermokingBatteryVoltage\x12V\n" +
+	"\x1fthermoking_total_electric_hours\x18\xbd\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x1cthermokingTotalElectricHours\x12I\n" +
+	"\x18thermoking_vehicle_hours\x18\xbe\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x16thermokingVehicleHours\x12R\n" +
+	"\x1dthermoking_total_engine_hours\x18\xbf\x01 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x1athermokingTotalEngineHours\x123\n" +
 	"\x15thermoking_alarm_type\x18\xc0\x01 \x01(\tR\x13thermokingAlarmType\x12I\n" +
 	" thermoking_discharge_temperature\x18\xc1\x01 \x01(\x01R\x1ethermokingDischargeTemperature\x12T\n" +
 	"&thermoking_evaporator_coil_temperature\x18\xc2\x01 \x01(\x01R#thermokingEvaporatorCoilTemperature\x12;\n" +
@@ -14687,21 +14688,21 @@ const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	"\x18tacho_first_driver_state\x18\xe9\x02 \x01(\tR\x15tachoFirstDriverState\x12:\n" +
 	"\x19tacho_second_driver_state\x18\xea\x02 \x01(\tR\x16tachoSecondDriverState\x126\n" +
 	"\x17tacho_first_driver_card\x18\xeb\x02 \x01(\tR\x14tachoFirstDriverCard\x128\n" +
-	"\x18tacho_second_driver_card\x18\xec\x02 \x01(\tR\x15tachoSecondDriverCard\x12+\n" +
-	"\x11tacho_odometer_km\x18\xed\x02 \x01(\x01R\x0ftachoOdometerKm\x12#\n" +
-	"\rtacho_trip_km\x18\xee\x02 \x01(\x01R\vtachoTripKm\x126\n" +
-	"\x17tacho_vehicle_speed_kmh\x18\xef\x02 \x01(\x01R\x14tachoVehicleSpeedKmh\x12\x1c\n" +
-	"\ttacho_rpm\x18\xf0\x02 \x01(\x01R\btachoRpm\x12;\n" +
+	"\x18tacho_second_driver_card\x18\xec\x02 \x01(\tR\x15tachoSecondDriverCard\x12;\n" +
+	"\x11tacho_odometer_km\x18\xed\x02 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x0ftachoOdometerKm\x123\n" +
+	"\rtacho_trip_km\x18\xee\x02 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\vtachoTripKm\x12O\n" +
+	"\x17tacho_vehicle_speed_kmh\x18\xef\x02 \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x00y@)\x00\x00\x00\x00\x00\x00\x00\x00R\x14tachoVehicleSpeedKmh\x12,\n" +
+	"\ttacho_rpm\x18\xf0\x02 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\btachoRpm\x12;\n" +
 	"\x19tacho_registration_number\x18\xf1\x02 \x01(\tR\x17tachoRegistrationNumber\x12/\n" +
-	"\x13tacho_ddd_available\x18\xf2\x02 \x01(\tR\x11tachoDddAvailable\x12v\n" +
-	":tacho_first_driver_driving_time_prev_and_curr_week_minutes\x18\xf3\x02 \x01(\x01R1tachoFirstDriverDrivingTimePrevAndCurrWeekMinutes\x12x\n" +
-	";tacho_second_driver_driving_time_prev_and_curr_week_minutes\x18\xf4\x02 \x01(\x01R2tachoSecondDriverDrivingTimePrevAndCurrWeekMinutes\x12t\n" +
-	"8tacho_first_driver_duration_of_selected_activity_minutes\x18\xf5\x02 \x01(\x01R1tachoFirstDriverDurationOfSelectedActivityMinutes\x12v\n" +
-	"9tacho_second_driver_duration_of_selected_activity_minutes\x18\xf6\x02 \x01(\x01R2tachoSecondDriverDurationOfSelectedActivityMinutes\x12i\n" +
-	"2tacho_first_driver_continuous_driving_time_minutes\x18\xf7\x02 \x01(\x01R,tachoFirstDriverContinuousDrivingTimeMinutes\x12k\n" +
-	"3tacho_second_driver_continuous_driving_time_minutes\x18\xf8\x02 \x01(\x01R-tachoSecondDriverContinuousDrivingTimeMinutes\x12c\n" +
-	"/tacho_first_driver_cumulated_break_time_minutes\x18\xf9\x02 \x01(\x01R)tachoFirstDriverCumulatedBreakTimeMinutes\x12e\n" +
-	"0tacho_second_driver_cumulated_break_time_minutes\x18\xfa\x02 \x01(\x01R*tachoSecondDriverCumulatedBreakTimeMinutes\x12R\n" +
+	"\x13tacho_ddd_available\x18\xf2\x02 \x01(\tR\x11tachoDddAvailable\x12\x86\x01\n" +
+	":tacho_first_driver_driving_time_prev_and_curr_week_minutes\x18\xf3\x02 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R1tachoFirstDriverDrivingTimePrevAndCurrWeekMinutes\x12\x88\x01\n" +
+	";tacho_second_driver_driving_time_prev_and_curr_week_minutes\x18\xf4\x02 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R2tachoSecondDriverDrivingTimePrevAndCurrWeekMinutes\x12\x84\x01\n" +
+	"8tacho_first_driver_duration_of_selected_activity_minutes\x18\xf5\x02 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R1tachoFirstDriverDurationOfSelectedActivityMinutes\x12\x86\x01\n" +
+	"9tacho_second_driver_duration_of_selected_activity_minutes\x18\xf6\x02 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R2tachoSecondDriverDurationOfSelectedActivityMinutes\x12y\n" +
+	"2tacho_first_driver_continuous_driving_time_minutes\x18\xf7\x02 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R,tachoFirstDriverContinuousDrivingTimeMinutes\x12{\n" +
+	"3tacho_second_driver_continuous_driving_time_minutes\x18\xf8\x02 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R-tachoSecondDriverContinuousDrivingTimeMinutes\x12s\n" +
+	"/tacho_first_driver_cumulated_break_time_minutes\x18\xf9\x02 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R)tachoFirstDriverCumulatedBreakTimeMinutes\x12u\n" +
+	"0tacho_second_driver_cumulated_break_time_minutes\x18\xfa\x02 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R*tachoSecondDriverCumulatedBreakTimeMinutes\x12R\n" +
 	"&tacho_first_driver_time_related_states\x18\xfb\x02 \x01(\x01R!tachoFirstDriverTimeRelatedStates\x12T\n" +
 	"'tacho_second_driver_time_related_states\x18\xfc\x02 \x01(\x01R\"tachoSecondDriverTimeRelatedStates\x12:\n" +
 	"\n" +
@@ -14741,8 +14742,8 @@ const file_wayplatform_connect_trusttrack_v1_device_inputs_proto_rawDesc = "" +
 	"(trailers_vehicle_pneumatic_supply_status\x18\x9e\x03 \x01(\tR$trailersVehiclePneumaticSupplyStatus\x12n\n" +
 	"5trailers_braking_system_wheel_based_vehicle_speed_kmh\x18\x9f\x03 \x01(\x01R.trailersBrakingSystemWheelBasedVehicleSpeedKmh\x12_\n" +
 	"-trailers_wheel_speed_difference_main_axle_kmh\x18\xa0\x03 \x01(\x01R'trailersWheelSpeedDifferenceMainAxleKmh\x12C\n" +
-	"\x1dtrailers_lateral_acceleration\x18\xa1\x03 \x01(\x01R\x1btrailersLateralAcceleration\x124\n" +
-	"\x16trailers_axle_load_sum\x18\xa2\x03 \x01(\x01R\x13trailersAxleLoadSum\x12L\n" +
+	"\x1dtrailers_lateral_acceleration\x18\xa1\x03 \x01(\x01R\x1btrailersLateralAcceleration\x12D\n" +
+	"\x16trailers_axle_load_sum\x18\xa2\x03 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x13trailersAxleLoadSum\x12L\n" +
 	"\"trailers_pneumatic_supply_pressure\x18\xa3\x03 \x01(\x01R\x1ftrailersPneumaticSupplyPressure\x12p\n" +
 	"6trailers_brake_cylinder_pressure_first_axle_left_wheel\x18\xa4\x03 \x01(\x01R/trailersBrakeCylinderPressureFirstAxleLeftWheel\x12r\n" +
 	"7trailers_brake_cylinder_pressure_first_axle_right_wheel\x18\xa5\x03 \x01(\x01R0trailersBrakeCylinderPressureFirstAxleRightWheel\x12r\n" +

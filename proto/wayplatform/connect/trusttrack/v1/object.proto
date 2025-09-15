@@ -2,13 +2,17 @@ edition = "2023";
 
 package wayplatform.connect.trusttrack.v1;
 
+import "buf/validate/validate.proto";
 import "wayplatform/connect/trusttrack/v1/position.proto";
 import "wayplatform/connect/trusttrack/v1/vehicle_params.proto";
 
 // A tracked object.
 message Object {
   // The ID of the object.
-  string id = 1;
+  string id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
 
   // The name of the object.
   string name = 2;

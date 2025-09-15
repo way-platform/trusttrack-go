@@ -7,6 +7,7 @@
 package trusttrackv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -465,29 +466,31 @@ var File_wayplatform_connect_trusttrack_v1_fuel_event_proto protoreflect.FileDes
 
 const file_wayplatform_connect_trusttrack_v1_fuel_event_proto_rawDesc = "" +
 	"\n" +
-	"2wayplatform/connect/trusttrack/v1/fuel_event.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9d\x05\n" +
-	"\tFuelEvent\x12\x1b\n" +
-	"\tobject_id\x18\x01 \x01(\tR\bobjectId\x12\x1b\n" +
-	"\tdriver_id\x18\x02 \x01(\tR\bdriverId\x12U\n" +
+	"2wayplatform/connect/trusttrack/v1/fuel_event.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xee\a\n" +
+	"\tFuelEvent\x12(\n" +
+	"\tobject_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\bobjectId\x12\x1b\n" +
+	"\tdriver_id\x18\x02 \x01(\tR\bdriverId\x12a\n" +
 	"\n" +
-	"event_type\x18\x03 \x01(\x0e26.wayplatform.connect.trusttrack.v1.FuelEvent.EventTypeR\teventType\x12,\n" +
-	"\x12unknown_event_type\x18\x04 \x01(\tR\x10unknownEventType\x12\x1a\n" +
-	"\blatitude\x18\x05 \x01(\x01R\blatitude\x12\x1c\n" +
-	"\tlongitude\x18\x06 \x01(\x01R\tlongitude\x127\n" +
-	"\x18fuel_level_start_percent\x18\a \x01(\x01R\x15fuelLevelStartPercent\x123\n" +
-	"\x16fuel_level_end_percent\x18\b \x01(\x01R\x13fuelLevelEndPercent\x12A\n" +
-	"\x1dfuel_level_difference_percent\x18\t \x01(\x01R\x1afuelLevelDifferencePercent\x129\n" +
+	"event_type\x18\x03 \x01(\x0e26.wayplatform.connect.trusttrack.v1.FuelEvent.EventTypeB\n" +
+	"\xbaH\a\x82\x01\x04\x10\x01 \x00R\teventType\x12,\n" +
+	"\x12unknown_event_type\x18\x04 \x01(\tR\x10unknownEventType\x123\n" +
+	"\blatitude\x18\x05 \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x80V@)\x00\x00\x00\x00\x00\x80V\xc0R\blatitude\x125\n" +
+	"\tlongitude\x18\x06 \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x80f@)\x00\x00\x00\x00\x00\x80f\xc0R\tlongitude\x12P\n" +
+	"\x18fuel_level_start_percent\x18\a \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x00Y@!\x00\x00\x00\x00\x00\x00\x00\x00R\x15fuelLevelStartPercent\x12L\n" +
+	"\x16fuel_level_end_percent\x18\b \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x00Y@!\x00\x00\x00\x00\x00\x00\x00\x00R\x13fuelLevelEndPercent\x12Z\n" +
+	"\x1dfuel_level_difference_percent\x18\t \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x00Y@)\x00\x00\x00\x00\x00\x00\x00\x00R\x1afuelLevelDifferencePercent\x12C\n" +
 	"\n" +
 	"start_time\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampR\tstartTime\x125\n" +
-	"\bend_time\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\aendTime\"t\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampB\b\xbaH\x05\xb2\x01\x02*\x00R\tstartTime\x12?\n" +
+	"\bend_time\x18\v \x01(\v2\x1a.google.protobuf.TimestampB\b\xbaH\x05\xb2\x01\x02*\x00R\aendTime\"t\n" +
 	"\tEventType\x12\x1a\n" +
 	"\x16EVENT_TYPE_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12EVENT_TYPE_UNKNOWN\x10\x01\x12\x1c\n" +
 	"\x18EVENT_TYPE_NOT_AVAILABLE\x10\x02\x12\t\n" +
 	"\x05DRAIN\x10\x03\x12\n" +
 	"\n" +
-	"\x06REFUEL\x10\x04B\xc1\x02\n" +
+	"\x06REFUEL\x10\x04:\xa4\x01\xbaH\xa0\x01\x1a\x9d\x01\n" +
+	"\vnull_island\x12'position must not be null island (0, 0)\x1ae!has(this.latitude) || !has(this.longitude) ? true : !(this.latitude == 0.0 && this.longitude == 0.0)B\xc1\x02\n" +
 	"%com.wayplatform.connect.trusttrack.v1B\x0eFuelEventProtoP\x01Zagithub.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1;trusttrackv1\xa2\x02\x03WCT\xaa\x02!Wayplatform.Connect.Trusttrack.V1\xca\x02!Wayplatform\\Connect\\Trusttrack\\V1\xe2\x02-Wayplatform\\Connect\\Trusttrack\\V1\\GPBMetadata\xea\x02$Wayplatform::Connect::Trusttrack::V1b\beditionsp\xe8\a"
 
 var file_wayplatform_connect_trusttrack_v1_fuel_event_proto_enumTypes = make([]protoimpl.EnumInfo, 1)

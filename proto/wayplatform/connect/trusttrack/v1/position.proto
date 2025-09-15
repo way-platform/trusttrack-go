@@ -2,34 +2,63 @@ edition = "2023";
 
 package wayplatform.connect.trusttrack.v1;
 
+import "buf/validate/validate.proto";
 import "google/protobuf/timestamp.proto";
 
 // A position.
 message Position {
-  // The number of satellites used to calculate the position.
-  int32 satellites_count = 3;
-
   // The latitude of the position.
-  double latitude = 1;
+  double latitude = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).double.gte = -90,
+    (buf.validate.field).double.lte = 90
+  ];
 
   // The longitude of the position.
-  double longitude = 2;
+  double longitude = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).double.gte = -180,
+    (buf.validate.field).double.lte = 180
+  ];
+
+  option (buf.validate.message).cel = {
+    id: "null_island"
+    message: "position must not be null island (0, 0)"
+    expression:
+      "!has(this.latitude) || !has(this.longitude) ? true "
+      ": !(this.latitude == 0.0 && this.longitude == 0.0)"
+  };
+
+  // The number of satellites used to calculate the position.
+  int32 satellites_count = 3 [
+    (buf.validate.field).int32.gte = 0,
+    (buf.validate.field).int32.lt = 1000
+  ];
 
   // The altitude of the position in meters.
-  double altitude_m = 4;
+  double altitude_m = 4 [
+    (buf.validate.field).double.gte = -1000,
+    (buf.validate.field).double.lte = 10000
+  ];
 
   // The speed of the position in kilometers per hour.
-  double speed_kmh = 5;
+  double speed_kmh = 5 [
+    (buf.validate.field).double.gte = 0,
+    (buf.validate.field).double.lt = 400
+  ];
 
   // The direction of the position in degrees.
-  double direction_deg = 6;
+  double direction_deg = 6 [
+    (buf.validate.field).double.gte = 0,
+    (buf.validate.field).double.lt = 360
+  ];
 
   // The datetime of the position.
-  google.protobuf.Timestamp time = 7;
+  google.protobuf.Timestamp time = 7 [(buf.validate.field).timestamp.gt = {seconds: 0}];
 
   // The last valid GPS datetime of the position.
-  google.protobuf.Timestamp last_valid_gps_time = 8;
+  google.protobuf.Timestamp last_valid_gps_time = 8 [(buf.validate.field).timestamp.gt = {seconds: 0}];
 
   // The server datetime of the position.
-  google.protobuf.Timestamp server_time = 9;
+  google.protobuf.Timestamp server_time = 9 [(buf.validate.field).timestamp.gt = {seconds: 0}];
 }

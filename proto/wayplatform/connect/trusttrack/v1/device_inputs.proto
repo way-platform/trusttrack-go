@@ -2,6 +2,7 @@ edition = "2023";
 
 package wayplatform.connect.trusttrack.v1;
 
+import "buf/validate/validate.proto";
 import "google/protobuf/timestamp.proto";
 
 // Container for parameters received from hardware
@@ -34,37 +35,59 @@ message DeviceInputs {
   double z_axis_tilt_angle = 9;
 
   // CAN high resolution total vehicle distance (units: km)
-  double canbus_odometer_km = 10;
+  double canbus_odometer_km = 10 [
+    // Treat 0km as invalid since 0 is often reported instead of missing data.
+    (buf.validate.field).double.gt = 0
+  ];
 
   // CAN engine coolant temperature (units: °C)
-  double canbus_engine_coolant_temperature_c = 11;
+  double canbus_engine_coolant_temperature_c = 11 [
+    (buf.validate.field).double.gte = -100,
+    (buf.validate.field).double.lte = 200
+  ];
 
   // CAN fuel rate (units: l/h)
-  double canbus_fuel_rate_l_per_h = 12;
+  double canbus_fuel_rate_l_per_h = 12 [(buf.validate.field).double.gte = 0];
 
   // CAN engine speed (units: RPM)
-  double engine_rpm = 13;
+  double engine_rpm = 13 [(buf.validate.field).double.gte = 0];
 
   // CAN engine hours (units: h)
-  double engine_hours_lifetime_h = 14;
+  double engine_hours_lifetime_h = 14 [(buf.validate.field).double.gte = 0];
 
   // CAN service distance (units: km)
   double service_distance_remaining_km = 15;
 
   // CAN accelerator pedal position (units: %)
-  double pedal_position_percent = 16;
+  double pedal_position_percent = 16 [
+    (buf.validate.field).double.gte = 0,
+    (buf.validate.field).double.lte = 100
+  ];
 
   // CAN fuel level (units: %)
-  double fuel_level_can_percent = 17;
+  double fuel_level_can_percent = 17 [
+    // Treat 0% as invalid since 0 is often reported instead of missing data.
+    (buf.validate.field).double.gt = 0,
+    (buf.validate.field).double.lte = 100
+  ];
 
   // CAN engine total fuel used (units: l)
-  double fuel_used_lifetime_l = 18;
+  double fuel_used_lifetime_l = 18 [
+    // Treat 0l as invalid since 0 is often reported instead of missing data.
+    (buf.validate.field).double.gte = 0
+  ];
 
   // CAN wheel based speed (units: km/h)
-  double wheel_speed_kmh = 19;
+  double wheel_speed_kmh = 19 [
+    (buf.validate.field).double.gte = -400,
+    (buf.validate.field).double.lte = 400
+  ];
 
   // CAN tachograph vehicle speed (units: km/h)
-  double tacho_speed_kmh = 20;
+  double tacho_speed_kmh = 20 [
+    (buf.validate.field).double.gte = 0,
+    (buf.validate.field).double.lte = 400
+  ];
 
   // CAN tachograph performance Possible values: NORMAL_PERFORMANCE PERFORMANCE_ANALYSIS
   string tacho_status = 21;
@@ -73,7 +96,7 @@ message DeviceInputs {
   string overspeeding_events = 22;
 
   // CAN axle location
-  double axle_count = 23;
+  double axle_count = 23 [(buf.validate.field).double.gte = 0];
 
   // CAN brake switch Possible values: RELEASED PRESSED
   string canbus_brake_switch = 24;
@@ -109,7 +132,10 @@ message DeviceInputs {
   string canbus_driver_2_card = 34;
 
   // CAN engine percent load at current speed (units: %)
-  double canbus_engine_plcs = 35;
+  double canbus_engine_plcs = 35 [
+    (buf.validate.field).double.gte = 0,
+    (buf.validate.field).double.lte = 100
+  ];
 
   // CAN tire location
   double canbus_tire_location = 36;
@@ -280,7 +306,10 @@ message DeviceInputs {
   double operator = 91;
 
   // GPS speed (units: km/h)
-  double gps_speed_kmh = 92;
+  double gps_speed_kmh = 92 [
+    (buf.validate.field).double.gte = 0,
+    (buf.validate.field).double.lte = 400
+  ];
 
   // GSM/UMTS signal strength
   double gsm_umts_signal_strength = 93;
@@ -304,7 +333,10 @@ message DeviceInputs {
   string gprs_status = 99;
 
   // GPS altitude (units: m)
-  double gps_altitude_m = 100;
+  double gps_altitude_m = 100 [
+    (buf.validate.field).double.gte = -1000,
+    (buf.validate.field).double.lte = 10000
+  ];
 
   // DOUT1 status Possible values: ACTIVE INACTIVE
   string dout1_status = 101;
@@ -418,145 +450,148 @@ message DeviceInputs {
   double dxp_charger_status = 137;
 
   // Eco-Drive maximum speed (units: km/h)
-  double ecodrive_maximum_speed_kmh = 138;
+  double ecodrive_maximum_speed_kmh = 138 [
+    (buf.validate.field).double.gte = 0,
+    (buf.validate.field).double.lte = 400
+  ];
 
   // Eco-Drive overspeeding timer (units: s)
-  double ecodrive_overspeed = 139;
+  double ecodrive_overspeed = 139 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive RPM in red band timer (units: s)
-  double ecodrive_rpm_on_red = 140;
+  double ecodrive_rpm_on_red = 140 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive maximum RPM (units: RPM)
-  double ecodrive_maximum_rpm = 141;
+  double ecodrive_maximum_rpm = 141 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive brake counter
-  double ecodrive_braking_events = 142;
+  double ecodrive_braking_events = 142 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive harsh acceleration counter
-  double ecodrive_harsh_acceleration = 143;
+  double ecodrive_harsh_acceleration = 143 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive idling counter (units: s)
-  double ecodrive_idling_time = 144;
+  double ecodrive_idling_time = 144 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive engine on timer (units: s)
-  double ecodrive_engine_on = 145;
+  double ecodrive_engine_on = 145 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive time cruise control could be on (units: s)
-  double ecodrive_time_cruise_control_could_be_on = 146;
+  double ecodrive_time_cruise_control_could_be_on = 146 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive time cruise control was on when it could be on (units: s)
-  double ecodrive_time_cruise_control_was_on_when_it_could_be_on = 147;
+  double ecodrive_time_cruise_control_was_on_when_it_could_be_on = 147 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive extreme braking count
-  double ecodrive_extreme_braking_count = 148;
+  double ecodrive_extreme_braking_count = 148 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive harsh braking count
-  double ecodrive_harsh_braking_count = 149;
+  double ecodrive_harsh_braking_count = 149 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive mileage in RPM green zone (units: m)
-  double ecodrive_mileage_in_rpm_green_zone = 150;
+  double ecodrive_mileage_in_rpm_green_zone = 150 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive mileage when speed is below overspeed (units: m)
-  double ecodrive_mileage_when_speed_is_below_overspeed = 151;
+  double ecodrive_mileage_when_speed_is_below_overspeed = 151 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive mileage when cruise control could be on (units: m)
-  double ecodrive_mileage_when_cruise_control_could_be_on = 152;
+  double ecodrive_mileage_when_cruise_control_could_be_on = 152 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive mileage when cruise control was on when it could be on (units: m)
-  double ecodrive_mileage_when_cruise_control_was_on_when_it_could_be_on = 153;
+  double ecodrive_mileage_when_cruise_control_was_on_when_it_could_be_on = 153 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive cornering counter
-  double ecodrive_cornering_counter = 154;
+  double ecodrive_cornering_counter = 154 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive stop counter
-  double ecodrive_stops_counter = 155;
+  double ecodrive_stops_counter = 155 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive fuel used while idling (units: l)
-  double ecodrive_fuel_used_at_stops = 156;
+  double ecodrive_fuel_used_at_stops = 156 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive free rolling distance (units: m)
-  double ecodrive_mileage_while_free_rolling = 157;
+  double ecodrive_mileage_while_free_rolling = 157 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive engine overloaded distance (units: m)
-  double ecodrive_mileage_while_engine_overloaded = 158;
+  double ecodrive_mileage_while_engine_overloaded = 158 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive engine overloaded fuel used (units: l)
-  double ecodrive_fuel_used_while_engine_overloaded = 159;
+  double ecodrive_fuel_used_while_engine_overloaded = 159 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive overspeeding distance (units: m)
-  double ecodrive_mileage_while_overspeeding = 160;
+  double ecodrive_mileage_while_overspeeding = 160 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive overspeeding fuel used (units: l)
-  double ecodrive_fuel_used_while_overspeeding = 161;
+  double ecodrive_fuel_used_while_overspeeding = 161 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive cruise control on distance (units: m)
-  double ecodrive_mileage_when_cruise_control_was_on = 162;
+  double ecodrive_mileage_when_cruise_control_was_on = 162 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive cruise control on fuel used (units: l)
-  double ecodrive_fuel_used_when_when_cruise_control_was_on = 163;
+  double ecodrive_fuel_used_when_when_cruise_control_was_on = 163 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive highest gear distance (units: m)
-  double ecodrive_mileage_in_highest_gear = 164;
+  double ecodrive_mileage_in_highest_gear = 164 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive highest gear fuel used (units: l)
-  double ecodrive_fuel_used_in_highest_gear = 165;
+  double ecodrive_fuel_used_in_highest_gear = 165 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive RPM range 1 (<900 RPM) distance (units: m)
-  double ecodrive_mileage_in_range_1_900_rpm = 166;
+  double ecodrive_mileage_in_range_1_900_rpm = 166 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive RPM range 1 (<900 RPM) fuel used (units: l)
-  double ecodrive_fuel_used_in_range_1_900_rpm = 167;
+  double ecodrive_fuel_used_in_range_1_900_rpm = 167 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive RPM range 2 (900-1300 RPM) distance (units: m)
-  double ecodrive_mileage_in_range_900_1300_rpm = 168;
+  double ecodrive_mileage_in_range_900_1300_rpm = 168 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive RPM range 2 (900-1300 RPM) fuel used (units: l)
-  double ecodrive_fuel_used_in_range_900_1300_rpm = 169;
+  double ecodrive_fuel_used_in_range_900_1300_rpm = 169 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive RPM range 3 (1300-1500 RPM) distance (units: m)
-  double ecodrive_mileage_in_range_1300_1500_rpm = 170;
+  double ecodrive_mileage_in_range_1300_1500_rpm = 170 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive RPM range 3 (1300-1500 RPM) fuel used (units: l)
-  double ecodrive_fuel_used_in_range_1300_1500_rpm = 171;
+  double ecodrive_fuel_used_in_range_1300_1500_rpm = 171 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive RPM range 4 (1500-2300 RPM) distance (units: m)
-  double ecodrive_mileage_in_range_1500_2300_rpm = 172;
+  double ecodrive_mileage_in_range_1500_2300_rpm = 172 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive RPM range 4 (1500-2300 RPM) fuel used (units: l)
-  double ecodrive_fuel_used_in_range_1500_2300_rpm = 173;
+  double ecodrive_fuel_used_in_range_1500_2300_rpm = 173 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive idling state Possible values: NO_IDLING IDLING
   string ecodrive_idling_state = 174;
 
   // Eco-Drive braking value (units: m/s^2)
-  double ecodrive_braking_value = 175;
+  double ecodrive_braking_value = 175 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive acceleration value (units: m/s^2)
-  double ecodrive_acceleration_value = 176;
+  double ecodrive_acceleration_value = 176 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive cornering value (units: m/s^2)
-  double ecodrive_cornering_value = 177;
+  double ecodrive_cornering_value = 177 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive RPM in red band distance (units: m)
-  double eco_rpm_in_red_band_distance = 178;
+  double eco_rpm_in_red_band_distance = 178 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive engine braking distance (units: m)
-  double eco_engine_braking_distance = 179;
+  double eco_engine_braking_distance = 179 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive braking distance (units: m)
-  double eco_braking_distance = 180;
+  double eco_braking_distance = 180 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive braking duration (units: s)
-  double eco_braking_duration = 181;
+  double eco_braking_duration = 181 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive retarder duration (units: s)
-  double eco_retarder_duration = 182;
+  double eco_retarder_duration = 182 [(buf.validate.field).double.gte = 0];
 
   // Eco-Drive stop counter
-  double eco_stops_counter = 183;
+  double eco_stops_counter = 183 [(buf.validate.field).double.gte = 0];
 
   // ThermoKing air return temperature (units: °C)
-  double thermoking_air_return_temp = 184;
+  double thermoking_air_return_temp = 184 [(buf.validate.field).double.gte = 0];
 
   // ThermoKing alarm code
   double thermoking_alarms = 185;
@@ -565,19 +600,22 @@ message DeviceInputs {
   double thermoking_set_point = 186;
 
   // ThermoKing fuel level (units: %)
-  double thermoking_fuel_level = 187;
+  double thermoking_fuel_level = 187 [
+    (buf.validate.field).double.gte = 0,
+    (buf.validate.field).double.lte = 100
+  ];
 
   // ThermoKing battery voltage (units: V)
   double thermoking_battery_voltage = 188;
 
   // ThermoKing total electric hours (units: h)
-  double thermoking_total_electric_hours = 189;
+  double thermoking_total_electric_hours = 189 [(buf.validate.field).double.gte = 0];
 
   // ThermoKing total vehicle hours (units: h)
-  double thermoking_vehicle_hours = 190;
+  double thermoking_vehicle_hours = 190 [(buf.validate.field).double.gte = 0];
 
   // ThermoKing total engine hours (units: h)
-  double thermoking_total_engine_hours = 191;
+  double thermoking_total_engine_hours = 191 [(buf.validate.field).double.gte = 0];
 
   // ThermoKing alarm type Possible values: NO_ALARM LOG_STORED_OR_ROUTINE_MAINTENANCE LOW_FUEL MAINTENANCE_PAST_DUE RESERVED IMMEDIATE_ATTENTION_REQUIRED SHUTDOWN_OR_CATASTROPHIC_SYSTEM_FAILURE
   string thermoking_alarm_type = 192;
@@ -1099,16 +1137,19 @@ message DeviceInputs {
   string tacho_second_driver_card = 364;
 
   // Tachograph distance (units: km)
-  double tacho_odometer_km = 365;
+  double tacho_odometer_km = 365 [(buf.validate.field).double.gte = 0];
 
   // Tachograph trip distance (units: km)
-  double tacho_trip_km = 366;
+  double tacho_trip_km = 366 [(buf.validate.field).double.gte = 0];
 
   // Tachograph vehicle speed (units: km/h)
-  double tacho_vehicle_speed_kmh = 367;
+  double tacho_vehicle_speed_kmh = 367 [
+    (buf.validate.field).double.gte = 0,
+    (buf.validate.field).double.lte = 400
+  ];
 
   // Tachograph engine speed (units: RPM)
-  double tacho_rpm = 368;
+  double tacho_rpm = 368 [(buf.validate.field).double.gte = 0];
 
   // Tachograph registration number
   string tacho_registration_number = 369;
@@ -1117,28 +1158,28 @@ message DeviceInputs {
   string tacho_ddd_available = 370;
 
   // Tachograph first driver driving time (prev. and curr. week) (units: min)
-  double tacho_first_driver_driving_time_prev_and_curr_week_minutes = 371;
+  double tacho_first_driver_driving_time_prev_and_curr_week_minutes = 371 [(buf.validate.field).double.gte = 0];
 
   // Tachograph second driver driving time (prev. and curr. week) (units: min)
-  double tacho_second_driver_driving_time_prev_and_curr_week_minutes = 372;
+  double tacho_second_driver_driving_time_prev_and_curr_week_minutes = 372 [(buf.validate.field).double.gte = 0];
 
   // Tachograph first driver duration of selected activity (units: min)
-  double tacho_first_driver_duration_of_selected_activity_minutes = 373;
+  double tacho_first_driver_duration_of_selected_activity_minutes = 373 [(buf.validate.field).double.gte = 0];
 
   // Tachograph second driver duration of selected activity (units: min)
-  double tacho_second_driver_duration_of_selected_activity_minutes = 374;
+  double tacho_second_driver_duration_of_selected_activity_minutes = 374 [(buf.validate.field).double.gte = 0];
 
   // Tachograph first driver continuous driving time (units: min)
-  double tacho_first_driver_continuous_driving_time_minutes = 375;
+  double tacho_first_driver_continuous_driving_time_minutes = 375 [(buf.validate.field).double.gte = 0];
 
   // Tachograph second driver continuous driving time (units: min)
-  double tacho_second_driver_continuous_driving_time_minutes = 376;
+  double tacho_second_driver_continuous_driving_time_minutes = 376 [(buf.validate.field).double.gte = 0];
 
   // Tachograph first driver accumulated break time (units: min)
-  double tacho_first_driver_cumulated_break_time_minutes = 377;
+  double tacho_first_driver_cumulated_break_time_minutes = 377 [(buf.validate.field).double.gte = 0];
 
   // Tachograph second driver accumulated break time (units: min)
-  double tacho_second_driver_cumulated_break_time_minutes = 378;
+  double tacho_second_driver_cumulated_break_time_minutes = 378 [(buf.validate.field).double.gte = 0];
 
   // Tachograph first driver time related states
   double tacho_first_driver_time_related_states = 379;
@@ -1258,7 +1299,7 @@ message DeviceInputs {
   double trailers_lateral_acceleration = 417;
 
   // Trailers axle load sum (units: kg)
-  double trailers_axle_load_sum = 418;
+  double trailers_axle_load_sum = 418 [(buf.validate.field).double.gte = 0];
 
   // Trailers pneumatic supply pressure (units: kPa)
   double trailers_pneumatic_supply_pressure = 419;

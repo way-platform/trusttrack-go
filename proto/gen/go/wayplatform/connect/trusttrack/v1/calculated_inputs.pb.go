@@ -7,6 +7,7 @@
 package trusttrackv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -629,14 +630,14 @@ var File_wayplatform_connect_trusttrack_v1_calculated_inputs_proto protoreflect.
 
 const file_wayplatform_connect_trusttrack_v1_calculated_inputs_proto_rawDesc = "" +
 	"\n" +
-	"9wayplatform/connect/trusttrack/v1/calculated_inputs.proto\x12!wayplatform.connect.trusttrack.v1\"\xe1\x05\n" +
-	"\x10CalculatedInputs\x12=\n" +
-	"\x1bfuel_consumption_lifetime_l\x18\x01 \x01(\x01R\x18fuelConsumptionLifetimeL\x12,\n" +
-	"\x12fuel_level_percent\x18\x02 \x01(\x01R\x10fuelLevelPercent\x12\x1f\n" +
-	"\vodometer_km\x18\x03 \x01(\x01R\n" +
-	"odometerKm\x12\x1d\n" +
+	"9wayplatform/connect/trusttrack/v1/calculated_inputs.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1bbuf/validate/validate.proto\"\xaa\x06\n" +
+	"\x10CalculatedInputs\x12M\n" +
+	"\x1bfuel_consumption_lifetime_l\x18\x01 \x01(\x01B\x0e\xbaH\v\x12\t!\x00\x00\x00\x00\x00\x00\x00\x00R\x18fuelConsumptionLifetimeL\x12E\n" +
+	"\x12fuel_level_percent\x18\x02 \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x00Y@!\x00\x00\x00\x00\x00\x00\x00\x00R\x10fuelLevelPercent\x12/\n" +
+	"\vodometer_km\x18\x03 \x01(\x01B\x0e\xbaH\v\x12\t!\x00\x00\x00\x00\x00\x00\x00\x00R\n" +
+	"odometerKm\x12-\n" +
 	"\n" +
-	"engine_rpm\x18\x04 \x01(\x01R\tengineRpm\x12#\n" +
+	"engine_rpm\x18\x04 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\tengineRpm\x12#\n" +
 	"\rtemperature_c\x18\x05 \x01(\x01R\ftemperatureC\x12$\n" +
 	"\x0ecustom_input_1\x18\x06 \x01(\x01R\fcustomInput1\x12$\n" +
 	"\x0ecustom_input_2\x18\a \x01(\x01R\fcustomInput2\x12$\n" +

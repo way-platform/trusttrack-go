@@ -7,6 +7,7 @@
 package trusttrackv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -462,24 +463,27 @@ var File_wayplatform_connect_trusttrack_v1_trip_proto protoreflect.FileDescripto
 
 const file_wayplatform_connect_trusttrack_v1_trip_proto_rawDesc = "" +
 	"\n" +
-	",wayplatform/connect/trusttrack/v1/trip.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a/wayplatform/connect/trusttrack/v1/address.proto\x1a1wayplatform/connect/trusttrack/v1/trip_type.proto\"\xaa\x04\n" +
-	"\x04Trip\x12\x1b\n" +
-	"\tobject_id\x18\x01 \x01(\tR\bobjectId\x12?\n" +
-	"\x04type\x18\x02 \x01(\x0e2+.wayplatform.connect.trusttrack.v1.TripTypeR\x04type\x12!\n" +
+	",wayplatform/connect/trusttrack/v1/trip.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a/wayplatform/connect/trusttrack/v1/address.proto\x1a1wayplatform/connect/trusttrack/v1/trip_type.proto\"\xa3\a\n" +
+	"\x04Trip\x12(\n" +
+	"\tobject_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\bobjectId\x12N\n" +
+	"\x04type\x18\x02 \x01(\x0e2+.wayplatform.connect.trusttrack.v1.TripTypeB\r\xbaH\n" +
+	"\xc8\x01\x01\x82\x01\x04\x10\x01 \x00R\x04type\x12!\n" +
 	"\funknown_type\x18\x03 \x01(\tR\vunknownType\x12\x1d\n" +
 	"\n" +
-	"driver_ids\x18\x04 \x03(\tR\tdriverIds\x12\x1d\n" +
+	"driver_ids\x18\x04 \x03(\tR\tdriverIds\x12-\n" +
 	"\n" +
-	"duration_s\x18\x05 \x01(\x01R\tdurationS\x12\x1d\n" +
+	"duration_s\x18\x05 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\tdurationS\x12-\n" +
 	"\n" +
-	"mileage_km\x18\x06 \x01(\x01R\tmileageKm\x12E\n" +
+	"mileage_km\x18\x06 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\tmileageKm\x12E\n" +
 	"\x05start\x18\a \x01(\v2/.wayplatform.connect.trusttrack.v1.Trip.MetricsR\x05start\x12A\n" +
-	"\x03end\x18\b \x01(\v2/.wayplatform.connect.trusttrack.v1.Trip.MetricsR\x03end\x1a\xb9\x01\n" +
-	"\aMetrics\x12.\n" +
-	"\x04time\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12\x1a\n" +
-	"\blatitude\x18\x02 \x01(\x01R\blatitude\x12\x1c\n" +
-	"\tlongitude\x18\x03 \x01(\x01R\tlongitude\x12D\n" +
-	"\aaddress\x18\x04 \x01(\v2*.wayplatform.connect.trusttrack.v1.AddressR\aaddressB\xbc\x02\n" +
+	"\x03end\x18\b \x01(\v2/.wayplatform.connect.trusttrack.v1.Trip.MetricsR\x03end\x1a\x91\x03\n" +
+	"\aMetrics\x12;\n" +
+	"\x04time\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampB\v\xbaH\b\xc8\x01\x01\xb2\x01\x02*\x00R\x04time\x126\n" +
+	"\blatitude\x18\x02 \x01(\x01B\x1a\xbaH\x17\xc8\x01\x01\x12\x12\x19\x00\x00\x00\x00\x00\x80V@)\x00\x00\x00\x00\x00\x80V\xc0R\blatitude\x128\n" +
+	"\tlongitude\x18\x03 \x01(\x01B\x1a\xbaH\x17\xc8\x01\x01\x12\x12\x19\x00\x00\x00\x00\x00\x80f@)\x00\x00\x00\x00\x00\x80f\xc0R\tlongitude\x12D\n" +
+	"\aaddress\x18\x04 \x01(\v2*.wayplatform.connect.trusttrack.v1.AddressR\aaddress:\x90\x01\xbaH\x8c\x01\x1a\x89\x01\n" +
+	"\x1elatitude.longitude.null_island\x125latitude and longitude must not be null island (0, 0)\x1a0!(this.latitude == 0.0 && this.longitude == 0.0):c\xbaH`\x1a^\n" +
+	"\x14unknown_type.warning\x12-unknown_type indicates an unhandled trip type\x1a\x17!has(this.unknown_type)B\xbc\x02\n" +
 	"%com.wayplatform.connect.trusttrack.v1B\tTripProtoP\x01Zagithub.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1;trusttrackv1\xa2\x02\x03WCT\xaa\x02!Wayplatform.Connect.Trusttrack.V1\xca\x02!Wayplatform\\Connect\\Trusttrack\\V1\xe2\x02-Wayplatform\\Connect\\Trusttrack\\V1\\GPBMetadata\xea\x02$Wayplatform::Connect::Trusttrack::V1b\beditionsp\xe8\a"
 
 var file_wayplatform_connect_trusttrack_v1_trip_proto_msgTypes = make([]protoimpl.MessageInfo, 2)

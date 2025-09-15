@@ -7,12 +7,14 @@ import (
 	"os"
 	"time"
 
+	"buf.build/go/protovalidate"
 	"github.com/charmbracelet/fang"
 	"github.com/charmbracelet/lipgloss/v2"
 	"github.com/spf13/cobra"
 	"github.com/way-platform/trusttrack-go"
 	"github.com/way-platform/trusttrack-go/cmd/trusttrack/internal/auth"
 	"google.golang.org/protobuf/encoding/protojson"
+	"google.golang.org/protobuf/proto"
 )
 
 func main() {
@@ -49,6 +51,7 @@ func newRootCommand() *cobra.Command {
 		Short: "TrustTrack API CLI",
 	}
 	cmd.PersistentFlags().Bool("debug", false, "Enable debug logging")
+	cmd.PersistentFlags().Bool("validate", false, "Enable message validation")
 	cmd.AddGroup(&cobra.Group{
 		ID:    "objects",
 		Title: "Objects",
@@ -109,12 +112,13 @@ func newListObjectsCommand() *cobra.Command {
 		if err != nil {
 			return err
 		}
-		response, err := client.ListObjects(context.Background(), &trusttrack.ListObjectsRequest{})
+		response, err := client.ListObjects(cmd.Context(), &trusttrack.ListObjectsRequest{})
 		if err != nil {
 			return err
 		}
 		for _, object := range response.Objects {
 			fmt.Println(protojson.Format(object))
+			validate(cmd, object)
 		}
 		return nil
 	}
@@ -136,12 +140,13 @@ func newListObjectsLastPositionCommand() *cobra.Command {
 			Limit: 1000,
 		}
 		for {
-			response, err := client.ListObjectsLastPosition(context.Background(), &request)
+			response, err := client.ListObjectsLastPosition(cmd.Context(), &request)
 			if err != nil {
 				return err
 			}
 			for _, object := range response.Objects {
 				fmt.Println(protojson.Format(object))
+				validate(cmd, object)
 			}
 			request.ContinuationToken = response.ContinuationToken
 			if request.ContinuationToken == "" {
@@ -188,12 +193,13 @@ func newListObjectCoordinatesCommand() *cobra.Command {
 			IncludeTireParameters: *includeTireParameters,
 		}
 		for {
-			response, err := client.ListObjectCoordinates(context.Background(), &request)
+			response, err := client.ListObjectCoordinates(cmd.Context(), &request)
 			if err != nil {
 				return err
 			}
 			for _, coordinate := range response.Coordinates {
 				fmt.Println(protojson.Format(coordinate))
+				validate(cmd, coordinate)
 			}
 			if response.ContinuationToken == "" {
 				break
@@ -220,12 +226,13 @@ func newListObjectGroupsCommand() *cobra.Command {
 			Limit: 1000,
 		}
 		for {
-			response, err := client.ListObjectGroups(context.Background(), &request)
+			response, err := client.ListObjectGroups(cmd.Context(), &request)
 			if err != nil {
 				return err
 			}
 			for _, objectGroup := range response.ObjectGroups {
 				fmt.Println(protojson.Format(objectGroup))
+				validate(cmd, objectGroup)
 			}
 			request.ContinuationToken = response.ContinuationToken
 			if request.ContinuationToken == "" {
@@ -252,11 +259,12 @@ func newGetObjectGroupCommand() *cobra.Command {
 		request := trusttrack.GetObjectGroupRequest{
 			ExternalID: args[0],
 		}
-		response, err := client.GetObjectGroup(context.Background(), &request)
+		response, err := client.GetObjectGroup(cmd.Context(), &request)
 		if err != nil {
 			return err
 		}
 		fmt.Println(protojson.Format(response.ObjectGroup))
+		validate(cmd, response.ObjectGroup)
 		return nil
 	}
 	return cmd
@@ -283,12 +291,13 @@ func newListTripsCommand() *cobra.Command {
 			Limit:    1000,
 		}
 		for {
-			response, err := client.ListTrips(context.Background(), &request)
+			response, err := client.ListTrips(cmd.Context(), &request)
 			if err != nil {
 				return err
 			}
 			for _, trip := range response.Trips {
 				fmt.Println(protojson.Format(trip))
+				validate(cmd, trip)
 			}
 			if response.ContinuationToken == "" {
 				break
@@ -321,12 +330,13 @@ func newListFuelEventsCommand() *cobra.Command {
 			Limit:    1000,
 		}
 		for {
-			response, err := client.ListFuelEvents(context.Background(), &request)
+			response, err := client.ListFuelEvents(cmd.Context(), &request)
 			if err != nil {
 				return err
 			}
 			for _, fuelEvent := range response.FuelEvents {
 				fmt.Println(protojson.Format(fuelEvent))
+				validate(cmd, fuelEvent)
 			}
 			if response.ContinuationToken == "" {
 				break
@@ -336,4 +346,13 @@ func newListFuelEventsCommand() *cobra.Command {
 		return nil
 	}
 	return cmd
+}
+
+func validate(cmd *cobra.Command, object proto.Message) {
+	if validate, _ := cmd.Root().PersistentFlags().GetBool("validate"); validate {
+		style := lipgloss.NewStyle().Foreground(lipgloss.Red)
+		if err := protovalidate.Validate(object); err != nil {
+			fmt.Fprintf(os.Stderr, "%s\n", style.Render(fmt.Sprintf("%v", err)))
+		}
+	}
 }
