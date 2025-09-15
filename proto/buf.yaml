@@ -9,3 +9,6 @@ lint:
     - STANDARD
   except:
     - ENUM_VALUE_PREFIX
+
+deps:
+  - buf.build/bufbuild/protovalidate:v0.14.2

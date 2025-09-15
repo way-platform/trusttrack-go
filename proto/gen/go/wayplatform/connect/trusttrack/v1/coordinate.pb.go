@@ -7,6 +7,7 @@
 package trusttrackv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -331,13 +332,15 @@ var File_wayplatform_connect_trusttrack_v1_coordinate_proto protoreflect.FileDes
 
 const file_wayplatform_connect_trusttrack_v1_coordinate_proto_rawDesc = "" +
 	"\n" +
-	"2wayplatform/connect/trusttrack/v1/coordinate.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a9wayplatform/connect/trusttrack/v1/calculated_inputs.proto\x1a5wayplatform/connect/trusttrack/v1/device_inputs.proto\x1a6wayplatform/connect/trusttrack/v1/ignition_state.proto\x1a4wayplatform/connect/trusttrack/v1/other_inputs.proto\x1a0wayplatform/connect/trusttrack/v1/position.proto\x1a1wayplatform/connect/trusttrack/v1/tire_data.proto\x1a1wayplatform/connect/trusttrack/v1/trip_type.proto\"\xaa\x06\n" +
+	"2wayplatform/connect/trusttrack/v1/coordinate.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a9wayplatform/connect/trusttrack/v1/calculated_inputs.proto\x1a5wayplatform/connect/trusttrack/v1/device_inputs.proto\x1a6wayplatform/connect/trusttrack/v1/ignition_state.proto\x1a4wayplatform/connect/trusttrack/v1/other_inputs.proto\x1a0wayplatform/connect/trusttrack/v1/position.proto\x1a1wayplatform/connect/trusttrack/v1/tire_data.proto\x1a1wayplatform/connect/trusttrack/v1/trip_type.proto\"\xdf\x06\n" +
 	"\n" +
-	"Coordinate\x12\x1b\n" +
-	"\tobject_id\x18\x01 \x01(\tR\bobjectId\x12=\n" +
-	"\fvehicle_time\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\vvehicleTime\x12W\n" +
-	"\x0eignition_state\x18\x03 \x01(\x0e20.wayplatform.connect.trusttrack.v1.IgnitionStateR\rignitionState\x12H\n" +
-	"\ttrip_type\x18\x04 \x01(\x0e2+.wayplatform.connect.trusttrack.v1.TripTypeR\btripType\x12G\n" +
+	"Coordinate\x12(\n" +
+	"\tobject_id\x18\x01 \x01(\tB\v\xbaH\b\xc8\x01\x01r\x03\xb0\x01\x01R\bobjectId\x12J\n" +
+	"\fvehicle_time\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampB\v\xbaH\b\xc8\x01\x01\xb2\x01\x02*\x00R\vvehicleTime\x12f\n" +
+	"\x0eignition_state\x18\x03 \x01(\x0e20.wayplatform.connect.trusttrack.v1.IgnitionStateB\r\xbaH\n" +
+	"\xc8\x01\x01\x82\x01\x04\x10\x01 \x00R\rignitionState\x12T\n" +
+	"\ttrip_type\x18\x04 \x01(\x0e2+.wayplatform.connect.trusttrack.v1.TripTypeB\n" +
+	"\xbaH\a\x82\x01\x04\x10\x01 \x00R\btripType\x12G\n" +
 	"\bposition\x18\x05 \x01(\v2+.wayplatform.connect.trusttrack.v1.PositionR\bposition\x12\x1f\n" +
 	"\vgeozone_ids\x18\x06 \x03(\tR\n" +
 	"geozoneIds\x12`\n" +

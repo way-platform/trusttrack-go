@@ -7,6 +7,7 @@
 package trusttrackv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -24,9 +25,9 @@ const (
 // A position.
 type Position struct {
 	state                       protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_SatellitesCount  int32                  `protobuf:"varint,3,opt,name=satellites_count,json=satellitesCount"`
 	xxx_hidden_Latitude         float64                `protobuf:"fixed64,1,opt,name=latitude"`
 	xxx_hidden_Longitude        float64                `protobuf:"fixed64,2,opt,name=longitude"`
+	xxx_hidden_SatellitesCount  int32                  `protobuf:"varint,3,opt,name=satellites_count,json=satellitesCount"`
 	xxx_hidden_AltitudeM        float64                `protobuf:"fixed64,4,opt,name=altitude_m,json=altitudeM"`
 	xxx_hidden_SpeedKmh         float64                `protobuf:"fixed64,5,opt,name=speed_kmh,json=speedKmh"`
 	xxx_hidden_DirectionDeg     float64                `protobuf:"fixed64,6,opt,name=direction_deg,json=directionDeg"`
@@ -64,13 +65,6 @@ func (x *Position) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *Position) GetSatellitesCount() int32 {
-	if x != nil {
-		return x.xxx_hidden_SatellitesCount
-	}
-	return 0
-}
-
 func (x *Position) GetLatitude() float64 {
 	if x != nil {
 		return x.xxx_hidden_Latitude
@@ -81,6 +75,13 @@ func (x *Position) GetLatitude() float64 {
 func (x *Position) GetLongitude() float64 {
 	if x != nil {
 		return x.xxx_hidden_Longitude
+	}
+	return 0
+}
+
+func (x *Position) GetSatellitesCount() int32 {
+	if x != nil {
+		return x.xxx_hidden_SatellitesCount
 	}
 	return 0
 }
@@ -127,18 +128,18 @@ func (x *Position) GetServerTime() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *Position) SetSatellitesCount(v int32) {
-	x.xxx_hidden_SatellitesCount = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 9)
-}
-
 func (x *Position) SetLatitude(v float64) {
 	x.xxx_hidden_Latitude = v
-	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 9)
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 9)
 }
 
 func (x *Position) SetLongitude(v float64) {
 	x.xxx_hidden_Longitude = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 1, 9)
+}
+
+func (x *Position) SetSatellitesCount(v int32) {
+	x.xxx_hidden_SatellitesCount = v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 2, 9)
 }
 
@@ -169,21 +170,21 @@ func (x *Position) SetServerTime(v *timestamppb.Timestamp) {
 	x.xxx_hidden_ServerTime = v
 }
 
-func (x *Position) HasSatellitesCount() bool {
+func (x *Position) HasLatitude() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 0)
 }
 
-func (x *Position) HasLatitude() bool {
+func (x *Position) HasLongitude() bool {
 	if x == nil {
 		return false
 	}
 	return protoimpl.X.Present(&(x.XXX_presence[0]), 1)
 }
 
-func (x *Position) HasLongitude() bool {
+func (x *Position) HasSatellitesCount() bool {
 	if x == nil {
 		return false
 	}
@@ -232,19 +233,19 @@ func (x *Position) HasServerTime() bool {
 	return x.xxx_hidden_ServerTime != nil
 }
 
-func (x *Position) ClearSatellitesCount() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_SatellitesCount = 0
-}
-
 func (x *Position) ClearLatitude() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
 	x.xxx_hidden_Latitude = 0
 }
 
 func (x *Position) ClearLongitude() {
-	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 1)
 	x.xxx_hidden_Longitude = 0
+}
+
+func (x *Position) ClearSatellitesCount() {
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 2)
+	x.xxx_hidden_SatellitesCount = 0
 }
 
 func (x *Position) ClearAltitudeM() {
@@ -277,12 +278,12 @@ func (x *Position) ClearServerTime() {
 type Position_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	// The number of satellites used to calculate the position.
-	SatellitesCount *int32
 	// The latitude of the position.
 	Latitude *float64
 	// The longitude of the position.
 	Longitude *float64
+	// The number of satellites used to calculate the position.
+	SatellitesCount *int32
 	// The altitude of the position in meters.
 	AltitudeM *float64
 	// The speed of the position in kilometers per hour.
@@ -301,17 +302,17 @@ func (b0 Position_builder) Build() *Position {
 	m0 := &Position{}
 	b, x := &b0, m0
 	_, _ = b, x
-	if b.SatellitesCount != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 9)
-		x.xxx_hidden_SatellitesCount = *b.SatellitesCount
-	}
 	if b.Latitude != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 9)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 9)
 		x.xxx_hidden_Latitude = *b.Latitude
 	}
 	if b.Longitude != nil {
-		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 9)
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 1, 9)
 		x.xxx_hidden_Longitude = *b.Longitude
+	}
+	if b.SatellitesCount != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 2, 9)
+		x.xxx_hidden_SatellitesCount = *b.SatellitesCount
 	}
 	if b.AltitudeM != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 3, 9)
@@ -335,19 +336,21 @@ var File_wayplatform_connect_trusttrack_v1_position_proto protoreflect.FileDescr
 
 const file_wayplatform_connect_trusttrack_v1_position_proto_rawDesc = "" +
 	"\n" +
-	"0wayplatform/connect/trusttrack/v1/position.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x88\x03\n" +
-	"\bPosition\x12)\n" +
-	"\x10satellites_count\x18\x03 \x01(\x05R\x0fsatellitesCount\x12\x1a\n" +
-	"\blatitude\x18\x01 \x01(\x01R\blatitude\x12\x1c\n" +
-	"\tlongitude\x18\x02 \x01(\x01R\tlongitude\x12\x1d\n" +
+	"0wayplatform/connect/trusttrack/v1/position.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xdc\x05\n" +
+	"\bPosition\x126\n" +
+	"\blatitude\x18\x01 \x01(\x01B\x1a\xbaH\x17\xc8\x01\x01\x12\x12\x19\x00\x00\x00\x00\x00\x80V@)\x00\x00\x00\x00\x00\x80V\xc0R\blatitude\x128\n" +
+	"\tlongitude\x18\x02 \x01(\x01B\x1a\xbaH\x17\xc8\x01\x01\x12\x12\x19\x00\x00\x00\x00\x00\x80f@)\x00\x00\x00\x00\x00\x80f\xc0R\tlongitude\x125\n" +
+	"\x10satellites_count\x18\x03 \x01(\x05B\n" +
+	"\xbaH\a\x1a\x05\x10\xe8\a(\x00R\x0fsatellitesCount\x126\n" +
 	"\n" +
-	"altitude_m\x18\x04 \x01(\x01R\taltitudeM\x12\x1b\n" +
-	"\tspeed_kmh\x18\x05 \x01(\x01R\bspeedKmh\x12#\n" +
-	"\rdirection_deg\x18\x06 \x01(\x01R\fdirectionDeg\x12.\n" +
-	"\x04time\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\x04time\x12I\n" +
-	"\x13last_valid_gps_time\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\x10lastValidGpsTime\x12;\n" +
-	"\vserver_time\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\n" +
-	"serverTimeB\xc0\x02\n" +
+	"altitude_m\x18\x04 \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x88\xc3@)\x00\x00\x00\x00\x00@\x8f\xc0R\taltitudeM\x124\n" +
+	"\tspeed_kmh\x18\x05 \x01(\x01B\x17\xbaH\x14\x12\x12\x11\x00\x00\x00\x00\x00\x00y@)\x00\x00\x00\x00\x00\x00\x00\x00R\bspeedKmh\x12<\n" +
+	"\rdirection_deg\x18\x06 \x01(\x01B\x17\xbaH\x14\x12\x12\x11\x00\x00\x00\x00\x00\x80v@)\x00\x00\x00\x00\x00\x00\x00\x00R\fdirectionDeg\x128\n" +
+	"\x04time\x18\a \x01(\v2\x1a.google.protobuf.TimestampB\b\xbaH\x05\xb2\x01\x02*\x00R\x04time\x12S\n" +
+	"\x13last_valid_gps_time\x18\b \x01(\v2\x1a.google.protobuf.TimestampB\b\xbaH\x05\xb2\x01\x02*\x00R\x10lastValidGpsTime\x12E\n" +
+	"\vserver_time\x18\t \x01(\v2\x1a.google.protobuf.TimestampB\b\xbaH\x05\xb2\x01\x02*\x00R\n" +
+	"serverTime:\xa4\x01\xbaH\xa0\x01\x1a\x9d\x01\n" +
+	"\vnull_island\x12'position must not be null island (0, 0)\x1ae!has(this.latitude) || !has(this.longitude) ? true : !(this.latitude == 0.0 && this.longitude == 0.0)B\xc0\x02\n" +
 	"%com.wayplatform.connect.trusttrack.v1B\rPositionProtoP\x01Zagithub.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1;trusttrackv1\xa2\x02\x03WCT\xaa\x02!Wayplatform.Connect.Trusttrack.V1\xca\x02!Wayplatform\\Connect\\Trusttrack\\V1\xe2\x02-Wayplatform\\Connect\\Trusttrack\\V1\\GPBMetadata\xea\x02$Wayplatform::Connect::Trusttrack::V1b\beditionsp\xe8\a"
 
 var file_wayplatform_connect_trusttrack_v1_position_proto_msgTypes = make([]protoimpl.MessageInfo, 1)

@@ -2,6 +2,7 @@ edition = "2023";
 
 package wayplatform.connect.trusttrack.v1;
 
+import "buf/validate/validate.proto";
 import "google/protobuf/timestamp.proto";
 import "wayplatform/connect/trusttrack/v1/calculated_inputs.proto";
 import "wayplatform/connect/trusttrack/v1/device_inputs.proto";
@@ -14,16 +15,31 @@ import "wayplatform/connect/trusttrack/v1/trip_type.proto";
 // A coordinate with telemetry data from object coordinates history API v2.
 message Coordinate {
   // Object identifier
-  string object_id = 1;
+  string object_id = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.uuid = true
+  ];
 
   // Date and time point of coordinate generated in hardware.
-  google.protobuf.Timestamp vehicle_time = 2;
+  google.protobuf.Timestamp vehicle_time = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).timestamp.gt = {seconds: 0}
+  ];
 
   // Indicates if the object's ignition is on
-  IgnitionState ignition_state = 3;
+  IgnitionState ignition_state = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).enum = {
+      defined_only: true
+      not_in: [0]
+    }
+  ];
 
   // Trip type
-  TripType trip_type = 4;
+  TripType trip_type = 4 [(buf.validate.field).enum = {
+    defined_only: true
+    not_in: [0]
+  }];
 
   // GPS position data.
   Position position = 5;

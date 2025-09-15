@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"net/url"
 	"runtime/debug"
-	"slices"
 	"time"
 )
 
@@ -28,12 +27,11 @@ func NewClient(opts ...ClientOption) (*Client, error) {
 
 // clientConfig is the config for a [Client].
 type clientConfig struct {
-	baseURL           string
-	apiKey            string
-	debug             bool
-	timeout           time.Duration
-	retryCount        int
-	roundTripperFuncs []func(http.RoundTripper) http.RoundTripper
+	baseURL    string
+	apiKey     string
+	debug      bool
+	timeout    time.Duration
+	retryCount int
 }
 
 func newClientConfig() clientConfig {
@@ -45,7 +43,6 @@ func newClientConfig() clientConfig {
 }
 
 func (cc clientConfig) with(opts ...ClientOption) clientConfig {
-	cc.roundTripperFuncs = slices.Clone(cc.roundTripperFuncs)
 	for _, opt := range opts {
 		opt(&cc)
 	}
@@ -59,9 +56,6 @@ func (cc clientConfig) client() *http.Client {
 	}
 	if cc.debug {
 		transport = &debugTransport{next: transport}
-	}
-	for _, rt := range cc.roundTripperFuncs {
-		transport = rt(transport)
 	}
 	rt := &http.Client{
 		Timeout:   cc.timeout,
@@ -105,13 +99,6 @@ func WithTimeout(timeout time.Duration) ClientOption {
 func WithDebug(debug bool) ClientOption {
 	return func(c *clientConfig) {
 		c.debug = debug
-	}
-}
-
-// WithRoundTripper sets the round tripper for API requests.
-func WithRoundTripper(roundTripperFunc func(next http.RoundTripper) http.RoundTripper) ClientOption {
-	return func(c *clientConfig) {
-		c.roundTripperFuncs = append(c.roundTripperFuncs, roundTripperFunc)
 	}
 }
 

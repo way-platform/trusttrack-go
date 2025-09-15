@@ -5,9 +5,9 @@
     "ignitionState": "OFF",
     "tripType": "BUSINESS",
     "position": {
-      "satellitesCount": 8,
       "latitude": 52.52,
       "longitude": 13.405,
+      "satellitesCount": 8,
       "altitudeM": 34,
       "speedKmh": 0,
       "directionDeg": 90
@@ -68,9 +68,9 @@
     "ignitionState": "ON",
     "tripType": "BUSINESS",
     "position": {
-      "satellitesCount": 10,
       "latitude": 52.5205,
       "longitude": 13.4055,
+      "satellitesCount": 10,
       "altitudeM": 35,
       "speedKmh": 15,
       "directionDeg": 95
@@ -131,9 +131,9 @@
     "ignitionState": "ON",
     "tripType": "BUSINESS",
     "position": {
-      "satellitesCount": 12,
       "latitude": 52.521,
       "longitude": 13.406,
+      "satellitesCount": 12,
       "altitudeM": 36,
       "speedKmh": 25,
       "directionDeg": 100
@@ -194,9 +194,9 @@
     "ignitionState": "ON",
     "tripType": "BUSINESS",
     "position": {
-      "satellitesCount": 11,
       "latitude": 52.5215,
       "longitude": 13.4065,
+      "satellitesCount": 11,
       "altitudeM": 38,
       "speedKmh": 35,
       "directionDeg": 105
@@ -257,9 +257,9 @@
     "ignitionState": "ON",
     "tripType": "BUSINESS",
     "position": {
-      "satellitesCount": 13,
       "latitude": 52.522,
       "longitude": 13.407,
+      "satellitesCount": 13,
       "altitudeM": 40,
       "speedKmh": 45,
       "directionDeg": 110
