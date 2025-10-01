@@ -86,14 +86,17 @@ func (c *Client) ListObjectCoordinates(
 			err = fmt.Errorf("trusttrack: list object coordinates: %w", err)
 		}
 	}()
+	cfg := c.config.with(opts...)
 	requestPath := "/objects/" + request.ObjectID + "/coordinates"
-	httpResponse, err := c.doRequest(
-		ctx,
-		http.MethodGet,
-		requestPath,
-		request.Query(),
-		opts...,
-	)
+	fullURL := cfg.baseURL + requestPath
+	httpRequest, err := http.NewRequestWithContext(ctx, http.MethodGet, fullURL, nil)
+	if err != nil {
+		return nil, err
+	}
+	httpRequest.URL.RawQuery = request.Query().Encode()
+	httpRequest.Header.Set("User-Agent", getUserAgent())
+	httpRequest.Header.Set("Accept", "application/json")
+	httpResponse, err := cfg.httpClient().Do(httpRequest)
 	if err != nil {
 		return nil, err
 	}

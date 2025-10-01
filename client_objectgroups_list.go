@@ -55,13 +55,16 @@ func (c *Client) ListObjectGroups(
 			err = fmt.Errorf("trusttrack: list object groups: %w", err)
 		}
 	}()
-	httpResponse, err := c.doRequest(
-		ctx,
-		http.MethodGet,
-		"/object-groups",
-		request.Query(),
-		opts...,
-	)
+	cfg := c.config.with(opts...)
+	fullURL := cfg.baseURL + "/object-groups"
+	httpRequest, err := http.NewRequestWithContext(ctx, http.MethodGet, fullURL, nil)
+	if err != nil {
+		return nil, err
+	}
+	httpRequest.URL.RawQuery = request.Query().Encode()
+	httpRequest.Header.Set("User-Agent", getUserAgent())
+	httpRequest.Header.Set("Accept", "application/json")
+	httpResponse, err := cfg.httpClient().Do(httpRequest)
 	if err != nil {
 		return nil, err
 	}

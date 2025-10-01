@@ -38,13 +38,16 @@ func (c *Client) ListObjects(
 			err = fmt.Errorf("trusttrack: list objects: %w", err)
 		}
 	}()
-	httpResponse, err := c.doRequest(
-		ctx,
-		http.MethodGet,
-		"/objects",
-		request.Query(),
-		opts...,
-	)
+	cfg := c.config.with(opts...)
+	fullURL := cfg.baseURL + "/objects"
+	httpRequest, err := http.NewRequestWithContext(ctx, http.MethodGet, fullURL, nil)
+	if err != nil {
+		return nil, err
+	}
+	httpRequest.URL.RawQuery = request.Query().Encode()
+	httpRequest.Header.Set("User-Agent", getUserAgent())
+	httpRequest.Header.Set("Accept", "application/json")
+	httpResponse, err := cfg.httpClient().Do(httpRequest)
 	if err != nil {
 		return nil, err
 	}
