@@ -42,13 +42,16 @@ func (c *Client) GetObjectGroup(
 			err = fmt.Errorf("trusttrack: get object group: %w", err)
 		}
 	}()
-	httpResponse, err := c.doRequest(
-		ctx,
-		http.MethodGet,
-		fmt.Sprintf("/object-groups/%s", url.PathEscape(request.ExternalID)),
-		request.Query(),
-		opts...,
-	)
+	cfg := c.config.with(opts...)
+	fullURL := cfg.baseURL + fmt.Sprintf("/object-groups/%s", url.PathEscape(request.ExternalID))
+	httpRequest, err := http.NewRequestWithContext(ctx, http.MethodGet, fullURL, nil)
+	if err != nil {
+		return nil, err
+	}
+	httpRequest.URL.RawQuery = request.Query().Encode()
+	httpRequest.Header.Set("User-Agent", getUserAgent())
+	httpRequest.Header.Set("Accept", "application/json")
+	httpResponse, err := cfg.httpClient().Do(httpRequest)
 	if err != nil {
 		return nil, err
 	}

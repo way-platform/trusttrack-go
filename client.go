@@ -1,10 +1,7 @@
 package trusttrack
 
 import (
-	"context"
-	"fmt"
 	"net/http"
-	"net/url"
 	"runtime/debug"
 	"time"
 )
@@ -27,11 +24,12 @@ func NewClient(opts ...ClientOption) (*Client, error) {
 
 // clientConfig is the config for a [Client].
 type clientConfig struct {
-	baseURL    string
-	apiKey     string
-	debug      bool
-	timeout    time.Duration
-	retryCount int
+	baseURL      string
+	apiKey       string
+	debug        bool
+	timeout      time.Duration
+	retryCount   int
+	interceptors []func(http.RoundTripper) http.RoundTripper
 }
 
 func newClientConfig() clientConfig {
@@ -49,19 +47,38 @@ func (cc clientConfig) with(opts ...ClientOption) clientConfig {
 	return cc
 }
 
-func (cc clientConfig) client() *http.Client {
+func (cc clientConfig) httpClient() *http.Client {
 	transport := http.DefaultTransport
-	if cc.retryCount > 0 {
-		transport = &retryTransport{next: transport}
-	}
+	// Add debug transport if debug is enabled (innermost).
 	if cc.debug {
-		transport = &debugTransport{next: transport}
+		transport = &debugTransport{
+			next: transport,
+		}
 	}
-	rt := &http.Client{
+	// Add API key transport if API key is configured.
+	if cc.apiKey != "" {
+		transport = &apiKeyTransport{
+			apiKey:    cc.apiKey,
+			transport: transport,
+		}
+	}
+	// Add interceptor transport if interceptors are configured.
+	if len(cc.interceptors) > 0 {
+		transport = &interceptorTransport{
+			interceptors: cc.interceptors,
+			next:         transport,
+		}
+	}
+	// Add retry transport if retry count > 0 (outermost).
+	if cc.retryCount > 0 {
+		transport = &retryTransport{
+			next: transport,
+		}
+	}
+	return &http.Client{
 		Timeout:   cc.timeout,
 		Transport: transport,
 	}
-	return rt
 }
 
 // ClientOption is a function that configures the [clientConfig].
@@ -102,31 +119,11 @@ func WithDebug(debug bool) ClientOption {
 	}
 }
 
-func (c *Client) doRequest(
-	ctx context.Context,
-	method string,
-	requestPath string,
-	query url.Values,
-	opts ...ClientOption,
-) (_ *http.Response, err error) {
-	defer func() {
-		if err != nil {
-			err = fmt.Errorf("http request: %w", err)
-		}
-	}()
-	cfg := c.config.with(opts...)
-	fullURL := cfg.baseURL + requestPath
-	request, err := http.NewRequestWithContext(ctx, method, fullURL, nil)
-	if err != nil {
-		return nil, err
+// WithInterceptor adds a request interceptor for the [Client].
+func WithInterceptor(interceptor func(http.RoundTripper) http.RoundTripper) ClientOption {
+	return func(c *clientConfig) {
+		c.interceptors = append(c.interceptors, interceptor)
 	}
-	if cfg.apiKey != "" {
-		query.Set("api_key", cfg.apiKey)
-	}
-	request.URL.RawQuery = query.Encode()
-	request.Header.Set("User-Agent", getUserAgent())
-	request.Header.Set("Accept", "application/json")
-	return cfg.client().Do(request)
 }
 
 func getUserAgent() string {

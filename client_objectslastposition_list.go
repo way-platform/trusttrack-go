@@ -57,13 +57,16 @@ func (c *Client) ListObjectsLastPosition(
 			err = fmt.Errorf("trusttrack: list objects last position: %w", err)
 		}
 	}()
-	httpResponse, err := c.doRequest(
-		ctx,
-		http.MethodGet,
-		"/objects-last-coordinate",
-		request.Query(),
-		opts...,
-	)
+	cfg := c.config.with(opts...)
+	fullURL := cfg.baseURL + "/objects-last-coordinate"
+	httpRequest, err := http.NewRequestWithContext(ctx, http.MethodGet, fullURL, nil)
+	if err != nil {
+		return nil, err
+	}
+	httpRequest.URL.RawQuery = request.Query().Encode()
+	httpRequest.Header.Set("User-Agent", getUserAgent())
+	httpRequest.Header.Set("Accept", "application/json")
+	httpResponse, err := cfg.httpClient().Do(httpRequest)
 	if err != nil {
 		return nil, err
 	}
