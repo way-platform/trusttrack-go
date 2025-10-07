@@ -1,0 +1,60 @@
+edition = "2023";
+
+package wayplatform.connect.trusttrack.v1;
+
+import "buf/validate/validate.proto";
+
+// A driver.
+message Driver {
+  // The ID of the driver.
+  string id = 1 [(buf.validate.field).required = true];
+
+  // The first name of the driver.
+  string first_name = 2;
+
+  // The last name of the driver.
+  string last_name = 3;
+
+  // The address of the driver.
+  string address = 4;
+
+  // The phone number of the driver.
+  string phone = 5;
+
+  // The identifiers for the driver.
+  repeated DriverIdentifier identifiers = 6;
+}
+
+// A driver identifier.
+message DriverIdentifier {
+  // The identifier code.
+  string identifier = 1;
+
+  // The type of identifier.
+  IdentifierType type = 2;
+
+  // Unknown identifier type value.
+  // Set when type is IDENTIFIER_TYPE_UNKNOWN.
+  string unknown_identifier_type = 3;
+
+  // The type of identifier.
+  enum IdentifierType {
+    // Unspecified identifier type (unused).
+    IDENTIFIER_TYPE_UNSPECIFIED = 0;
+
+    // Unknown identifier type.
+    IDENTIFIER_TYPE_UNKNOWN = 1;
+
+    // DLT identifier.
+    DLT = 2;
+
+    // Tachograph identifier.
+    TACHOGRAPH = 3;
+
+    // Wireless identifier.
+    WIRELESS = 4;
+
+    // iButton identifier.
+    IBUTTON = 5;
+  }
+}
