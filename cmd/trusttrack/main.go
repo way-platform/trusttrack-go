@@ -65,6 +65,11 @@ func newRootCommand() *cobra.Command {
 	cmd.AddCommand(newListObjectGroupsCommand())
 	cmd.AddCommand(newGetObjectGroupCommand())
 	cmd.AddGroup(&cobra.Group{
+		ID:    "drivers",
+		Title: "Drivers",
+	})
+	cmd.AddCommand(newListDriversCommand())
+	cmd.AddGroup(&cobra.Group{
 		ID:    "coordinates",
 		Title: "Coordinates",
 	})
@@ -265,6 +270,46 @@ func newGetObjectGroupCommand() *cobra.Command {
 		}
 		fmt.Println(protojson.Format(response.ObjectGroup))
 		validate(cmd, response.ObjectGroup)
+		return nil
+	}
+	return cmd
+}
+
+func newListDriversCommand() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:     "drivers",
+		Short:   "List drivers",
+		GroupID: "drivers",
+	}
+	identifierType := cmd.Flags().String("identifier-type", "", "Filter by identifier type")
+	identifier := cmd.Flags().String("identifier", "", "Filter by identifier value")
+	cmd.RunE = func(cmd *cobra.Command, args []string) error {
+		if *identifier != "" && *identifierType == "" {
+			return fmt.Errorf("identifier-type is required when identifier is provided")
+		}
+		client, err := newClient(cmd)
+		if err != nil {
+			return err
+		}
+		request := trusttrack.ListDriversRequest{
+			Limit:          1000,
+			IdentifierType: *identifierType,
+			Identifier:     *identifier,
+		}
+		for {
+			response, err := client.ListDrivers(cmd.Context(), &request)
+			if err != nil {
+				return err
+			}
+			for _, driver := range response.Drivers {
+				fmt.Println(protojson.Format(driver))
+				validate(cmd, driver)
+			}
+			if response.ContinuationToken == "" {
+				break
+			}
+			request.ContinuationToken = response.ContinuationToken
+		}
 		return nil
 	}
 	return cmd
