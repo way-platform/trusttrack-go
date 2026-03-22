@@ -46,7 +46,6 @@ When developing this SDK, use the API docs and specs:
 ## Protobuf schemas
 
 - For enums:
-
   - always use `_UNSPECIFIED` as the first value. This value is always unused.
   - always use `_UNKNOWN` as the second value, used when the API value is not (yet) represented in the enum.
   - add a second `string unknown_<enum_name>` field, used when the API value is not (yet) represented in the enum.
@@ -55,11 +54,29 @@ When developing this SDK, use the API docs and specs:
 
 - Always suffix fields with a physical unit, when applicable. E.g. `duration_s` and `odometer_km`.
 
-## CLI tool
+## CLI Architecture
 
-- The CLI tool organizes subcommands by entity using `cobra.Group`.
+The CLI is split into two layers to keep credential storage pluggable:
 
-- The CLI tool always fully paginates results and uses the largest allowed page size.
+```
+cli/
+├── cli.go       # Store interface, Credentials, FileStore, Options
+└── command.go   # NewCommand() — full command tree
+cmd/trusttrack/
+└── main.go      # Thin wrapper: wires FileStore to XDG paths
+```
+
+- `cli.Store` — interface with `Read(any)`, `Write(any)`, `Clear()` methods
+- `cli.NewCommand(...Option)` — builds the Cobra command tree; receives stores via functional options (`WithCredentialStore`)
+- `cmd/trusttrack/main.go` — only wires `FileStore` instances and calls `cli.NewCommand()`
+
+This separation lets consumers embed the CLI in a larger tool or swap the storage backend (e.g. use an in-memory store in tests, or a keychain-backed store) without forking.
+
+### Conventions
+
+- Subcommands are organized by entity using `cobra.Group`
+- Fully paginate results using the largest allowed page size
+- Flat command structure: `objects`, `trips`, not `objects list`
 
 ## Code style
 
