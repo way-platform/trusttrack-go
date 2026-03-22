@@ -26,7 +26,6 @@ func NewCommand(opts ...Option) *cobra.Command {
 		Use:   "trusttrack",
 		Short: "TrustTrack API CLI",
 	}
-	cmd.PersistentFlags().Bool("debug", false, "Enable debug logging")
 	cmd.PersistentFlags().Bool("validate", false, "Enable message validation")
 	cmd.AddGroup(&cobra.Group{ID: "objects", Title: "Objects"})
 	cmd.AddCommand(newListObjectsCommand(&cfg))
@@ -117,7 +116,6 @@ func newLogoutCommand(cfg *config) *cobra.Command {
 }
 
 func newClient(cmd *cobra.Command, cfg *config) (*trusttrack.Client, error) {
-	debug, _ := cmd.Root().PersistentFlags().GetBool("debug")
 	var creds Credentials
 	if cfg.credentialStore != nil {
 		if err := cfg.credentialStore.Read(&creds); err != nil {
@@ -127,10 +125,13 @@ func newClient(cmd *cobra.Command, cfg *config) (*trusttrack.Client, error) {
 			return nil, fmt.Errorf("read credentials: %w", err)
 		}
 	}
-	return trusttrack.NewClient(
-		trusttrack.WithDebug(debug),
+	opts := []trusttrack.ClientOption{
 		trusttrack.WithAPIKey(creds.APIKey),
-	)
+	}
+	if cfg.httpClient != nil {
+		opts = append(opts, trusttrack.WithHTTPClient(cfg.httpClient))
+	}
+	return trusttrack.NewClient(opts...)
 }
 
 func newListObjectsCommand(cfg *config) *cobra.Command {
@@ -435,7 +436,7 @@ func printJSON(_ *cobra.Command, msg proto.Message) {
 }
 
 func validate(cmd *cobra.Command, msg proto.Message) {
-	if v, _ := cmd.Root().PersistentFlags().GetBool("validate"); v {
+	if v, _ := cmd.Flags().GetBool("validate"); v {
 		style := lipgloss.NewStyle().Foreground(lipgloss.Red)
 		if err := protovalidate.Validate(msg); err != nil {
 			fmt.Fprintf(os.Stderr, "%s\n", style.Render(fmt.Sprintf("%v", err)))

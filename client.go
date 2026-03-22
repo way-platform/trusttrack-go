@@ -26,7 +26,7 @@ func NewClient(opts ...ClientOption) (*Client, error) {
 type clientConfig struct {
 	baseURL      string
 	apiKey       string
-	debug        bool
+	baseHTTPClient *http.Client
 	timeout      time.Duration
 	retryCount   int
 	interceptors []func(http.RoundTripper) http.RoundTripper
@@ -48,12 +48,12 @@ func (cc clientConfig) with(opts ...ClientOption) clientConfig {
 }
 
 func (cc clientConfig) httpClient() *http.Client {
-	transport := http.DefaultTransport
-	// Add debug transport if debug is enabled (innermost).
-	if cc.debug {
-		transport = &debugTransport{
-			next: transport,
-		}
+	var transport http.RoundTripper
+	if cc.baseHTTPClient != nil {
+		transport = cc.baseHTTPClient.Transport
+	}
+	if transport == nil {
+		transport = http.DefaultTransport
 	}
 	// Add API key transport if API key is configured.
 	if cc.apiKey != "" {
@@ -112,10 +112,11 @@ func WithTimeout(timeout time.Duration) ClientOption {
 	}
 }
 
-// WithDebug toggles debug mode (request/response dumps to stderr)..
-func WithDebug(debug bool) ClientOption {
+// WithHTTPClient sets a custom HTTP client whose transport is used as the
+// base for the SDK's transport chain.
+func WithHTTPClient(httpClient *http.Client) ClientOption {
 	return func(c *clientConfig) {
-		c.debug = debug
+		c.baseHTTPClient = httpClient
 	}
 }
 
