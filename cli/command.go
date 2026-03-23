@@ -100,9 +100,8 @@ func newLoginCommand(cfg *config) *cobra.Command {
 
 func newLogoutCommand(cfg *config) *cobra.Command {
 	return &cobra.Command{
-		Use:     "logout",
-		Short:   "Logout from the TrustTrack API",
-		GroupID: "auth",
+		Use:   "logout",
+		Short: "Logout from the TrustTrack API",
 		RunE: func(cmd *cobra.Command, _ []string) error {
 			if cfg.credentialStore != nil {
 				if err := cfg.credentialStore.Clear(); err != nil {
