@@ -11,7 +11,6 @@ import (
 	"charm.land/lipgloss/v2"
 	"github.com/spf13/cobra"
 	"github.com/way-platform/trusttrack-go"
-	trusttrackv1 "github.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1"
 	"golang.org/x/term"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
@@ -69,27 +68,31 @@ func newLoginCommand(cfg *config) *cobra.Command {
 	apiKey := cmd.Flags().String("api-key", "", "API key for authentication")
 	cmd.RunE = func(cmd *cobra.Command, _ []string) error {
 		// Try loading stored credentials first.
-		creds := &trusttrackv1.Credentials{}
+		creds := &Credentials{}
 		if cfg.credentialStore != nil {
-			if err := cfg.credentialStore.Read(creds); err != nil && !errors.Is(err, fs.ErrNotExist) {
+			loaded, err := cfg.credentialStore.Load()
+			if err != nil && !errors.Is(err, fs.ErrNotExist) {
 				return fmt.Errorf("read credentials: %w", err)
+			}
+			if loaded != nil {
+				creds = loaded
 			}
 		}
 		// Override with flag.
 		if *apiKey != "" {
-			creds.SetApiKey(*apiKey)
+			creds.APIKey = *apiKey
 		}
 		// Prompt for missing API key.
-		if creds.GetApiKey() == "" {
+		if creds.APIKey == "" {
 			val, err := promptSecret(cmd, "Enter API key: ")
 			if err != nil {
 				return err
 			}
-			creds.SetApiKey(val)
+			creds.APIKey = val
 		}
 		// Persist credentials.
 		if cfg.credentialStore != nil {
-			if err := cfg.credentialStore.Write(creds); err != nil {
+			if err := cfg.credentialStore.Save(creds); err != nil {
 				return fmt.Errorf("write credentials: %w", err)
 			}
 		}
@@ -116,22 +119,31 @@ func newLogoutCommand(cfg *config) *cobra.Command {
 }
 
 func newClient(cmd *cobra.Command, cfg *config) (*trusttrack.Client, error) {
-	creds := &trusttrackv1.Credentials{}
-	if cfg.credentialStore != nil {
-		if err := cfg.credentialStore.Read(creds); err != nil {
-			if errors.Is(err, fs.ErrNotExist) {
-				return nil, fmt.Errorf("no credentials found, please login using `trusttrack auth login`")
-			}
-			return nil, fmt.Errorf("read credentials: %w", err)
-		}
+	creds, err := resolveCredentials(cfg)
+	if err != nil {
+		return nil, err
 	}
 	opts := []trusttrack.ClientOption{
-		trusttrack.WithAPIKey(creds.GetApiKey()),
+		trusttrack.WithAPIKey(creds.APIKey),
 	}
 	if cfg.httpClient != nil {
 		opts = append(opts, trusttrack.WithHTTPClient(cfg.httpClient))
 	}
 	return trusttrack.NewClient(opts...)
+}
+
+func resolveCredentials(cfg *config) (*Credentials, error) {
+	if cfg.credentialStore == nil {
+		return nil, fmt.Errorf("no credential source configured")
+	}
+	creds, err := cfg.credentialStore.Load()
+	if err != nil {
+		if errors.Is(err, fs.ErrNotExist) {
+			return nil, fmt.Errorf("no credentials found, please login using `trusttrack auth login`")
+		}
+		return nil, fmt.Errorf("read credentials: %w", err)
+	}
+	return creds, nil
 }
 
 func newListObjectsCommand(cfg *config) *cobra.Command {

@@ -18,7 +18,7 @@ var debug bool
 func main() {
 	credPath, _ := xdg.ConfigFile("trusttrack-go/credentials.json")
 	cmd := cli.NewCommand(
-		cli.WithCredentialStore(cli.NewFileStore(credPath)),
+		cli.WithCredentialStore(cli.NewCredentialFileStore(credPath)),
 		cli.WithHTTPClient(&http.Client{
 			Transport: &trusttrack.DebugTransport{
 				Enabled: &debug,
