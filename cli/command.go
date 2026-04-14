@@ -10,10 +10,12 @@ import (
 	"buf.build/go/protovalidate"
 	"charm.land/lipgloss/v2"
 	"github.com/spf13/cobra"
-	"github.com/way-platform/trusttrack-go"
+	trusttrack "github.com/way-platform/trusttrack-go"
+	trusttrackv1 "github.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1"
 	"golang.org/x/term"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 // NewCommand builds the full CLI command tree for the TrustTrack SDK.
@@ -157,11 +159,11 @@ func newListObjectsCommand(cfg *config) *cobra.Command {
 		if err != nil {
 			return err
 		}
-		response, err := client.ListObjects(cmd.Context(), &trusttrack.ListObjectsRequest{})
+		response, err := client.ListObjects(cmd.Context(), trusttrackv1.ListObjectsRequest_builder{}.Build())
 		if err != nil {
 			return err
 		}
-		for _, object := range response.Objects {
+		for _, object := range response.GetObjects() {
 			printJSON(cmd, object)
 			validate(cmd, object)
 		}
@@ -181,22 +183,22 @@ func newListObjectsLastPositionCommand(cfg *config) *cobra.Command {
 		if err != nil {
 			return err
 		}
-		request := trusttrack.ListObjectsLastPositionRequest{
-			Limit: 1000,
-		}
+		request := trusttrackv1.ListObjectsLastPositionRequest_builder{
+			Limit: new(int32(1000)),
+		}.Build()
 		for {
-			response, err := client.ListObjectsLastPosition(cmd.Context(), &request)
+			response, err := client.ListObjectsLastPosition(cmd.Context(), request)
 			if err != nil {
 				return err
 			}
-			for _, object := range response.Objects {
+			for _, object := range response.GetObjects() {
 				printJSON(cmd, object)
 				validate(cmd, object)
 			}
-			request.ContinuationToken = response.ContinuationToken
-			if request.ContinuationToken == "" {
+			if response.GetContinuationToken() == "" {
 				break
 			}
+			request.SetContinuationToken(response.GetContinuationToken())
 		}
 		return nil
 	}
@@ -229,27 +231,27 @@ func newListObjectCoordinatesCommand(cfg *config) *cobra.Command {
 		if err != nil {
 			return err
 		}
-		request := trusttrack.ListObjectCoordinatesRequest{
-			ObjectID:              args[0],
-			FromTime:              *fromTime,
-			ToTime:                *toTime,
-			Limit:                 1000,
-			IncludeGeozones:       *includeGeozones,
-			IncludeTireParameters: *includeTireParameters,
-		}
+		request := trusttrackv1.ListObjectCoordinatesRequest_builder{
+			ObjectId:              new(args[0]),
+			FromTime:              timestamppb.New(*fromTime),
+			ToTime:                timestamppb.New(*toTime),
+			Limit:                 new(int32(1000)),
+			IncludeGeozones:       new(*includeGeozones),
+			IncludeTireParameters: new(*includeTireParameters),
+		}.Build()
 		for {
-			response, err := client.ListObjectCoordinates(cmd.Context(), &request)
+			response, err := client.ListObjectCoordinates(cmd.Context(), request)
 			if err != nil {
 				return err
 			}
-			for _, coordinate := range response.Coordinates {
+			for _, coordinate := range response.GetCoordinates() {
 				printJSON(cmd, coordinate)
 				validate(cmd, coordinate)
 			}
-			if response.ContinuationToken == "" {
+			if response.GetContinuationToken() == "" {
 				break
 			}
-			request.ContinuationToken = response.ContinuationToken
+			request.SetContinuationToken(response.GetContinuationToken())
 		}
 		return nil
 	}
@@ -267,22 +269,22 @@ func newListObjectGroupsCommand(cfg *config) *cobra.Command {
 		if err != nil {
 			return err
 		}
-		request := trusttrack.ListObjectGroupsRequest{
-			Limit: 1000,
-		}
+		request := trusttrackv1.ListObjectGroupsRequest_builder{
+			Limit: new(int32(1000)),
+		}.Build()
 		for {
-			response, err := client.ListObjectGroups(cmd.Context(), &request)
+			response, err := client.ListObjectGroups(cmd.Context(), request)
 			if err != nil {
 				return err
 			}
-			for _, objectGroup := range response.ObjectGroups {
+			for _, objectGroup := range response.GetObjectGroups() {
 				printJSON(cmd, objectGroup)
 				validate(cmd, objectGroup)
 			}
-			request.ContinuationToken = response.ContinuationToken
-			if request.ContinuationToken == "" {
+			if response.GetContinuationToken() == "" {
 				break
 			}
+			request.SetContinuationToken(response.GetContinuationToken())
 		}
 		return nil
 	}
@@ -301,15 +303,15 @@ func newGetObjectGroupCommand(cfg *config) *cobra.Command {
 		if err != nil {
 			return err
 		}
-		request := trusttrack.GetObjectGroupRequest{
-			ExternalID: args[0],
-		}
-		response, err := client.GetObjectGroup(cmd.Context(), &request)
+		response, err := client.GetObjectGroup(cmd.Context(),
+			trusttrackv1.GetObjectGroupRequest_builder{
+				ExternalId: new(args[0]),
+			}.Build())
 		if err != nil {
 			return err
 		}
-		printJSON(cmd, response.ObjectGroup)
-		validate(cmd, response.ObjectGroup)
+		printJSON(cmd, response.GetObjectGroup())
+		validate(cmd, response.GetObjectGroup())
 		return nil
 	}
 	return cmd
@@ -331,24 +333,24 @@ func newListDriversCommand(cfg *config) *cobra.Command {
 		if err != nil {
 			return err
 		}
-		request := trusttrack.ListDriversRequest{
-			Limit:          1000,
-			IdentifierType: *identifierType,
-			Identifier:     *identifier,
-		}
+		request := trusttrackv1.ListDriversRequest_builder{
+			Limit:          new(int32(1000)),
+			IdentifierType: new(*identifierType),
+			Identifier:     new(*identifier),
+		}.Build()
 		for {
-			response, err := client.ListDrivers(cmd.Context(), &request)
+			response, err := client.ListDrivers(cmd.Context(), request)
 			if err != nil {
 				return err
 			}
-			for _, driver := range response.Drivers {
+			for _, driver := range response.GetDrivers() {
 				printJSON(cmd, driver)
 				validate(cmd, driver)
 			}
-			if response.ContinuationToken == "" {
+			if response.GetContinuationToken() == "" {
 				break
 			}
-			request.ContinuationToken = response.ContinuationToken
+			request.SetContinuationToken(response.GetContinuationToken())
 		}
 		return nil
 	}
@@ -362,32 +364,39 @@ func newListTripsCommand(cfg *config) *cobra.Command {
 		GroupID: "trips",
 		Args:    cobra.ExactArgs(1),
 	}
-	fromTime := cmd.Flags().Time("from", time.Now().Add(-24*time.Hour), []string{time.RFC3339}, "From time (RFC3339 format)")
-	toTime := cmd.Flags().Time("to", time.Time{}, []string{time.RFC3339}, "To time (RFC3339 format, optional)")
+	fromTime := cmd.Flags().Time(
+		"from", time.Now().Add(-24*time.Hour), []string{time.RFC3339}, "From time (RFC3339 format)",
+	)
+	toTime := cmd.Flags().Time(
+		"to", time.Time{}, []string{time.RFC3339}, "To time (RFC3339 format, optional)",
+	)
 	cmd.RunE = func(cmd *cobra.Command, args []string) error {
 		client, err := newClient(cmd, cfg)
 		if err != nil {
 			return err
 		}
-		request := trusttrack.ListTripsRequest{
-			ObjectID: args[0],
-			FromTime: *fromTime,
-			ToTime:   *toTime,
-			Limit:    1000,
+		b := trusttrackv1.ListTripsRequest_builder{
+			ObjectId: new(args[0]),
+			FromTime: timestamppb.New(*fromTime),
+			Limit:    new(int32(1000)),
 		}
+		if !toTime.IsZero() {
+			b.ToTime = timestamppb.New(*toTime)
+		}
+		request := b.Build()
 		for {
-			response, err := client.ListTrips(cmd.Context(), &request)
+			response, err := client.ListTrips(cmd.Context(), request)
 			if err != nil {
 				return err
 			}
-			for _, trip := range response.Trips {
+			for _, trip := range response.GetTrips() {
 				printJSON(cmd, trip)
 				validate(cmd, trip)
 			}
-			if response.ContinuationToken == "" {
+			if response.GetContinuationToken() == "" {
 				break
 			}
-			request.ContinuationToken = response.ContinuationToken
+			request.SetContinuationToken(response.GetContinuationToken())
 		}
 		return nil
 	}
@@ -401,32 +410,36 @@ func newListFuelEventsCommand(cfg *config) *cobra.Command {
 		GroupID: "fuel-events",
 		Args:    cobra.ExactArgs(1),
 	}
-	fromTime := cmd.Flags().Time("from", time.Now().Add(-7*24*time.Hour), []string{time.RFC3339}, "From time (RFC3339 format)")
-	toTime := cmd.Flags().Time("to", time.Now(), []string{time.RFC3339}, "To time (RFC3339 format)")
+	fromTime := cmd.Flags().Time(
+		"from", time.Now().Add(-7*24*time.Hour), []string{time.RFC3339}, "From time (RFC3339 format)",
+	)
+	toTime := cmd.Flags().Time(
+		"to", time.Now(), []string{time.RFC3339}, "To time (RFC3339 format)",
+	)
 	cmd.RunE = func(cmd *cobra.Command, args []string) error {
 		client, err := newClient(cmd, cfg)
 		if err != nil {
 			return err
 		}
-		request := trusttrack.ListFuelEventsRequest{
-			ObjectID: args[0],
-			FromTime: *fromTime,
-			ToTime:   *toTime,
-			Limit:    1000,
-		}
+		request := trusttrackv1.ListFuelEventsRequest_builder{
+			ObjectId: new(args[0]),
+			FromTime: timestamppb.New(*fromTime),
+			ToTime:   timestamppb.New(*toTime),
+			Limit:    new(int32(1000)),
+		}.Build()
 		for {
-			response, err := client.ListFuelEvents(cmd.Context(), &request)
+			response, err := client.ListFuelEvents(cmd.Context(), request)
 			if err != nil {
 				return err
 			}
-			for _, fuelEvent := range response.FuelEvents {
+			for _, fuelEvent := range response.GetFuelEvents() {
 				printJSON(cmd, fuelEvent)
 				validate(cmd, fuelEvent)
 			}
-			if response.ContinuationToken == "" {
+			if response.GetContinuationToken() == "" {
 				break
 			}
-			request.ContinuationToken = response.ContinuationToken
+			request.SetContinuationToken(response.GetContinuationToken())
 		}
 		return nil
 	}

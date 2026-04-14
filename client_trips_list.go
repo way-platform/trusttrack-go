@@ -14,69 +14,39 @@ import (
 	trusttrackv1 "github.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1"
 )
 
-// ListTripsRequest is the request for the [Client.ListTrips] method.
-type ListTripsRequest struct {
-	// The ID of the object to get trips for.
-	ObjectID string `json:"objectId"`
-	// The start time for the trip search.
-	FromTime time.Time `json:"fromDatetime"`
-	// The end time for the trip search (optional).
-	ToTime time.Time `json:"toDatetime,omitzero"`
-	// The limit of the number of trips to return.
-	// Default: 100.
-	Limit int `json:"limit"`
-	// The continuation token to use to get the next page of results.
-	ContinuationToken string `json:"continuationToken,omitempty"`
-}
-
-// Query returns the query parameters for the request.
-func (r *ListTripsRequest) Query() url.Values {
-	q := url.Values{}
-	q.Set("version", "1")
-	if !r.FromTime.IsZero() {
-		q.Set("from_datetime", r.FromTime.UTC().Format(time.RFC3339))
-	}
-	if !r.ToTime.IsZero() {
-		q.Set("to_datetime", r.ToTime.UTC().Format(time.RFC3339))
-	}
-	if r.Limit > 0 {
-		q.Set("limit", strconv.Itoa(r.Limit))
-	}
-	if r.ContinuationToken != "" {
-		q.Set("continuation_token", r.ContinuationToken)
-	}
-	return q
-}
-
-// ListTripsResponse is the response for the [Client.ListTrips] method.
-type ListTripsResponse struct {
-	// The trips for the object.
-	Trips []*trusttrackv1.Trip `json:"trips"`
-	// The continuation token to use to get the next page of results.
-	ContinuationToken string `json:"continuationToken,omitempty"`
-}
-
 // ListTrips lists trips for an object.
 func (c *Client) ListTrips(
 	ctx context.Context,
-	request *ListTripsRequest,
-	opts ...ClientOption,
-) (_ *ListTripsResponse, err error) {
+	request *trusttrackv1.ListTripsRequest,
+) (_ *trusttrackv1.ListTripsResponse, err error) {
 	defer func() {
 		if err != nil {
 			err = fmt.Errorf("trusttrack: list trips: %w", err)
 		}
 	}()
-	cfg := c.config.with(opts...)
-	fullURL := cfg.baseURL + fmt.Sprintf("/objects/%s/trips", request.ObjectID)
+	q := url.Values{}
+	q.Set("version", "1")
+	if request.HasFromTime() {
+		q.Set("from_datetime", request.GetFromTime().AsTime().UTC().Format(time.RFC3339))
+	}
+	if request.HasToTime() {
+		q.Set("to_datetime", request.GetToTime().AsTime().UTC().Format(time.RFC3339))
+	}
+	if request.GetLimit() > 0 {
+		q.Set("limit", strconv.Itoa(int(request.GetLimit())))
+	}
+	if request.GetContinuationToken() != "" {
+		q.Set("continuation_token", request.GetContinuationToken())
+	}
+	fullURL := c.config.baseURL + fmt.Sprintf("/objects/%s/trips", request.GetObjectId())
 	httpRequest, err := http.NewRequestWithContext(ctx, http.MethodGet, fullURL, nil)
 	if err != nil {
 		return nil, err
 	}
-	httpRequest.URL.RawQuery = request.Query().Encode()
+	httpRequest.URL.RawQuery = q.Encode()
 	httpRequest.Header.Set("User-Agent", getUserAgent())
 	httpRequest.Header.Set("Accept", "application/json")
-	httpResponse, err := cfg.httpClient().Do(httpRequest)
+	httpResponse, err := c.config.httpClient().Do(httpRequest)
 	if err != nil {
 		return nil, err
 	}
@@ -91,14 +61,14 @@ func (c *Client) ListTrips(
 	if err := json.Unmarshal(responseData, &responseBody); err != nil {
 		return nil, err
 	}
-	response := ListTripsResponse{
-		Trips: make([]*trusttrackv1.Trip, 0, len(responseBody.Trips)),
-	}
+	resp := &trusttrackv1.ListTripsResponse{}
+	trips := make([]*trusttrackv1.Trip, 0, len(responseBody.Trips))
 	for _, trip := range responseBody.Trips {
-		response.Trips = append(response.Trips, tripToProto(&trip))
+		trips = append(trips, tripToProto(&trip))
 	}
+	resp.SetTrips(trips)
 	if responseBody.ContinuationToken != nil {
-		response.ContinuationToken = (*responseBody.ContinuationToken).Format(time.RFC3339)
+		resp.SetContinuationToken((*responseBody.ContinuationToken).Format(time.RFC3339))
 	}
-	return &response, nil
+	return resp, nil
 }

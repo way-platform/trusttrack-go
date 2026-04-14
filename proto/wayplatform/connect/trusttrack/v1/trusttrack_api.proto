@@ -1,0 +1,206 @@
+edition = "2023";
+
+package wayplatform.connect.trusttrack.v1;
+
+import "google/protobuf/timestamp.proto";
+import "wayplatform/connect/trusttrack/v1/coordinate.proto";
+import "wayplatform/connect/trusttrack/v1/driver.proto";
+import "wayplatform/connect/trusttrack/v1/fuel_event.proto";
+import "wayplatform/connect/trusttrack/v1/object.proto";
+import "wayplatform/connect/trusttrack/v1/object_group.proto";
+import "wayplatform/connect/trusttrack/v1/trip.proto";
+
+// TrustTrackApi is the interface definition for the TrustTrack Fleet Management API.
+service TrustTrackApi {
+  // ListDrivers lists all drivers.
+  rpc ListDrivers(ListDriversRequest) returns (ListDriversResponse);
+
+  // ListFuelEvents lists fuel events for an object.
+  rpc ListFuelEvents(ListFuelEventsRequest) returns (ListFuelEventsResponse);
+
+  // GetObjectGroup gets a specific object group by external ID.
+  rpc GetObjectGroup(GetObjectGroupRequest) returns (GetObjectGroupResponse);
+
+  // ListObjectGroups lists all object groups.
+  rpc ListObjectGroups(ListObjectGroupsRequest) returns (ListObjectGroupsResponse);
+
+  // ListObjectCoordinates lists object coordinates for a specified time period.
+  rpc ListObjectCoordinates(ListObjectCoordinatesRequest) returns (ListObjectCoordinatesResponse);
+
+  // ListObjects lists all objects.
+  rpc ListObjects(ListObjectsRequest) returns (ListObjectsResponse);
+
+  // ListObjectsLastPosition lists all objects with their last position.
+  rpc ListObjectsLastPosition(ListObjectsLastPositionRequest) returns (ListObjectsLastPositionResponse);
+
+  // ListTrips lists trips for an object.
+  rpc ListTrips(ListTripsRequest) returns (ListTripsResponse);
+}
+
+// Request for ListDrivers.
+message ListDriversRequest {
+  // Max results to return (default 100, max 1000).
+  int32 limit = 1;
+
+  // Continuation token from a previous response.
+  string continuation_token = 2;
+
+  // Filter by identifier type.
+  string identifier_type = 3;
+
+  // Filter by identifier value.
+  string identifier = 4;
+}
+
+// Response for ListDrivers.
+message ListDriversResponse {
+  // The drivers.
+  repeated Driver drivers = 1;
+
+  // Continuation token for the next page, empty when no more results.
+  string continuation_token = 2;
+}
+
+// Request for ListFuelEvents.
+message ListFuelEventsRequest {
+  // The ID of the object to get fuel events for.
+  string object_id = 1;
+
+  // Start of the time window (inclusive).
+  google.protobuf.Timestamp from_time = 2;
+
+  // End of the time window (exclusive, optional).
+  google.protobuf.Timestamp to_time = 3;
+
+  // Max results to return (default 100, max 1000).
+  int32 limit = 4;
+
+  // Continuation token from a previous response.
+  string continuation_token = 5;
+}
+
+// Response for ListFuelEvents.
+message ListFuelEventsResponse {
+  // The fuel events.
+  repeated FuelEvent fuel_events = 1;
+
+  // Continuation token for the next page, empty when no more results.
+  string continuation_token = 2;
+}
+
+// Request for GetObjectGroup.
+message GetObjectGroupRequest {
+  // The external ID of the object group.
+  string external_id = 1;
+}
+
+// Response for GetObjectGroup.
+message GetObjectGroupResponse {
+  // The object group.
+  ObjectGroup object_group = 1;
+}
+
+// Request for ListObjectGroups.
+message ListObjectGroupsRequest {
+  // Max results to return (default 100, max 1000).
+  int32 limit = 1;
+
+  // Continuation token from a previous response.
+  string continuation_token = 2;
+}
+
+// Response for ListObjectGroups.
+message ListObjectGroupsResponse {
+  // The object groups.
+  repeated ObjectGroup object_groups = 1;
+
+  // Continuation token for the next page, empty when no more results.
+  string continuation_token = 2;
+}
+
+// Request for ListObjectCoordinates.
+message ListObjectCoordinatesRequest {
+  // The external object ID.
+  string object_id = 1;
+
+  // Start of the time window (inclusive).
+  google.protobuf.Timestamp from_time = 2;
+
+  // End of the time window (exclusive, optional).
+  google.protobuf.Timestamp to_time = 3;
+
+  // Continuation token from a previous response.
+  string continuation_token = 4;
+
+  // Max results to return (default 1000, max 1000).
+  int32 limit = 5;
+
+  // Whether to include geozone information.
+  bool include_geozones = 6;
+
+  // Whether to include tire pressure information.
+  bool include_tire_parameters = 7;
+}
+
+// Response for ListObjectCoordinates.
+message ListObjectCoordinatesResponse {
+  // The coordinates.
+  repeated Coordinate coordinates = 1;
+
+  // Continuation token for the next page, empty when no more results.
+  string continuation_token = 2;
+}
+
+// Request for ListObjects.
+message ListObjectsRequest {}
+
+// Response for ListObjects.
+message ListObjectsResponse {
+  // The objects.
+  repeated Object objects = 1;
+}
+
+// Request for ListObjectsLastPosition.
+message ListObjectsLastPositionRequest {
+  // Max results to return (default 1000, max 1000).
+  int32 limit = 1;
+
+  // Continuation token from a previous response.
+  string continuation_token = 2;
+}
+
+// Response for ListObjectsLastPosition.
+message ListObjectsLastPositionResponse {
+  // The objects with their last position.
+  repeated Object objects = 1;
+
+  // Continuation token for the next page, empty when no more results.
+  string continuation_token = 2;
+}
+
+// Request for ListTrips.
+message ListTripsRequest {
+  // The ID of the object to get trips for.
+  string object_id = 1;
+
+  // Start of the time window (inclusive).
+  google.protobuf.Timestamp from_time = 2;
+
+  // End of the time window (exclusive, optional).
+  google.protobuf.Timestamp to_time = 3;
+
+  // Max results to return (default 100, max 1000).
+  int32 limit = 4;
+
+  // Continuation token from a previous response.
+  string continuation_token = 5;
+}
+
+// Response for ListTrips.
+message ListTripsResponse {
+  // The trips.
+  repeated Trip trips = 1;
+
+  // Continuation token for the next page, empty when no more results.
+  string continuation_token = 2;
+}
