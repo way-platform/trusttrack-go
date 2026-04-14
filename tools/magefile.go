@@ -30,7 +30,9 @@ func Build() {
 // Lint runs the Go linter.
 func Lint() error {
 	return forEachGoMod(func(dir string) error {
-		return tool(dir, "golangci-lint", "run", "--path-prefix", dir, "--build-tags", "mage").Run()
+		c := tool(dir, "golangci-lint", "run", "--path-prefix", dir, "--build-tags", "mage")
+		c.Env = append(os.Environ(), "GOFLAGS=-mod=mod")
+		return c.Run()
 	})
 }
 

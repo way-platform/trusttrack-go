@@ -13,58 +13,33 @@ import (
 	trusttrackv1 "github.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1"
 )
 
-// ListObjectGroupsRequest is the request for the [Client.ListObjectGroups] method.
-type ListObjectGroupsRequest struct {
-	// The limit of the number of object groups to return.
-	// Default: 100.
-	// Maximum: 1000.
-	Limit int `json:"limit"`
-	// The continuation token to use to get the next page of results.
-	ContinuationToken string `json:"continuationToken"`
-}
-
-// Query returns the query parameters for the request.
-func (r *ListObjectGroupsRequest) Query() url.Values {
-	q := url.Values{}
-	q.Set("version", "1")
-	if r.Limit > 0 {
-		q.Set("limit", strconv.Itoa(r.Limit))
-	}
-	if r.ContinuationToken != "" {
-		q.Set("continuation_token", r.ContinuationToken)
-	}
-	return q
-}
-
-// ListObjectGroupsResponse is the response for the [Client.ListObjectGroups] method.
-type ListObjectGroupsResponse struct {
-	// The object groups.
-	ObjectGroups []*trusttrackv1.ObjectGroup `json:"objectGroups"`
-	// The continuation token to use to get the next page of results.
-	ContinuationToken string `json:"continuationToken"`
-}
-
 // ListObjectGroups lists all object groups.
 func (c *Client) ListObjectGroups(
 	ctx context.Context,
-	request *ListObjectGroupsRequest,
-	opts ...ClientOption,
-) (_ *ListObjectGroupsResponse, err error) {
+	request *trusttrackv1.ListObjectGroupsRequest,
+) (_ *trusttrackv1.ListObjectGroupsResponse, err error) {
 	defer func() {
 		if err != nil {
 			err = fmt.Errorf("trusttrack: list object groups: %w", err)
 		}
 	}()
-	cfg := c.config.with(opts...)
-	fullURL := cfg.baseURL + "/object-groups"
+	q := url.Values{}
+	q.Set("version", "1")
+	if request.GetLimit() > 0 {
+		q.Set("limit", strconv.Itoa(int(request.GetLimit())))
+	}
+	if request.GetContinuationToken() != "" {
+		q.Set("continuation_token", request.GetContinuationToken())
+	}
+	fullURL := c.config.baseURL + "/object-groups"
 	httpRequest, err := http.NewRequestWithContext(ctx, http.MethodGet, fullURL, nil)
 	if err != nil {
 		return nil, err
 	}
-	httpRequest.URL.RawQuery = request.Query().Encode()
+	httpRequest.URL.RawQuery = q.Encode()
 	httpRequest.Header.Set("User-Agent", getUserAgent())
 	httpRequest.Header.Set("Accept", "application/json")
-	httpResponse, err := cfg.httpClient().Do(httpRequest)
+	httpResponse, err := c.config.httpClient().Do(httpRequest)
 	if err != nil {
 		return nil, err
 	}
@@ -82,14 +57,14 @@ func (c *Client) ListObjectGroups(
 	if err := json.Unmarshal(responseData, &responseBody); err != nil {
 		return nil, err
 	}
-	response := ListObjectGroupsResponse{
-		ObjectGroups: make([]*trusttrackv1.ObjectGroup, 0, len(responseBody.Items)),
-	}
+	resp := &trusttrackv1.ListObjectGroupsResponse{}
+	objectGroups := make([]*trusttrackv1.ObjectGroup, 0, len(responseBody.Items))
 	for _, objectGroup := range responseBody.Items {
-		response.ObjectGroups = append(response.ObjectGroups, objectGroupToProto(&objectGroup))
+		objectGroups = append(objectGroups, objectGroupToProto(&objectGroup))
 	}
+	resp.SetObjectGroups(objectGroups)
 	if responseBody.ContinuationToken != nil {
-		response.ContinuationToken = fmt.Sprintf("%d", *responseBody.ContinuationToken)
+		resp.SetContinuationToken(fmt.Sprintf("%d", *responseBody.ContinuationToken))
 	}
-	return &response, nil
+	return resp, nil
 }

@@ -1,6 +1,6 @@
 module github.com/way-platform/trusttrack-go/cli
 
-go 1.25.0
+go 1.26.0
 
 require (
 	buf.build/go/protovalidate v1.1.3
@@ -14,6 +14,7 @@ require (
 require (
 	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.11-20260209202127-80ab13bee0bf.1 // indirect
 	cel.dev/expr v0.25.1 // indirect
+	connectrpc.com/connect v1.19.1 // indirect
 	github.com/antlr4-go/antlr/v4 v4.13.1 // indirect
 	github.com/charmbracelet/colorprofile v0.4.2 // indirect
 	github.com/charmbracelet/ultraviolet v0.0.0-20251205161215-1948445e3318 // indirect

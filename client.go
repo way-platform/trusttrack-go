@@ -4,9 +4,13 @@ import (
 	"net/http"
 	"runtime/debug"
 	"time"
+
+	trusttrackv1connect "github.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1/trusttrackv1connect"
 )
 
-// Client for the LogiApp BI API.
+var _ trusttrackv1connect.TrustTrackApiClient = (*Client)(nil)
+
+// Client for the TrustTrack Fleet Management API.
 type Client struct {
 	config clientConfig
 }
@@ -24,12 +28,12 @@ func NewClient(opts ...ClientOption) (*Client, error) {
 
 // clientConfig is the config for a [Client].
 type clientConfig struct {
-	baseURL      string
-	apiKey       string
+	baseURL        string
+	apiKey         string
 	baseHTTPClient *http.Client
-	timeout      time.Duration
-	retryCount   int
-	interceptors []func(http.RoundTripper) http.RoundTripper
+	timeout        time.Duration
+	retryCount     int
+	interceptors   []func(http.RoundTripper) http.RoundTripper
 }
 
 func newClientConfig() clientConfig {
@@ -38,13 +42,6 @@ func newClientConfig() clientConfig {
 		retryCount: 3,
 		baseURL:    "https://api.fm-track.com",
 	}
-}
-
-func (cc clientConfig) with(opts ...ClientOption) clientConfig {
-	for _, opt := range opts {
-		opt(&cc)
-	}
-	return cc
 }
 
 func (cc clientConfig) httpClient() *http.Client {

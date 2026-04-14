@@ -13,60 +13,35 @@ import (
 	trusttrackv1 "github.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1"
 )
 
-// ListObjectsLastPositionRequest is the request for the [Client.ListObjectsLastPosition] method.
-type ListObjectsLastPositionRequest struct {
-	// The limit of the number of objects to return.
-	// Default: 100.
-	// Maximum: 1000.
-	Limit int `json:"limit"`
-	// The continuation token to use to get the next page of results.
-	ContinuationToken string `json:"continuationToken"`
-}
-
-// Query returns the query parameters for the request.
-func (r *ListObjectsLastPositionRequest) Query() url.Values {
-	q := url.Values{}
-	q.Set("version", "2")
-	if r.Limit > 0 {
-		q.Set("limit", strconv.Itoa(r.Limit))
-	} else {
-		q.Set("limit", "1000")
-	}
-	if r.ContinuationToken != "" {
-		q.Set("continuation_token", r.ContinuationToken)
-	}
-	return q
-}
-
-// ListObjectsLastPositionResponse is the response for the [Client.ListObjectsLastPosition] method.
-type ListObjectsLastPositionResponse struct {
-	// The objects with their last position.
-	Objects []*trusttrackv1.Object `json:"objects"`
-	// The continuation token to use to get the next page of results.
-	ContinuationToken string `json:"continuationToken"`
-}
-
 // ListObjectsLastPosition lists all objects with their last position.
 func (c *Client) ListObjectsLastPosition(
 	ctx context.Context,
-	request *ListObjectsLastPositionRequest,
-	opts ...ClientOption,
-) (_ *ListObjectsLastPositionResponse, err error) {
+	request *trusttrackv1.ListObjectsLastPositionRequest,
+) (_ *trusttrackv1.ListObjectsLastPositionResponse, err error) {
 	defer func() {
 		if err != nil {
 			err = fmt.Errorf("trusttrack: list objects last position: %w", err)
 		}
 	}()
-	cfg := c.config.with(opts...)
-	fullURL := cfg.baseURL + "/objects-last-coordinate"
+	q := url.Values{}
+	q.Set("version", "2")
+	if request.GetLimit() > 0 {
+		q.Set("limit", strconv.Itoa(int(request.GetLimit())))
+	} else {
+		q.Set("limit", "1000")
+	}
+	if request.GetContinuationToken() != "" {
+		q.Set("continuation_token", request.GetContinuationToken())
+	}
+	fullURL := c.config.baseURL + "/objects-last-coordinate"
 	httpRequest, err := http.NewRequestWithContext(ctx, http.MethodGet, fullURL, nil)
 	if err != nil {
 		return nil, err
 	}
-	httpRequest.URL.RawQuery = request.Query().Encode()
+	httpRequest.URL.RawQuery = q.Encode()
 	httpRequest.Header.Set("User-Agent", getUserAgent())
 	httpRequest.Header.Set("Accept", "application/json")
-	httpResponse, err := cfg.httpClient().Do(httpRequest)
+	httpResponse, err := c.config.httpClient().Do(httpRequest)
 	if err != nil {
 		return nil, err
 	}
@@ -84,14 +59,14 @@ func (c *Client) ListObjectsLastPosition(
 	if err := json.Unmarshal(responseData, &responseBody); err != nil {
 		return nil, err
 	}
-	response := ListObjectsLastPositionResponse{
-		Objects: make([]*trusttrackv1.Object, 0, len(responseBody.Results)),
-	}
+	resp := &trusttrackv1.ListObjectsLastPositionResponse{}
+	objects := make([]*trusttrackv1.Object, 0, len(responseBody.Results))
 	for _, object := range responseBody.Results {
-		response.Objects = append(response.Objects, objectToProto(object))
+		objects = append(objects, objectToProto(object))
 	}
+	resp.SetObjects(objects)
 	if responseBody.ContinuationToken != nil {
-		response.ContinuationToken = *responseBody.ContinuationToken
+		resp.SetContinuationToken(*responseBody.ContinuationToken)
 	}
-	return &response, nil
+	return resp, nil
 }
