@@ -72,6 +72,11 @@ func CLI() error {
 	return cmd(root("cmd/trusttrack"), "go", "install", ".").Run()
 }
 
+// BufPush pushes the proto module to the Buf Schema Registry.
+func BufPush() error {
+	return tool(root("proto"), "buf", "push").Run()
+}
+
 // VHS records the CLI GIF using VHS.
 func VHS() error {
 	mg.Deps(CLI)
