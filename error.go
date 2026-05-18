@@ -1,35 +1,51 @@
 package trusttrack
 
 import (
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
+
+	"connectrpc.com/connect"
 )
 
-// Error represents a LogiApp BI API error.
-type Error struct {
-	// StatusCode is the HTTP status code of the response.
-	StatusCode int
-	// Message is the error message from the response.
-	Message string
-}
-
-// Error implements the error interface.
-func (e Error) Error() string {
-	return fmt.Sprintf("http %d: %s", e.StatusCode, e.Message)
-}
-
-func newResponseError(response *http.Response) error {
-	data, err := io.ReadAll(response.Body)
+func newResponseError(httpResponse *http.Response) error {
+	body, err := io.ReadAll(httpResponse.Body)
 	if err != nil {
-		return err
+		body = fmt.Appendf(nil, "failed to read response body: %s", err)
 	}
-	message := response.Status
-	if len(data) > 0 {
-		message = string(data)
+	var msg string
+	if len(body) > 0 {
+		msg = fmt.Sprintf("http %d: %s", httpResponse.StatusCode, body)
+	} else {
+		msg = fmt.Sprintf("http %d", httpResponse.StatusCode)
 	}
-	return &Error{
-		StatusCode: response.StatusCode,
-		Message:    message,
+	return connect.NewError(httpStatusToConnectCode(httpResponse.StatusCode), errors.New(msg))
+}
+
+func httpStatusToConnectCode(statusCode int) connect.Code {
+	switch statusCode {
+	case http.StatusBadRequest:
+		return connect.CodeInvalidArgument
+	case http.StatusUnauthorized:
+		return connect.CodeUnauthenticated
+	case http.StatusForbidden:
+		return connect.CodePermissionDenied
+	case http.StatusNotFound:
+		return connect.CodeNotFound
+	case http.StatusConflict:
+		return connect.CodeAlreadyExists
+	case http.StatusTooManyRequests:
+		return connect.CodeResourceExhausted
+	case http.StatusNotImplemented:
+		return connect.CodeUnimplemented
+	case http.StatusServiceUnavailable:
+		return connect.CodeUnavailable
+	case http.StatusGatewayTimeout:
+		return connect.CodeDeadlineExceeded
+	case http.StatusInternalServerError:
+		return connect.CodeInternal
+	default:
+		return connect.CodeUnknown
 	}
 }
