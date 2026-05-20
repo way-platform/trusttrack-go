@@ -17,9 +17,7 @@ When developing this SDK, use the API docs and specs:
 
 ## Structure
 
-- The project uses a [tools](./tools/) directory with a separate Go module containing tools for building, linting and generating code.
-
-- The project uses [Mage](https://magefile.org) with build tasks declared in [magefile.go](./tools/magefile.go).
+- The project uses [mise](https://mise.jdx.dev) for tool version management and build tasks declared in [mise.toml](./mise.toml).
 
 - The client API returns protobuf messages. See [proto](./proto) for schemas.
 
@@ -31,11 +29,11 @@ When developing this SDK, use the API docs and specs:
 
 ## Developing
 
-- Run tests with `./tools/mage test`
+- Run tests with `mise run test`
 
-- Lint with `./tools/mage lint`
+- Lint with `mise run lint`
 
-- Re-generate code with `./tools/mage generate`
+- Re-generate code with `mise run generate`
 
 ## OpenAPI schemas
 

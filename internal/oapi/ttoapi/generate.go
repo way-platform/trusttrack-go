@@ -7,10 +7,10 @@ package ttoapi
 //go:generate python3 generate-coordinate-overlay.py ../../../docs/object-coordinates-history-api-v2.md coordinate-overlay.yaml
 
 //go:generate echo [ttoapi] applying coordinate overlay...
-//go:generate sh -c "go tool -modfile ../../../tools/go.mod openapi-overlay apply coordinate-overlay.yaml 02-converted.yaml > 03-coordinate-overlayed.yaml"
+//go:generate sh -c "openapi-overlay apply coordinate-overlay.yaml 02-converted.yaml > 03-coordinate-overlayed.yaml"
 
 //go:generate echo [ttoapi] applying standard overlay...
-//go:generate sh -c "go tool -modfile ../../../tools/go.mod openapi-overlay apply overlay.yaml 03-coordinate-overlayed.yaml > 04-overlayed.yaml"
+//go:generate sh -c "openapi-overlay apply overlay.yaml 03-coordinate-overlayed.yaml > 04-overlayed.yaml"
 
 //go:generate echo [ttoapi] generating code...
-//go:generate go tool -modfile ../../../tools/go.mod oapi-codegen -config config.yaml 04-overlayed.yaml
+//go:generate oapi-codegen -config config.yaml 04-overlayed.yaml
