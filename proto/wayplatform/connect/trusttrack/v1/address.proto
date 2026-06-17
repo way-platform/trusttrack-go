@@ -14,7 +14,7 @@ message Address {
   string county = 3;
 
   // The house number.
-  string house_number = 4;
+  string house_number = 4 [debug_redact = true];
 
   // The locality name.
   string locality = 5;
@@ -23,8 +23,8 @@ message Address {
   string region = 6;
 
   // The street name.
-  string street = 7;
+  string street = 7 [debug_redact = true];
 
   // The ZIP/postal code.
-  string zip = 8;
+  string zip = 8 [debug_redact = true];
 }

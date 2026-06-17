@@ -342,16 +342,16 @@ var File_wayplatform_connect_trusttrack_v1_address_proto protoreflect.FileDescri
 
 const file_wayplatform_connect_trusttrack_v1_address_proto_rawDesc = "" +
 	"\n" +
-	"/wayplatform/connect/trusttrack/v1/address.proto\x12!wayplatform.connect.trusttrack.v1\"\xdf\x01\n" +
+	"/wayplatform/connect/trusttrack/v1/address.proto\x12!wayplatform.connect.trusttrack.v1\"\xee\x01\n" +
 	"\aAddress\x12\x18\n" +
 	"\acountry\x18\x01 \x01(\tR\acountry\x12!\n" +
 	"\fcountry_code\x18\x02 \x01(\tR\vcountryCode\x12\x16\n" +
-	"\x06county\x18\x03 \x01(\tR\x06county\x12!\n" +
-	"\fhouse_number\x18\x04 \x01(\tR\vhouseNumber\x12\x1a\n" +
+	"\x06county\x18\x03 \x01(\tR\x06county\x12&\n" +
+	"\fhouse_number\x18\x04 \x01(\tB\x03\x80\x01\x01R\vhouseNumber\x12\x1a\n" +
 	"\blocality\x18\x05 \x01(\tR\blocality\x12\x16\n" +
-	"\x06region\x18\x06 \x01(\tR\x06region\x12\x16\n" +
-	"\x06street\x18\a \x01(\tR\x06street\x12\x10\n" +
-	"\x03zip\x18\b \x01(\tR\x03zipB\xbf\x02\n" +
+	"\x06region\x18\x06 \x01(\tR\x06region\x12\x1b\n" +
+	"\x06street\x18\a \x01(\tB\x03\x80\x01\x01R\x06street\x12\x15\n" +
+	"\x03zip\x18\b \x01(\tB\x03\x80\x01\x01R\x03zipB\xbf\x02\n" +
 	"%com.wayplatform.connect.trusttrack.v1B\fAddressProtoP\x01Zagithub.com/way-platform/trusttrack-go/proto/gen/go/wayplatform/connect/trusttrack/v1;trusttrackv1\xa2\x02\x03WCT\xaa\x02!Wayplatform.Connect.Trusttrack.V1\xca\x02!Wayplatform\\Connect\\Trusttrack\\V1\xe2\x02-Wayplatform\\Connect\\Trusttrack\\V1\\GPBMetadata\xea\x02$Wayplatform::Connect::Trusttrack::V1b\beditionsp\xe8\a"
 
 var file_wayplatform_connect_trusttrack_v1_address_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
