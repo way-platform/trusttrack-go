@@ -466,18 +466,18 @@ var File_wayplatform_connect_trusttrack_v1_driver_proto protoreflect.FileDescrip
 
 const file_wayplatform_connect_trusttrack_v1_driver_proto_rawDesc = "" +
 	"\n" +
-	".wayplatform/connect/trusttrack/v1/driver.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1bbuf/validate/validate.proto\"\xe3\x01\n" +
+	".wayplatform/connect/trusttrack/v1/driver.proto\x12!wayplatform.connect.trusttrack.v1\x1a\x1bbuf/validate/validate.proto\"\xf7\x01\n" +
 	"\x06Driver\x12\x16\n" +
-	"\x02id\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x02id\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x02id\x12\"\n" +
 	"\n" +
-	"first_name\x18\x02 \x01(\tR\tfirstName\x12\x1b\n" +
-	"\tlast_name\x18\x03 \x01(\tR\blastName\x12\x18\n" +
-	"\aaddress\x18\x04 \x01(\tR\aaddress\x12\x14\n" +
-	"\x05phone\x18\x05 \x01(\tR\x05phone\x12U\n" +
-	"\videntifiers\x18\x06 \x03(\v23.wayplatform.connect.trusttrack.v1.DriverIdentifierR\videntifiers\"\xc7\x02\n" +
-	"\x10DriverIdentifier\x12\x1e\n" +
+	"first_name\x18\x02 \x01(\tB\x03\x80\x01\x01R\tfirstName\x12 \n" +
+	"\tlast_name\x18\x03 \x01(\tB\x03\x80\x01\x01R\blastName\x12\x1d\n" +
+	"\aaddress\x18\x04 \x01(\tB\x03\x80\x01\x01R\aaddress\x12\x19\n" +
+	"\x05phone\x18\x05 \x01(\tB\x03\x80\x01\x01R\x05phone\x12U\n" +
+	"\videntifiers\x18\x06 \x03(\v23.wayplatform.connect.trusttrack.v1.DriverIdentifierR\videntifiers\"\xcc\x02\n" +
+	"\x10DriverIdentifier\x12#\n" +
 	"\n" +
-	"identifier\x18\x01 \x01(\tR\n" +
+	"identifier\x18\x01 \x01(\tB\x03\x80\x01\x01R\n" +
 	"identifier\x12V\n" +
 	"\x04type\x18\x02 \x01(\x0e2B.wayplatform.connect.trusttrack.v1.DriverIdentifier.IdentifierTypeR\x04type\x126\n" +
 	"\x17unknown_identifier_type\x18\x03 \x01(\tR\x15unknownIdentifierType\"\x82\x01\n" +
